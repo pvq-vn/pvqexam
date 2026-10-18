@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Subject, QuizConfig, QuizAttempt } from './types/quiz';
 import { SUBJECT_CATALOG } from './data/subjectCatalog';
 import { Navbar } from './components/Navbar';
 import { HomePage } from './pages/HomePage';
-import { QuizPage } from './pages/QuizPage';
-import { HistoryPage } from './pages/HistoryPage';
-import { AdminReportsPage } from './pages/AdminReportsPage';
 import { QuizSetupModal } from './components/QuizSetupModal';
 import { AuthModal } from './components/AuthModal';
 import { draftService, QuizDraft } from './services/draftService';
 import { authService, UserProfile } from './services/authService';
-import { AlertCircle, Play, Trash2, ArrowRight } from 'lucide-react';
+import { AlertCircle, Play, Trash2 } from 'lucide-react';
+
+// Lazy-load QuizPage and secondary routes for faster initial Home startup
+const QuizPage = lazy(() =>
+  import('./pages/QuizPage').then((m) => ({ default: m.QuizPage }))
+);
+const HistoryPage = lazy(() =>
+  import('./pages/HistoryPage').then((m) => ({ default: m.HistoryPage }))
+);
+const AdminReportsPage = lazy(() =>
+  import('./pages/AdminReportsPage').then((m) => ({
+    default: m.AdminReportsPage,
+  }))
+);
 
 export function App() {
-  const [currentRoute, setCurrentRoute] = useState<'home' | 'quiz' | 'history' | 'admin'>('home');
+  const [currentRoute, setCurrentRoute] = useState<
+    'home' | 'quiz' | 'history' | 'admin'
+  >('home');
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -24,9 +36,10 @@ export function App() {
   // Active quiz session state
   const [activeSubject, setActiveSubject] = useState<Subject | null>(null);
   const [activeConfig, setActiveConfig] = useState<QuizConfig | null>(null);
+  const [resumedDraft, setResumedDraft] = useState<QuizDraft | null>(null);
   const [reopenAttempt, setReopenAttempt] = useState<QuizAttempt | null>(null);
 
-  // Draft state check
+  // Draft banner state on home/other pages
   const [activeDraft, setActiveDraft] = useState<QuizDraft | null>(null);
 
   // Initialize Auth & Draft check
@@ -62,24 +75,51 @@ export function App() {
 
         if (targetSubject) {
           const seedParam = params.get('seed') || undefined;
-          setSetupSubject(targetSubject);
+          // If the user refreshed the browser while playing an active draft with this subject & seed,
+          // automatically resume the draft session instead of popping up the setup modal!
+          const savedDraft = draftService.getDraft();
+          if (
+            savedDraft &&
+            savedDraft.subjectId === targetSubject.id &&
+            (!seedParam ||
+              savedDraft.config.seed.toUpperCase() === seedParam.toUpperCase())
+          ) {
+            setSetupSubject(null);
+            setReopenAttempt(null);
+            setActiveSubject(targetSubject);
+            setActiveConfig(savedDraft.config);
+            setResumedDraft(savedDraft);
+            setCurrentRoute('quiz');
+            return;
+          }
+
+          // Otherwise, if not already playing this quiz, open the setup modal
+          setSetupSubject((prev) =>
+            currentRoute === 'quiz' ? prev : targetSubject
+          );
           setSetupSeed(seedParam);
         }
+      } else if (hash === '#/' || hash === '') {
+        setCurrentRoute('home');
+        setActiveDraft(draftService.getDraft());
       }
     };
 
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [currentRoute]);
 
   // Handle starting a new quiz from configuration
   const handleStartQuiz = (config: QuizConfig) => {
     const subject = SUBJECT_CATALOG.find((s) => s.id === config.subjectId);
     if (!subject) return;
 
+    // Starting a brand-new quiz clears any old draft first
+    draftService.clearDraft();
     setSetupSubject(null);
     setReopenAttempt(null);
+    setResumedDraft(null);
     setActiveSubject(subject);
     setActiveConfig(config);
     setCurrentRoute('quiz');
@@ -89,26 +129,30 @@ export function App() {
     window.location.hash = `#/quiz/${subject.code}?seed=${config.seed}`;
   };
 
-  // Resume draft quiz
+  // Resume draft quiz without losing answers or remaining time
   const handleResumeDraft = () => {
-    if (!activeDraft) return;
+    const draft = activeDraft || draftService.getDraft();
+    if (!draft) return;
 
-    const subject = SUBJECT_CATALOG.find((s) => s.id === activeDraft.subjectId);
+    const subject = SUBJECT_CATALOG.find((s) => s.id === draft.subjectId);
     if (!subject) return;
 
+    setSetupSubject(null);
     setReopenAttempt(null);
+    setResumedDraft(draft);
     setActiveSubject(subject);
-    setActiveConfig(activeDraft.config);
+    setActiveConfig(draft.config);
     setCurrentRoute('quiz');
     setActiveDraft(null);
 
-    window.location.hash = `#/quiz/${subject.code}?seed=${activeDraft.config.seed}`;
+    window.location.hash = `#/quiz/${subject.code}?seed=${draft.config.seed}`;
   };
 
   // Discard draft
   const handleDiscardDraft = () => {
     draftService.clearDraft();
     setActiveDraft(null);
+    setResumedDraft(null);
   };
 
   // Reopen previous attempt in review mode
@@ -116,6 +160,8 @@ export function App() {
     const subject = SUBJECT_CATALOG.find((s) => s.id === attempt.subjectId);
     if (!subject) return;
 
+    setSetupSubject(null);
+    setResumedDraft(null);
     setActiveSubject(subject);
     setActiveConfig(attempt.config);
     setReopenAttempt(attempt);
@@ -124,25 +170,29 @@ export function App() {
     window.location.hash = `#/quiz/${subject.code}?seed=${attempt.seed}&review=true`;
   };
 
-  // Exit quiz and return home
+  // Exit quiz and return home (refreshing activeDraft banner if still in progress)
   const handleExitQuiz = () => {
     setCurrentRoute('home');
     setActiveSubject(null);
     setActiveConfig(null);
+    setResumedDraft(null);
     setReopenAttempt(null);
+    setActiveDraft(draftService.getDraft());
     window.location.hash = '#/';
   };
 
   // Retry with same seed
   const handleRetryWithSameSeed = () => {
     if (!activeConfig || !activeSubject) return;
+    draftService.clearDraft();
     setReopenAttempt(null);
-    // Restart quiz with identical seed & config
+    setResumedDraft(null);
     handleStartQuiz({ ...activeConfig });
   };
 
   const handleNavigate = (route: 'home' | 'history' | 'admin') => {
     setCurrentRoute(route);
+    setActiveDraft(draftService.getDraft());
     if (route === 'home') window.location.hash = '#/';
     if (route === 'history') window.location.hash = '#/history';
     if (route === 'admin') window.location.hash = '#/admin';
@@ -158,14 +208,23 @@ export function App() {
         onOpenAuth={() => setShowAuthModal(true)}
       />
 
-      {/* In-Progress Draft Banner (Section 25 Requirement) */}
+      {/* In-Progress Draft Banner */}
       {activeDraft && currentRoute !== 'quiz' && (
-        <div className="bg-amber-500 text-slate-950 px-4 py-2.5 shadow-sm text-xs sm:text-sm font-medium">
+        <div className="bg-amber-500 text-slate-950 px-4 py-2.5 shadow-xs text-xs sm:text-sm font-medium">
           <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <AlertCircle size={18} className="shrink-0" />
               <span>
-                Bạn đang có bài làm dở môn <strong>{activeDraft.subjectCode} - {activeDraft.subjectName}</strong> ({activeDraft.questions.length} câu).
+                Bạn đang có bài làm dở môn{' '}
+                <strong>
+                  {activeDraft.subjectCode} - {activeDraft.subjectName}
+                </strong>{' '}
+                ({Object.keys(activeDraft.answers || {}).length}/
+                {activeDraft.questions.length} câu đã chọn · Mã đề{' '}
+                <code className="font-mono font-bold">
+                  {activeDraft.config.seed}
+                </code>
+                ).
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -199,24 +258,33 @@ export function App() {
           />
         )}
 
-        {currentRoute === 'quiz' && activeSubject && activeConfig && (
-          <QuizPage
-            subject={activeSubject}
-            config={activeConfig}
-            initialAttempt={reopenAttempt}
-            onExit={handleExitQuiz}
-            onRetryWithSameSeed={handleRetryWithSameSeed}
-          />
-        )}
+        <Suspense
+          fallback={
+            <div className="p-12 text-center text-sm text-slate-500">
+              Đang tải trang...
+            </div>
+          }
+        >
+          {currentRoute === 'quiz' && activeSubject && activeConfig && (
+            <QuizPage
+              subject={activeSubject}
+              config={activeConfig}
+              initialAttempt={reopenAttempt}
+              initialDraft={resumedDraft}
+              onExit={handleExitQuiz}
+              onRetryWithSameSeed={handleRetryWithSameSeed}
+            />
+          )}
 
-        {currentRoute === 'history' && (
-          <HistoryPage
-            onReopenAttempt={handleReopenAttempt}
-            onNavigateHome={() => handleNavigate('home')}
-          />
-        )}
+          {currentRoute === 'history' && (
+            <HistoryPage
+              onReopenAttempt={handleReopenAttempt}
+              onNavigateHome={() => handleNavigate('home')}
+            />
+          )}
 
-        {currentRoute === 'admin' && <AdminReportsPage />}
+          {currentRoute === 'admin' && <AdminReportsPage />}
+        </Suspense>
       </div>
 
       {/* Quiz Configuration Modal */}
@@ -246,7 +314,8 @@ export function App() {
             HUST IT1 QUIZ — Hệ thống luyện thi trắc nghiệm & tự luận CNTT HUST
           </p>
           <p>
-            Dữ liệu câu hỏi được lưu giữ nguyên bản (Read-only) từ kho tài liệu <code>pvq-vn/hust-it1-materials</code>.
+            Dữ liệu câu hỏi được lưu giữ nguyên bản (Read-only) từ kho tài liệu{' '}
+            <code>pvq-vn/hust-it1-materials</code>.
           </p>
         </div>
       </footer>
