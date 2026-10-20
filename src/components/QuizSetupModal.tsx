@@ -485,8 +485,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-slate-300 dark:border-slate-600 dark:bg-slate-800"
               />
               <span className="text-sm font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                <Shuffle size={15} className="text-slate-500 dark:text-slate-400" /> Xáo trộn thứ tự
-                câu hỏi (Fisher-Yates)
+                <Shuffle size={15} className="text-slate-500 dark:text-slate-400" /> Xáo trộn thứ tự câu hỏi
               </span>
             </label>
 
@@ -498,8 +497,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-slate-300 dark:border-slate-600 dark:bg-slate-800"
               />
               <span className="text-sm font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                <Shuffle size={15} className="text-slate-500 dark:text-slate-400" /> Xáo trộn thứ tự
-                đáp án (ẩn tag A/B/C/D)
+                <Shuffle size={15} className="text-slate-500 dark:text-slate-400" /> Xáo trộn thứ tự đáp án
               </span>
             </label>
           </div>

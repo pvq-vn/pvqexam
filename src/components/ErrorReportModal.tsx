@@ -3,6 +3,7 @@ import { Question, ReportType } from '../types/quiz';
 import { reportService } from '../services/reportService';
 import { authService } from '../services/authService';
 import { AlertTriangle, X, CheckCircle2 } from 'lucide-react';
+import { RichTextRenderer } from './RichTextRenderer';
 
 interface ErrorReportModalProps {
   question: Question;
@@ -62,7 +63,7 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 max-w-md w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-800/80">
           <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm">
@@ -87,9 +88,14 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-6 space-y-4">
-            <div className="text-xs text-slate-500 dark:text-slate-400 p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 line-clamp-2">
-              <strong>Nội dung:</strong> {question.text}
+          <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto">
+            <div className="text-xs text-slate-700 dark:text-slate-200 p-3 bg-slate-50 dark:bg-slate-800/90 rounded-xl border border-slate-200 dark:border-slate-700 max-h-36 overflow-y-auto leading-relaxed break-words">
+              <span className="font-bold text-slate-900 dark:text-slate-100 block mb-1">
+                Nội dung câu hỏi:
+              </span>
+              <div className="text-slate-600 dark:text-slate-300">
+                <RichTextRenderer text={question.text} />
+              </div>
             </div>
 
             {/* Error types */}

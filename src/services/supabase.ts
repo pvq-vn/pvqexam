@@ -8,8 +8,12 @@ const env =
     ? import.meta.env
     : globalProcess?.env || {};
 
-const supabaseUrl = env?.VITE_SUPABASE_URL;
-const supabaseAnonKey = env?.VITE_SUPABASE_ANON_KEY;
+const defaultSupabaseUrl = 'https://skyrdsrqmbvduwvukpsl.supabase.co';
+const defaultSupabaseAnonKey = 'sb_publishable_OY_xs8vhMl2qiCoDspa-FQ_SKkC6FvR';
+const defaultAdminEmails = 'pvq@example.com,admin@hust.edu.vn';
+
+const supabaseUrl = env?.VITE_SUPABASE_URL || defaultSupabaseUrl;
+const supabaseAnonKey = env?.VITE_SUPABASE_ANON_KEY || defaultSupabaseAnonKey;
 
 export const isSupabaseConfigured = Boolean(
   supabaseUrl && 
@@ -26,7 +30,7 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
  * Returns list of admin email addresses configured in env.
  */
 export function getAdminEmails(): string[] {
-  const adminEnv = String(env?.VITE_ADMIN_EMAILS || '');
+  const adminEnv = String(env?.VITE_ADMIN_EMAILS || defaultAdminEmails);
   return adminEnv
     .split(',')
     .map((e: string) => e.trim().toLowerCase())

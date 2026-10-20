@@ -102,6 +102,11 @@ export const SUBJECT_CATALOG: Subject[] = [
           '/2026.1/IT3120 - Phân tích và thiết kế hệ thống/Gemini/exam.json',
         isDefault: true,
       },
+      {
+        label: 'Ngân hàng đề gốc (raw_exam.json)',
+        filePath:
+          '/2026.1/IT3120 - Phân tích và thiết kế hệ thống/Gemini/raw_exam.json',
+      },
     ],
   },
   {
@@ -119,6 +124,11 @@ export const SUBJECT_CATALOG: Subject[] = [
           '/2026.1/IT3180 - Nhập môn công nghệ phần mềm/Gemini/exam.json',
         isDefault: true,
       },
+      {
+        label: 'Ngân hàng đề gốc (raw_exam.json)',
+        filePath:
+          '/2026.1/IT3180 - Nhập môn công nghệ phần mềm/Gemini/raw_exam.json',
+      },
     ],
   },
   {
@@ -130,10 +140,15 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Hồi quy, phân lớp (SVM, Decision Tree, Naive Bayes), gom cụm (K-means, Hierarchical), giảm chiều dữ liệu (PCA).',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (Exam.json)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath:
-          '/2026.1/IT3190 - Học máy và khai phá dữ liệu/Gemini/Exam.json',
+          '/2026.1/IT3190 - Học máy và khai phá dữ liệu/Gemini/exam.json',
         isDefault: true,
+      },
+      {
+        label: 'Ngân hàng đề gốc (raw_exam.json)',
+        filePath:
+          '/2026.1/IT3190 - Học máy và khai phá dữ liệu/Gemini/raw_exam.json',
       },
     ],
   },
@@ -166,6 +181,11 @@ export const SUBJECT_CATALOG: Subject[] = [
         filePath: '/2026.1/IT4930 - Nhập môn khoa học dữ liệu/Gemini/exam.json',
         isDefault: true,
       },
+      {
+        label: 'Ngân hàng đề gốc (raw_exam.json)',
+        filePath:
+          '/2026.1/IT4930 - Nhập môn khoa học dữ liệu/Gemini/raw_exam.json',
+      },
     ],
   },
   {
@@ -181,6 +201,11 @@ export const SUBJECT_CATALOG: Subject[] = [
         filePath:
           '/2026.1/IT4931 - Lưu trữ và xử lý dữ liệu lớn/Gemini/exam.json',
         isDefault: true,
+      },
+      {
+        label: 'Ngân hàng đề gốc (raw_exam.json)',
+        filePath:
+          '/2026.1/IT4931 - Lưu trữ và xử lý dữ liệu lớn/Gemini/raw_exam.json',
       },
     ],
   },
