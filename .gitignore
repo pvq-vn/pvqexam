@@ -33,6 +33,8 @@
 !src/**
 !public/
 !public/**
+!supabase/
+!supabase/**
 
 node_modules/
 dist/

@@ -8,11 +8,27 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.5;
     text-align: start;
     overflow-wrap: break-word;
+    color: #0f172a;
+    background-color: #f8fafc;
+  }
+
+  .dark body,
+  html.dark body {
+    color: #f1f5f9;
+    background-color: #020617;
   }
 
   h1, h2, h3, th {
@@ -24,8 +40,34 @@
   }
 
   code, pre {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-feature-settings: "calt" 1, "liga" 1;
+    tab-size: 2;
   }
+}
+
+/* Global Dark Mode Text Contrast Fixes for Rich Text & KaTeX */
+.dark .rich-text {
+  color: #f1f5f9;
+}
+
+.dark .rich-text p,
+.dark .rich-text div:not([class*="bg-"]):not([class*="text-rose-"]):not([class*="text-emerald-"]):not([class*="text-blue-"]):not([class*="text-amber-"]),
+.dark .rich-text span:not([class*="bg-"]):not([class*="text-rose-"]):not([class*="text-emerald-"]):not([class*="text-blue-"]):not([class*="text-amber-"]) {
+  color: inherit;
+}
+
+.dark .rich-text strong {
+  color: #ffffff;
+}
+
+.dark .rich-text em {
+  color: #e2e8f0;
+}
+
+.dark .katex,
+.dark .katex-display {
+  color: #f1f5f9;
 }
 
 /* Modal dialog scroll containment (modern-web-guidance: prevent-page-scroll-under-modal-dialog) */
@@ -55,6 +97,14 @@ dialog::backdrop {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 /* Defer layout and paint ONLY for off-screen cards below the initial fold (modern-web-guidance: defer-rendering-heavy-content) */

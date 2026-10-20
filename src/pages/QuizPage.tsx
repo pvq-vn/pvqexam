@@ -26,6 +26,7 @@ import { ErrorReportModal } from '../components/ErrorReportModal';
 import { draftService, QuizDraft } from '../services/draftService';
 import { historyService } from '../services/historyService';
 import { authService, UserProfile } from '../services/authService';
+import { questionStatsService } from '../services/questionStatsService';
 import {
   Clock,
   Send,
@@ -223,14 +224,23 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     setActiveFilter('all');
 
     loadExamFile(config.examFilePath)
-      .then((allQuestions) => {
+      .then(async (allQuestions) => {
         if (!isMounted) return;
 
         if (allQuestions.length === 0) {
           throw new Error('Ngân hàng câu hỏi không có dữ liệu');
         }
 
-        const prepared = sampleAndPrepareQuestions(allQuestions, config);
+        const user = await authService.getCurrentUser();
+        const attemptCounts = questionStatsService.getQuestionAttempts(
+          user?.id,
+          subject.id
+        );
+        const prepared = sampleAndPrepareQuestions(
+          allQuestions,
+          config,
+          attemptCounts
+        );
         const totalSecs = computeTotalSecondsFromConfig(config);
         const nowIso = new Date().toISOString();
 
@@ -491,19 +501,19 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-8 text-center">
         {loadingError ? (
-          <div className="max-w-md p-6 bg-white rounded-2xl border border-rose-200 shadow-xs space-y-4">
+          <div className="max-w-md p-6 bg-white dark:bg-slate-900 rounded-2xl border border-rose-200 dark:border-rose-900 shadow-xs space-y-4">
             <AlertCircle size={40} className="text-rose-500 mx-auto" />
-            <h3 className="font-bold text-slate-800 text-lg">
+            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">
               Không thể tải đề thi
             </h3>
-            <p className="text-xs text-rose-600 leading-relaxed">
+            <p className="text-xs text-rose-600 dark:text-rose-400 leading-relaxed">
               {loadingError}
             </p>
             <div className="flex gap-2 justify-center pt-2">
               <button
                 type="button"
                 onClick={onExit}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors"
               >
                 Quay về danh sách môn
               </button>
@@ -519,10 +529,10 @@ export const QuizPage: React.FC<QuizPageProps> = ({
         ) : (
           <div className="space-y-4">
             <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-            <h3 className="font-bold text-slate-800 text-lg">
+            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">
               Đang chuẩn bị đề thi...
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Đang tải ngân hàng {subject.code} & áp dụng mã đề{' '}
               <strong className="font-mono">{config.seed}</strong>
             </p>
@@ -537,18 +547,18 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       {/* LEFT/SIDEBAR NAVIGATOR (STICKY ON DESKTOP) */}
       <aside className="w-full md:w-80 md:h-[calc(100vh-5rem)] md:sticky top-20 flex flex-col shrink-0 space-y-3.5 mb-5 md:mb-0 md:pr-5">
         {/* Course Banner Card */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between gap-2">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs flex items-center justify-between gap-2">
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <span className="font-mono font-bold text-blue-700 text-xs px-2 py-0.5 bg-blue-50 rounded-md border border-blue-200/80">
+              <span className="font-mono font-bold text-blue-700 dark:text-blue-300 text-xs px-2 py-0.5 bg-blue-50 dark:bg-blue-950/60 rounded-md border border-blue-200/80 dark:border-blue-800">
                 {subject.code}
               </span>
-              <span className="text-[11px] text-slate-400 font-medium">
+              <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
                 · Kỳ {subject.semester}
               </span>
             </div>
             <h2
-              className="font-bold text-slate-800 text-sm truncate mt-1"
+              className="font-bold text-slate-800 dark:text-slate-100 text-sm truncate mt-1"
               title={subject.name}
             >
               {subject.name}
@@ -561,7 +571,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
               saveCurrentDraft();
               onExit();
             }}
-            className="px-2.5 py-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl text-xs flex items-center gap-1 font-semibold transition-colors shrink-0"
+            className="px-2.5 py-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-xs flex items-center gap-1 font-semibold transition-colors shrink-0"
             title="Thoát khỏi bài thi (Tiến độ làm bài được lưu tự động)"
           >
             <ChevronLeft size={15} /> Thoát
@@ -570,8 +580,8 @@ export const QuizPage: React.FC<QuizPageProps> = ({
 
         {/* Timer Box (in playing mode) */}
         {gameState === 'playing' && (
-          <div className="hidden md:flex items-center justify-between bg-white px-4 py-3 rounded-2xl border border-slate-200 shadow-xs">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+          <div className="hidden md:flex items-center justify-between bg-white dark:bg-slate-900 px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Thời gian
             </span>
             <TimerDisplay
@@ -603,12 +613,12 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       <main className="flex-1 min-w-0 md:pl-1" ref={mainScrollRef}>
         {/* REVIEW STATS BANNER */}
         {gameState === 'review' && result && (
-          <section className="mb-6 bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs animate-in fade-in duration-200">
+          <section className="mb-6 bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs animate-in fade-in duration-200">
             <div className="text-center mb-5">
-              <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+              <span className="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
                 Kết quả bài kiểm tra
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-slate-100">
                 {result.score10 >= 8.0
                   ? 'Xuất sắc! 🎉'
                   : result.score10 >= 5.0
@@ -619,38 +629,38 @@ export const QuizPage: React.FC<QuizPageProps> = ({
 
             {/* Score Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-5">
-              <div className="p-4 bg-slate-50 rounded-xl border border-slate-200/80">
-                <div className="text-3xl sm:text-4xl font-black text-blue-600">
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700">
+                <div className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400">
                   {result.score10.toFixed(2)}
                 </div>
-                <div className="text-[11px] font-bold text-slate-500 mt-1 uppercase tracking-wider">
+                <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">
                   Điểm / Thang 10
                 </div>
               </div>
 
-              <div className="p-4 bg-emerald-50/80 rounded-xl border border-emerald-200/80 text-emerald-900">
-                <div className="text-3xl sm:text-4xl font-black text-emerald-600">
+              <div className="p-4 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-xl border border-emerald-200/80 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200">
+                <div className="text-3xl sm:text-4xl font-black text-emerald-600 dark:text-emerald-400">
                   {result.correctCount}
                 </div>
-                <div className="text-[11px] font-bold text-emerald-700 mt-1 uppercase tracking-wider">
+                <div className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 mt-1 uppercase tracking-wider">
                   Câu đúng
                 </div>
               </div>
 
-              <div className="p-4 bg-rose-50/80 rounded-xl border border-rose-200/80 text-rose-900">
-                <div className="text-3xl sm:text-4xl font-black text-rose-600">
+              <div className="p-4 bg-rose-50/80 dark:bg-rose-950/40 rounded-xl border border-rose-200/80 dark:border-rose-800 text-rose-900 dark:text-rose-200">
+                <div className="text-3xl sm:text-4xl font-black text-rose-600 dark:text-rose-400">
                   {result.wrongCount}
                 </div>
-                <div className="text-[11px] font-bold text-rose-700 mt-1 uppercase tracking-wider">
+                <div className="text-[11px] font-bold text-rose-700 dark:text-rose-400 mt-1 uppercase tracking-wider">
                   Câu sai
                 </div>
               </div>
 
-              <div className="p-4 bg-amber-50/80 rounded-xl border border-amber-200/80 text-amber-900">
-                <div className="text-3xl sm:text-4xl font-black text-amber-600">
+              <div className="p-4 bg-amber-50/80 dark:bg-amber-950/40 rounded-xl border border-amber-200/80 dark:border-amber-800 text-amber-900 dark:text-amber-200">
+                <div className="text-3xl sm:text-4xl font-black text-amber-600 dark:text-amber-400">
                   {result.unansweredCount}
                 </div>
-                <div className="text-[11px] font-bold text-amber-700 mt-1 uppercase tracking-wider">
+                <div className="text-[11px] font-bold text-amber-700 dark:text-amber-400 mt-1 uppercase tracking-wider">
                   Bỏ trống
                 </div>
               </div>
@@ -658,23 +668,23 @@ export const QuizPage: React.FC<QuizPageProps> = ({
 
             {/* Essay Notice */}
             {result.essayCount > 0 && (
-              <div className="p-3.5 bg-blue-50/80 border border-blue-200 rounded-xl text-xs sm:text-sm text-blue-950 mb-4 flex flex-wrap items-center justify-between gap-2">
+              <div className="p-3.5 bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-xl text-xs sm:text-sm text-blue-950 dark:text-blue-200 mb-4 flex flex-wrap items-center justify-between gap-2">
                 <span>
                   Đề thi có <strong>{result.essayCount} câu tự luận</strong>{' '}
                   (không tính vào điểm trắc nghiệm, hãy đối chiếu câu trả lời
                   với Đáp án mẫu phía dưới).
                 </span>
-                <span className="font-bold text-blue-700 shrink-0">
+                <span className="font-bold text-blue-700 dark:text-blue-400 shrink-0">
                   Trắc nghiệm: {result.score10.toFixed(2)}/10
                 </span>
               </div>
             )}
 
             {/* Time spent & Seed info */}
-            <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 pt-3 border-t border-slate-100">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-1.5 font-medium">
                 <Clock size={14} /> Thời gian hoàn thành:{' '}
-                <strong className="text-slate-700">
+                <strong className="text-slate-700 dark:text-slate-200">
                   {formatSeconds(result.timeSpentSeconds)}
                 </strong>
               </div>
@@ -682,14 +692,14 @@ export const QuizPage: React.FC<QuizPageProps> = ({
               <div className="flex items-center gap-2">
                 <span>
                   Mã đề:{' '}
-                  <strong className="font-mono text-slate-800">
+                  <strong className="font-mono text-slate-800 dark:text-slate-200">
                     {config.seed}
                   </strong>
                 </span>
                 <button
                   type="button"
                   onClick={copySeed}
-                  className="px-2 py-0.5 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold flex items-center gap-1 transition-colors"
+                  className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1 transition-colors"
                   title="Sao chép mã đề"
                 >
                   <Copy size={12} /> {copiedSeed ? 'Đã chép' : 'Chép'}
@@ -702,7 +712,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
               <button
                 type="button"
                 onClick={onRetryWithSameSeed}
-                className="flex-1 py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs sm:text-sm shadow-xs transition-colors flex items-center justify-center gap-2"
+                className="flex-1 py-2.5 px-4 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-xs transition-colors flex items-center justify-center gap-2"
               >
                 <RefreshCcw size={15} /> Làm lại đề này (Cùng Seed)
               </button>
@@ -718,8 +728,8 @@ export const QuizPage: React.FC<QuizPageProps> = ({
         )}
 
         {/* FILTER BAR FOR QUICK NAVIGATION */}
-        <div className="mb-4 bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-2xs flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600">
+        <div className="mb-4 bg-white dark:bg-slate-900 px-4 py-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-slate-300">
             <Filter size={14} className="text-slate-400" />
             <span>Lọc câu hỏi:</span>
           </div>
@@ -756,8 +766,8 @@ export const QuizPage: React.FC<QuizPageProps> = ({
                 onClick={() => setActiveFilter(tab.id as QuestionFilter)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
                   activeFilter === tab.id
-                    ? 'bg-slate-900 text-white shadow-2xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900'
+                    ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-2xs'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200/80 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {tab.label}
@@ -768,8 +778,8 @@ export const QuizPage: React.FC<QuizPageProps> = ({
 
         {/* QUESTIONS LIST */}
         {visibleQuestions.length === 0 ? (
-          <div className="p-12 bg-white rounded-2xl border border-slate-200 text-center space-y-3">
-            <p className="text-sm font-semibold text-slate-700">
+          <div className="p-12 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center space-y-3">
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
               Không có câu hỏi nào thuộc bộ lọc hiện tại.
             </p>
             <button
@@ -791,6 +801,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
                 isFlagged={flaggedSet.has(q.id)}
                 isReview={gameState === 'review'}
                 evaluation={result?.evaluations[q.id]}
+                shuffleOptions={initialAttempt ? (initialAttempt.config?.shuffleOptions ?? false) : config.shuffleOptions}
                 onAnswerChange={handleAnswerChange}
                 onToggleFlag={handleToggleFlag}
                 onReportClick={handleReportClick}
@@ -801,11 +812,11 @@ export const QuizPage: React.FC<QuizPageProps> = ({
 
         {/* SUBMIT BUTTON AT BOTTOM */}
         {gameState === 'playing' && (
-          <div className="mt-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-xs text-center">
-            <h3 className="font-bold text-slate-800 text-base mb-1">
+          <div className="mt-8 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs text-center">
+            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-base mb-1">
               Bạn đã kiểm tra kỹ toàn bộ các câu hỏi?
             </h3>
-            <p className="text-xs text-slate-500 mb-4">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
               Đã hoàn thành <strong>{answeredCount}</strong> /{' '}
               {questions.length} câu hỏi. Sau khi nộp bài, hệ thống sẽ chấm điểm
               và hiển thị giải thích chi tiết.
@@ -822,7 +833,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       </main>
 
       {/* MOBILE STICKY BOTTOM BAR (< md) */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-xs border-t border-slate-200 px-3 py-2.5 flex items-center justify-between gap-2 shadow-lg">
+      <div className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs border-t border-slate-200 dark:border-slate-800 px-3 py-2.5 flex items-center justify-between gap-2 shadow-lg">
         {gameState === 'playing' ? (
           <TimerDisplay
             initialTimeRemaining={initialTimerSeconds}
@@ -833,7 +844,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
             compact
           />
         ) : (
-          <span className="text-xs font-bold text-slate-700 px-2">
+          <span className="text-xs font-bold text-slate-700 dark:text-slate-200 px-2">
             Điểm: {result?.score10.toFixed(2)}/10
           </span>
         )}
@@ -842,7 +853,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           <button
             type="button"
             onClick={() => setShowMobileNav(true)}
-            className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center gap-1.5"
+            className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold flex items-center gap-1.5"
           >
             <LayoutGrid size={14} />
             <span>
@@ -869,17 +880,17 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           onClick={() => setShowMobileNav(false)}
         >
           <div
-            className="bg-white rounded-t-2xl max-h-[80vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-150"
+            className="bg-white dark:bg-slate-900 rounded-t-2xl max-h-[80vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-150"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
-              <span className="font-bold text-sm text-slate-800">
+            <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span className="font-bold text-sm text-slate-800 dark:text-slate-100">
                 Danh sách câu hỏi
               </span>
               <button
                 type="button"
                 onClick={() => setShowMobileNav(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700"
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
               >
                 <X size={18} />
               </button>
@@ -905,7 +916,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-16 md:bottom-6 right-4 md:right-6 z-30 p-3 rounded-full bg-slate-900/90 hover:bg-slate-900 text-white shadow-lg transition-all"
+          className="fixed bottom-16 md:bottom-6 right-4 md:right-6 z-30 p-3 rounded-full bg-slate-900/90 dark:bg-blue-600/90 hover:bg-slate-900 dark:hover:bg-blue-600 text-white shadow-lg transition-all"
           title="Lên đầu trang"
           aria-label="Lên đầu trang"
         >
@@ -922,21 +933,21 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           aria-modal="true"
         >
           <div
-            className="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-sm w-full p-6 text-center space-y-4 animate-in fade-in zoom-in-95 duration-150"
+            className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 max-w-sm w-full p-6 text-center space-y-4 animate-in fade-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
           >
-            <AlertCircle size={44} className="text-blue-600 mx-auto" />
-            <h3 className="font-bold text-slate-900 text-lg">
+            <AlertCircle size={44} className="text-blue-600 dark:text-blue-400 mx-auto" />
+            <h3 className="font-bold text-slate-900 dark:text-slate-100 text-lg">
               Xác nhận nộp bài thi?
             </h3>
 
             {unansweredCount > 0 ? (
-              <p className="text-xs text-amber-800 bg-amber-50 p-3 rounded-xl border border-amber-200 leading-relaxed">
+              <p className="text-xs text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/40 p-3 rounded-xl border border-amber-200 dark:border-amber-800 leading-relaxed">
                 Bạn còn <strong>{unansweredCount} câu chưa hoàn thành</strong>.
                 Các câu trắc nghiệm bỏ trống sẽ được tính là 0 điểm.
               </p>
             ) : (
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 Bạn đã hoàn thành đầy đủ {questions.length} câu hỏi. Bạn có muốn
                 nộp bài và chấm điểm ngay bây giờ?
               </p>
@@ -946,7 +957,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
               <button
                 type="button"
                 onClick={() => setShowSubmitConfirm(false)}
-                className="flex-1 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50 transition-colors"
+                className="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
                 Tiếp tục làm
               </button>

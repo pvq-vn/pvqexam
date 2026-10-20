@@ -82,7 +82,7 @@ export const TimerDisplay: React.FC<TimerDisplayProps> = React.memo(
         <div
           className={`flex items-center gap-1.5 ${
             compact ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-xs'
-          } bg-slate-100 text-slate-700 rounded-lg font-semibold`}
+          } bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg font-semibold`}
         >
           <Clock size={compact ? 14 : 16} />
           <span>{compact ? 'Tự do' : 'Không giới hạn thời gian'}</span>
@@ -98,10 +98,10 @@ export const TimerDisplay: React.FC<TimerDisplayProps> = React.memo(
             : 'px-3.5 py-2 text-sm sm:text-base'
         } rounded-xl font-mono font-bold border transition-colors ${
           isCriticalTime
-            ? 'bg-rose-100 text-rose-700 border-rose-300 animate-pulse'
+            ? 'bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800 animate-pulse'
             : isLowTime
-            ? 'bg-amber-50 text-amber-800 border-amber-300'
-            : 'bg-blue-50/90 text-blue-800 border-blue-200'
+            ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-800'
+            : 'bg-blue-50/90 dark:bg-blue-950/60 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800'
         }`}
         title="Thời gian làm bài còn lại"
       >

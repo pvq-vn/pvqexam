@@ -69,7 +69,7 @@ export const RichTextRenderer: React.FC<RichTextProps> = React.memo(
 
     return (
       <div
-        className={`rich-text ${compact ? 'space-y-1.5' : 'space-y-3'} text-slate-800 break-words ${className}`}
+        className={`rich-text ${compact ? 'space-y-1.5' : 'space-y-3'} text-slate-800 dark:text-slate-100 break-words ${className}`}
       >
         {/* 1. Main Text with LaTeX, Markdown, inline HTML, and inline media */}
         {text && <ParsedTextContent content={text} compact={compact} />}
@@ -138,9 +138,9 @@ const ParsedTextContent: React.FC<{ content: string; compact?: boolean }> = ({
                 return (
                   <div
                     key={lIdx}
-                    className="flex items-start gap-2 pl-1 text-slate-800"
+                    className="flex items-start gap-2 pl-1 text-slate-800 dark:text-slate-100"
                   >
-                    <span className="text-blue-600 font-bold select-none mt-0.5">
+                    <span className="text-blue-600 dark:text-blue-400 font-bold select-none mt-0.5">
                       •
                     </span>
                     <div className="flex-1 min-w-0">
@@ -151,7 +151,7 @@ const ParsedTextContent: React.FC<{ content: string; compact?: boolean }> = ({
               }
 
               return (
-                <div key={lIdx} className="text-slate-800">
+                <div key={lIdx} className="text-slate-800 dark:text-slate-100">
                   <InlineTokensView tokens={tokens} compact={compact} />
                 </div>
               );
@@ -181,7 +181,7 @@ const InlineTokensView: React.FC<{
             return (
               <code
                 key={idx}
-                className="px-1.5 py-0.5 mx-0.5 bg-slate-100 text-rose-700 rounded text-[0.875em] font-mono border border-slate-200/90 break-all"
+                className="px-1.5 py-0.5 mx-0.5 bg-slate-100 dark:bg-slate-800 text-rose-700 dark:text-rose-400 rounded text-[0.875em] font-mono border border-slate-200/90 dark:border-slate-700 break-all"
               >
                 {tok.content}
               </code>
@@ -198,7 +198,7 @@ const InlineTokensView: React.FC<{
 
           case 'bold':
             return (
-              <strong key={idx} className="font-bold text-slate-900">
+              <strong key={idx} className="font-bold text-slate-900 dark:text-white">
                 <InlineTokensView tokens={tok.children} compact={compact} />
               </strong>
             );
@@ -207,7 +207,7 @@ const InlineTokensView: React.FC<{
             return (
               <u
                 key={idx}
-                className="underline decoration-slate-500 underline-offset-2"
+                className="underline decoration-slate-500 dark:decoration-slate-400 underline-offset-2"
               >
                 <InlineTokensView tokens={tok.children} compact={compact} />
               </u>
@@ -217,7 +217,7 @@ const InlineTokensView: React.FC<{
             return (
               <strong
                 key={idx}
-                className="font-bold text-slate-900 underline decoration-slate-700 underline-offset-2"
+                className="font-bold text-slate-900 dark:text-white underline decoration-slate-700 dark:decoration-slate-400 underline-offset-2"
               >
                 <InlineTokensView tokens={tok.children} compact={compact} />
               </strong>
@@ -225,7 +225,7 @@ const InlineTokensView: React.FC<{
 
           case 'italic':
             return (
-              <em key={idx} className="italic text-slate-800">
+              <em key={idx} className="italic text-slate-800 dark:text-slate-200">
                 <InlineTokensView tokens={tok.children} compact={compact} />
               </em>
             );
@@ -240,7 +240,7 @@ const InlineTokensView: React.FC<{
             return (
               <span
                 key={idx}
-                className="inline-flex items-center justify-center px-1.5 py-0.5 mx-0.5 text-xs font-mono font-bold bg-teal-50 text-teal-800 border border-teal-300 rounded shadow-2xs"
+                className="inline-flex items-center justify-center px-1.5 py-0.5 mx-0.5 text-xs font-mono font-bold bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-300 dark:border-teal-700 rounded shadow-2xs"
               >
                 [{tok.slotNumber}]
               </span>
@@ -320,7 +320,7 @@ const MathSpan: React.FC<{ latex: string; displayMode: boolean }> = ({
   if (displayMode) {
     return (
       <div
-        className="my-2.5 py-2 px-3 bg-slate-50/80 border border-slate-200/70 rounded-xl overflow-x-auto custom-scrollbar text-center"
+        className="my-2.5 py-2 px-3 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800 rounded-xl overflow-x-auto custom-scrollbar text-center text-slate-900 dark:text-slate-100"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
@@ -351,15 +351,22 @@ const CodeBlockView: React.FC<{ code: string; language?: string }> = ({
   };
 
   return (
-    <div className="my-2.5 rounded-xl border border-slate-800 bg-slate-900 text-slate-100 overflow-hidden shadow-xs">
-      <div className="px-3.5 py-1.5 bg-slate-800/90 border-b border-slate-700/80 flex items-center justify-between text-[11px] font-mono text-slate-400">
-        <span className="uppercase tracking-wider font-semibold">
-          {language || 'CODE'}
-        </span>
+    <div className="my-3 rounded-xl border border-slate-700/80 bg-slate-950 text-slate-100 overflow-hidden shadow-md group">
+      <div className="px-3.5 py-2 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+          </div>
+          <span className="uppercase tracking-wider font-bold text-[11px] text-slate-300 ml-1">
+            {language || 'CODE'}
+          </span>
+        </div>
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-1 px-2 py-0.5 rounded hover:bg-slate-700 text-slate-300 transition-colors"
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors text-[11px] font-medium"
           title="Sao chép đoạn mã"
         >
           {copied ? (
@@ -375,9 +382,9 @@ const CodeBlockView: React.FC<{ code: string; language?: string }> = ({
           )}
         </button>
       </div>
-      <div className="p-3.5 overflow-x-auto custom-scrollbar text-xs sm:text-sm font-mono leading-relaxed text-emerald-300">
-        <pre className="m-0">
-          <code>{code}</code>
+      <div className="p-4 overflow-x-auto custom-scrollbar text-xs sm:text-sm font-mono leading-relaxed text-emerald-300 bg-slate-950 selection:bg-emerald-900 selection:text-emerald-100">
+        <pre className="m-0 font-mono">
+          <code className="font-mono">{code}</code>
         </pre>
       </div>
     </div>
@@ -416,16 +423,16 @@ const StructuredTablesList: React.FC<{ tables: StructuredTable[] }> = ({
           return (
             <div
               key={idx}
-              className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs flex items-center justify-between"
+              className="p-3 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl text-xs flex items-center justify-between"
             >
-              <span className="font-semibold text-slate-700">
+              <span className="font-semibold text-slate-700 dark:text-slate-200">
                 {tbl.title || 'Bảng dữ liệu đính kèm:'}
               </span>
               <a
                 href={tbl.externalUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-blue-600 hover:underline font-semibold"
+                className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-semibold"
               >
                 <ExternalLink size={12} /> Xem bảng
               </a>
@@ -436,21 +443,21 @@ const StructuredTablesList: React.FC<{ tables: StructuredTable[] }> = ({
         return (
           <div
             key={idx}
-            className="overflow-x-auto custom-scrollbar rounded-xl border border-slate-200 bg-white shadow-2xs"
+            className="overflow-x-auto custom-scrollbar rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs"
           >
             {tbl.title && (
-              <div className="px-3.5 py-2 bg-slate-100/90 border-b border-slate-200 text-xs font-bold text-slate-800 tracking-wide">
+              <div className="px-3.5 py-2 bg-slate-100/90 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wide">
                 <InlineTokensView tokens={tokenizeInline(tbl.title)} compact />
               </div>
             )}
             <table className="w-full text-left text-xs sm:text-sm border-collapse">
               {tbl.headers && tbl.headers.length > 0 && (
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
+                  <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 font-bold">
                     {tbl.headers.map((h, hIdx) => (
                       <th
                         key={hIdx}
-                        className="px-3.5 py-2.5 border-r last:border-r-0 border-slate-200/70 whitespace-nowrap"
+                        className="px-3.5 py-2.5 border-r last:border-r-0 border-slate-200/70 dark:border-slate-800 whitespace-nowrap"
                       >
                         <InlineTokensView tokens={tokenizeInline(h)} compact />
                       </th>
@@ -462,12 +469,12 @@ const StructuredTablesList: React.FC<{ tables: StructuredTable[] }> = ({
                 {tbl.rows.map((row, rIdx) => (
                   <tr
                     key={rIdx}
-                    className="border-b last:border-b-0 border-slate-100 even:bg-slate-50/50 hover:bg-blue-50/30 transition-colors"
+                    className="border-b last:border-b-0 border-slate-100 dark:border-slate-800 even:bg-slate-50/50 even:dark:bg-slate-800/30 hover:bg-blue-50/30 dark:hover:bg-blue-950/40 transition-colors"
                   >
                     {row.map((cell, cIdx) => (
                       <td
                         key={cIdx}
-                        className={`px-3.5 py-2 border-r last:border-r-0 border-slate-100 text-slate-700 ${
+                        className={`px-3.5 py-2 border-r last:border-r-0 border-slate-100 dark:border-slate-800 text-slate-700 dark:text-slate-200 ${
                           tbl.isMatrix
                             ? 'text-center font-mono'
                             : 'whitespace-normal'
@@ -506,7 +513,8 @@ const SmartMediaRenderer: React.FC<{
   const [allImagesFailed, setAllImagesFailed] = useState(
     source.imageCandidates.length === 0
   );
-  const [showIframePreview, setShowIframePreview] = useState(false);
+  // Always display immediately on load
+  const [showIframePreview, setShowIframePreview] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Reset state if source changes
@@ -514,7 +522,7 @@ const SmartMediaRenderer: React.FC<{
     setCandidateIndex(0);
     setIsLoaded(false);
     setAllImagesFailed(source.imageCandidates.length === 0);
-    setShowIframePreview(false);
+    setShowIframePreview(true);
     setLightboxOpen(false);
   }, [source.cleanUrl, source.driveFileId]);
 
@@ -536,7 +544,7 @@ const SmartMediaRenderer: React.FC<{
           target="_blank"
           rel="noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg border border-blue-200 text-xs font-semibold transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 rounded-lg border border-blue-200 dark:border-blue-800 text-xs font-semibold transition-colors"
         >
           <ExternalLink size={13} />
           <span className="truncate max-w-xs sm:max-w-md">
@@ -551,50 +559,53 @@ const SmartMediaRenderer: React.FC<{
   if (allImagesFailed) {
     return (
       <div
-        className="my-2.5 rounded-xl border border-slate-200 bg-slate-50 overflow-hidden"
+        className="my-2.5 relative rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-2xs group"
         onClick={(e) => e.stopPropagation()}
       >
-        {showIframePreview && source.previewUrl ? (
-          <div className="relative w-full h-80 sm:h-96 bg-slate-100">
+        {/* Floating Quick Action: Open original link on hover */}
+        <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-20">
+          <a
+            href={source.externalViewUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-950 text-white backdrop-blur-xs text-xs font-medium shadow-md transition-all cursor-pointer"
+            title="Mở ảnh gốc trong tab mới"
+          >
+            <ExternalLink size={13} />
+            <span className="hidden sm:inline">Mở ảnh gốc</span>
+          </a>
+        </div>
+
+        {source.previewUrl ? (
+          <div className="relative w-full h-64 sm:h-80 md:h-96 bg-slate-100 dark:bg-slate-950 flex items-center justify-center">
             <iframe
               src={source.previewUrl}
               className="w-full h-full border-0"
-              title="Xem trước tài liệu Google Drive"
-              loading="lazy"
+              title="Tài liệu đính kèm Google Drive"
+              loading="eager"
+              referrerPolicy="no-referrer"
             />
           </div>
         ) : null}
 
-        <div className="p-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
-          <span className="flex items-center gap-1.5 font-medium text-slate-700">
-            <AlertCircle size={15} className="text-amber-500 shrink-0" />
+        <div className="p-2.5 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-300">
+          <span className="flex items-center gap-1.5 font-medium">
+            <AlertCircle size={14} className="text-amber-500 shrink-0" />
             <span>
               {source.driveFileId
-                ? 'Hình ảnh / Tài liệu đính kèm trên Google Drive'
+                ? 'Tài liệu / Hình ảnh minh họa Google Drive'
                 : 'Không thể tải ảnh trực tiếp từ nguồn'}
             </span>
           </span>
 
-          <div className="flex items-center gap-2">
-            {source.previewUrl && (
-              <button
-                type="button"
-                onClick={() => setShowIframePreview((v) => !v)}
-                className="inline-flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-700 rounded-lg border border-slate-200 font-semibold transition-colors"
-              >
-                <Eye size={12} />
-                <span>{showIframePreview ? 'Ẩn khung xem' : 'Xem nhúng'}</span>
-              </button>
-            )}
-            <a
-              href={source.externalViewUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
-            >
-              <ExternalLink size={12} /> Mở ảnh gốc
-            </a>
-          </div>
+          <a
+            href={source.externalViewUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+          >
+            <ExternalLink size={12} /> Mở gốc
+          </a>
         </div>
       </div>
     );
@@ -603,23 +614,46 @@ const SmartMediaRenderer: React.FC<{
   return (
     <>
       <figure
-        className={`my-2.5 relative rounded-xl border border-slate-200/90 bg-white overflow-hidden shadow-2xs group ${
-          compact ? 'max-w-sm' : 'w-full'
+        className={`my-2.5 relative rounded-xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-2xs group inline-block max-w-full ${
+          compact ? 'max-w-sm' : ''
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Loading Skeleton */}
         {!isLoaded && (
-          <div className="w-full h-44 sm:h-56 bg-slate-100 animate-pulse flex flex-col items-center justify-center gap-2 text-slate-400 text-xs">
-            <ImageIcon size={24} className=" opacity-60" />
+          <div className="w-full h-44 sm:h-56 bg-slate-100 dark:bg-slate-800 animate-pulse flex flex-col items-center justify-center gap-2 text-slate-400 text-xs">
+            <ImageIcon size={24} className="opacity-60" />
             <span>Đang tải hình minh họa...</span>
           </div>
         )}
 
+        {/* Hover-only quick actions floating inside the frame */}
+        <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-20">
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-xs text-xs font-semibold shadow-md transition-all cursor-pointer"
+            title="Phóng to ảnh"
+          >
+            <ZoomIn size={13} />
+            <span className="hidden sm:inline">Phóng to</span>
+          </button>
+          <a
+            href={source.externalViewUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-xs text-xs font-semibold shadow-md transition-all cursor-pointer"
+            title="Mở ảnh gốc trong tab mới"
+          >
+            <ExternalLink size={13} />
+            <span className="hidden sm:inline">Mở ảnh gốc</span>
+          </a>
+        </div>
+
         {/* Responsive Image Container — Natural Aspect Ratio, Zero Black Bars */}
         <div
           onClick={() => setLightboxOpen(true)}
-          className={`relative flex items-center justify-center bg-slate-50/50 cursor-zoom-in p-2 sm:p-3 ${
+          className={`relative flex items-center justify-center bg-slate-50/50 dark:bg-slate-950/40 cursor-zoom-in p-1 sm:p-2 ${
             !isLoaded ? 'sr-only' : ''
           }`}
         >
@@ -628,39 +662,16 @@ const SmartMediaRenderer: React.FC<{
             alt="Hình minh họa câu hỏi"
             loading="lazy"
             decoding="async"
+            referrerPolicy="no-referrer"
             onLoad={() => setIsLoaded(true)}
             onError={handleImageError}
             className={`w-auto max-w-full ${
               compact
                 ? 'max-h-48 sm:max-h-56'
-                : 'max-h-[340px] sm:max-h-[440px]'
+                : 'max-h-[380px] sm:max-h-[480px]'
             } object-contain rounded-lg transition-transform duration-200`}
           />
         </div>
-
-        {/* Bottom Caption & Quick Actions */}
-        {isLoaded && (
-          <figcaption className="px-3 py-1.5 bg-slate-50/90 border-t border-slate-200/80 flex items-center justify-between gap-2 text-[11px] text-slate-500">
-            <button
-              type="button"
-              onClick={() => setLightboxOpen(true)}
-              className="inline-flex items-center gap-1 text-slate-600 hover:text-blue-600 font-medium transition-colors"
-            >
-              <ZoomIn size={13} />
-              <span>Nhấn vào ảnh để phóng to chi tiết</span>
-            </button>
-
-            <a
-              href={source.externalViewUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 hover:underline font-semibold shrink-0"
-            >
-              <ExternalLink size={11} />
-              <span>Mở gốc</span>
-            </a>
-          </figcaption>
-        )}
       </figure>
 
       {/* Fullscreen Lightbox Modal */}

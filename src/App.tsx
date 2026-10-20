@@ -199,7 +199,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors duration-150">
       {/* Navigation Header */}
       <Navbar
         currentUser={currentUser}
@@ -260,7 +260,7 @@ export function App() {
 
         <Suspense
           fallback={
-            <div className="p-12 text-center text-sm text-slate-500">
+            <div className="p-12 text-center text-sm text-slate-500 dark:text-slate-400">
               Đang tải trang...
             </div>
           }
@@ -308,10 +308,10 @@ export function App() {
       )}
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+      <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 mt-12 text-center text-xs text-slate-500 dark:text-slate-400">
         <div className="max-w-7xl mx-auto px-4 space-y-1">
-          <p className="font-semibold text-slate-700">
-            HUST IT1 QUIZ — Hệ thống luyện thi trắc nghiệm & tự luận CNTT HUST
+          <p className="font-semibold text-slate-700 dark:text-slate-300">
+            pvqexam — Hệ thống luyện thi trắc nghiệm & tự luận CNTT HUST
           </p>
           <p>
             Dữ liệu câu hỏi được lưu giữ nguyên bản (Read-only) từ kho tài liệu{' '}

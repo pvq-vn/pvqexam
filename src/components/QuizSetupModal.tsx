@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Subject, QuizConfig, TimeMode } from '../types/quiz';
+import { Subject, QuizConfig, TimeMode, Question, SubjectProgress } from '../types/quiz';
 import {
   getExamStats,
   ExamStats,
+  loadExamFile,
   onExamCacheUpdated,
   canonicalizeExamPath,
 } from '../data/dataLoader';
 import { generateSeed } from '../engine/shuffle';
+import { questionStatsService } from '../services/questionStatsService';
+import { authService } from '../services/authService';
 import {
   Play,
   Shuffle,
@@ -16,6 +19,9 @@ import {
   RefreshCw,
   X,
   CheckCircle2,
+  BookOpen,
+  Sparkles,
+  Layers,
 } from 'lucide-react';
 
 interface QuizSetupModalProps {
@@ -35,11 +41,17 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
     subject.examFiles.find((f) => f.isDefault) || subject.examFiles[0];
   const [selectedFile, setSelectedFile] = useState(defaultFile.filePath);
   const [stats, setStats] = useState<ExamStats | null>(null);
+  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [loadingStats, setLoadingStats] = useState(true);
   const [statsError, setStatsError] = useState<string | null>(null);
   const [liveUpdatedNotice, setLiveUpdatedNotice] = useState(false);
 
-  // Configuration options
+  // Chapter & Smart Selection
+  const [selectedChapter, setSelectedChapter] = useState<string>('all');
+  const [prioritizeLeastAttempted, setPrioritizeLeastAttempted] = useState<boolean>(true);
+  const [chapterProgress, setChapterProgress] = useState<SubjectProgress | null>(null);
+
+  // Active counts
   const [mcqCount, setMcqCount] = useState<number>(40);
   const [essayCount, setEssayCount] = useState<number>(0);
   const [shuffleQuestions, setShuffleQuestions] = useState<boolean>(true);
@@ -48,22 +60,32 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
   const [customMinutesInput, setCustomMinutesInput] = useState<number>(45);
   const [seed, setSeed] = useState<string>(initialSeed || generateSeed());
 
+  // Determine active chapter limits
+  const activeChapter = stats?.chapters?.find((c) => c.id === selectedChapter);
+  const maxAvailableMcq = activeChapter ? activeChapter.mcqCount : (stats?.mcqCount || 0);
+  const maxAvailableEssay = activeChapter ? activeChapter.essayCount : (stats?.essayCount || 0);
+  const maxAvailableTotal = activeChapter ? activeChapter.count : (stats?.totalCount || 0);
+
   const fetchStats = useCallback(
     (forceReload = false, preserveCounts = false) => {
       setLoadingStats(true);
       setStatsError(null);
 
-      getExamStats(selectedFile, { forceReload })
-        .then((res) => {
-          setStats(res);
+      Promise.all([
+        getExamStats(selectedFile, { forceReload }),
+        loadExamFile(selectedFile, { forceReload }),
+      ])
+        .then(([resStats, questions]) => {
+          setStats(resStats);
+          setAllQuestions(questions);
           setLoadingStats(false);
 
           if (!preserveCounts) {
-            setMcqCount(res.mcqCount > 0 ? Math.min(40, res.mcqCount) : 0);
-            setEssayCount(res.essayCount > 0 ? Math.min(2, res.essayCount) : 0);
+            setMcqCount(resStats.mcqCount > 0 ? Math.min(40, resStats.mcqCount) : 0);
+            setEssayCount(resStats.essayCount > 0 ? Math.min(2, resStats.essayCount) : 0);
           } else {
-            setMcqCount((prev) => Math.min(prev, res.mcqCount));
-            setEssayCount((prev) => Math.min(prev, res.essayCount));
+            setMcqCount((prev) => Math.min(prev, resStats.mcqCount));
+            setEssayCount((prev) => Math.min(prev, resStats.essayCount));
           }
         })
         .catch((err) => {
@@ -76,8 +98,41 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
 
   // Load stats whenever selected exam file changes
   useEffect(() => {
+    setSelectedChapter('all');
     fetchStats(false, false);
   }, [fetchStats]);
+
+  // Update progress stats for currently selected chapter / subject
+  useEffect(() => {
+    if (allQuestions.length === 0) {
+      setChapterProgress(null);
+      return;
+    }
+
+    authService.getCurrentUser().then((user) => {
+      let filtered = allQuestions;
+      if (selectedChapter !== 'all') {
+        const target = selectedChapter.trim().toLowerCase();
+        filtered = allQuestions.filter((q) => {
+          const qChapterStr = q.chapter !== undefined ? String(q.chapter).trim().toLowerCase() : '';
+          const qChapterName = q.chapter_name ? q.chapter_name.trim().toLowerCase() : '';
+          const qTopic = q.topic ? q.topic.trim().toLowerCase() : '';
+          return (
+            qChapterStr === target ||
+            qChapterName === target ||
+            qTopic === target ||
+            `chương ${qChapterStr}` === target
+          );
+        });
+      }
+      const progress = questionStatsService.getSubjectProgress(
+        user?.id,
+        subject.id,
+        filtered
+      );
+      setChapterProgress(progress);
+    });
+  }, [allQuestions, selectedChapter, subject.id]);
 
   // Listen for live HMR updates when the owner modifies exam.json on disk in dev mode
   useEffect(() => {
@@ -104,6 +159,19 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onCancel]);
 
+  // Handle chapter change
+  const handleChapterChange = (chapterId: string) => {
+    setSelectedChapter(chapterId);
+    if (!stats) return;
+
+    const ch = stats.chapters?.find((c) => c.id === chapterId);
+    const availMcq = ch ? ch.mcqCount : stats.mcqCount;
+    const availEssay = ch ? ch.essayCount : stats.essayCount;
+
+    setMcqCount((prev) => (availMcq > 0 ? Math.min(prev > 0 ? prev : 40, availMcq) : 0));
+    setEssayCount((prev) => (availEssay > 0 ? Math.min(prev, availEssay) : 0));
+  };
+
   // Compute calculated duration in minutes
   const totalQuestions = mcqCount + essayCount;
   const calculatedMinutes = Math.max(
@@ -129,10 +197,12 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
       timeMode,
       customMinutes: resolvedCustomMinutes,
       seed: seed.trim().toUpperCase() || generateSeed(),
+      selectedChapter: selectedChapter !== 'all' ? selectedChapter : undefined,
+      prioritizeLeastAttempted: true,
     });
   };
 
-  const mcqPresets = [10, 20, 40, 60];
+  const mcqPresets = [10, 20, 40, 60].filter((c) => c <= maxAvailableMcq);
 
   return (
     <div
@@ -143,7 +213,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
       aria-labelledby="quiz-setup-title"
     >
       <div
-        className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 duration-150 text-slate-900 dark:text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -216,19 +286,18 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
               </button>
             </div>
           ) : stats ? (
-            <div className="flex items-center justify-between gap-2 p-3.5 bg-blue-50/70 border border-blue-100 rounded-xl text-xs text-blue-950">
+            <div className="flex items-center justify-between gap-2 p-3 bg-blue-50/70 dark:bg-slate-800/80 border border-blue-100 dark:border-slate-700 rounded-xl text-xs text-blue-950 dark:text-blue-200">
               <div className="flex items-center gap-2">
-                <FileText size={16} className="text-blue-600 shrink-0" />
-                <span>
-                  Tổng ngân hàng: <strong>{stats.totalCount} câu</strong> (
-                  {stats.mcqCount} trắc nghiệm, {stats.essayCount} tự luận)
+                <FileText size={16} className="text-blue-600 dark:text-blue-400 shrink-0" />
+                <span className="font-semibold">
+                  Ngân hàng câu hỏi sẵn sàng ({stats.essayCount > 0 ? 'Trắc nghiệm & Tự luận' : 'Trắc nghiệm'})
                 </span>
               </div>
 
               <button
                 type="button"
                 onClick={() => fetchStats(true, true)}
-                className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/80 hover:bg-white text-blue-700 border border-blue-200/80 font-semibold transition-colors shrink-0"
+                className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/80 dark:bg-slate-700 hover:bg-white text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-slate-600 font-semibold transition-colors shrink-0"
                 title="Đọc lại dữ liệu mới nhất từ file JSON"
               >
                 <RefreshCw size={12} />
@@ -238,87 +307,134 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
           ) : null}
 
           {liveUpdatedNotice && (
-            <div className="px-3 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-center gap-1.5 font-medium">
+            <div className="px-3 py-2 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl text-xs text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5 font-medium">
               <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
               <span>Đã tự động cập nhật dữ liệu mới nhất từ file JSON trên đĩa.</span>
             </div>
           )}
 
+          {/* Chapter / Topic Selector (for subjects with chapters) */}
+          {stats && stats.chapters && stats.chapters.length > 0 && (
+            <div className="p-4 bg-gradient-to-r from-blue-50/70 via-indigo-50/40 to-slate-50 dark:from-slate-800/70 dark:via-slate-800/50 dark:to-slate-800/30 border border-blue-200/80 dark:border-slate-700 rounded-2xl space-y-3">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold uppercase tracking-wider text-blue-950 dark:text-blue-200 flex items-center gap-1.5">
+                  <BookOpen size={15} className="text-blue-600 dark:text-blue-400" />
+                  Chủ đề / Chương ôn tập
+                </label>
+                <span className="text-[11px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-100/80 dark:bg-blue-900/50 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <Layers size={11} /> {stats.chapters.length} chương
+                </span>
+              </div>
+
+              <select
+                value={selectedChapter}
+                onChange={(e) => handleChapterChange(e.target.value)}
+                className="w-full p-2.5 bg-white dark:bg-slate-800 border border-blue-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 shadow-2xs"
+              >
+                <option value="all">
+                  📚 Tất cả các chương
+                </option>
+                {stats.chapters.map((ch) => (
+                  <option key={ch.id} value={ch.id}>
+                    📖 {ch.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Progress for current selection */}
+              {chapterProgress && (
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-400 pt-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-slate-700 dark:text-slate-300 text-[11px] sm:text-xs">
+                      Đã làm:{' '}
+                      <strong className="text-blue-700 dark:text-blue-400">
+                        {chapterProgress.attemptedQuestions} câu
+                      </strong>
+                    </span>
+                  </div>
+
+                  {chapterProgress.totalAttempts > 0 && (
+                    <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-semibold bg-emerald-100/70 dark:bg-emerald-950/50 px-2 py-0.5 rounded-md">
+                      Độ đúng: {chapterProgress.accuracy}%
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* MCQ Count Selection */}
-          {stats && stats.mcqCount > 0 && (
+          {stats && maxAvailableMcq > 0 && (
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                   Số câu trắc nghiệm
                 </label>
                 <div className="flex items-center gap-1.5">
                   <input
                     type="number"
                     min={0}
-                    max={stats.mcqCount}
+                    max={maxAvailableMcq}
                     value={mcqCount}
                     onChange={(e) => {
                       const val = Math.max(
                         0,
-                        Math.min(stats.mcqCount, Number(e.target.value) || 0)
+                        Math.min(maxAvailableMcq, Number(e.target.value) || 0)
                       );
                       setMcqCount(val);
                     }}
-                    className="w-16 px-2 py-0.5 text-right text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-md outline-none focus:border-blue-600"
+                    className="w-16 px-2 py-0.5 text-right text-xs font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-slate-800 border border-blue-200 dark:border-slate-700 rounded-md outline-none focus:border-blue-600"
                     aria-label="Số câu trắc nghiệm tùy chỉnh"
                   />
-                  <span className="text-xs font-semibold text-slate-500">
-                    / {stats.mcqCount} câu
+                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                    câu
                   </span>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {mcqPresets.map((count) => {
-                  if (count > (stats?.mcqCount || 0)) return null;
-                  return (
-                    <button
-                      key={count}
-                      type="button"
-                      onClick={() => setMcqCount(count)}
-                      className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
-                        mcqCount === count
-                          ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                          : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      {count} câu
-                    </button>
-                  );
-                })}
+                {mcqPresets.map((count) => (
+                  <button
+                    key={count}
+                    type="button"
+                    onClick={() => setMcqCount(count)}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
+                      mcqCount === count
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
+                    }`}
+                  >
+                    {count} câu
+                  </button>
+                ))}
                 <button
                   type="button"
-                  onClick={() => setMcqCount(stats.mcqCount)}
+                  onClick={() => setMcqCount(maxAvailableMcq)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
-                    mcqCount === stats.mcqCount
+                    mcqCount === maxAvailableMcq
                       ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                      : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
+                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
-                  Tất cả ({stats.mcqCount})
+                  Tất cả
                 </button>
               </div>
             </div>
           )}
 
           {/* Essay Count Selection */}
-          {stats && stats.essayCount > 0 && (
+          {stats && maxAvailableEssay > 0 && (
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                   Số câu tự luận (Không chấm tự động)
                 </label>
-                <span className="text-xs font-semibold text-blue-600">
+                <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">
                   {essayCount} câu
                 </span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {[0, 1, 2, 5].map((count) => {
-                  if (count > (stats?.essayCount || 0)) return null;
+                  if (count > maxAvailableEssay) return null;
                   return (
                     <button
                       key={count}
@@ -327,41 +443,49 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                       className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
                         essayCount === count
                           ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                          : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
+                          : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
                       }`}
                     >
                       {count} câu
                     </button>
                   );
                 })}
-                {stats.essayCount > 5 && (
+                {maxAvailableEssay > 5 && (
                   <button
                     type="button"
-                    onClick={() => setEssayCount(stats.essayCount)}
+                    onClick={() => setEssayCount(maxAvailableEssay)}
                     className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
-                      essayCount === stats.essayCount
+                      essayCount === maxAvailableEssay
                         ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
+                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
                     }`}
                   >
-                    Tất cả ({stats.essayCount})
+                    Tất cả
                   </button>
                 )}
               </div>
             </div>
           )}
 
+          {/* System Default Notice: Smart Prioritization */}
+          <div className="flex items-center gap-2.5 p-3 bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/70 dark:border-amber-800/40 rounded-xl text-xs text-amber-900 dark:text-amber-200">
+            <Sparkles size={15} className="text-amber-600 dark:text-amber-400 shrink-0" />
+            <span className="font-medium">
+              Hệ thống mặc định tự động ưu tiên các câu hỏi làm ít nhất để tối ưu hóa quá trình học.
+            </span>
+          </div>
+
           {/* Shuffle Options */}
-          <div className="pt-2 border-t border-slate-100 space-y-2.5">
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
             <label className="flex items-center gap-3 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={shuffleQuestions}
                 onChange={(e) => setShuffleQuestions(e.target.checked)}
-                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-slate-300"
+                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-slate-300 dark:border-slate-600 dark:bg-slate-800"
               />
-              <span className="text-sm font-medium text-slate-800 flex items-center gap-2">
-                <Shuffle size={15} className="text-slate-500" /> Xáo trộn thứ tự
+              <span className="text-sm font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                <Shuffle size={15} className="text-slate-500 dark:text-slate-400" /> Xáo trộn thứ tự
                 câu hỏi (Fisher-Yates)
               </span>
             </label>
@@ -371,18 +495,18 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 type="checkbox"
                 checked={shuffleOptions}
                 onChange={(e) => setShuffleOptions(e.target.checked)}
-                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-slate-300"
+                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-slate-300 dark:border-slate-600 dark:bg-slate-800"
               />
-              <span className="text-sm font-medium text-slate-800 flex items-center gap-2">
-                <Shuffle size={15} className="text-slate-500" /> Xáo trộn thứ tự
-                đáp án A/B/C/D
+              <span className="text-sm font-medium text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                <Shuffle size={15} className="text-slate-500 dark:text-slate-400" /> Xáo trộn thứ tự
+                đáp án (ẩn tag A/B/C/D)
               </span>
             </label>
           </div>
 
           {/* Time Limit Setting */}
-          <div className="pt-2 border-t border-slate-100">
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
               Thời gian làm bài
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -400,8 +524,8 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                   onClick={() => setTimeMode(item.mode as TimeMode)}
                   className={`p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all text-left flex items-center gap-2 ${
                     timeMode === item.mode
-                      ? 'border-blue-600 bg-blue-50 text-blue-800 ring-1 ring-blue-600'
-                      : 'border-slate-200 text-slate-700 hover:bg-slate-50'
+                      ? 'border-blue-600 bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 ring-1 ring-blue-600'
+                      : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}
                 >
                   <Clock
@@ -419,15 +543,15 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
           </div>
 
           {/* Seed Input */}
-          <div className="pt-2 border-t border-slate-100">
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                 Mã đề / Seed tái lập
               </label>
               <button
                 type="button"
                 onClick={() => setSeed(generateSeed())}
-                className="text-xs text-blue-600 hover:underline flex items-center gap-1 font-semibold"
+                className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold"
               >
                 <RotateCw size={12} /> Tạo mã ngẫu nhiên
               </button>
@@ -439,10 +563,10 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 onChange={(e) => setSeed(e.target.value.toUpperCase())}
                 maxLength={12}
                 placeholder="VD: A7F3K2"
-                className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-mono font-bold tracking-widest text-slate-800 uppercase focus:border-blue-600 outline-none"
+                className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-mono font-bold tracking-widest text-slate-800 dark:text-slate-100 uppercase focus:border-blue-600 outline-none"
               />
             </div>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
               Nhập lại cùng một mã Seed để tái tạo chính xác bộ câu hỏi và thứ tự
               đề thi.
             </p>
@@ -450,11 +574,11 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
+        <div className="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={onCancel}
-            className="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold text-sm transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-sm transition-colors"
           >
             Đóng
           </button>

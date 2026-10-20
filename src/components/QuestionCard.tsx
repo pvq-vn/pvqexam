@@ -14,6 +14,7 @@ import {
   areOptionValuesEquivalent,
   resolveOptionIndex,
 } from '../engine/scoring';
+import { resolveImageSource } from '../utils/driveImage';
 import { RichTextRenderer } from './RichTextRenderer';
 
 interface QuestionCardProps {
@@ -23,6 +24,7 @@ interface QuestionCardProps {
   isFlagged: boolean;
   isReview: boolean;
   evaluation?: QuestionEvaluation;
+  shuffleOptions?: boolean;
   onAnswerChange: (questionId: string | number, value: string | string[]) => void;
   onToggleFlag: (questionId: string | number) => void;
   onReportClick: (question: Question) => void;
@@ -48,6 +50,7 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   isFlagged,
   isReview,
   evaluation,
+  shuffleOptions = false,
   onAnswerChange,
   onToggleFlag,
   onReportClick,
@@ -104,28 +107,28 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   };
 
   // Border styling depending on state
-  let cardBorder = 'border-slate-200/90 hover:border-slate-300';
-  let cardBg = 'bg-white';
-  let headerBg = 'bg-slate-50/80';
+  let cardBorder = 'border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700';
+  let cardBg = 'bg-white dark:bg-slate-900';
+  let headerBg = 'bg-slate-50/80 dark:bg-slate-900/90';
 
   if (isReview) {
     if (question.type === 'essay') {
-      cardBorder = 'border-blue-200';
-      headerBg = 'bg-blue-50/60';
+      cardBorder = 'border-blue-200 dark:border-blue-800';
+      headerBg = 'bg-blue-50/60 dark:bg-blue-950/40';
     } else if (isUnanswered) {
-      cardBorder = 'border-amber-300';
-      headerBg = 'bg-amber-50/80';
+      cardBorder = 'border-amber-300 dark:border-amber-800';
+      headerBg = 'bg-amber-50/80 dark:bg-amber-950/40';
     } else if (isCorrect) {
-      cardBorder = 'border-emerald-300';
-      headerBg = 'bg-emerald-50/80';
+      cardBorder = 'border-emerald-300 dark:border-emerald-800';
+      headerBg = 'bg-emerald-50/80 dark:bg-emerald-950/40';
     } else {
-      cardBorder = 'border-rose-300';
-      headerBg = 'bg-rose-50/80';
+      cardBorder = 'border-rose-300 dark:border-rose-800';
+      headerBg = 'bg-rose-50/80 dark:bg-rose-950/40';
     }
   } else if (isFlagged) {
-    cardBorder = 'border-amber-400 ring-1 ring-amber-400/60';
-    cardBg = 'bg-amber-50/5';
-    headerBg = 'bg-amber-50/60';
+    cardBorder = 'border-amber-400 dark:border-amber-500 ring-1 ring-amber-400/60 dark:ring-amber-500/50';
+    cardBg = 'bg-amber-50/5 dark:bg-amber-950/20';
+    headerBg = 'bg-amber-50/60 dark:bg-amber-950/30';
   }
 
   // Check if any correct answer on an MCQ question didn't match any option in `question.options`
@@ -145,45 +148,57 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
     >
       {/* Question Card Header */}
       <div
-        className={`px-4 sm:px-5 py-3 border-b border-slate-200/80 flex flex-wrap justify-between items-center gap-2 ${headerBg}`}
+        className={`px-4 sm:px-5 py-3 border-b border-slate-200/80 dark:border-slate-800 flex flex-wrap justify-between items-center gap-2 ${headerBg}`}
       >
         <div className="flex items-center flex-wrap gap-2">
-          <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-lg bg-slate-900 text-white font-bold text-xs sm:text-sm tracking-tight">
+          <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-lg bg-slate-900 dark:bg-blue-600 text-white font-bold text-xs sm:text-sm tracking-tight shadow-2xs">
             Câu {index + 1}
           </span>
 
           {question.points !== undefined && (
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
               ({question.points} điểm)
             </span>
           )}
 
           {/* Type Badges */}
           {question.type === 'multiple' && (
-            <span className="text-xs bg-indigo-100 text-indigo-800 px-2.5 py-0.5 rounded-full font-semibold">
+            <span className="text-xs bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-2.5 py-0.5 rounded-full font-semibold">
               Chọn nhiều đáp án
             </span>
           )}
           {question.type === 'fill' && (
-            <span className="text-xs bg-purple-100 text-purple-800 px-2.5 py-0.5 rounded-full font-semibold">
+            <span className="text-xs bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800 px-2.5 py-0.5 rounded-full font-semibold">
               Điền đáp án
             </span>
           )}
           {question.type === 'dropdown' && (
-            <span className="text-xs bg-teal-100 text-teal-800 px-2.5 py-0.5 rounded-full font-semibold">
+            <span className="text-xs bg-teal-100 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 px-2.5 py-0.5 rounded-full font-semibold">
               Ghép vị trí [1]..[n]
             </span>
           )}
           {question.type === 'essay' && (
-            <span className="text-xs bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full font-semibold">
+            <span className="text-xs bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800 px-2.5 py-0.5 rounded-full font-semibold">
               Tự luận — Đối chiếu lời giải
             </span>
           )}
 
-          {question.topic && (
-            <span className="hidden lg:inline-flex items-center gap-1 text-[11px] text-slate-500 bg-white/80 border border-slate-200 px-2 py-0.5 rounded-md truncate max-w-[220px]">
-              <Tag size={11} className="text-slate-400 shrink-0" />
-              <span className="truncate">{question.topic}</span>
+          {(question.chapter_name || question.chapter !== undefined || question.topic) && (
+            <span
+              className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-600 dark:text-slate-300 bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-md truncate max-w-[260px] font-medium"
+              title={
+                question.chapter_name ||
+                question.topic ||
+                `Chương ${question.chapter}`
+              }
+            >
+              <Tag size={11} className="text-slate-400 dark:text-slate-500 shrink-0" />
+              <span className="truncate">
+                {question.chapter_name ||
+                  (question.chapter !== undefined
+                    ? `Chương ${question.chapter}`
+                    : question.topic)}
+              </span>
             </span>
           )}
         </div>
@@ -243,22 +258,20 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
         </div>
       </div>
 
-      {/* Question Body */}
-      <div className="p-4 sm:p-6 space-y-4">
-        <div className="text-sm sm:text-base text-slate-900 font-medium leading-relaxed">
-          <RichTextRenderer
-            text={question.text}
-            code={question.code}
-            table={question.table}
-            link={question.link}
-            driveImageId={question.driveImageId}
-          />
-        </div>
+      {/* Check layout adaptation: side-by-side for compact diagrams & short options */}
+      {(() => {
+        const hasDedicatedImage = Boolean(
+          question.driveImageId ||
+          question.imageUrl ||
+          (question.link && resolveImageSource(question.link)?.kind !== 'external-link')
+        );
+        const isMcq = (question.type === 'single' || question.type === 'multiple') && Boolean(question.options && question.options.length > 0);
+        const areOptionsConcise = isMcq && (question.options?.every((opt) => (opt.text || '').trim().length <= 80) ?? false);
+        const canUseSideBySide = hasDedicatedImage && isMcq && areOptionsConcise;
 
-        {/* INPUT AREA: SINGLE CHOICE */}
-        {question.type === 'single' && question.options && (
-          <div className="space-y-2.5 pt-1">
-            {question.options.map((opt) => {
+        const renderSingleOptions = () => (
+          <div className="space-y-2.5">
+            {question.options?.map((opt) => {
               const selectedArray = Array.isArray(userAnswer)
                 ? userAnswer
                 : userAnswer
@@ -272,43 +285,43 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               );
 
               let optionStyle =
-                'border-slate-200 hover:border-blue-300 hover:bg-slate-50/80 cursor-pointer text-slate-800';
+                'border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/60 cursor-pointer text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900/60';
               let letterBadgeStyle =
-                'bg-slate-100 text-slate-700 border-slate-200';
+                'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700';
               let badgeIcon = null;
 
               if (isReview) {
                 if (isCorrectOpt) {
                   optionStyle =
-                    'bg-emerald-50/90 border-emerald-500 text-emerald-950 font-medium ring-1 ring-emerald-500/50';
+                    'bg-emerald-50/90 dark:bg-emerald-950/50 border-emerald-500 text-emerald-950 dark:text-emerald-100 font-medium ring-1 ring-emerald-500/50';
                   letterBadgeStyle =
                     'bg-emerald-600 text-white border-emerald-600';
                   badgeIcon = (
                     <CheckCircle2
                       size={18}
-                      className="text-emerald-600 shrink-0 mt-0.5"
+                      className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
                     />
                   );
                 } else if (isSelected && !isCorrectOpt) {
                   optionStyle =
-                    'bg-rose-50/90 border-rose-400 text-rose-900 opacity-90';
+                    'bg-rose-50/90 dark:bg-rose-950/50 border-rose-400 text-rose-900 dark:text-rose-100 opacity-90';
                   letterBadgeStyle = 'bg-rose-600 text-white border-rose-600';
                   badgeIcon = (
                     <XCircle
                       size={18}
-                      className="text-rose-600 shrink-0 mt-0.5"
+                      className="text-rose-600 dark:text-rose-400 shrink-0 mt-0.5"
                     />
                   );
                 } else {
                   optionStyle =
-                    'border-slate-200/80 text-slate-500 opacity-65';
+                    'border-slate-200/80 dark:border-slate-800 text-slate-500 dark:text-slate-400 opacity-65';
                   letterBadgeStyle =
-                    'bg-slate-100 text-slate-400 border-slate-200';
+                    'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-700';
                 }
               } else if (isSelected) {
                 optionStyle =
-                  'border-blue-600 bg-blue-50/60 text-blue-950 ring-1 ring-blue-600/60';
-                letterBadgeStyle = 'bg-blue-600 text-white border-blue-600';
+                  'border-blue-600 dark:border-blue-500 bg-blue-50/60 dark:bg-blue-950/40 text-blue-950 dark:text-blue-100 ring-1 ring-blue-600/60 dark:ring-blue-500/50';
+                letterBadgeStyle = 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500';
               }
 
               const displayOptText = stripRedundantOptionPrefix(
@@ -331,12 +344,26 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
                     onChange={() => handleSingleSelect(opt.id)}
                     className="sr-only"
                   />
-                  <span
-                    className={`w-6 h-6 rounded-lg border text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors ${letterBadgeStyle}`}
-                  >
-                    {opt.id.toUpperCase()}
-                  </span>
-                  <div className="flex-1 min-w-0 text-sm sm:text-base select-none leading-relaxed">
+                  {!shuffleOptions ? (
+                    <span
+                      className={`w-6 h-6 rounded-lg border text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors ${letterBadgeStyle}`}
+                    >
+                      {opt.id.toUpperCase()}
+                    </span>
+                  ) : (
+                    <span
+                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                        isSelected
+                          ? 'border-blue-600 bg-blue-600 dark:border-blue-500 dark:bg-blue-500'
+                          : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800'
+                      }`}
+                    >
+                      {isSelected && (
+                        <span className="w-2 h-2 rounded-full bg-white"></span>
+                      )}
+                    </span>
+                  )}
+                  <div className="flex-1 min-w-0 text-sm sm:text-base select-none leading-relaxed text-slate-800 dark:text-slate-100">
                     <RichTextRenderer text={displayOptText} compact />
                   </div>
                   {badgeIcon}
@@ -345,10 +372,10 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
             })}
 
             {hasUnmatchedMcqCorrectAnswer && (
-              <div className="mt-2 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs sm:text-sm text-emerald-900 flex items-start gap-2">
+              <div className="mt-2 p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl text-xs sm:text-sm text-emerald-900 dark:text-emerald-200 flex items-start gap-2">
                 <CheckCircle2
                   size={16}
-                  className="text-emerald-600 shrink-0 mt-0.5"
+                  className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
                 />
                 <div className="min-w-0 flex-1">
                   <strong className="font-bold block mb-0.5">
@@ -362,12 +389,11 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               </div>
             )}
           </div>
-        )}
+        );
 
-        {/* INPUT AREA: MULTIPLE CHOICE */}
-        {question.type === 'multiple' && question.options && (
-          <div className="space-y-2.5 pt-1">
-            {question.options.map((opt) => {
+        const renderMultipleOptions = () => (
+          <div className="space-y-2.5">
+            {question.options?.map((opt) => {
               const selectedArray = Array.isArray(userAnswer)
                 ? userAnswer
                 : userAnswer
@@ -381,43 +407,43 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               );
 
               let optionStyle =
-                'border-slate-200 hover:border-blue-300 hover:bg-slate-50/80 cursor-pointer text-slate-800';
+                'border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/60 cursor-pointer text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900/60';
               let letterBadgeStyle =
-                'bg-slate-100 text-slate-700 border-slate-200';
+                'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700';
               let badgeIcon = null;
 
               if (isReview) {
                 if (isCorrectOpt) {
                   optionStyle =
-                    'bg-emerald-50/90 border-emerald-500 text-emerald-950 font-medium ring-1 ring-emerald-500/50';
+                    'bg-emerald-50/90 dark:bg-emerald-950/50 border-emerald-500 text-emerald-950 dark:text-emerald-100 font-medium ring-1 ring-emerald-500/50';
                   letterBadgeStyle =
                     'bg-emerald-600 text-white border-emerald-600';
                   badgeIcon = (
                     <CheckCircle2
                       size={18}
-                      className="text-emerald-600 shrink-0 mt-0.5"
+                      className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
                     />
                   );
                 } else if (isSelected && !isCorrectOpt) {
                   optionStyle =
-                    'bg-rose-50/90 border-rose-400 text-rose-900 opacity-90';
+                    'bg-rose-50/90 dark:bg-rose-950/50 border-rose-400 text-rose-900 dark:text-rose-100 opacity-90';
                   letterBadgeStyle = 'bg-rose-600 text-white border-rose-600';
                   badgeIcon = (
                     <XCircle
                       size={18}
-                      className="text-rose-600 shrink-0 mt-0.5"
+                      className="text-rose-600 dark:text-rose-400 shrink-0 mt-0.5"
                     />
                   );
                 } else {
                   optionStyle =
-                    'border-slate-200/80 text-slate-500 opacity-65';
+                    'border-slate-200/80 dark:border-slate-800 text-slate-500 dark:text-slate-400 opacity-65';
                   letterBadgeStyle =
-                    'bg-slate-100 text-slate-400 border-slate-200';
+                    'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-700';
                 }
               } else if (isSelected) {
                 optionStyle =
-                  'border-blue-600 bg-blue-50/60 text-blue-950 ring-1 ring-blue-600/60';
-                letterBadgeStyle = 'bg-blue-600 text-white border-blue-600';
+                  'border-blue-600 dark:border-blue-500 bg-blue-50/60 dark:bg-blue-950/40 text-blue-950 dark:text-blue-100 ring-1 ring-blue-600/60 dark:ring-blue-500/50';
+                letterBadgeStyle = 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500';
               }
 
               const displayOptText = stripRedundantOptionPrefix(
@@ -437,14 +463,28 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
                     checked={isSelected}
                     disabled={isReview}
                     onChange={() => handleMultipleSelect(opt.id)}
-                    className="w-4 h-4 mt-1 text-blue-600 rounded focus:ring-blue-500 border-slate-300 shrink-0"
+                    className="sr-only"
                   />
-                  <span
-                    className={`w-6 h-6 rounded-md border text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors ${letterBadgeStyle}`}
-                  >
-                    {opt.id.toUpperCase()}
-                  </span>
-                  <div className="flex-1 min-w-0 text-sm sm:text-base select-none leading-relaxed">
+                  {!shuffleOptions ? (
+                    <span
+                      className={`w-6 h-6 rounded-md border text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 transition-colors ${letterBadgeStyle}`}
+                    >
+                      {opt.id.toUpperCase()}
+                    </span>
+                  ) : (
+                    <span
+                      className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                        isSelected
+                          ? 'border-blue-600 bg-blue-600 dark:border-blue-500 dark:bg-blue-500 text-white'
+                          : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800'
+                      }`}
+                    >
+                      {isSelected && (
+                        <CheckCircle2 size={13} className="text-white" />
+                      )}
+                    </span>
+                  )}
+                  <div className="flex-1 min-w-0 text-sm sm:text-base select-none leading-relaxed text-slate-800 dark:text-slate-100">
                     <RichTextRenderer text={displayOptText} compact />
                   </div>
                   {badgeIcon}
@@ -452,7 +492,41 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               );
             })}
           </div>
-        )}
+        );
+
+        return (
+          <div className="p-4 sm:p-6 space-y-4">
+            {/* Top: Question text, formulas, code, tables */}
+            <div className="text-sm sm:text-base text-slate-900 dark:text-slate-100 font-medium leading-relaxed">
+              <RichTextRenderer
+                text={question.text}
+                code={question.code}
+                table={question.table}
+                link={canUseSideBySide ? undefined : question.link}
+                driveImageId={canUseSideBySide ? undefined : question.driveImageId}
+              />
+            </div>
+
+            {/* Side-by-Side arrangement for small image and short options */}
+            {canUseSideBySide ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start pt-1">
+                <div className="flex items-center justify-center p-2 rounded-xl bg-slate-50/60 dark:bg-slate-950/40 border border-slate-200/80 dark:border-slate-800 overflow-hidden">
+                  <RichTextRenderer
+                    link={question.link}
+                    driveImageId={question.driveImageId}
+                  />
+                </div>
+                <div>
+                  {question.type === 'single' && renderSingleOptions()}
+                  {question.type === 'multiple' && renderMultipleOptions()}
+                </div>
+              </div>
+            ) : (
+              <>
+                {question.type === 'single' && renderSingleOptions()}
+                {question.type === 'multiple' && renderMultipleOptions()}
+              </>
+            )}
 
         {/* INPUT AREA: FILL IN THE BLANK */}
         {question.type === 'fill' && (
@@ -466,16 +540,16 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               className={`w-full p-3.5 text-sm sm:text-base border rounded-xl outline-none transition-all ${
                 isReview
                   ? isCorrect
-                    ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-semibold'
-                    : 'bg-rose-50 border-rose-400 text-rose-900 font-semibold'
-                  : 'border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-900 dark:text-emerald-100 font-semibold'
+                    : 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 text-rose-900 dark:text-rose-100 font-semibold'
+                  : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20'
               }`}
             />
             {isReview && !isCorrect && (
-              <div className="mt-2 text-xs sm:text-sm text-emerald-800 bg-emerald-50 p-3 rounded-xl border border-emerald-200 flex items-center gap-2">
+              <div className="mt-2 text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/40 p-3 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center gap-2">
                 <CheckCircle2
                   size={16}
-                  className="text-emerald-600 shrink-0"
+                  className="text-emerald-600 dark:text-emerald-400 shrink-0"
                 />
                 <span>
                   Đáp án chuẩn:{' '}
@@ -489,88 +563,117 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
         )}
 
         {/* INPUT AREA: DROPDOWN */}
-        {question.type === 'dropdown' && question.options && (
+        {question.type === 'dropdown' && (
           <div className="pt-1 space-y-3">
-            <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
               Chọn đáp án tương ứng cho từng vị trí:
             </p>
-            {question.correctAnswers.map((correctTarget, slotIdx) => {
-              const rawUserVal = Array.isArray(userAnswer)
-                ? userAnswer[slotIdx] || ''
-                : '';
-              // Normalize userVal to option ID if it was saved as numeric index
-              const resolvedUserIdx = resolveOptionIndex(
-                question.options,
-                rawUserVal
-              );
-              const selectValue =
-                resolvedUserIdx !== -1 && question.options
-                  ? question.options[resolvedUserIdx].id
-                  : rawUserVal;
+            {(() => {
+              const slotsToRender =
+                question.dropdownSlots && question.dropdownSlots.length > 0
+                  ? question.dropdownSlots
+                  : (question.correctAnswers.length > 0
+                      ? question.correctAnswers
+                      : ['']
+                    ).map((_, sIdx) => ({
+                      label: `Vị trí [${sIdx + 1}]`,
+                      choices: question.options || [],
+                    }));
 
-              const isSlotCorrect =
-                isReview &&
-                areOptionValuesEquivalent(
-                  question.options,
-                  rawUserVal,
+              return slotsToRender.map((slot, slotIdx) => {
+                const rawUserVal = Array.isArray(userAnswer)
+                  ? userAnswer[slotIdx] || ''
+                  : '';
+                const slotChoices =
+                  slot.choices && slot.choices.length > 0
+                    ? slot.choices
+                    : question.options || [];
+
+                // Normalize userVal to option ID if it was saved as numeric index or text
+                const resolvedUserIdx = resolveOptionIndex(
+                  slotChoices,
+                  rawUserVal
+                );
+                const selectValue =
+                  resolvedUserIdx !== -1 && slotChoices[resolvedUserIdx]
+                    ? slotChoices[resolvedUserIdx].id
+                    : rawUserVal;
+
+                const correctTarget = question.correctAnswers[slotIdx];
+                const isSlotCorrect =
+                  isReview &&
+                  areOptionValuesEquivalent(
+                    slotChoices,
+                    rawUserVal,
+                    correctTarget
+                  );
+
+                const correctOptIdx = resolveOptionIndex(
+                  slotChoices,
                   correctTarget
                 );
+                const correctOptLabel =
+                  correctOptIdx !== -1 && slotChoices[correctOptIdx]
+                    ? `${correctOptIdx + 1}. ${slotChoices[correctOptIdx].text}`
+                    : String(correctTarget || '');
 
-              const correctOptIdx = resolveOptionIndex(
-                question.options,
-                correctTarget
-              );
-              const correctOptLabel =
-                correctOptIdx !== -1 && question.options
-                  ? `${correctOptIdx + 1}. ${question.options[correctOptIdx].text}`
-                  : String(correctTarget);
+                const isSimpleBadge = /^(\[\d+\]|Vị trí \[\d+\]|\(\d+\))$/i.test(
+                  (slot.label || '').trim()
+                );
 
-              return (
-                <div
-                  key={slotIdx}
-                  className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/80 space-y-2"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 text-sm">
-                    <span className="inline-flex items-center justify-center px-2.5 py-1 bg-teal-50 text-teal-800 border border-teal-200 rounded-lg font-mono font-bold text-xs w-fit shrink-0">
-                      Vị trí [{slotIdx + 1}]
-                    </span>
-                    <select
-                      disabled={isReview}
-                      value={selectValue}
-                      onChange={(e) =>
-                        handleDropdownChange(slotIdx, e.target.value)
-                      }
-                      className={`flex-1 p-2.5 rounded-lg border text-sm outline-none transition-colors bg-white ${
-                        isReview
-                          ? isSlotCorrect
-                            ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-semibold'
-                            : 'bg-rose-50 border-rose-400 text-rose-900'
-                          : 'border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20'
-                      }`}
-                    >
-                      <option value="">-- Chọn đáp án --</option>
-                      {question.options?.map((opt, oIdx) => (
-                        <option key={opt.id} value={opt.id}>
-                          {oIdx + 1}. {opt.text}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {isReview && !isSlotCorrect && (
-                    <div className="text-xs text-emerald-800 bg-emerald-50/90 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-1.5 font-medium">
-                      <CheckCircle2
-                        size={14}
-                        className="text-emerald-600 shrink-0"
-                      />
-                      <span>
-                        Đáp án đúng: <strong>{correctOptLabel}</strong>
-                      </span>
+                return (
+                  <div
+                    key={slotIdx}
+                    className="p-3 sm:p-3.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 space-y-2"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 text-sm">
+                      {isSimpleBadge ? (
+                        <span className="inline-flex items-center justify-center px-2.5 py-1 bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-lg font-mono font-bold text-xs w-fit shrink-0">
+                          {slot.label || `Vị trí [${slotIdx + 1}]`}
+                        </span>
+                      ) : (
+                        <span className="font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-200 sm:max-w-[48%] break-words">
+                          {slot.label || `Vị trí [${slotIdx + 1}]`}
+                        </span>
+                      )}
+                      <select
+                        disabled={isReview}
+                        value={selectValue}
+                        onChange={(e) =>
+                          handleDropdownChange(slotIdx, e.target.value)
+                        }
+                        className={`flex-1 p-2.5 rounded-lg border text-xs sm:text-sm outline-none transition-colors ${
+                          isReview
+                            ? isSlotCorrect
+                              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-900 dark:text-emerald-100 font-semibold'
+                              : 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 text-rose-900 dark:text-rose-100'
+                            : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20'
+                        }`}
+                      >
+                        <option value="">-- Chọn đáp án --</option>
+                        {slotChoices.map((opt, oIdx) => (
+                          <option key={opt.id} value={opt.id}>
+                            {oIdx + 1}. {opt.text}
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                  )}
-                </div>
-              );
-            })}
+
+                    {isReview && !isSlotCorrect && (
+                      <div className="text-xs text-emerald-800 dark:text-emerald-200 bg-emerald-50/90 dark:bg-emerald-950/50 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5 font-medium">
+                        <CheckCircle2
+                          size={14}
+                          className="text-emerald-600 dark:text-emerald-400 shrink-0"
+                        />
+                        <span>
+                          Đáp án đúng: <strong>{correctOptLabel}</strong>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                );
+              });
+            })()}
           </div>
         )}
 
@@ -583,15 +686,15 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               disabled={isReview}
               onChange={(e) => handleEssayChange(e.target.value)}
               placeholder="Nhập dàn ý hoặc câu trả lời tự luận của bạn để tự đối chiếu sau khi nộp bài..."
-              className="w-full p-3.5 text-sm sm:text-base border border-slate-300 rounded-xl outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 leading-relaxed disabled:bg-slate-50 disabled:text-slate-800"
+              className="w-full p-3.5 text-sm sm:text-base border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-xl outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 leading-relaxed disabled:bg-slate-50 dark:disabled:bg-slate-950 disabled:text-slate-800 dark:disabled:text-slate-200"
             />
             {isReview && question.correctAnswers.length > 0 && (
-              <div className="p-4 bg-blue-50/80 border border-blue-200 rounded-xl space-y-2">
-                <h4 className="font-bold text-sm text-blue-900 flex items-center gap-1.5">
-                  <BookOpen size={16} className="text-blue-600" />
+              <div className="p-4 bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-xl space-y-2">
+                <h4 className="font-bold text-sm text-blue-900 dark:text-blue-200 flex items-center gap-1.5">
+                  <BookOpen size={16} className="text-blue-600 dark:text-blue-400" />
                   <span>Lời giải / Đáp án mẫu tham khảo:</span>
                 </h4>
-                <div className="text-sm text-slate-800">
+                <div className="text-sm text-slate-800 dark:text-slate-200">
                   <RichTextRenderer
                     text={question.correctAnswers.join('\n\n')}
                   />
@@ -601,37 +704,50 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
           </div>
         )}
       </div>
+    );
+  })()}
 
       {/* Review Mode: Explanation and Suggestions */}
-      {isReview && (question.explanation || (question.suggestion && !isCorrect && question.type !== 'essay')) && (
+      {isReview && (question.explanation || (!isCorrect && question.type !== 'essay')) && (
         <div
-          className={`px-4 sm:px-6 py-4 border-t border-slate-200/80 text-sm space-y-3 ${
-            isCorrect ? 'bg-emerald-50/30' : 'bg-slate-50/90'
+          className={`px-4 sm:px-6 py-4 border-t border-slate-200/80 dark:border-slate-800 text-sm space-y-3 ${
+            isCorrect ? 'bg-emerald-50/30 dark:bg-emerald-950/20' : 'bg-slate-50/90 dark:bg-slate-900/60'
           }`}
         >
           {question.explanation && (
             <div>
-              <p className="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5 text-xs sm:text-sm uppercase tracking-wider text-blue-800">
-                <Sparkles size={15} className="text-blue-600 shrink-0" />
+              <p className="font-bold text-slate-900 dark:text-slate-100 mb-1.5 flex items-center gap-1.5 text-xs sm:text-sm uppercase tracking-wider text-blue-800 dark:text-blue-400">
+                <Sparkles size={15} className="text-blue-600 dark:text-blue-400 shrink-0" />
                 <span>Giải thích chi tiết</span>
               </p>
-              <div className="text-slate-700 leading-relaxed pl-0.5">
+              <div className="text-slate-700 dark:text-slate-300 leading-relaxed pl-0.5">
                 <RichTextRenderer text={question.explanation} />
               </div>
             </div>
           )}
 
-          {question.suggestion && !isCorrect && question.type !== 'essay' && (
-            <div className="p-3 bg-amber-50/90 border border-amber-200 rounded-xl text-amber-950 text-xs sm:text-sm flex items-start gap-2">
+          {!isCorrect && question.type !== 'essay' && (
+            <div className="p-3 bg-amber-50/90 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-xl text-amber-950 dark:text-amber-200 text-xs sm:text-sm flex items-start gap-2">
               <AlertCircle
                 size={16}
-                className="shrink-0 mt-0.5 text-amber-600"
+                className="shrink-0 mt-0.5 text-amber-600 dark:text-amber-400"
               />
               <div className="min-w-0 flex-1">
                 <strong className="block font-bold mb-0.5">
                   Gợi ý ôn tập:
                 </strong>
-                <RichTextRenderer text={question.suggestion} compact />
+                <RichTextRenderer
+                  text={
+                    question.chapter !== undefined && question.chapter_name
+                      ? `Chương ${question.chapter}: ${question.chapter_name}`
+                      : question.chapter !== undefined
+                      ? `Chương ${question.chapter}`
+                      : question.chapter_name
+                      ? question.chapter_name
+                      : question.suggestion || 'Xem lại slide bài giảng'
+                  }
+                  compact
+                />
               </div>
             </div>
           )}

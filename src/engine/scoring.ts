@@ -198,9 +198,10 @@ export function evaluateQuestion(
         userAnswers.length === correctAnswers.length &&
         correctAnswers.length > 0
       ) {
-        isCorrect = correctAnswers.every((corr, idx) =>
-          areOptionValuesEquivalent(q.options, userAnswers[idx], corr)
-        );
+        isCorrect = correctAnswers.every((corr, idx) => {
+          const slotChoices = q.dropdownSlots?.[idx]?.choices || q.options;
+          return areOptionValuesEquivalent(slotChoices, userAnswers[idx], corr);
+        });
       }
       break;
     }

@@ -61,6 +61,21 @@ export function renderLatexToHtml(
 }
 
 /**
+ * Decodes common HTML entities (e.g. &lt; -> <, &gt; -> >, &quot; -> ", &#39; -> ', &amp; -> &)
+ * so that escaped content such as `&lt;&lt;include&gt;&gt;` renders cleanly as `<<include>>`.
+ */
+export function decodeHtmlEntities(input: string): string {
+  if (!input || typeof input !== 'string') return '';
+  return input
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, '&');
+}
+
+/**
  * Normalizes HTML <br>, <br/>, <br /> tags into newline characters outside code blocks.
  */
 function normalizeLineBreaks(input: string): string {
@@ -110,7 +125,8 @@ export function tokenizeBlocks(rawContent: string): BlockToken[] {
 }
 
 function tokenizeNonCodeBlocks(segment: string): BlockToken[] {
-  const normalized = normalizeLineBreaks(segment);
+  const decoded = decodeHtmlEntities(segment);
+  const normalized = normalizeLineBreaks(decoded);
   const results: BlockToken[] = [];
 
   // Split out standalone display math blocks $$ ... $$ or \[ ... \]
@@ -229,16 +245,17 @@ const INLINE_MASTER_REGEX = new RegExp(
 export function tokenizeInline(line: string, allowNested = true): InlineToken[] {
   if (!line) return [];
 
+  const cleanLine = decodeHtmlEntities(line);
   const tokens: InlineToken[] = [];
   const regex = new RegExp(INLINE_MASTER_REGEX.source, 'gi');
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  while ((match = regex.exec(line)) !== null) {
+  while ((match = regex.exec(cleanLine)) !== null) {
     if (match.index > lastIndex) {
       tokens.push({
         type: 'text',
-        content: line.slice(lastIndex, match.index),
+        content: cleanLine.slice(lastIndex, match.index),
       });
     }
 

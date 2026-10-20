@@ -2,9 +2,9 @@
   {
     "id": 1,
     "type": "multiple",
-    "text": "Trong kỹ năng giao tiếp, phương pháp trình bày D.E.S.C gợi ý 4 yếu tố: Describe/Mô tả; Express/Giải thích; Specify/Nêu ý kiến; Choose(Consequences)/Phân tích ưu nhược điểm về ý kiến. Tuy nhiên, đoạn hội thoại ngắn sau đây cho thấy cách trình bày của bạn Thanh Nam bị thiếu 2 yếu tố là gì?\nSếp: Giao cho Thanh Nam phụ trách phát triển tính năng Z1 và Z2.\nThanh Nam: Oh. Thùy đang phụ trách có mỗi 1 tính năng X1. Em thì đang phụ trách cả 3 tính năng Y1, Y2, Y3. Vì vậy...\nSếp: (không thoải mái)",
+    "text": "Trong kỹ năng giao tiếp, phương pháp trình bày D.E.S.C gợi ý 4 yếu tố: Describe/Mô tả; Express/Giải thích; Specify/Nêu ý kiến; Choose (Consequences)/Phân tích ưu nhược điểm về ý kiến.\nTuy nhiên, đoạn hội thoại ngắn sau đây cho thấy cách trình bày của bạn Thành Nam bị thiếu 2 yếu tố là gì?\n<b>Sếp:</b> giao cho Thành Nam phụ trách phát triển tính năng Z1 và Z2.\n<b>Thành Nam:</b> Oh. Thủy đang phụ trách có mỗi 1 tính năng X1. Em thì đang phụ trách cả 3 tính năng Y1, Y2, Y3. Vì vậy em nghĩ Thủy nên phụ trách tính năng Z1 và Z2.\n<b>Sếp:</b> (không thoải mái)",
     "code": "",
-    "table": "",
+    "tables": [],
     "link": "",
     "options": [
       "thiếu Describe",
@@ -13,37 +13,50 @@
       "thiếu Consequences"
     ],
     "correctAnswers": [
-      "thiếu Specify",
+      "thiếu Express",
       "thiếu Consequences"
     ],
-    "explanation": "Phương pháp D.E.S.C bao gồm: Describe (mô tả sự việc khách quan), Express (bộc lộ cảm xúc/nhận định), Specify (đưa ra đề xuất giải pháp cụ thể), Consequences (nêu rõ hệ quả, lợi ích). Trong đoạn đối thoại, Thanh Nam mới chỉ mô tả số lượng tính năng (Describe) và ngụ ý sự không công bằng/quá tải (Express), nhưng hoàn toàn chưa nêu được đề xuất cụ thể (Specify: ví dụ đề xuất chuyển bớt tính năng sang cho Thùy) và chưa phân tích được hệ quả tích cực/tiêu cực của đề xuất đó (Consequences).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 1"
+    "explanation": "Thành Nam đã nêu được Describe (mô tả khối lượng công việc hiện tại: Thủy làm X1, Nam làm Y1, Y2, Y3) và Specify (đề xuất rõ ràng: Thủy nên phụ trách Z1 và Z2). Tuy nhiên, Nam thiếu Express (bày tỏ cảm xúc, giải thích khó khăn thực sự một cách tích cực, tôn trọng) và thiếu Consequences (phân tích ưu nhược điểm/hậu quả đối với tiến độ và mục tiêu chung của dự án nếu phân công lại).",
+    "scope": "2023.2 - Trang 1, 4, 41"
   },
   {
     "id": 2,
-    "type": "single",
-    "text": "Công ty TCIOS thực hiện một dự án IT có 3 module: BACK-END, FRONT-END và IOT. Thời gian ước lượng cho mỗi hoạt động là như sau:\n1. Module BACK-END: thời gian ước lượng tối thiểu là 5 ngày, thời gian ước lượng dự kiến là 7 ngày và thời gian ước lượng tối đa là 9 ngày.\n2. Module FRONT-END: thời gian ước lượng tối thiểu là 4 ngày, thời gian ước lượng dự kiến là 6 ngày và thời gian ước lượng tối đa là 8 ngày.\nTheo phương pháp ước lượng PERT (Program Evaluation and Review Technique), công thức tính thời gian kỳ vọng (Expected Duration) là gì?",
+    "type": "fill",
+    "text": "Công ty TCIOS thực hiện một dự án IT có 3 module BACK-END, FRONT-END và IOT. Thời gian ước lượng cho mỗi hoạt động là như sau:\n1. Module BACK-END: thời gian ước lượng tối thiểu là 5 ngày, thời gian ước lượng dự kiến là 7 ngày và thời gian ước lượng tối đa là 9 ngày.\n2. Module FRONT-END: thời gian ước lượng tối thiểu là 4 ngày, thời gian ước lượng dự kiến là 6 ngày và thời gian ước lượng tối đa là 8 ngày.\n3. Module IOT: thời gian ước lượng tối thiểu là 3 ngày, thời gian ước lượng dự kiến là 5 ngày và thời gian ước lượng tối đa là 7 ngày.\n- Biết rằng chi phí lao động là 500000 vnđ mỗi ngày.\nHãy tính toán chi phí ước lượng của dự án này bằng phương pháp ước lượng 3 điểm (PERT). Lưu ý chỉ viết đáp án dạng số nguyên.",
     "code": "",
-    "table": "",
+    "tables": [],
     "link": "",
-    "options": [
-      "(O + 4M + P) / 6",
-      "(O + M + P) / 3",
-      "(O + 2M + P) / 4",
-      "(O + 6M + P) / 8"
-    ],
+    "options": [],
     "correctAnswers": [
-      "(O + 4M + P) / 6"
+      "9000000"
     ],
-    "explanation": "Theo chuẩn PMBOK, phương pháp ước lượng 3 điểm theo phân phối Beta (PERT) tính thời gian kỳ vọng $T_e = \\frac{O + 4M + P}{6}$, trong đó $O$ là thời gian lạc quan (Optimistic), $M$ là thời gian khả dĩ nhất (Most likely), và $P$ là thời gian bi quan (Pessimistic).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 1–2"
+    "explanation": "Áp dụng công thức PERT $T_e = \\frac{O + 4M + P}{6}$:\n- Module BACK-END: $T_{e1} = \\frac{5 + 4 \\times 7 + 9}{6} = 7$ ngày.\n- Module FRONT-END: $T_{e2} = \\frac{4 + 4 \\times 6 + 8}{6} = 6$ ngày.\n- Module IOT: $T_{e3} = \\frac{3 + 4 \\times 5 + 7}{6} = 5$ ngày.\nTổng thời gian ước lượng $= 7 + 6 + 5 = 18$ ngày.\nChi phí ước lượng $= 18 \\times 500000 = 9000000$ vnđ.",
+    "scope": "2023.2 - Trang 1, 4, 5, 60, 66, 67"
   },
   {
     "id": 3,
-    "type": "multiple",
-    "text": "Yếu tố Cơ hội (Opportunity) trong phân tích ma trận SWOT của một dự án công nghệ thông tin là:",
+    "type": "single",
+    "text": "Hãy giải thích tại sao Ước lượng dự án ở giai đoạn sau của dự án - Thiết kế hệ thống/System Design - có độ chính xác cao, nhưng thường ít ảnh hưởng tới kinh phí toàn bộ dự án?\nBusiness Talk --> Collect Requirement --> System Design",
     "code": "",
-    "table": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Vì nhằm tính toán các công việc kỹ thuật, không phải tính kinh phí dự án.",
+      "Vì người thực hiện là các lập trình viên, không phải người có chuyên môn về kinh tế.",
+      "Vì cần nhiều nguồn lực để thực hiện, nên thường xảy ra khi hợp đồng dự án đã được thực hiện, giá trị hợp đồng đã xác định."
+    ],
+    "correctAnswers": [
+      "Vì cần nhiều nguồn lực để thực hiện, nên thường xảy ra khi hợp đồng dự án đã được thực hiện, giá trị hợp đồng đã xác định."
+    ],
+    "explanation": "Giai đoạn Thiết kế hệ thống (System Design) đòi hỏi hiểu biết chi tiết về kiến trúc và cần nhiều nguồn lực để thực hiện nên thường chỉ diễn ra sau khi hợp đồng dự án đã được ký kết và giá trị hợp đồng đã được xác định từ trước.",
+    "scope": "2023.2 - Trang 2, 28, 44"
+  },
+  {
+    "id": 4,
+    "type": "multiple",
+    "text": "Yếu tố cơ hội trong dự án là",
+    "code": "",
+    "tables": [],
     "link": "",
     "options": [
       "Chưa ai cung cấp sản phẩm hay dịch vụ cụ thể này ra thị trường",
@@ -55,37 +68,61 @@
     "correctAnswers": [
       "Chưa ai cung cấp sản phẩm hay dịch vụ cụ thể này ra thị trường",
       "Ít đối thủ cạnh tranh mạnh trong lĩnh vực",
-      "Nhu cầu mới nổi cho sản phẩm hoặc dịch vụ mà doanh nghiệp đã biết được"
+      "Nhu cầu mới nổi cho sản phẩm hoặc dịch vụ mà doanh nghiệp đã biết được",
+      "Quản lý dự án giỏi, có khả năng tuyển người trong thời gian ngắn",
+      "Lượng khách hàng trung thành tạo tiền đề cho sự mở rộng và phát triển"
     ],
-    "explanation": "Trong phân tích SWOT, Cơ hội (Opportunities) là các yếu tố thuận lợi xuất phát từ môi trường bên ngoài tổ chức/thị trường (thị trường chưa có nhà cung cấp, ít đối thủ cạnh tranh, xuất hiện nhu cầu mới nổi). Các yếu tố như năng lực quản lý giỏi hay tệp khách hàng trung thành là Điểm mạnh nội bộ (Strengths).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 2"
-  },
-  {
-    "id": 4,
-    "type": "single",
-    "text": "Công ty TCIOS phát triển một phần mềm được đặt hàng dành riêng cho 1 khách hàng. Khi chuẩn bị hoàn thiện sản phẩm, TCIOS gửi phiên bản alpha 1 cho khách hàng để đánh giá và dùng thử, khách hàng gửi về 50 lỗi. TCIOS sửa rồi lại gửi phần mềm phiên bản alpha 2 cho khách hàng dùng thử, khách lại gửi về 46 lỗi. Hỏi nguồn lực được sử dụng để khắc phục các lỗi nói trên thuộc về giai đoạn nào của quản lý dự án?",
-    "code": "",
-    "table": "",
-    "link": "",
-    "options": [
-      "Thực hiện (Executing)",
-      "Giám sát và Điều khiển (Monitoring and Controlling)",
-      "Khởi tạo dự án (Initiating)",
-      "Đóng dự án (Closing)",
-      "Lập kế hoạch (Planning)"
-    ],
-    "correctAnswers": [
-      "Giám sát và Điều khiển (Monitoring and Controlling)"
-    ],
-    "explanation": "Quá trình gửi phiên bản thử nghiệm (alpha/beta test), tiếp nhận phản hồi sai lỗi và theo dõi việc sửa lỗi nhằm đối soát chất lượng so với yêu cầu thuộc nhóm quy trình Giám sát và Điều khiển (Monitoring and Controlling).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 3"
+    "explanation": "Trong ma trận SWOT, Cơ hội (Opportunities) là các yếu tố thuận lợi từ môi trường bên ngoài tổ chức (chưa ai cung cấp, ít đối thủ mạnh, nhu cầu mới nổi). 'Quản lý dự án giỏi' và 'Lượng khách hàng trung thành' là nội lực bên trong của doanh nghiệp (Điểm mạnh - Strengths).",
+    "scope": "2023.2 - Trang 2, 28, 31"
   },
   {
     "id": 5,
+    "type": "multiple",
+    "text": "Khởi tạo dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Là quy trình đầu tiên trong dự án",
+      "Cần xác định mục đích của dự án",
+      "Cần xác định tuyên ngôn của dự án",
+      "Có sự giao tiếp giữa các bên liên quan trong dự án"
+    ],
+    "correctAnswers": [
+      "Là quy trình đầu tiên trong dự án",
+      "Cần xác định mục đích của dự án",
+      "Cần xác định tuyên ngôn của dự án",
+      "Có sự giao tiếp giữa các bên liên quan trong dự án"
+    ],
+    "explanation": "Giai đoạn Khởi tạo (Initiating) là quy trình đầu tiên mở đầu dự án, cần xác định rõ mục đích của dự án, xây dựng Tuyên ngôn dự án (Project Charter) và thiết lập giao tiếp giữa các bên liên quan.",
+    "scope": "2023.2 - Trang 2, 29, 31, 68"
+  },
+  {
+    "id": 6,
+    "type": "single",
+    "text": "Công ty TCIOS phát triển một phần mềm được đặt hàng dành riêng cho 1 khách hàng. Khi chuẩn bị hoàn thiện sản phẩm, TCIOS gửi phiên bản alpha1 cho khách hàng để đánh giá và dùng thử, khách hàng gửi về 50 lỗi. TCIOS sửa lỗi rồi lại gửi phần mềm phiên bản alpha2 cho khách hàng dùng thử, khách lại gửi về 46 lỗi.\nHỏi nguồn lực được sử dụng để khắc phục các lỗi nói trên thuộc về giai đoạn nào của quản lý dự án?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Thực hiện",
+      "Giám sát và Điều khiển",
+      "Khởi tạo dự án",
+      "Đóng",
+      "Lập kế hoạch"
+    ],
+    "correctAnswers": [
+      "Thực hiện"
+    ],
+    "explanation": "Việc trực tiếp sửa lỗi mã nguồn và tạo ra các phiên bản phần mềm (alpha1, alpha2) tiêu tốn nguồn lực phát triển thuộc về giai đoạn Thực hiện (Executing).",
+    "scope": "2023.2 - Trang 3, 18, 27"
+  },
+  {
+    "id": 7,
     "type": "single",
     "text": "Loại chi phí nào KHÔNG liên quan khi ước lượng chi phí phát triển sản phẩm phần mềm?",
     "code": "",
-    "table": "",
+    "tables": [],
     "link": "",
     "options": [
       "Chi phí máy móc thiết bị",
@@ -96,106 +133,1294 @@
     "correctAnswers": [
       "Chi phí quảng cáo tiếp thị"
     ],
-    "explanation": "Chi phí quảng cáo tiếp thị (Marketing/Advertising) là chi phí bán hàng và thương mại hóa sau khi sản phẩm đã hoàn thành, không thuộc chi phí trực tiếp của dự án phát triển phần mềm.",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 3"
-  },
-  {
-    "id": 6,
-    "type": "single",
-    "text": "Tuyên ngôn dự án (Project Charter) bao gồm những nội dung chính yếu nào?",
-    "code": "",
-    "table": "",
-    "link": "",
-    "options": [
-      "Mục đích dự án, mục tiêu có thể đo lường được, phạm vi tổng quan, ngân sách sơ bộ và chỉ định Giám đốc dự án",
-      "Mã nguồn chi tiết và cấu trúc cơ sở dữ liệu",
-      "Kế hoạch phân công công việc hàng ngày cho từng lập trình viên",
-      "Toàn bộ tài liệu thiết kế giao diện đồ họa chi tiết"
-    ],
-    "correctAnswers": [
-      "Mục đích dự án, mục tiêu có thể đo lường được, phạm vi tổng quan, ngân sách sơ bộ và chỉ định Giám đốc dự án"
-    ],
-    "explanation": "Tuyên ngôn dự án (Project Charter) là văn bản chính thức phê duyệt sự tồn tại của dự án, cấp quyền cho Giám đốc dự án sử dụng các nguồn lực của tổ chức, bao gồm mục tiêu dự án, phạm vi cấp cao, rủi ro sơ bộ và các mốc thời gian chính.",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 7"
-  },
-  {
-    "id": 7,
-    "type": "single",
-    "text": "Nguyên tắc SMART trong việc thiết lập mục tiêu dự án yêu cầu các tiêu chí nào?",
-    "code": "",
-    "table": "",
-    "link": "",
-    "options": [
-      "Specific (Cụ thể), Measurable (Đo lường được), Achievable (Khả thi), Relevant (Thích hợp), Time-bound (Có thời hạn)",
-      "Simple, Manageable, Accurate, Reliable, Trackable",
-      "Scope, Money, Action, Resource, Technology",
-      "Strategic, Measurable, Actionable, Realistic, Tested"
-    ],
-    "correctAnswers": [
-      "Specific (Cụ thể), Measurable (Đo lường được), Achievable (Khả thi), Relevant (Thích hợp), Time-bound (Có thời hạn)"
-    ],
-    "explanation": "Nguyên tắc SMART là chuẩn mực kinh điển trong quản lý dự án: Specific (Rõ ràng, cụ thể), Measurable (Có thể lượng hóa), Achievable (Có tính khả thi thực tế), Relevant (Phù hợp với mục tiêu tổ chức), Time-bound (Ràng buộc thời gian hoàn thành cụ thể).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 12"
+    "explanation": "Chi phí máy móc thiết bị, chi phí đào tạo kỹ năng cho lập trình viên và chi phí vận chuyển bàn giao sản phẩm đều gắn liền với dự án phát triển phần mềm. 'Chi phí quảng cáo tiếp thị' thuộc về hoạt động thương mại, bán hàng của doanh nghiệp chứ không tính trong chi phí phát triển sản phẩm phần mềm.",
+    "scope": "2023.2 - Trang 3, 26"
   },
   {
     "id": 8,
     "type": "single",
-    "text": "Một dự án có ngân sách dự kiến (BAC) là 600 triệu VNĐ được lên kế hoạch hoàn thành trong 6 tháng (mỗi tháng 100 triệu). Sau 4 tháng triển khai, chi phí thực tế đã chi tiêu (AC) là 450 triệu VNĐ, và khối lượng công việc hoàn thành tương ứng giá trị thu được (EV) là 400 triệu VNĐ. Hãy tính chỉ số hiệu suất chi phí (CPI) và chỉ số hiệu suất tiến độ (SPI) của dự án?",
+    "text": "Trong số các cách đặt mục tiêu học tập sau, cách viết nào hiệu quả?",
     "code": "",
-    "table": "",
+    "tables": [],
     "link": "",
     "options": [
-      "CPI = 0.889, SPI = 1.0",
-      "CPI = 1.125, SPI = 0.889",
-      "CPI = 0.889, SPI = 0.8",
-      "CPI = 1.0, SPI = 1.0"
+      "Cố gắng chăm chỉ hơn nữa",
+      "Mỗi học kỳ không bị nợ quá 2 môn.",
+      "Nâng cao hiểu biết, học tập sâu rộng ở nhiều lĩnh vực",
+      "Dành thời gian học càng nhiều càng tốt"
     ],
     "correctAnswers": [
-      "CPI = 0.889, SPI = 1.0"
+      "Mỗi học kỳ không bị nợ quá 2 môn."
     ],
-    "explanation": "Theo phương pháp Quản lý giá trị thu được (Earned Value Management - EVM):\n- Giá trị theo kế hoạch sau 4 tháng: $PV = 4 \\times 100 = 400$ triệu VNĐ.\n- Giá trị thu được: $EV = 400$ triệu VNĐ.\n- Chi phí thực tế: $AC = 450$ triệu VNĐ.\n- Chỉ số hiệu suất chi phí: $CPI = \\frac{EV}{AC} = \\frac{400}{450} \\approx 0.889 < 1$ (vượt ngân sách).\n- Chỉ số hiệu suất tiến độ: $SPI = \\frac{EV}{PV} = \\frac{400}{400} = 1.0$ (đúng tiến độ).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 15"
+    "explanation": "Theo tiêu chí SMART, mục tiêu 'Mỗi học kỳ không bị nợ quá 2 môn.' là mục tiêu duy nhất cụ thể (Specific), đo lường được bằng con số rõ ràng (Measurable: không quá 2 môn) và có thời hạn xác định (Time-bound: mỗi học kỳ).",
+    "scope": "2023.2 - Trang 3, 21, 26, 52"
   },
   {
     "id": 9,
     "type": "single",
-    "text": "Các đặc trưng cơ bản phân biệt một dự án (Project) với các hoạt động vận hành thường nhật (Operations) là gì?",
+    "text": "Một cửa hàng bán quần áo đề nghị công ty TCIOS xây dựng cho họ website giới thiệu sản phẩm. Công ty nhận thấy rằng trước đây đã từng làm website quần áo với giá 74 triệu. Do ảnh hưởng Covid-19, TCIOS cân nhắc giảm giá rồi đề xuất chi phí cho dự án này là 68 triệu. Đây là kỹ thuật ước lượng nào?",
     "code": "",
-    "table": "",
+    "tables": [],
     "link": "",
     "options": [
-      "Tính tạm thời (Temporary) và Tính độc nhất (Unique)",
-      "Tính lặp đi lặp lại và Tính liên tục không xác định thời hạn",
-      "Không giới hạn ngân sách và không cần phân công người quản lý",
-      "Luôn mang lại lợi nhuận ngay lập tức"
+      "Bottom-up / Ước lượng chi tiết từ dưới lên",
+      "Analogous / Ước lượng tương tự",
+      "Parametric / Ước lượng có tham số hiệu chỉnh",
+      "Three-point estimating / PERT / Ước lượng 3 điểm"
     ],
     "correctAnswers": [
-      "Tính tạm thời (Temporary) và Tính độc nhất (Unique)"
+      "Analogous / Ước lượng tương tự"
     ],
-    "explanation": "Theo định nghĩa của PMI (Project Management Institute): Dự án là một nỗ lực tạm thời được thực hiện để tạo ra một sản phẩm, dịch vụ hoặc kết quả duy nhất (Tính tạm thời: có điểm bắt đầu và kết thúc xác định; Tính độc nhất: sản phẩm/kết quả chưa từng có trước đó).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 17"
+    "explanation": "Ước lượng tương tự (Analogous Estimating) sử dụng dữ liệu lịch sử từ một dự án tương tự trước đây (74 triệu) làm cơ sở để ước tính chi phí cho dự án mới (68 triệu).",
+    "scope": "2023.2 - Trang 5, 19, 67"
   },
   {
     "id": 10,
-    "type": "multiple",
-    "text": "Các chiến lược ứng phó đối với rủi ro tiêu cực (Threats/Risks) trong quản lý dự án bao gồm:",
+    "type": "fill",
+    "text": "Công ty TCIOS tính toán chi phí cho dự án web xephang.online. Họ xác định tình huống bình thường cần 200 triệu để làm sản phẩm. Với khung chi phí đó, TCIOS áp dụng phương pháp ước lượng chi phí 3 điểm (Three-point estimating) để tính toán tiếp:\n- Nếu may mắn dự án kế thừa được nhiều từ dự án trước, họ sẽ giảm được 50 triệu chi phí văn phòng và lương, và trích từ đó để tạo phần thưởng 30 triệu cho dev.\n- Nếu dự án bị muộn, họ phải chi trả thêm 80 triệu.\nHỏi chi phí dự án được xác định là bao nhiêu triệu? (Ví dụ điền 200)",
     "code": "",
-    "table": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "210"
+    ],
+    "explanation": "Áp dụng công thức ước lượng 3 điểm (PERT):\n- Chi phí bình thường ($M$): $200$ triệu.\n- Chi phí thuận lợi nhất ($O$): giảm 50 triệu nhưng trích thưởng 30 triệu cho dev $\\Rightarrow O = 200 - (50 - 30) = 180$ triệu.\n- Chi phí bi quan nhất ($P$): muộn phải chi trả thêm 80 triệu $\\Rightarrow P = 200 + 80 = 280$ triệu.\nChi phí kỳ vọng $= \\frac{O + 4M + P}{6} = \\frac{180 + 4 \\times 200 + 280}{6} = \\frac{1260}{6} = 210$ triệu.",
+    "scope": "2023.2 - Trang 5, 15, 19"
+  },
+  {
+    "id": 11,
+    "type": "multiple",
+    "text": "Lập kế hoạch dự án",
+    "code": "",
+    "tables": [],
     "link": "",
     "options": [
-      "Avoid (Né tránh)",
-      "Mitigate (Giảm thiểu)",
-      "Transfer (Chuyển giao)",
-      "Accept (Chấp nhận)",
-      "Exploit (Khai thác)"
+      "Thiết lập phạm vi công việc của dự án",
+      "Cần xác định yêu cầu dự án",
+      "Điều chỉnh mục tiêu của dự án",
+      "Xác định đường đi tới mục tiêu của dự án"
     ],
     "correctAnswers": [
-      "Avoid (Né tránh)",
-      "Mitigate (Giảm thiểu)",
-      "Transfer (Chuyển giao)",
-      "Accept (Chấp nhận)"
+      "Thiết lập phạm vi công việc của dự án",
+      "Điều chỉnh mục tiêu của dự án",
+      "Xác định đường đi tới mục tiêu của dự án"
     ],
-    "explanation": "Bốn chiến lược chính đối phó với rủi ro tiêu cực gồm: Né tránh (loại bỏ nguyên nhân rủi ro), Giảm thiểu (giảm xác suất hoặc tác động), Chuyển giao (chuyển hậu quả cho bên thứ ba, như mua bảo hiểm), Chấp nhận (chủ động lập dự phòng). Chiến lược Exploit (Khai thác) là chiến lược dành cho rủi ro tích cực (cơ hội - Opportunity).",
-    "scope": "Quản trị dự án CNTT - cuối kì 20232.pdf — Trang 20"
+    "explanation": "Theo PMBOK, nhóm quy trình Lập kế hoạch (Planning) thiết lập tổng phạm vi công việc của dự án, xác định các yêu cầu, tinh chỉnh/điều chỉnh các mục tiêu và xác định lộ trình (đường đi) để đạt được các mục tiêu của dự án.",
+    "scope": "2023.2 - Trang 6, 38, 43, 56"
+  },
+  {
+    "id": 12,
+    "type": "multiple",
+    "text": "Kỹ năng lãnh đạo là",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Đưa ra mục tiêu và tập hợp các cá nhân để hoàn thành mục tiêu đó",
+      "Tìm ra những nhân tố đặc thù",
+      "Định hướng về tương lai",
+      "Hợp nhất các thành viên"
+    ],
+    "correctAnswers": [
+      "Đưa ra mục tiêu và tập hợp các cá nhân để hoàn thành mục tiêu đó",
+      "Tìm ra những nhân tố đặc thù",
+      "Định hướng về tương lai",
+      "Hợp nhất các thành viên"
+    ],
+    "explanation": "Kỹ năng lãnh đạo (Leadership) bao gồm việc định hướng về tương lai, đưa ra mục tiêu và tập hợp các cá nhân, tìm ra những nhân tố đặc thù và hợp nhất các thành viên.",
+    "scope": "2023.2 - Trang 6, 38, 47"
+  },
+  {
+    "id": 13,
+    "type": "multiple",
+    "text": "Trong kỹ năng giao tiếp, phương pháp trình bày D.E.S.C gợi ý 4 yếu tố: Describe/Mô tả; Express/Giải thích; Specify/Nêu ý kiến; Choose (Consequences)/Phân tích ưu nhược điểm về ý kiến.\nTuy nhiên, đoạn hội thoại ngắn sau đây cho thấy cách trình bày của bạn Minh Đức bị thiếu 2 yếu tố là gì?\n<b>Sếp:</b> Minh Đức làm ngay và luôn tính năng X1 và X2 mới\n<b>Minh Đức:</b> \"Em bận quá. Sếp giao cho người khác đi. Em không làm đâu.\"\n<b>Sếp:</b> (tức giận)",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "thiếu Describe",
+      "thiếu Express",
+      "thiếu Specify",
+      "thiếu Consequences"
+    ],
+    "correctAnswers": [
+      "thiếu Express",
+      "thiếu Consequences"
+    ],
+    "explanation": "Minh Đức đã nêu tình trạng 'Em bận quá' (Describe) và nêu ý kiến 'Sếp giao cho người khác đi' (Specify), nhưng hoàn toàn thiếu Express (giải thích lý do và bày tỏ khó khăn một cách xây dựng) và thiếu Consequences (phân tích ưu nhược điểm/hậu quả đối với dự án).",
+    "scope": "2023.2 - Trang 6, 7, 22"
+  },
+  {
+    "id": 14,
+    "type": "multiple",
+    "text": "Tuyên ngôn dự án bao gồm",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Mục đích",
+      "Các mục tiêu cụ thể",
+      "Các yêu cầu",
+      "Các mốc thời gian",
+      "Bản kế hoạch"
+    ],
+    "correctAnswers": [
+      "Mục đích",
+      "Các mục tiêu cụ thể",
+      "Các yêu cầu",
+      "Các mốc thời gian"
+    ],
+    "explanation": "Tuyên ngôn dự án (Project Charter) bao gồm mục đích, các mục tiêu cụ thể, các yêu cầu tổng quát và các mốc thời gian chính (milestones). 'Bản kế hoạch' chi tiết được lập ở giai đoạn Lập kế hoạch (Planning), không nằm trong Tuyên ngôn dự án.",
+    "scope": "2023.2 - Trang 7, 22, 36"
+  },
+  {
+    "id": 15,
+    "type": "multiple",
+    "text": "Người quản lý dự án cần",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Giữ đúng kế hoạch",
+      "Bắt buộc hoàn thành sản phẩm trong phạm vi ngân sách",
+      "Đáp ứng yêu cầu của khách hàng",
+      "Tập trung vào chất lượng của sản phẩm",
+      "Chú trọng đến kết quả kinh doanh sản phẩm"
+    ],
+    "correctAnswers": [
+      "Giữ đúng kế hoạch",
+      "Bắt buộc hoàn thành sản phẩm trong phạm vi ngân sách",
+      "Đáp ứng yêu cầu của khách hàng",
+      "Tập trung vào chất lượng của sản phẩm"
+    ],
+    "explanation": "Người quản lý dự án chịu trách nhiệm đảm bảo dự án giữ đúng kế hoạch (tiến độ), hoàn thành sản phẩm trong phạm vi ngân sách (chi phí), tập trung vào chất lượng của sản phẩm và đáp ứng yêu cầu của khách hàng.",
+    "scope": "2023.2 - Trang 8, 20, 46"
+  },
+  {
+    "id": 16,
+    "type": "single",
+    "text": "Sự phân lớp của thành công theo mức độ từ cao xuống thấp",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Thành công về cơ hội phát triển - Thành công về kinh tế, lợi nhuận - Thành công về kinh nghiệm, tri thức - Thành công về chất lượng, giá thành và chuyển giao",
+      "Thành công về cơ hội phát triển - Thành công về kinh nghiệm, tri thức - Thành công về kinh tế, lợi nhuận - Thành công về chất lượng, giá thành và chuyển giao",
+      "Thành công về kinh nghiệm, tri thức - Thành công về cơ hội phát triển - Thành công về chất lượng, giá thành và chuyển giao - Thành công về kinh tế, lợi nhuận",
+      "Thành công về kinh tế, lợi nhuận - Thành công về cơ hội phát triển - Thành công về chất lượng, giá thành và chuyển giao - Thành công về kinh nghiệm, tri thức",
+      "Thành công về kinh nghiệm, tri thức - Thành công về cơ hội phát triển - Thành công về kinh tế, lợi nhuận - Thành công về chất lượng, giá thành và chuyển giao"
+    ],
+    "correctAnswers": [
+      "Thành công về cơ hội phát triển - Thành công về kinh tế, lợi nhuận - Thành công về kinh nghiệm, tri thức - Thành công về chất lượng, giá thành và chuyển giao"
+    ],
+    "explanation": "Sự phân lớp mức độ thành công của dự án từ cao xuống thấp gồm: (1) Thành công về cơ hội phát triển (mở ra thị trường/tương lai mới) -> (2) Thành công về kinh tế, lợi nhuận -> (3) Thành công về kinh nghiệm, tri thức tích lũy cho đội ngũ -> (4) Thành công cơ bản về chất lượng, giá thành và chuyển giao đúng hạn.",
+    "scope": "2023.2 - Trang 8, 16, 20"
+  },
+  {
+    "id": 17,
+    "type": "single",
+    "text": "Trong 5 giai đoạn/tiến trình của quản lý dự án theo PMBOK, giai đoạn nào thường tiêu tốn nhiều ngân sách (tiền) nhất?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Monitoring and Controlling - Giám sát và Điều khiển",
+      "Initiation - Khởi tạo dự án",
+      "Executing - Thực hiện",
+      "Closing - Đóng",
+      "Planning - Lập kế hoạch"
+    ],
+    "correctAnswers": [
+      "Executing - Thực hiện"
+    ],
+    "explanation": "Theo PMBOK, giai đoạn Thực hiện (Executing) là giai đoạn huy động tối đa nguồn lực nhân sự, vật tư và trang thiết bị để xây dựng sản phẩm bàn giao nên tiêu tốn nhiều ngân sách nhất.",
+    "scope": "2023.2 - Trang 8, 16, 25, 54"
+  },
+  {
+    "id": 18,
+    "type": "multiple",
+    "text": "Tiểu dự án và dự án có những đặc điểm nào",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Đều có mục tiêu và kết quả đầu ra",
+      "Đều có phạm vi, nguồn nhân lực",
+      "Đều có lịch trình, chi phí",
+      "Ước lượng rủi ro sẽ được thực hiện ở tiểu dự án, phân tích rủi ro sẽ được thực hiện ở dự án"
+    ],
+    "correctAnswers": [
+      "Đều có mục tiêu và kết quả đầu ra",
+      "Đều có phạm vi, nguồn nhân lực",
+      "Đều có lịch trình, chi phí",
+      "Ước lượng rủi ro sẽ được thực hiện ở tiểu dự án, phân tích rủi ro sẽ được thực hiện ở dự án"
+    ],
+    "explanation": "Theo bài giảng học phần, tiểu dự án và dự án đều có mục tiêu và kết quả đầu ra, đều có phạm vi, nguồn nhân lực, lịch trình, chi phí, đồng thời việc ước lượng rủi ro được thực hiện ở mức tiểu dự án và tổng hợp phân tích rủi ro ở mức dự án.",
+    "scope": "2023.2 - Trang 9, 37"
+  },
+  {
+    "id": 19,
+    "type": "multiple",
+    "text": "Lựa chọn mục tiêu của dự án dựa trên yếu tố SWOT",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Điểm mạnh cần được sử dụng làm nền tảng",
+      "Điểm yếu cần được sửa chữa, thay thế hoặc chấm dứt",
+      "Các cơ hội cần được tận dụng, ưu tiên và nắm bắt kịp thời",
+      "Các nguy cơ cần được lên phương án giải quyết"
+    ],
+    "correctAnswers": [
+      "Điểm mạnh cần được sử dụng làm nền tảng",
+      "Điểm yếu cần được sửa chữa, thay thế hoặc chấm dứt",
+      "Các cơ hội cần được tận dụng, ưu tiên và nắm bắt kịp thời",
+      "Các nguy cơ cần được lên phương án giải quyết"
+    ],
+    "explanation": "Khi thiết lập mục tiêu dự án từ phân tích SWOT: Điểm mạnh được dùng làm nền tảng, điểm yếu cần được sửa chữa/thay thế/chấm dứt, cơ hội cần được tận dụng kịp thời và nguy cơ cần được lên phương án giải quyết.",
+    "scope": "2023.2 - Trang 9, 23"
+  },
+  {
+    "id": 20,
+    "type": "single",
+    "text": "Cần phải tạo một phần mềm với 2 phần tích hợp: lớp lõi và lớp vỏ. Trong nhóm nhân sự, một số người chỉ biết sử dụng python, số còn lại chỉ biết java. Nhóm dự án quyết định: Lựa chọn ngôn ngữ java. Thành viên nào chưa biết lập trình java thì tự học thêm rồi tham gia dự án.\nĐoạn mô tả cho biết nhóm đã giải quyết mâu thuẫn theo kiểu nào?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Phục tùng",
+      "Tránh",
+      "Thỏa hiệp",
+      "Cạnh tranh",
+      "Pha trộn, hợp tác"
+    ],
+    "correctAnswers": [
+      "Phục tùng"
+    ],
+    "explanation": "Nhóm nhân sự biết Python đã nhượng bộ, chấp nhận tự học thêm Java để làm theo lựa chọn của phía Java, thể hiện cách giải quyết mâu thuẫn theo kiểu Phục tùng (Accommodating).",
+    "scope": "2023.2 - Trang 10, 30"
+  },
+  {
+    "id": 21,
+    "type": "multiple",
+    "text": "Phát biểu nào là đúng về người lãnh đạo và người quản lý",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Người lãnh đạo hướng về tương lai còn người quản lý hướng về hiện tại",
+      "Người lãnh đạo chú trọng đến tầm nhìn còn người quản lý chú trọng về phần hỗ trợ",
+      "Lãnh đạo là sáng tạo, truyền cảm hứng còn quản lý là phân tích và gỡ rối",
+      "Lãnh đạo cần tư duy có cấu trúc, quản lý cần có tư duy tiến bộ"
+    ],
+    "correctAnswers": [
+      "Người lãnh đạo hướng về tương lai còn người quản lý hướng về hiện tại",
+      "Người lãnh đạo chú trọng đến tầm nhìn còn người quản lý chú trọng về phần hỗ trợ",
+      "Lãnh đạo là sáng tạo, truyền cảm hứng còn quản lý là phân tích và gỡ rối"
+    ],
+    "explanation": "Người lãnh đạo hướng về tương lai, chú trọng tầm nhìn, sáng tạo và truyền cảm hứng; người quản lý hướng về hiện tại, chú trọng phần hỗ trợ, phân tích và gỡ rối. Phương án 4 sai vì quản lý mới cần tư duy có cấu trúc còn lãnh đạo cần tư duy tiến bộ.",
+    "scope": "2023.2 - Trang 10, 40, 45"
+  },
+  {
+    "id": 22,
+    "type": "multiple",
+    "text": "Kỹ năng quản lý là",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hiểu và kiểm soát các thành viên",
+      "Quản lý thành viên và nhiệm vụ cần thực hiện",
+      "Tuân theo các bước \"Plan-Do-Check-Act\"",
+      "Tìm ra đặc trưng ở các thành viên và khai thác chúng"
+    ],
+    "correctAnswers": [
+      "Hiểu và kiểm soát các thành viên",
+      "Quản lý thành viên và nhiệm vụ cần thực hiện",
+      "Tuân theo các bước \"Plan-Do-Check-Act\"",
+      "Tìm ra đặc trưng ở các thành viên và khai thác chúng"
+    ],
+    "explanation": "Kỹ năng quản lý bao gồm việc hiểu và kiểm soát các thành viên, quản lý thành viên cùng nhiệm vụ cần thực hiện, và tuân theo chu trình PDCA (Plan-Do-Check-Act).",
+    "scope": "2023.2 - Trang 11, 24"
+  },
+  {
+    "id": 23,
+    "type": "multiple",
+    "text": "Các mục tiêu của dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Được xác định và viết rõ ràng trong tuyên ngôn dự án",
+      "Các mục tiêu có sự hỗ trợ lẫn nhau",
+      "Mục tiêu là cụ thể và phải thực hiện được",
+      "Có mốc thời gian cụ thể"
+    ],
+    "correctAnswers": [
+      "Được xác định và viết rõ ràng trong tuyên ngôn dự án",
+      "Các mục tiêu có sự hỗ trợ lẫn nhau",
+      "Mục tiêu là cụ thể và phải thực hiện được",
+      "Có mốc thời gian cụ thể"
+    ],
+    "explanation": "Mục tiêu dự án cần đáp ứng tiêu chí SMART: cụ thể, khả thi, có mốc thời gian rõ ràng, hỗ trợ lẫn nhau và được ghi nhận chính thức trong Tuyên ngôn dự án.",
+    "scope": "2023.2 - Trang 12, 13, 33, 66, 69"
+  },
+  {
+    "id": 24,
+    "type": "single",
+    "text": "Công ty TCIOS đã xây dựng được hệ thống nhận dạng ảnh Căn cước công dân, Thẻ sinh viên.. và bắt đầu chào bán dịch vụ. Sau đây là bản ghi chép buổi họp với 1 khách hàng.\n<b>Khách:</b> Các anh có bảo đảm kết quả nhận dạng chính xác không?\n<b>TCIOS:</b> Rất tuyệt vời, không bên nào có thể chính xác hơn chúng tôi.\n<b>Khách:</b> Chính xác 100% chứ?\n<b>TCIOS:</b> Cứ trong 10000 ảnh, mà nhận dạng sai 2 bức ảnh thì chúng tôi sẽ bồi thường 20 triệu cho mỗi lần sai.\nBiên bản trên cho thấy TCIOS đang áp dụng kỹ thuật đối phó rủi ro nào khi đối mặt với việc nhận dạng sai",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Avoid / Tránh",
+      "Mitigate / Giảm",
+      "Accept / Chấp nhận",
+      "Transfer / Chuyển"
+    ],
+    "correctAnswers": [
+      "Accept / Chấp nhận"
+    ],
+    "explanation": "TCIOS thừa nhận rủi ro nhận dạng sai có thể xảy ra và chấp nhận tự chi trả khoản bồi thường 20 triệu mỗi lần sai khi rủi ro xảy ra. Đây là chiến lược Chấp nhận rủi ro (Accept).",
+    "scope": "2023.2 - Trang 12, 13, 20, 33, 50, 58"
+  },
+  {
+    "id": 25,
+    "type": "fill",
+    "text": "Công ty TCIOS đang thực hiện một dự án IT mới. Dự án này có kế hoạch hoàn thành trong vòng 8 tháng với tổng dự toán chi phí là 600 triệu vnđ. Sau 4 tháng, công ty đã chi tiêu 300 triệu vnđ và hoàn thành được 40% tổng số công việc của dự án. Giả định rằng mọi đường chi phí, tiến độ đều tuyến tính. Vậy nếu tình trạng này tiếp tục duy trì thì:\nChi phí dự kiến khi kết thúc cả dự án sẽ vượt ngân sách ban đầu bao nhiêu triệu vnđ? Ví dụ điền 320, 456, 12",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "150"
+    ],
+    "explanation": "Phân tích theo phương pháp Giá trị thu được (EVM) với giả định tuyến tính:\n- Ngân sách ban đầu $BAC = 600$ triệu vnđ.\n- Sau 4 tháng: Chi phí thực tế đã chi tiêu $AC = 300$ triệu vnđ để hoàn thành $40\\%$ khối lượng công việc.\n- Dự báo tổng chi phí khi hoàn thành toàn bộ $100\\%$ công việc của dự án là: $EAC = \\frac{300}{40\\%} = \\frac{300}{0.4} = 750$ triệu vnđ.\n- Như vậy, chi phí dự kiến khi kết thúc dự án sẽ vượt ngân sách ban đầu là: $750 - 600 = 150$ triệu vnđ.",
+    "scope": "2023.2 - Trang 14, 15"
+  },
+  {
+    "id": 26,
+    "type": "multiple",
+    "text": "Chọn phát biểu đúng về quản lý dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Người quản lý dự án là trung tâm kết nối",
+      "Quản lý dự án là một công việc toàn thời gian",
+      "Người quản lý dự án phải biết về vòng đời dự án",
+      "Vai trò của người quản lý dự án trong việc thực hiện dự án trong các giai đoạn vòng đời là khác nhau",
+      "Người lãnh đạo thay người quản lý phải nhận ra sự phức tạp của môi trường",
+      "Các dự án thất bại chủ yếu đến từ nguyên nhân quản lý"
+    ],
+    "correctAnswers": [
+      "Người quản lý dự án là trung tâm kết nối",
+      "Quản lý dự án là một công việc toàn thời gian",
+      "Người quản lý dự án phải biết về vòng đời dự án",
+      "Vai trò của người quản lý dự án trong việc thực hiện dự án trong các giai đoạn vòng đời là khác nhau",
+      "Các dự án thất bại chủ yếu đến từ nguyên nhân quản lý"
+    ],
+    "explanation": "Người quản lý dự án là trung tâm kết nối, làm việc toàn thời gian, phải nắm rõ vòng đời dự án và đảm nhận vai trò khác nhau ở từng giai đoạn; phần lớn các dự án thất bại đều xuất phát từ nguyên nhân quản lý.",
+    "scope": "2023.2 - Trang 14, 38, 63"
+  },
+  {
+    "id": 27,
+    "type": "multiple",
+    "text": "Dự án có đặc điểm nào sau đây",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Có tính tạm thời",
+      "Tạo ra một sản phẩm hoặc dịch vụ hoặc kết quả",
+      "Có tính đơn nhất",
+      "Các dự án khác nhau có mục đích và phạm vi khác nhau"
+    ],
+    "correctAnswers": [
+      "Có tính tạm thời",
+      "Tạo ra một sản phẩm hoặc dịch vụ hoặc kết quả",
+      "Có tính đơn nhất"
+    ],
+    "explanation": "Theo định nghĩa của PMBOK, dự án có tính tạm thời (có thời điểm bắt đầu và kết thúc rõ ràng), tạo ra một sản phẩm, dịch vụ hoặc kết quả có tính đơn nhất (độc đáo), và các dự án khác nhau sẽ có mục đích, phạm vi khác nhau.",
+    "scope": "2023.2 - Trang 17, 29, 32"
+  },
+  {
+    "id": 28,
+    "type": "multiple",
+    "text": "Quản lý dự án giúp cho việc",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Xây dựng một nhóm thực hiện và một đội thực hiện dự án.",
+      "Xác định và đánh giá yêu cầu.",
+      "Xây dựng các cấu trúc phân chia công việc",
+      "Lập dự toán dự án và tiến độ dự án.",
+      "Tạo ra kế hoạch dự án.",
+      "Quản lý kiểm soát thay đổi của dự án.",
+      "Hoàn thành dự án với chiến lược chặt chẽ."
+    ],
+    "correctAnswers": [
+      "Xây dựng các cấu trúc phân chia công việc",
+      "Lập dự toán dự án và tiến độ dự án.",
+      "Tạo ra kế hoạch dự án.",
+      "Quản lý kiểm soát thay đổi của dự án."
+    ],
+    "explanation": "Quản lý dự án bao quát toàn bộ các hoạt động từ xây dựng đội ngũ, xác định yêu cầu, xây dựng WBS, lập dự toán và tiến độ, tạo kế hoạch dự án, kiểm soát thay đổi cho đến hoàn thành dự án với chiến lược chặt chẽ.",
+    "scope": "2023.2 - Trang 17, 27, 53"
+  },
+  {
+    "id": 29,
+    "type": "single",
+    "text": "Thông số nào được coi là Thước đo cho chất lượng của dự án?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Số lỗi; Tỷ lệ lỗi",
+      "Thời gian thực hiện dự án",
+      "Năng lực người tham gia, của lập trình viên",
+      "Số testcase; Độ phủ testcase"
+    ],
+    "correctAnswers": [
+      "Số lỗi; Tỷ lệ lỗi"
+    ],
+    "explanation": "Trong quản lý chất lượng dự án phần mềm, Số lỗi và Tỷ lệ lỗi (defect count / defect rate) là thước đo trực tiếp phản ánh chất lượng của sản phẩm dự án.",
+    "scope": "2023.2 - Trang 18, 27"
+  },
+  {
+    "id": 30,
+    "type": "single",
+    "text": "Nếu bị điểm kém ở môn học này, bạn nghĩ nguyên nhân là do đâu?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Cũng phải. Mình chểnh mảng, học không cẩn thận môn này",
+      "Môn này không phù hợp, không thích. Chỉ cần đạt/qua môn là ổn.",
+      "Đen quá. Ôn mà không trúng tủ",
+      "Lỗi là do giáo viên dạy nói kém. Chẳng hiểu gì cả."
+    ],
+    "correctAnswers": [
+      "Cũng phải. Mình chểnh mảng, học không cẩn thận môn này"
+    ],
+    "explanation": "Trong tư duy quản trị bản thân và quản lý dự án, việc thẳng thắn nhìn nhận nguyên nhân chủ quan từ chính bản thân ('Mình chểnh mảng, học không cẩn thận môn này') thay vì đổ lỗi cho hoàn cảnh hay người khác là thái độ đúng đắn để cải thiện kết quả.",
+    "scope": "2023.2 - Trang 21, 26"
+  },
+  {
+    "id": 31,
+    "type": "fill",
+    "text": "Công ty TCIOS đã thu thập được bảng đánh giá KPI tốc độ lập trình của các thành viên như sau.\nVậy tất cả thành viên này cùng lập trình một dự án nào đó trong 30 ngày bằng ngôn ngữ Python thì ước lượng dự án này sẽ mắc bao nhiêu lỗi?\nVí dụ điền 38",
+    "code": "",
+    "tables": [
+      {
+        "name": "",
+        "headers": [
+          "Thành viên dự án",
+          "Python",
+          "Java"
+        ],
+        "rows": [
+          [
+            "Kiên",
+            "180 dòng lệnh/ngày",
+            "150 dòng lệnh/ngày"
+          ],
+          [
+            "Thành",
+            "200 dòng lệnh/ngày",
+            "50 dòng lệnh/ngày"
+          ],
+          [
+            "Tiến",
+            "120 dòng lệnh/ngày",
+            "200 dòng lệnh/ngày"
+          ],
+          [
+            "Thống kê lỗi bình quân đầu người",
+            "4 lỗi/100 lệnh",
+            "3 lỗi/100 lệnh"
+          ]
+        ]
+      }
+    ],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "600"
+    ],
+    "explanation": "- Tổng tốc độ viết code Python của cả 3 thành viên: $180 + 200 + 120 = 500$ dòng lệnh/ngày.\n- Tổng số dòng lệnh Python trong 30 ngày: $500 \\times 30 = 15000$ dòng lệnh.\n- Số lỗi ước lượng với tỷ lệ 4 lỗi/100 lệnh: $\\frac{15000}{100} \\times 4 = 600$ lỗi.",
+    "scope": "2023.2 - Trang 23, 30"
+  },
+  {
+    "id": 32,
+    "type": "single",
+    "text": "Khách hàng kí hợp đồng với công ty TCIOS để viết phần mềm tính tích phân. Khi dự án tiến hành được 50%, khách hàng yêu cầu TCIOS phải bổ sung thêm 2 ngày tập huấn sử dụng phần mềm và thực hiện bổ sung 300 testcase. Sự kiện này nghĩa là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Khách hàng đã thay đổi phạm vi quản lý dự án",
+      "Khách hàng đã thay đổi phạm vi sản phẩm"
+    ],
+    "correctAnswers": [
+      "Khách hàng đã thay đổi phạm vi quản lý dự án"
+    ],
+    "explanation": "Việc bổ sung 2 ngày tập huấn sử dụng và bổ sung 300 testcase làm phát sinh thêm khối lượng công việc trong quá trình thực hiện, kiểm thử và bàn giao dự án, nhưng không làm thay đổi tính năng của bản thân phần mềm. Do đó đây là sự thay đổi phạm vi quản lý dự án (Project Scope).",
+    "scope": "2023.2 - Trang 24"
+  },
+  {
+    "id": 33,
+    "type": "single",
+    "text": "Khách hàng kí hợp đồng với công ty TCIOS để viết phần mềm tính tích phân. Khi dự án tiến hành được 80%, khách hàng yêu cầu TCIOS phải bổ sung thêm các báo cáo chi tiết về các lần kiểm thử, mô tả lỗi và cách giải quyết (Ý 1);\nKhông dừng lại, khách hàng lại yêu cầu TCIOS làm cho sản phẩm chạy đa nền tảng (Ý 2).\nSự kiện ở Ý 1 và Ý 2 lần lượt có nghĩa là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Ý 1: Thay đổi phạm vi quản lý dự án; Ý 2: Thay đổi phạm vi sản phẩm",
+      "Ý 1: Thay đổi phạm vi sản phẩm; Ý 2: Thay đổi phạm vi quản lý dự án",
+      "Cả Ý 1 và Ý 2 đều là thay đổi phạm vi quản lý dự án",
+      "Cả Ý 1 và Ý 2 đều là thay đổi phạm vi sản phẩm"
+    ],
+    "correctAnswers": [
+      "Ý 1: Thay đổi phạm vi quản lý dự án; Ý 2: Thay đổi phạm vi sản phẩm"
+    ],
+    "explanation": "- Bổ sung báo cáo chi tiết về các lần kiểm thử, mô tả lỗi và cách giải quyết là công việc quản trị/báo cáo nên thuộc 'Thay đổi phạm vi quản lý dự án' (Project Scope).\n- Yêu cầu làm cho sản phẩm chạy đa nền tảng là thay đổi trực tiếp đặc tính kỹ thuật và chức năng của phần mềm nên thuộc 'Thay đổi phạm vi sản phẩm' (Product Scope).",
+    "scope": "2023.2 - Trang 57, 61"
+  },
+  {
+    "id": 34,
+    "type": "single",
+    "text": "Trong 5 giai đoạn/tiến trình của quản lý dự án theo PMBOK, giai đoạn nào có thời gian thực hiện lâu nhất?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Executing - Thực hiện",
+      "Initiation - Khởi tạo dự án",
+      "Monitoring and Controlling - Giám sát và Điều khiển",
+      "Planning - Lập kế hoạch",
+      "Closing - Đóng"
+    ],
+    "correctAnswers": [
+      "Monitoring and Controlling - Giám sát và Điều khiển"
+    ],
+    "explanation": "Theo PMBOK, tiến trình Giám sát và Điều khiển (Monitoring and Controlling) diễn ra xuyên suốt từ khi bắt đầu dự án cho đến khi đóng dự án nên có thời gian kéo dài lâu nhất.",
+    "scope": "2023.2 - Trang 25"
+  },
+  {
+    "id": 35,
+    "type": "multiple",
+    "text": "Yếu tố nguy cơ trong dự án là",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Có những đối thủ mạnh, đối thủ mới nổi",
+      "Nhu cầu mới nổi cho sản phẩm hoặc dịch vụ nhưng không nắm bắt",
+      "Nguồn lực hữu hạn khó đảm bảo thực thi dự án",
+      "Nguy cơ thiếu vốn",
+      "Khả năng chấp nhận sản phẩm của dự án trong thị trường",
+      "Khả năng về trình độ kỹ thuật, khoa học công nghệ để đảm bảo chất lượng của sản phẩm",
+      "Sản phẩm có thể lỗi thời trước khi ra thị trường"
+    ],
+    "correctAnswers": [
+      "Có những đối thủ mạnh, đối thủ mới nổi",
+      "Nhu cầu mới nổi cho sản phẩm hoặc dịch vụ nhưng không nắm bắt",
+      "Nguồn lực hữu hạn khó đảm bảo thực thi dự án",
+      "Nguy cơ thiếu vốn",
+      "Khả năng chấp nhận sản phẩm của dự án trong thị trường",
+      "Khả năng về trình độ kỹ thuật, khoa học công nghệ để đảm bảo chất lượng của sản phẩm",
+      "Sản phẩm có thể lỗi thời trước khi ra thị trường"
+    ],
+    "explanation": "Các yếu tố nguy cơ/rủi ro đe dọa sự thành công của dự án bao gồm: đối thủ mạnh/mới nổi, không nắm bắt kịp nhu cầu mới, thiếu hụt nguồn lực hoặc thiếu vốn, thị trường không chấp nhận sản phẩm, rủi ro về trình độ kỹ thuật công nghệ và nguy cơ sản phẩm bị lỗi thời trước khi ra mắt.",
+    "scope": "2023.2 - Trang 28, 35"
+  },
+  {
+    "id": 36,
+    "type": "multiple",
+    "text": "Khởi tạo dự án là tiến trình để dự án được xét duyệt có đầu vào là",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Quy trình nghiệp vụ",
+      "Môi trường doanh nghiệp",
+      "Điều kiện làm việc",
+      "Quy trình tổ chức",
+      "Công cụ, kĩ thuật"
+    ],
+    "correctAnswers": [
+      "Quy trình nghiệp vụ",
+      "Môi trường doanh nghiệp",
+      "Điều kiện làm việc",
+      "Quy trình tổ chức"
+    ],
+    "explanation": "Đầu vào của tiến trình Khởi tạo dự án bao gồm Quy trình nghiệp vụ, Môi trường doanh nghiệp, Điều kiện làm việc và Quy trình tổ chức. 'Công cụ, kĩ thuật' (Tools & Techniques) là thành phần xử lý trung gian chứ không phải là Đầu vào (Inputs).",
+    "scope": "2023.2 - Trang 29, 31, 32"
+  },
+  {
+    "id": 37,
+    "type": "fill",
+    "text": "Trước khi giao nhiệm vụ cho một thành viên trong nhóm, điều tối thiểu cần thiết là xác định các mục tiêu chính thỏa mãn các tiêu chí SMART.\nSMART là viết tắt của các chữ cái nào? Trả lời bằng tiếng Anh, không phân biệt chữ hoa thường, không có kí tự -, có thể có kí tự space.\nChữ A là viết tắt của:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "Attainable"
+    ],
+    "explanation": "Trong nguyên tắc SMART (Specific, Measurable, Attainable/Achievable, Realistic/Relevant, Time-bound), chữ A là viết tắt của Attainable (hoặc Achievable - có thể đạt được/khả thi).",
+    "scope": "2023.2 - Trang 33, 36"
+  },
+  {
+    "id": 38,
+    "type": "fill",
+    "text": "Cho bảng các công việc cần làm của một dự án, cùng với thời lượng và danh sách các công việc cần hoàn thành trước của mỗi việc. Hãy xác định số ngày làm việc của đường critical path (chuỗi công việc lâu nhất)?\nChỉ điền số. Không điền cả công thức. Ví dụ: 62",
+    "code": "",
+    "tables": [
+      {
+        "name": "",
+        "headers": [
+          "Công việc/Activities",
+          "Thời lượng/Duration",
+          "Công việc phải hoàn thành trước/Predecessors"
+        ],
+        "rows": [
+          [
+            "A",
+            "2 ngày",
+            "Không có"
+          ],
+          [
+            "B",
+            "3 ngày",
+            "A"
+          ],
+          [
+            "C",
+            "4 ngày",
+            "A"
+          ],
+          [
+            "D",
+            "2 ngày",
+            "B"
+          ],
+          [
+            "E",
+            "5 ngày",
+            "C, D"
+          ],
+          [
+            "F",
+            "2 ngày",
+            "B, C"
+          ],
+          [
+            "G",
+            "1 ngày",
+            "D, E"
+          ],
+          [
+            "H",
+            "2 ngày",
+            "F, G"
+          ],
+          [
+            "I",
+            "2 ngày",
+            "H"
+          ]
+        ]
+      }
+    ],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "16"
+    ],
+    "explanation": "Tính thời điểm hoàn thành sớm nhất (EF) của từng công việc:\n- A: $2$\n- B: $2 + 3 = 5$\n- C: $2 + 4 = 6$\n- D: $5 + 2 = 7$\n- E (sau C, D): $\\max(6, 7) + 5 = 12$\n- F (sau B, C): $\\max(5, 6) + 2 = 8$\n- G (sau D, E): $\\max(7, 12) + 1 = 13$\n- H (sau F, G): $\\max(8, 13) + 2 = 15$\n- I (sau H): $15 + 2 = 17$ ngày.\nĐường găng (Critical path) là $A \\rightarrow B \\rightarrow D \\rightarrow E \\rightarrow G \\rightarrow H \\rightarrow I$ với tổng thời gian là $17$ ngày.",
+    "scope": "2023.2 - Trang 34, 39"
+  },
+  {
+    "id": 39,
+    "type": "multiple",
+    "text": "Khởi tạo dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Thực hiện việc định nghĩa một dự án mới hoặc một phát sinh (hoặc trộn lẫn) mới của một dự án có sẵn",
+      "Cần xác định yêu cầu dự án",
+      "Cần xác định mức độ ưu tiên của dự án",
+      "Phân tích các yêu cầu đầu tư",
+      "Phân công trách nhiệm cho các bộ phận thực hiện"
+    ],
+    "correctAnswers": [
+      "Thực hiện việc định nghĩa một dự án mới hoặc một phát sinh (hoặc trộn lẫn) mới của một dự án có sẵn",
+      "Cần xác định yêu cầu dự án",
+      "Cần xác định mức độ ưu tiên của dự án",
+      "Phân tích các yêu cầu đầu tư",
+      "Phân công trách nhiệm cho các bộ phận thực hiện"
+    ],
+    "explanation": "Trong giai đoạn Khởi tạo dự án, tổ chức thực hiện định nghĩa dự án mới hoặc giai đoạn mới của dự án hiện có, phân tích yêu cầu đầu tư, xác định yêu cầu cấp cao, mức độ ưu tiên và phân công trách nhiệm ban đầu cho các bộ phận thực hiện.",
+    "scope": "2023.2 - Trang 35, 39, 43"
+  },
+  {
+    "id": 40,
+    "type": "multiple",
+    "text": "Khẳng định nào sau đây là sai",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Chương trình (programme) và dự án thường hướng đến một mục đích chính nào đó",
+      "Chương trình thường tạo ra một kết quả đầu ra và sau đó sẽ kết thúc",
+      "Chương trình có phạm vi thường lớn hơn và phức tạp hơn các dự án thành phần",
+      "Các dự án trong một chương trình cần yêu cầu sự phối hợp rộng rãi"
+    ],
+    "correctAnswers": [
+      "Chương trình thường tạo ra một kết quả đầu ra và sau đó sẽ kết thúc"
+    ],
+    "explanation": "Việc tạo ra một kết quả đầu ra cụ thể rồi kết thúc là đặc điểm của một Dự án (Project) đơn lẻ; trong khi đó Chương trình (Programme) bao gồm nhiều dự án thành phần nhằm tạo ra chuỗi lợi ích chiến lược tổng hợp và lâu dài.",
+    "scope": "2023.2 - Trang 37"
+  },
+  {
+    "id": 41,
+    "type": "multiple",
+    "text": "Chọn phát biểu đúng về danh mục dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tập hợp các dự án mà một tổ chức hoặc một nhóm các bên liên quan đang thực hiện",
+      "Trong danh mục, các dự án thường khác nhau về loại hình, độ phức tạp, chi phí, yêu cầu thời gian",
+      "Mức độ rủi ro, mức độ ưu tiên của các dự án trong danh mục phụ thuộc chặt chẽ với nhau",
+      "Cả danh mục đầu tư có thể đang trong các giai đoạn bắt đầu, lập kế hoạch và thực hiện khác nhau ở các dự án khác nhau"
+    ],
+    "correctAnswers": [
+      "Tập hợp các dự án mà một tổ chức hoặc một nhóm các bên liên quan đang thực hiện",
+      "Trong danh mục, các dự án thường khác nhau về loại hình, độ phức tạp, chi phí, yêu cầu thời gian",
+      "Cả danh mục đầu tư có thể đang trong các giai đoạn bắt đầu, lập kế hoạch và thực hiện khác nhau ở các dự án khác nhau"
+    ],
+    "explanation": "Danh mục dự án (Portfolio) là tập hợp các dự án mà tổ chức đang thực hiện; các dự án trong danh mục có thể khác nhau về loại hình, độ phức tạp, chi phí, thời gian và đang ở các giai đoạn vòng đời khác nhau. Phương án 3 sai vì các dự án trong danh mục không nhất thiết phải phụ thuộc chặt chẽ với nhau.",
+    "scope": "2023.2 - Trang 40, 41"
+  },
+  {
+    "id": 42,
+    "type": "fill",
+    "text": "Cho bảng các công việc cần làm của một dự án, cùng với thời lượng và danh sách các công việc cần hoàn thành trước của mỗi việc. Hãy xác định số ngày làm việc của đường critical path (chuỗi công việc lâu nhất)?\nChỉ điền số. Không điền cả công thức. Ví dụ: 62",
+    "code": "",
+    "tables": [
+      {
+        "name": "",
+        "headers": [
+          "Công việc/Activities",
+          "Thời lượng/Duration",
+          "Công việc phải hoàn thành trước/Predecessors"
+        ],
+        "rows": [
+          [
+            "A",
+            "2 ngày",
+            "-"
+          ],
+          [
+            "B",
+            "4 ngày",
+            "A"
+          ],
+          [
+            "C",
+            "1 ngày",
+            "A"
+          ],
+          [
+            "D",
+            "1 ngày",
+            "A, B"
+          ],
+          [
+            "E",
+            "3 ngày",
+            "C"
+          ],
+          [
+            "F",
+            "3 ngày",
+            "D, E"
+          ],
+          [
+            "End",
+            "-",
+            "C, F"
+          ]
+        ]
+      }
+    ],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "10"
+    ],
+    "explanation": "Tính thời điểm hoàn thành sớm nhất của từng công việc:\n- A: $2$\n- B (sau A): $2 + 4 = 6$\n- C (sau A): $2 + 1 = 3$\n- D (sau A, B): $\\max(2, 6) + 1 = 7$\n- E (sau C): $3 + 3 = 6$\n- F (sau D, E): $\\max(7, 6) + 3 = 10$\n- End (sau C, F): $\\max(3, 10) = 10$ ngày.\nĐường găng là $A \\rightarrow B \\rightarrow D \\rightarrow F \\rightarrow \\text{End}$ với tổng thời gian $10$ ngày.",
+    "scope": "2023.2 - Trang 42, 70"
+  },
+  {
+    "id": 43,
+    "type": "fill",
+    "text": "Công ty TCIOS tính toán chi phí cho dự án web xephang.online. Họ xác định tình huống bình thường cần 180 triệu để làm sản phẩm. Với khung chi phí đó, TCIOS áp dụng phương pháp ước lượng chi phí 3 điểm (Three-point estimating) để tính toán tiếp:\n- Nếu may mắn dự án kế thừa được nhiều từ dự án trước, họ sẽ giảm được 40 triệu chi phí văn phòng và lương, và trích từ đó để tạo phần thưởng 30 triệu cho dev.\n- Nếu dự án bị muộn, họ phải chi trả thêm 70 triệu.\nHỏi chi phí dự án được xác định là bao nhiêu triệu? (Ví dụ điền 170)",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "190"
+    ],
+    "explanation": "Áp dụng công thức ước lượng 3 điểm (PERT):\n- Chi phí bình thường ($M$): $180$ triệu.\n- Chi phí thuận lợi ($O$): $180 - (40 - 30) = 170$ triệu.\n- Chi phí bi quan ($P$): $180 + 70 = 250$ triệu.\nChi phí ước lượng $= \\frac{170 + 4 \\times 180 + 250}{6} = \\frac{1140}{6} = 190$ triệu.",
+    "scope": "2023.2 - Trang 42, 64"
+  },
+  {
+    "id": 44,
+    "type": "multiple",
+    "text": "Khẳng định nào sau đây là đúng:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Chương trình (programme) là một nhóm các dự án",
+      "Các thành phần trong chương trình được quản lý theo cách phối hợp để thu được lợi ích lớn nhất",
+      "Việc quản lý các thành phần trong chương trình có thể thực hiện riêng lẻ tùy theo phạm vi của chương trình",
+      "Lợi ích và vấn đề kiểm soát là các vấn đề quan trọng đối với một chương trình"
+    ],
+    "correctAnswers": [
+      "Chương trình (programme) là một nhóm các dự án",
+      "Các thành phần trong chương trình được quản lý theo cách phối hợp để thu được lợi ích lớn nhất",
+      "Lợi ích và vấn đề kiểm soát là các vấn đề quan trọng đối với một chương trình"
+    ],
+    "explanation": "Chương trình (Programme) là một nhóm các dự án có liên quan được quản lý theo cách phối hợp chặt chẽ (không phải quản lý riêng lẻ) nhằm thu được lợi ích tổng thể lớn nhất và tăng khả năng kiểm soát.",
+    "scope": "2023.2 - Trang 45, 48, 52"
+  },
+  {
+    "id": 45,
+    "type": "single",
+    "text": "Trong 5 giai đoạn/tiến trình của quản lý dự án theo PMBOK, giai đoạn nào tiềm ẩn rủi ro nhiều nhất?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Initiation - Khởi tạo dự án",
+      "Closing - Đóng",
+      "Planning - Lập kế hoạch",
+      "Executing - Thực hiện",
+      "Monitoring and Controlling - Giám sát và Điều khiển"
+    ],
+    "correctAnswers": [
+      "Executing - Thực hiện"
+    ],
+    "explanation": "Ở giai đoạn Khởi tạo dự án (Initiation), thông tin về dự án còn sơ lược và độ bất định cao nhất nên tiềm ẩn nhiều rủi ro nhất.",
+    "scope": "2023.2 - Trang 46, 61"
+  },
+  {
+    "id": 46,
+    "type": "multiple",
+    "text": "Các nhân tố được vận dụng trong quản lý",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Là chân lý và kết quả thông qua kinh nghiệm và học tập",
+      "Được đo lường kĩ năng bằng hành động",
+      "Là tài năng dựa trên bản năng và hành vi",
+      "Giúp nhận biết các rủi ro để có cách hành xử phù hợp"
+    ],
+    "correctAnswers": [
+      "Là chân lý và kết quả thông qua kinh nghiệm và học tập",
+      "Được đo lường kĩ năng bằng hành động",
+      "Là tài năng dựa trên bản năng và hành vi",
+    ],
+    "explanation": "Các nhân tố vận dụng trong quản lý kết hợp cả khoa học (kinh nghiệm, học tập), thực tiễn (đo lường kỹ năng bằng hành động), nghệ thuật (tài năng dựa trên bản năng, hành vi) và khả năng nhận diện rủi ro để ứng xử phù hợp.",
+    "scope": "2023.2 - Trang 47, 51, 53"
+  },
+  {
+    "id": 47,
+    "type": "multiple",
+    "text": "Triển khai dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Thực hiện hoàn thành các công việc",
+      "Mục đích đảm bảo các yêu cầu của dự án",
+      "Cần có việc giám sát và kiểm soát trong quá trình triển khai",
+      "Triển khai dự án cần rà soát và điều chỉnh lại tiến độ"
+    ],
+    "correctAnswers": [
+      "Thực hiện hoàn thành các công việc",
+      "Mục đích đảm bảo các yêu cầu của dự án",
+      "Cần có việc giám sát và kiểm soát trong quá trình triển khai",
+      "Triển khai dự án cần rà soát và điều chỉnh lại tiến độ"
+    ],
+    "explanation": "Giai đoạn Triển khai dự án (Executing) thực hiện hoàn thành các công việc nhằm đảm bảo các yêu cầu của dự án, đi kèm với hoạt động giám sát, kiểm soát và rà soát điều chỉnh lại tiến độ khi cần thiết.",
+    "scope": "2023.2 - Trang 48, 52"
+  },
+  {
+    "id": 48,
+    "type": "multiple",
+    "text": "Yếu tố điểm mạnh trong dự án là",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Những việc doanh nghiệp bạn làm tốt",
+      "Những tố chất khiến bạn nổi bật hơn đối thủ",
+      "Nguồn lực nội bộ như kỹ năng nghề nghiệp, kiến thức chuyên môn",
+      "Các tài sản hữu hình như máy móc, thiết bị tiên tiến",
+      "Các tài sản vô hình như kỹ thuật độc quyền, bằng phát minh, sáng chế"
+    ],
+    "correctAnswers": [
+      "Những việc doanh nghiệp bạn làm tốt",
+      "Những tố chất khiến bạn nổi bật hơn đối thủ",
+      "Nguồn lực nội bộ như kỹ năng nghề nghiệp, kiến thức chuyên môn",
+      "Các tài sản hữu hình như máy móc, thiết bị tiên tiến",
+      "Các tài sản vô hình như kỹ thuật độc quyền, bằng phát minh, sáng chế"
+    ],
+    "explanation": "Điểm mạnh (Strengths) trong SWOT bao gồm tất cả các năng lực nội bộ vượt trội, nguồn nhân lực chuyên môn cao, tài sản hữu hình và tài sản trí tuệ vô hình của doanh nghiệp.",
+    "scope": "2023.2 - Trang 49, 67"
+  },
+  {
+    "id": 49,
+    "type": "multiple",
+    "text": "Quản lý dự án có các lĩnh vực",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Quản lý hợp nhất",
+      "Quản lý phạm vi",
+      "Quản lý thời gian",
+      "Quản lý chi phí",
+      "Quản lý chất lượng",
+      "Quản lý nguồn nhân lực",
+      "Quản lý giao tiếp",
+      "Quản lý rủi ro",
+      "Quản lý mua sắm"
+    ],
+    "correctAnswers": [
+      "Quản lý hợp nhất",
+      "Quản lý phạm vi",
+      "Quản lý thời gian",
+      "Quản lý chi phí",
+      "Quản lý chất lượng",
+      "Quản lý nguồn nhân lực",
+      "Quản lý giao tiếp",
+      "Quản lý rủi ro",
+      "Quản lý mua sắm"
+    ],
+    "explanation": "Theo chuẩn PMBOK, các lĩnh vực kiến thức (Knowledge Areas) của Quản lý dự án bao gồm: Quản lý hợp nhất (tích hợp), phạm vi, thời gian, chi phí, chất lượng, nguồn nhân lực, giao tiếp, rủi ro và mua sắm.",
+    "scope": "2023.2 - Trang 48, 49, 59"
+  },
+  {
+    "id": 50,
+    "type": "multiple",
+    "text": "Xác định các tác nhân và tổ chức ảnh hưởng",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Cần đầu vào là tuyên ngôn dự án",
+      "Việc phân tích các tổ chức hoặc cá nhân có thể được thực hiện bởi các công cụ hoặc các chuyên gia",
+      "Đầu ra là chiến lược quản lý các đối tượng có ảnh hưởng đến dự án",
+      "Các nhân tố ảnh hưởng đến dự án sẽ quyết định đến việc xây dựng đội ngũ dự án"
+    ],
+    "correctAnswers": [
+      "Cần đầu vào là tuyên ngôn dự án",
+      "Việc phân tích các tổ chức hoặc cá nhân có thể được thực hiện bởi các công cụ hoặc các chuyên gia",
+      "Đầu ra là chiến lược quản lý các đối tượng có ảnh hưởng đến dự án",
+      "Các nhân tố ảnh hưởng đến dự án sẽ quyết định đến việc xây dựng đội ngũ dự án"
+    ],
+    "explanation": "Quy trình xác định các bên liên quan (Identify Stakeholders) sử dụng đầu vào là Tuyên ngôn dự án, áp dụng phân tích của chuyên gia và công cụ để tạo ra chiến lược quản lý các đối tượng ảnh hưởng cũng như định hướng xây dựng đội ngũ dự án.",
+    "scope": "2023.2 - Trang 51, 62"
+  },
+  {
+    "id": 51,
+    "type": "fill",
+    "text": "Trước khi giao nhiệm vụ cho một thành viên trong nhóm, điều tối thiểu cần thiết là xác định các mục tiêu chính thỏa mãn các tiêu chí SMART.\nSMART là viết tắt của các chữ cái nào? Trả lời bằng tiếng Anh, không phân biệt chữ hoa thường, không có kí tự -, có thể có kí tự space.\nChữ S là viết tắt của:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "Specific"
+    ],
+    "explanation": "Trong tiêu chí SMART, chữ S là viết tắt của Specific (Cụ thể, rõ ràng).",
+    "scope": "2023.2 - Trang 53"
+  },
+  {
+    "id": 52,
+    "type": "single",
+    "text": "Mất 5 tháng để phát triển hệ thống thi trực tuyến, công ty TCIOS họp bàn giải pháp triển khai cho các khách hàng của họ. Vấn đề hệ thống bị dừng, crash đã được đưa ra. Lúc này các kỹ sư quyết định triển khai 2 hệ thống đồng thời kiểu fail-over để sẵn sàng chuyển truy cập sang hệ thống dự phòng khi có sự cố.\nĐây là kỹ thuật đối phó rủi ro nào?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Transfer / Chuyển",
+      "Accept / Chấp nhận",
+      "Mitigate / Giảm",
+      "Avoid / Tránh"
+    ],
+    "correctAnswers": [
+      "Mitigate / Giảm"
+    ],
+    "explanation": "Triển khai hệ thống dự phòng (fail-over) giúp giảm thiểu mức độ thiệt hại và thời gian gián đoạn dịch vụ khi sự cố xảy ra, thuộc kỹ thuật Giảm thiểu rủi ro (Mitigate).",
+    "scope": "2023.2 - Trang 54, 58"
+  },
+  {
+    "id": 53,
+    "type": "multiple",
+    "text": "Yếu tố điểm yếu trong dự án là",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Những khía cạnh hay chuyên môn doanh nghiệp làm chưa tốt",
+      "Những việc đối thủ làm tốt hơn bạn",
+      "Những nguồn lực bị giới hạn so với đối thủ",
+      "Những yếu điểm trong nội bộ",
+      "Những điểm cần cải thiện của đội ngũ",
+      "Những điều khoản hợp đồng mua bán chưa rõ ràng"
+    ],
+    "correctAnswers": [
+      "Những khía cạnh hay chuyên môn doanh nghiệp làm chưa tốt",
+      "Những việc đối thủ làm tốt hơn bạn",
+      "Những nguồn lực bị giới hạn so với đối thủ",
+      "Những yếu điểm trong nội bộ",
+      "Những điểm cần cải thiện của đội ngũ",
+      "Những điều khoản hợp đồng mua bán chưa rõ ràng"
+    ],
+    "explanation": "Điểm yếu (Weaknesses) trong SWOT bao gồm các hạn chế nội tại của doanh nghiệp và dự án: chuyên môn làm chưa tốt, những mặt kém hơn đối thủ, nguồn lực giới hạn, điểm yếu nội bộ của đội ngũ và các điều khoản hợp đồng chưa chặt chẽ.",
+    "scope": "2023.2 - Trang 56"
+  },
+  {
+    "id": 54,
+    "type": "multiple",
+    "text": "Các dự án khác nhau có thể vì lý do nào",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Người thực hiện mới",
+      "Thời gian bắt đầu và kết thúc khác nhau",
+      "Có mục đích và hoạt động khác nhau",
+      "Có sản phẩm mới"
+    ],
+    "correctAnswers": [
+      "Người thực hiện mới",
+      "Thời gian bắt đầu và kết thúc khác nhau",
+      "Có mục đích và hoạt động khác nhau",
+      "Có sản phẩm mới"
+    ],
+    "explanation": "Tính độc nhất của từng dự án thể hiện ở việc mỗi dự án có thể có người thực hiện mới, khung thời gian bắt đầu và kết thúc khác nhau, mục đích và hoạt động khác nhau, hoặc tạo ra sản phẩm mới.",
+    "scope": "2023.2 - Trang 57"
+  },
+  {
+    "id": 55,
+    "type": "single",
+    "text": "Cần phải tạo một phần mềm với 2 phần tích hợp: lớp lõi và lớp vỏ. Trong nhóm nhân sự, một số người chỉ biết sử dụng python, số còn lại chỉ biết java. Nhóm dự án quyết định: Lớp lõi thuật toán viết bằng python, lớp vỏ giao diện viết bằng java để phù hợp về nhân sự.\nĐoạn mô tả cho biết nhóm đã giải quyết mâu thuẫn theo kiểu nào?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Pha trộn, hợp tác",
+      "Cạnh tranh",
+      "Phục tùng",
+      "Tránh",
+      "Thỏa hiệp"
+    ],
+    "correctAnswers": [
+      "Pha trộn, hợp tác"
+    ],
+    "explanation": "Nhóm dự án đã kết hợp thế mạnh của cả hai nhóm nhân sự (Python viết lớp lõi thuật toán, Java viết lớp vỏ giao diện) để cùng đạt kết quả tối ưu mà không bên nào bị thiệt, thuộc kiểu giải quyết mâu thuẫn 'Pha trộn, hợp tác' (Collaborating).",
+    "scope": "2023.2 - Trang 62, 64"
+  },
+  {
+    "id": 56,
+    "type": "single",
+    "text": "Hãy giải thích tại sao Ước lượng dự án ở giai đoạn đầu của dự án (Giới thiệu công việc/Business Talk) lại có độ chính xác thấp, nhưng vẫn phải thực hiện?\nBusiness Talk --> Collect Requirement --> System Design",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Vì thời gian chuẩn bị rất ngắn, mọi thông tin đều rất sơ lược.",
+      "Vì người thực hiện không phải thành viên chủ chốt",
+      "Vì giai đoạn đầu bàn về kinh doanh/business, không cần ước lượng"
+    ],
+    "correctAnswers": [
+      "Vì thời gian chuẩn bị rất ngắn, mọi thông tin đều rất sơ lược."
+    ],
+    "explanation": "Ở giai đoạn đầu (Business Talk), thời gian chuẩn bị rất ngắn và mọi thông tin về yêu cầu đều rất sơ lược nên ước lượng có độ chính xác thấp, nhưng vẫn bắt buộc phải thực hiện để làm cơ sở ra quyết định đầu tư và báo giá sơ bộ.",
+    "scope": "2023.2 - Trang 63"
+  },
+  {
+    "id": 57,
+    "type": "multiple",
+    "text": "Thành công của dự án và các bên liên quan",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Đáp ứng nhu cầu của các bên liên quan",
+      "Đáp ứng các kỳ vọng của các bên liên quan trong phạm vi chi phí, thời gian và chất lượng",
+      "Đạt được mục tiêu trong thời gian và ngân sách được phân bổ để làm hài lòng tất cả các bên liên quan",
+      "Đáp ứng các yêu cầu đã xác định lẫn các yêu cầu chưa xác định của dự án"
+    ],
+    "correctAnswers": [
+      "Đáp ứng nhu cầu của các bên liên quan",
+      "Đáp ứng các kỳ vọng của các bên liên quan trong phạm vi chi phí, thời gian và chất lượng",
+      "Đạt được mục tiêu trong thời gian và ngân sách được phân bổ để làm hài lòng tất cả các bên liên quan"
+    ],
+    "explanation": "Thành công của dự án gắn liền với việc đáp ứng nhu cầu và kỳ vọng của các bên liên quan trong phạm vi ràng buộc về chi phí, thời gian, chất lượng nhằm đạt được mục tiêu đề ra.",
+    "scope": "2023.2 - Trang 65"
+  },
+  {
+    "id": 58,
+    "type": "fill",
+    "text": "Trước khi giao nhiệm vụ cho một thành viên trong nhóm, điều tối thiểu cần thiết là xác định các mục tiêu chính thỏa mãn các tiêu chí SMART.\nSMART là viết tắt của các chữ cái nào? Trả lời bằng tiếng Anh, không phân biệt chữ hoa thường, không có kí tự -, có thể có kí tự space.\nChữ R là viết tắt của:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "Realistic"
+    ],
+    "explanation": "Trong tiêu chí SMART, chữ R là viết tắt của Realistic (hoặc Relevant / Results-oriented - Thực tế, liên quan và hướng tới kết quả).",
+    "scope": "2023.2 - Trang 65"
+  },
+  {
+    "id": 59,
+    "type": "fill",
+    "text": "Công ty TCIOS đang thực hiện một dự án IT mới. Dự án này có kế hoạch hoàn thành trong vòng 7 tháng với tổng dự toán chi phí là 600 triệu vnđ. Sau đúng 7 tháng, công ty chi tiêu 350 triệu vnđ và hoàn thành được 70% tổng số công việc của dự án. Giả định rằng mọi đường chi phí, tiến độ đều tuyến tính. Vậy nếu tình trạng này tiếp tục duy trì thì:\nChi phí dự kiến khi kết thúc cả dự án sẽ tiết kiệm/thấp hơn so với ngân sách ban đầu bao nhiêu triệu vnđ? Ví dụ điền 320, 456, 12",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "100"
+    ],
+    "explanation": "Phân tích theo phương pháp Giá trị thu được (EVM) với giả định tuyến tính:\n- Ngân sách ban đầu $BAC = 600$ triệu vnđ.\n- Sau 7 tháng: Chi phí thực tế đã chi tiêu $AC = 350$ triệu vnđ để hoàn thành $70\\%$ khối lượng công việc.\n- Dự báo tổng chi phí khi hoàn thành toàn bộ $100\\%$ công việc của dự án là: $EAC = \\frac{350}{70\\%} = \\frac{350}{0.7} = 500$ triệu vnđ.\n- Như vậy, chi phí dự kiến khi kết thúc dự án sẽ tiết kiệm (thấp hơn) so với ngân sách ban đầu là: $600 - 500 = 100$ triệu vnđ.",
+    "scope": "2023.2 - Trang 68"
+  },
+  {
+    "id": 60,
+    "type": "multiple",
+    "text": "Các bên liên quan (Project Stakeholders) của dự án",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Là cá nhân, nhóm, tổ chức có ảnh hưởng hoặc bị ảnh hưởng bởi các quyết định, các hoạt động, đầu ra của dự án",
+      "Có thể có mục tiêu khác nhau nên có thể nảy sinh mâu thuẫn, thách thức",
+      "Cần được xác định nhu cầu và kì vọng",
+      "Có vai trò và trách nhiệm khác nhau"
+    ],
+    "correctAnswers": [
+      "Là cá nhân, nhóm, tổ chức có ảnh hưởng hoặc bị ảnh hưởng bởi các quyết định, các hoạt động, đầu ra của dự án",
+      "Có thể có mục tiêu khác nhau nên có thể nảy sinh mâu thuẫn, thách thức",
+      "Cần được xác định nhu cầu và kì vọng",
+      "Có vai trò và trách nhiệm khác nhau"
+    ],
+    "explanation": "Các bên liên quan của dự án (Project Stakeholders) là mọi cá nhân, nhóm hoặc tổ chức có ảnh hưởng hoặc bị ảnh hưởng bởi dự án; họ có vai trò, trách nhiệm và mục tiêu khác nhau (dễ nảy sinh mâu thuẫn) nên cần được xác định rõ nhu cầu và kỳ vọng.",
+    "scope": "2023.2 - Trang 69"
+  },
+  {
+    "id": 61,
+    "type": "multiple",
+    "text": "Trong kỹ năng giao tiếp, phương pháp trình bày D.E.S.C gợi ý 4 yếu tố: Describe/Mô tả; Express/Giải thích; Specify/Nêu ý kiến; Choose (Consequences)/Phân tích ưu nhược điểm về ý kiến.\nTuy nhiên, đoạn hội thoại ngắn sau đây cho thấy một lỗi phổ biến mà bạn Chiến đã mắc phải. Bạn Chiến bị thiếu 3 yếu tố là gì?\n<b>Sếp:</b> Nhiệm vụ phát triển sản phẩm X tôi giao cho cậu làm đến đâu rồi?\n<b>Chiến:</b> Việc 1 và 2 em đã làm xong. Việc 3 đang kẹt vì thiếu tiền, thiếu nhân sự, kỹ thuật hiếm. Vậy em phải làm thế nào?\n<b>Sếp:</b> Cậu chỉ có thể là thực thi công việc, chứ không thể trở thành người quản lý được.",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "thiếu Describe",
+      "thiếu Express",
+      "thiếu Specify",
+      "thiếu Consequences"
+    ],
+    "correctAnswers": [
+      "thiếu Describe",
+      "thiếu Specify",
+      "thiếu Consequences"
+    ],
+    "explanation": "Chiến mới chỉ nêu lý do bị kẹt (Express: thiếu tiền, thiếu nhân sự, kỹ thuật hiếm) nhưng thiếu Describe (mô tả cụ thể nội dung và hiện trạng việc 3), thiếu Specify (không chủ động đề xuất phương án giải quyết mà hỏi ngược lại sếp) và thiếu Consequences (không phân tích ưu nhược điểm/hậu quả của các phương án).",
+    "scope": "2023.2 - Trang 70"
+  },
+  {
+    "id": 62,
+    "type": "multiple",
+    "text": "Mô hình (Đầu vào - Công cụ và Kỹ thuật - Đầu ra)",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Đầu vào là danh sách các hành động",
+      "Công cụ và Kỹ thuật để quyết định chuyên môn dựa trên việc ước lượng và phân tích",
+      "Đầu ra là thời lượng hành động",
+      "Phạm vi yêu cầu được xác định trong quá trình cập nhật tài liệu ở đầu ra"
+    ],
+    "correctAnswers": [
+      "Đầu vào là danh sách các hành động",
+      "Công cụ và Kỹ thuật để quyết định chuyên môn dựa trên việc ước lượng và phân tích",
+      "Đầu ra là thời lượng hành động"
+    ],
+    "explanation": "Trong mô hình Đầu vào - Công cụ và Kỹ thuật - Đầu ra (ITTO) áp dụng cho bài toán ước lượng thời lượng hoạt động: Đầu vào là danh sách các hành động/hoạt động, Công cụ và Kỹ thuật dùng để ra quyết định chuyên môn dựa trên ước lượng và phân tích, Đầu ra là thời lượng hành động và tài liệu cập nhật phạm vi yêu cầu.",
+    "scope": "2023.2 - Trang 55, 71"
+  },
+  {
+    "id": 63,
+    "type": "single",
+    "text": "Một cửa hàng bán máy tính đề nghị công ty TCIOS xây dựng cho họ website giới thiệu sản phẩm. Công ty TCIOS phân tích rất kỹ càng từng tính năng, vẽ các loại sơ đồ UML rất chi tiết rồi dựa vào đó tính toán giá thành sản phẩm cho chính xác và chặt chẽ. Cuối cùng TCIOS chốt lại giá trị hợp đồng là 96 triệu. Kỹ thuật ước lượng này là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Bottom-up / Ước lượng chi tiết từ dưới lên",
+      "Analogous / Ước lượng tương tự",
+      "Parametric / Ước lượng có tham số hiệu chỉnh",
+      "Three-point estimating / PERT / Ước lượng 3 điểm"
+    ],
+    "correctAnswers": [
+      "Bottom-up / Ước lượng chi tiết từ dưới lên"
+    ],
+    "explanation": "Ước lượng chi tiết từ dưới lên (Bottom-up Estimating) là kỹ thuật phân rã chi tiết từng tính năng, vẽ sơ đồ thiết kế chi tiết, tính toán chi phí cho từng phần nhỏ rồi cộng tổng hợp lại thành tổng giá trị dự án (96 triệu).",
+    "scope": "2023.2 - Trang 71"
+  },
+  {
+    "id": 64,
+    "type": "fill",
+    "text": "Công ty TCIOS đang thực hiện một dự án IT mới. Dự án này có kế hoạch hoàn thành trong vòng 8 tháng với tổng dự toán chi phí là 600 triệu vnđ. Sau 4 tháng, công ty đã chi tiêu 300 triệu vnđ và hoàn thành được 40% tổng số công việc của dự án. Giả định rằng mọi đường chi phí, tiến độ đều tuyến tính. Vậy nếu tình trạng này tiếp tục duy trì thì:\nHoàn thành sớm (hoặc muộn) so với kế hoạch ban đầu bao nhiêu tháng? Ví dụ điền 1, 3, 8",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "2"
+    ],
+    "explanation": "Phân tích tiến độ theo giả định tuyến tính:\n- Kế hoạch ban đầu của dự án là hoàn thành trong $8$ tháng.\n- Sau $4$ tháng thực hiện, dự án mới hoàn thành được $40\\%$ khối lượng công việc (tốc độ trung bình đạt $10\\%$ công việc/tháng).\n- Tổng thời gian dự kiến để hoàn thành $100\\%$ công việc của dự án là: $\\frac{4}{40\\%} = \\frac{4}{0.4} = 10$ tháng.\n- Do đó, dự án sẽ hoàn thành muộn hơn so với kế hoạch ban đầu là: $10 - 8 = 2$ tháng.",
+    "scope": "2023.2 - Trang 14, 15"
+  },
+  {
+    "id": 65,
+    "type": "fill",
+    "text": "Công ty TCIOS đang thực hiện một dự án IT mới. Dự án này có kế hoạch hoàn thành trong vòng 7 tháng với tổng dự toán chi phí là 600 triệu vnđ. Sau đúng 7 tháng, công ty chi tiêu 350 triệu vnđ và hoàn thành được 70% tổng số công việc của dự án. Giả định rằng mọi đường chi phí, tiến độ đều tuyến tính. Vậy nếu tình trạng này tiếp tục duy trì thì:\nHoàn thành muộn hơn so với kế hoạch ban đầu bao nhiêu tháng? Ví dụ điền 1, 3, 8",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "3"
+    ],
+    "explanation": "Phân tích tiến độ theo giả định tuyến tính:\n- Kế hoạch ban đầu của dự án là hoàn thành trong $7$ tháng.\n- Sau đúng $7$ tháng thực hiện, dự án mới hoàn thành được $70\\%$ khối lượng công việc (tốc độ trung bình đạt $10\\%$ công việc/tháng).\n- Tổng thời gian dự kiến để hoàn thành $100\\%$ công việc của dự án là: $\\frac{7}{70\\%} = \\frac{7}{0.7} = 10$ tháng.\n- Do đó, dự án sẽ hoàn thành muộn hơn so với kế hoạch ban đầu là: $10 - 7 = 3$ tháng.",
+    "scope": "2023.2 - Trang 68"
   }
 ]

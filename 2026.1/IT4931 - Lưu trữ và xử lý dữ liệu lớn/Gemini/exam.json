@@ -737,7 +737,7 @@
     "scope": "Bigdata - quiz.pdf — Trang 10"
   },
   {
-    "id": 40 - Xem lại,
+    "id": 40,
     "type": "single",
     "text": "Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi",
     "code": "",
@@ -790,7 +790,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 1"
   },
   {
-    "id": 43 - Xem lại,
+    "id": 43,
     "type": "single",
     "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai",
     "code": "",
@@ -828,7 +828,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 1"
   },
   {
-    "id": 45 - Xem lại,
+    "id": 45,
     "type": "single",
     "text": "Các đặc trưng của HDFS. Chọn đáp án SAI",
     "code": "",
@@ -904,7 +904,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 2"
   },
   {
-    "id": 49 - Xem lại,
+    "id": 49,
     "type": "multiple",
     "text": "Đáp án nào không phải là một “Transformation” khi thao tác với DStream",
     "code": "",
@@ -999,7 +999,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
   },
   {
-    "id": 54 - Xem lại,
+    "id": 54,
     "type": "multiple",
     "text": "Đâu là cách submit đúng 1 job lên Spark cluster hoặc chế độ local",
     "code": "",
@@ -1017,7 +1017,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
   },
   {
-    "id": 55 - Xem lại,
+    "id": 55,
     "type": "single",
     "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
     "code": "input.flatMap(lambda x: x.split(“\\t”) ).map(lambda x: (x, 1)).reduceByKey(add)",
@@ -1036,7 +1036,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
   },
   {
-    "id": 56 - Xem lại,
+    "id": 56,
     "type": "single",
     "text": "Cơ chế chịu lỗi của datanode trong HDFS",
     "code": "",
@@ -1054,7 +1054,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
   },
   {
-    "id": 57 - Xem lại,
+    "id": 57,
     "type": "single",
     "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
     "code": "",
@@ -1107,7 +1107,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 5"
   },
   {
-    "id": 60 - Xem lại,
+    "id": 60,
     "type": "single",
     "text": "Các mục tiêu chính của Apache Hadoop",
     "code": "",
@@ -1127,7 +1127,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 5"
   },
   {
-    "id": 61 - Xem lại,
+    "id": 61,
     "type": "single",
     "text": "Phát biểu nào không đúng về Apache Hadoop",
     "code": "",
@@ -1146,7 +1146,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
   },
   {
-    "id": 62 - Xem lại,
+    "id": 62,
     "type": "single",
     "text": "Thành phần nào không thuộc thành phần lõi của Hadoop",
     "code": "",
@@ -1184,7 +1184,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
   },
   {
-    "id": 64 - Xem lại,
+    "id": 64,
     "type": "single",
     "text": "phát biểu nào sau đây sai về kafka",
     "code": "",
@@ -1203,7 +1203,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
   },
   {
-    "id": 65 - Xem lại,
+    "id": 65,
     "type": "single",
     "text": "Mô tả cách thức một client đọc dữ liệu trên HDFS",
     "code": "",
@@ -1222,7 +1222,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
   },
   {
-    "id": 66 - Xem lại,
+    "id": 66,
     "type": "single",
     "text": "Đâu không phải là tính năng mà NoSQL nào cũng đáp ứng",
     "code": "",
@@ -1240,7 +1240,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
   },
   {
-    "id": 67 - Xem lại,
+    "id": 67,
     "type": "single",
     "text": "Hệ thống nào cho phép đọc ghi dữ liệu tại vị trí ngẫu nhiên, thời gian thực tới hàng terabyte dữ liệu",
     "code": "",
@@ -1259,7 +1259,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
   },
   {
-    "id": 68 - Xem lại,
+    "id": 68,
     "type": "single",
     "text": "Phát biểu nào đúng về Quorum trong Amazon DynamoDB",
     "code": "",
@@ -1277,7 +1277,7 @@
     "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
   },
   {
-    "id": 69 - Xem lại,
+    "id": 69,
     "type": "single",
     "text": "Phát biểu nào sau đây sai về Kafka",
     "code": "",
@@ -1811,7 +1811,7 @@
     "scope": "Quiz01.pdf"
   },
   {
-    "id": 98 - Đến đây,
+    "id": 98,
     "type": "multiple",
     "text": "Cơ chế chịu lỗi của datanode trong HDFS?",
     "code": "",
@@ -1827,11 +1827,11 @@
       "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode."
     ],
     "explanation": "Đáp án chính xác là: 'Sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của các datanode., Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "2021.1 - Câu 1"
   },
   {
     "id": 99,
-    "type": "single",
+    "type": "multiple",
     "text": "Các mục tiêu chính của Apache Hadoop?",
     "code": "",
     "tables": [],
@@ -1847,11 +1847,11 @@
       "Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả"
     ],
     "explanation": "Đáp án chính xác là: 'Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "2021.1 - Câu 2"
   },
   {
     "id": 100,
-    "type": "single",
+    "type": "multiple",
     "text": "Chọn phát biểu sai",
     "code": "",
     "tables": [],
@@ -1865,11 +1865,11 @@
       "NoSQL yêu cầu lược đồ CSDL phải được định nghĩa trước khi thêm dữ liệu"
     ],
     "explanation": "Đáp án chính xác là: 'NoSQL yêu cầu lược đồ CSDL phải được định nghĩa trước khi thêm dữ liệu'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "NoSQL"
+    "scope": "2021.1 - Câu 3"
   },
   {
     "id": 101,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sau sai về Kafka?",
     "code": "",
     "tables": [],
@@ -1884,7 +1884,7 @@
       "Tiến trình quảng bá message lên cụm Kafka gọi là publishers"
     ],
     "explanation": "Đáp án chính xác là: 'Tiến trình quảng bá message lên cụm Kafka gọi là publishers'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Kafka"
+    "scope": "2021.1 - Câu 4"
   },
   {
     "id": 102,
@@ -1905,7 +1905,7 @@
       "Người lập trình có thể quyết định số các phân mảnh của mỗi RDD"
     ],
     "explanation": "Đáp án chính xác là: 'Có khả năng chịu lỗi, Được chia thành các phân mảnh (partition), Người lập trình có thể quyết định số các phân mảnh của mỗi RDD'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "2021.1 - Câu 5"
   },
   {
     "id": 103,
@@ -1924,7 +1924,7 @@
       "Có thể nhận đầu vào là các luồng dữ liệu từ Kafka"
     ],
     "explanation": "Đáp án chính xác là: 'Có thể nhận đầu vào là các tệp tin trên HDFS, Có thể nhận đầu vào là các luồng dữ liệu từ Kafka'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "2021.1 - Câu 6"
   },
   {
     "id": 104,
@@ -1934,24 +1934,24 @@
     "tables": [],
     "link": "",
     "options": [
-      "Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được thâp tới kết quả phân tích của mô hình xử lý theo lô",
+      "Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được nhập tới kết quả phân tích của mô hình xử lý theo lô",
       "Kết hợp xử lý dữ liệu theo lô và theo luồng",
       "Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử.",
       "Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng",
       "Bao gồm các tiến trình ETL (extract, transform, load) đưa dữ liệu vào hồ dữ liệu (data lake)"
     ],
     "correctAnswers": [
-      "Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được thâp tới kết quả phân tích của mô hình xử lý theo lô",
+      "Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được nhập tới kết quả phân tích của mô hình xử lý theo lô",
       "Kết hợp xử lý dữ liệu theo lô và theo luồng",
       "Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử.",
       "Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng"
     ],
     "explanation": "Đáp án chính xác là: 'Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được thâp tới kết quả phân tích của mô hình xử lý theo lô, Kết hợp xử lý dữ liệu theo lô và theo luồng, Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử., Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Big Data Architecture. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Big Data Architecture trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Big Data Architecture"
+    "scope": "2021.1 - Câu 7"
   },
   {
     "id": 105,
-    "type": "single",
+    "type": "multiple",
     "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS?",
     "code": "",
     "tables": [],
@@ -1965,11 +1965,11 @@
       "Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode."
     ],
     "explanation": "Đáp án chính xác là: 'Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "2021.1 - Câu 8"
   },
   {
     "id": 106,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về Presto?",
     "code": "",
     "tables": [],
@@ -1984,11 +1984,11 @@
       "Presto được quản lý bở Apache Software foundation"
     ],
     "explanation": "Đáp án chính xác là: 'Presto được quản lý bở Apache Software foundation'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Presto. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Presto trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Presto"
+    "scope": "2021.1 - Câu 9"
   },
   {
     "id": 107,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về Hfile trong Hbase?",
     "code": "",
     "tables": [],
@@ -2003,11 +2003,11 @@
       "Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn theo những khoảng thời gian nhất định"
     ],
     "explanation": "Đáp án chính xác là: 'Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn theo những khoảng thời gian nhất định'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hbase"
+    "scope": "2021.1 - Câu 10"
   },
   {
     "id": 108,
-    "type": "single",
+    "type": "multiple",
     "text": "Công cụ nào có thể sử dụng để hỗ trợ import, export dữ liệu vào ra hệ sinh thái Hadoop?",
     "code": "",
     "tables": [],
@@ -2022,11 +2022,11 @@
       "Sqoop"
     ],
     "explanation": "Đáp án chính xác là: 'Sqoop'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop Ecosystem. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop Ecosystem trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop Ecosystem"
+    "scope": "2021.1 - Câu 11"
   },
   {
     "id": 109,
-    "type": "single",
+    "type": "multiple",
     "text": "Thế nào là UNIX semantic?",
     "code": "",
     "tables": [],
@@ -2040,11 +2040,11 @@
       "Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi."
     ],
     "explanation": "Đáp án chính xác là: 'Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "2021.1 - Câu 12"
   },
   {
     "id": 110,
-    "type": "single",
+    "type": "multiple",
     "text": "Cơ chế nhân bản dữ liệu trong HDFS?",
     "code": "",
     "tables": [],
@@ -2058,7 +2058,7 @@
       "Namenode quyết định vị trí các nhân bản của các chunk trên datanode."
     ],
     "explanation": "Đáp án chính xác là: 'Namenode quyết định vị trí các nhân bản của các chunk trên datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "2021.1 - Câu 13"
   },
   {
     "id": 111,
@@ -2079,11 +2079,11 @@
       "Xử lý luồng dữ liệu lớn"
     ],
     "explanation": "Đáp án chính xác là: 'Xử lý dữ liệu lớn trong thời gian tương tác, Xử lý chuỗi các công việc, Xử lý luồng dữ liệu lớn'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của MapReduce. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của MapReduce trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "MapReduce"
+    "scope": "2021.1 - Câu 14"
   },
   {
     "id": 112,
-    "type": "single",
+    "type": "multiple",
     "text": "Đâu là một dạng của NoSQL",
     "code": "",
     "tables": [],
@@ -2098,11 +2098,11 @@
       "Key-value store"
     ],
     "explanation": "Đáp án chính xác là: 'Key-value store'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "NoSQL"
+    "scope": "2021.1 - Câu 15"
   },
   {
     "id": 113,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về cơ chế scheduling của Presto?",
     "code": "",
     "tables": [],
@@ -2117,7 +2117,7 @@
       "Một task có thể được lập lịch chạy trên bất kỳ worker nào"
     ],
     "explanation": "Đáp án chính xác là: 'Một task có thể được lập lịch chạy trên bất kỳ worker nào'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Presto. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Presto trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Presto"
+    "scope": "2021.1 - Câu 16"
   },
   {
     "id": 114,
@@ -2138,11 +2138,11 @@
       "Join"
     ],
     "explanation": "Đáp án chính xác là: 'Multiput, Join'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hbase"
+    "scope": "2021.1 - Câu 17"
   },
   {
     "id": 115,
-    "type": "single",
+    "type": "multiple",
     "text": "Hbase có thể được sử dụng cho kiểu dữ liệu nào",
     "code": "",
     "tables": [],
@@ -2157,11 +2157,11 @@
       "Tất cả các phương án được đưa ra."
     ],
     "explanation": "Đáp án chính xác là: 'Tất cả các phương án được đưa ra.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hbase"
+    "scope": "2021.1 - Câu 18"
   },
   {
     "id": 116,
-    "type": "single",
+    "type": "multiple",
     "text": "HDFS giải quyết bài toán một điểm hỏng hóc duy nhất (single-point-of-failure) cho Namenode bằng cách nào?",
     "code": "",
     "tables": [],
@@ -2174,7 +2174,7 @@
       "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode."
     ],
     "explanation": "Đáp án chính xác là: 'Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "2021.1 - Câu 19"
   },
   {
     "id": 117,
@@ -2194,11 +2194,11 @@
       "Rất phù hợp cho các tập dữ liệu phân tán quy mô lớn"
     ],
     "explanation": "Đáp án chính xác là: 'Không hỗ trợ các truy vấn SQL, Rất phù hợp cho các tập dữ liệu phân tán quy mô lớn'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "NoSQL"
+    "scope": "2021.1 - Câu 20"
   },
   {
     "id": 118,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sau đây không đúng về Apache Hadoop?",
     "code": "",
     "tables": [],
@@ -2213,7 +2213,7 @@
       "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
     ],
     "explanation": "Đáp án chính xác là: 'Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "2021.1 - Câu 21"
   },
   {
     "id": 119,
@@ -2232,11 +2232,11 @@
       "Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống."
     ],
     "explanation": "Đáp án chính xác là: 'Tập trung hoá việc quản trị., Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Distributed File System. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Distributed File System trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Distributed File System"
+    "scope": "2021.1 - Câu 22"
   },
   {
     "id": 120,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào đúng về Amazon DynamoDB",
     "code": "",
     "tables": [],
@@ -2250,7 +2250,7 @@
       "DynamoDB là zero-hop DHT"
     ],
     "explanation": "Đáp án chính xác là: 'DynamoDB là zero-hop DHT'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của DynamoDB. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của DynamoDB trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "DynamoDB"
+    "scope": "2021.1 - Câu 23"
   },
   {
     "id": 121,
@@ -2271,11 +2271,11 @@
       "Thực hiện các biến đổi (transformation)"
     ],
     "explanation": "Đáp án chính xác là: 'Thực hiện các hành động (action), Thực hiện các biến đổi (transformation)'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "2021.1 - Câu 24"
   },
   {
     "id": 122,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về Kafka?",
     "code": "",
     "tables": [],
@@ -2289,7 +2289,7 @@
       "Thứ tự của message trong mỗi partition do key của message quyết định."
     ],
     "explanation": "Đáp án chính xác là: 'Thứ tự của message trong mỗi partition do key của message quyết định.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Kafka"
+    "scope": "2021.1 - Câu 25"
   },
   {
     "id": 123,
@@ -2308,11 +2308,11 @@
       "Microsoft SQL server"
     ],
     "explanation": "Đáp án chính xác là: 'Microsoft SQL server'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Database. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Database trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Database"
+    "scope": "2021.1 - Câu 26"
   },
   {
     "id": 124,
-    "type": "single",
+    "type": "multiple",
     "text": "Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi",
     "code": "",
     "tables": [],
@@ -2320,17 +2320,17 @@
     "options": [
       "Phân mảnh và phân tán dữ liệu ra nhiều máy chủ",
       "Nhân bản (Replication)",
-      "Giao diện truy vấn đơn giản hơn so với CSQL quan hệ truyền thốn"
+      "Giao diện truy vấn đơn giản hơn so với CSQL quan hệ truyền thống"
     ],
     "correctAnswers": [
       "Nhân bản (Replication)"
     ],
     "explanation": "Đáp án chính xác là: 'Nhân bản (Replication)'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "NoSQL"
+    "scope": "2021.1 - Câu 27"
   },
   {
     "id": 125,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về Kafka?",
     "code": "",
     "tables": [],
@@ -2345,7 +2345,7 @@
       "Message sau khi được tiêu thụ bởi tất cả các consumer thì bị xoá."
     ],
     "explanation": "Đáp án chính xác là: 'Message sau khi được tiêu thụ bởi tất cả các consumer thì bị xoá.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Kafka"
+    "scope": "2021.1 - Câu 28"
   },
   {
     "id": 126,
@@ -2364,11 +2364,11 @@
       "Thực hiện theo cơ chế lười biếng. khi nào một hành động (action) cần tới phép biến đổi trước đó phải thực hiện thì mới phải thực hiện"
     ],
     "explanation": "Đáp án chính xác là: 'Mỗi phép biến đổi trên RDD được thực thi bởi một hay nhiều Spark worker, Thực hiện theo cơ chế lười biếng. khi nào một hành động (action) cần tới phép biến đổi trước đó phải thực hiện thì mới phải thực hiện'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "2021.1 - Câu 29"
   },
   {
     "id": 127,
-    "type": "single",
+    "type": "multiple",
     "text": "Các đặc điểm của virtual node trên AmazonDB. Chọn phương án sai",
     "code": "",
     "tables": [],
@@ -2383,11 +2383,11 @@
       "Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý."
     ],
     "explanation": "Đáp án chính xác là: 'Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của DynamoDB. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của DynamoDB trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "DynamoDB"
+    "scope": "2021.1 - Câu 30"
   },
   {
     "id": 128,
-    "type": "single",
+    "type": "multiple",
     "text": "Thế nào là Session semantic?",
     "code": "",
     "tables": [],
@@ -2401,11 +2401,11 @@
       "Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp."
     ],
     "explanation": "Đáp án chính xác là: 'Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Distributed File System. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Distributed File System trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Distributed File System"
+    "scope": "2021.1 - Câu 31"
   },
   {
     "id": 129,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về Hbase",
     "code": "",
     "tables": [],
@@ -2420,11 +2420,11 @@
       "Hbase hỗ trợ truy vấn dạng SQL"
     ],
     "explanation": "Đáp án chính xác là: 'Hbase hỗ trợ truy vấn dạng SQL'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hbase"
+    "scope": "2021.1 - Câu 32"
   },
   {
     "id": 130,
-    "type": "single",
+    "type": "multiple",
     "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gần với ANSI SQL hơn?",
     "code": "",
     "tables": [],
@@ -2438,11 +2438,11 @@
       "Hive"
     ],
     "explanation": "Đáp án chính xác là: 'Hive'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop Ecosystem. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop Ecosystem trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop Ecosystem"
+    "scope": "2021.1 - Câu 33"
   },
   {
     "id": 131,
-    "type": "single",
+    "type": "multiple",
     "text": "Ưu điểm của kiến trúc SAN (Storage area network)?",
     "code": "",
     "tables": [],
@@ -2456,11 +2456,11 @@
       "Hiệu năng, băng thông tốt hơn với NAS."
     ],
     "explanation": "Đáp án chính xác là: 'Hiệu năng, băng thông tốt hơn với NAS.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Storage Architecture. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Storage Architecture trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Storage Architecture"
+    "scope": "2021.1 - Câu 34"
   },
   {
     "id": 132,
-    "type": "single",
+    "type": "multiple",
     "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai.",
     "code": "",
     "tables": [],
@@ -2475,7 +2475,7 @@
       "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu"
     ],
     "explanation": "Đáp án chính xác là: 'Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "2021.1 - Câu 35"
   },
   {
     "id": 133,
@@ -2497,7 +2497,7 @@
       "Có thể khai phá dữ liệu trong thời gian tương tác"
     ],
     "explanation": "Đáp án chính xác là: 'Hỗ trợ tốt cho xử lý chuỗi các biến đổi, Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS, Có khả năng chịu lỗi, Có thể khai phá dữ liệu trong thời gian tương tác'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark vs MapReduce. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark vs MapReduce trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark vs MapReduce"
+    "scope": "2021.1 - Câu 36"
   },
   {
     "id": 134,
@@ -2518,11 +2518,11 @@
       "Apache Hbase"
     ],
     "explanation": "Đáp án chính xác là: 'Apache Zookeeper, Apache Hbase'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "2021.1 - Câu 37"
   },
   {
     "id": 135,
-    "type": "single",
+    "type": "multiple",
     "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai.",
     "code": "",
     "tables": [],
@@ -2537,11 +2537,11 @@
       "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID"
     ],
     "explanation": "Đáp án chính xác là: 'Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "2021.1 - Câu 38"
   },
   {
     "id": 136,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu sau đây đúng hay sai: Trong cụm Kafka, 1 server đóng vai trò leader, các server còn lại đóng vai trò follower.",
     "code": "",
     "tables": [],
@@ -2554,11 +2554,11 @@
       "Sai"
     ],
     "explanation": "Đáp án chính xác là: 'Sai'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Kafka"
+    "scope": "2021.1 - Câu 39"
   },
   {
     "id": 137,
-    "type": "single",
+    "type": "multiple",
     "text": "Phát biểu nào sai về Presto",
     "code": "",
     "tables": [],
@@ -2572,7 +2572,7 @@
       "Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống"
     ],
     "explanation": "Đáp án chính xác là: 'Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Presto. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Presto trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Presto"
+    "scope": "2021.1 - Câu 40"
   },
   {
     "id": 138,
@@ -2591,7 +2591,7 @@
       "REPLICATION"
     ],
     "explanation": "Đáp án chính xác là: 'REPLICATION'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "NoSQL"
+    "scope": "Bigdata - ôn tập.pdf - Trang 1"
   },
   {
     "id": 139,
@@ -2610,7 +2610,7 @@
       "CASSANDRA"
     ],
     "explanation": "Đáp án chính xác là: 'CASSANDRA'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Database. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Database trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Database"
+    "scope": "Bigdata - ôn tập.pdf - Trang 2"
   },
   {
     "id": 140,
@@ -2629,7 +2629,7 @@
       "INPUT.FLATMAP(LAMBDA X: X.SPLIT(' ')).MAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])"
     ],
     "explanation": "Đáp án chính xác là: 'INPUT.FLATMAP(LAMBDA X: X.SPLIT(' ')).MAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 3"
   },
   {
     "id": 141,
@@ -2648,7 +2648,7 @@
       "GRAPH STORE"
     ],
     "explanation": "Đáp án chính xác là: 'GRAPH STORE'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Database. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Database trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Database"
+    "scope": "Bigdata - ôn tập.pdf - Trang 4"
   },
   {
     "id": 142,
@@ -2667,7 +2667,7 @@
       "TẤT CẢ CÁC ĐÁP ÁN TRÊN"
     ],
     "explanation": "Đáp án chính xác là: 'TẤT CẢ CÁC ĐÁP ÁN TRÊN'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 5"
   },
   {
     "id": 143,
@@ -2687,7 +2687,7 @@
       "Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ"
     ],
     "explanation": "Đáp án chính xác là: 'Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
   },
   {
     "id": 144,
@@ -2706,7 +2706,7 @@
       "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
     ],
     "explanation": "Đáp án chính xác là: 'Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
   },
   {
     "id": 145,
@@ -2727,7 +2727,7 @@
       "Apache Hbase"
     ],
     "explanation": "Đáp án chính xác là: 'Apache Zookeeper, Apache Hbase'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
   },
   {
     "id": 146,
@@ -2746,7 +2746,7 @@
       "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu"
     ],
     "explanation": "Đáp án chính xác là: 'Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
   },
   {
     "id": 147,
@@ -2765,7 +2765,7 @@
       "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID"
     ],
     "explanation": "Đáp án chính xác là: 'Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
   },
   {
     "id": 148,
@@ -2784,7 +2784,7 @@
       "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin"
     ],
     "explanation": "Đáp án chính xác là: 'Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
   },
   {
     "id": 149,
@@ -2803,7 +2803,7 @@
       "Client truy vấn Namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunk"
     ],
     "explanation": "Đáp án chính xác là: 'Client truy vấn Namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunk'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
   },
   {
     "id": 150,
@@ -2821,7 +2821,7 @@
       "Client kết nối tới Namenode chỉ định khối lượng dữ liệu cần ghi. Namenode trả về vị trí các chunk cho client. Client ghi chunk tới datanode đầu tiên, sau đó các datanode tự động thực thi nhân bản. Quá trình ghi kết thúc thi tất cả các chunk và các nhân bản đã được ghi thành công."
     ],
     "explanation": "Đáp án chính xác là: 'Client kết nối tới Namenode chỉ định khối lượng dữ liệu cần ghi. Namenode trả về vị trí các chunk cho client. Client ghi chunk tới datanode đầu tiên, sau đó các datanode tự động thực thi nhân bản. Quá trình ghi kết thúc thi tất cả các chunk và các nhân bản đã được ghi thành công.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
   },
   {
     "id": 151,
@@ -2839,7 +2839,7 @@
       "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode."
     ],
     "explanation": "Đáp án chính xác là: 'Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 152,
@@ -2857,7 +2857,7 @@
       "Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode."
     ],
     "explanation": "Đáp án chính xác là: 'Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 153,
@@ -2875,7 +2875,7 @@
       "Namenode quyết định vị trí các nhân bản của các chunk trên datanode."
     ],
     "explanation": "Đáp án chính xác là: 'Namenode quyết định vị trí các nhân bản của các chunk trên datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 154,
@@ -2892,7 +2892,7 @@
       "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode."
     ],
     "explanation": "Đáp án chính xác là: 'Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 155,
@@ -2911,7 +2911,7 @@
       "Cả 3 phương án trên"
     ],
     "explanation": "Đáp án chính xác là: 'Cả 3 phương án trên'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 156,
@@ -2930,7 +2930,7 @@
       "input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')"
     ],
     "explanation": "Đáp án chính xác là: 'input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 157,
@@ -2949,12 +2949,12 @@
       "A. ./spark-submit wordcount.py README.md"
     ],
     "explanation": "Đáp án chính xác là: './spark-submit wordcount.py README.md'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 158,
     "type": "single",
-    "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào.",
+    "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
     "code": "input.flatMap(lambda x: x.split(\"\\t\")).map(lambda x: (x, 1)).reduceByKey(add)",
     "tables": [],
     "link": "",
@@ -2968,7 +2968,7 @@
       "Tab"
     ],
     "explanation": "Đáp án chính xác là: 'Tab'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
   },
   {
     "id": 159,
@@ -2988,7 +2988,7 @@
       "Spark -> Elasticsearch -> Hiển thị"
     ],
     "explanation": "Đáp án chính xác là: 'Spark -> RabbitMQ -> Elasticsearch -> Hiển thị, Spark -> Elasticsearch -> Hiển thị'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 10"
   },
   {
     "id": 160,
@@ -3007,7 +3007,7 @@
       "Tránh dữ liệu bị mất mát"
     ],
     "explanation": "Đáp án chính xác là: 'Tránh dữ liệu bị mất mát'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Message Queue. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Message Queue trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Message Queue"
+    "scope": "Bigdata - ôn tập.pdf - Trang 10"
   },
   {
     "id": 161,
@@ -3026,7 +3026,7 @@
       "A. Chạy trên YARN"
     ],
     "explanation": "Đáp án chính xác là: 'Chạy trên YARN'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 10"
   },
   {
     "id": 162,
@@ -3045,7 +3045,7 @@
       "D. Cả B and C"
     ],
     "explanation": "Đáp án chính xác là: 'Cả B and C'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark ML. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark ML trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark ML"
+    "scope": "Bigdata - ôn tập.pdf - Trang 11"
   },
   {
     "id": 163,
@@ -3064,7 +3064,7 @@
       "Chia dữ liệu học và dữ liệu kiểm tra"
     ],
     "explanation": "Đáp án chính xác là: 'Chia dữ liệu học và dữ liệu kiểm tra'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark ML. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark ML trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark ML"
+    "scope": "Bigdata - ôn tập.pdf - Trang 11"
   },
   {
     "id": 164,
@@ -3083,12 +3083,12 @@
       "Dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào đó được gán vào label"
     ],
     "explanation": "Đáp án chính xác là: 'Dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào đó được gán vào label'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark ML. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark ML trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark ML"
+    "scope": "Bigdata - ôn tập.pdf - Trang 11"
   },
   {
     "id": 165,
     "type": "single",
-    "text": "đâu là kĩ thuật có thể dùng để thích nghi các giải thuật học máy cho dữ liệu lớn:",
+    "text": "Đâu là kĩ thuật có thể dùng để thích nghi các giải thuật học máy cho dữ liệu lớn:",
     "code": "",
     "tables": [],
     "link": "",
@@ -3103,7 +3103,7 @@
       "D. tất cả"
     ],
     "explanation": "Đáp án chính xác là: 'tất cả'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Machine Learning. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Machine Learning trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Machine Learning"
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
   },
   {
     "id": 166,
@@ -3123,7 +3123,7 @@
       "lưu trữ dữ liệu khá mở và xử lý dữ liệu lớn mạnh mẽ"
     ],
     "explanation": "Đáp án chính xác là: 'lưu trữ dữ liệu khá mở và xử lý dữ liệu lớn mạnh mẽ'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
   },
   {
     "id": 167,
@@ -3142,7 +3142,7 @@
       "Thiết kế để vận hành trên siêu máy tính, câu hình mạnh, dộ tin cậy cao"
     ],
     "explanation": "Đáp án chính xác là: 'Thiết kế để vận hành trên siêu máy tính, câu hình mạnh, dộ tin cậy cao'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Hadoop"
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
   },
   {
     "id": 168,
@@ -3160,7 +3160,7 @@
       "Sử dụng cơ chế heartbeat, định kì các datanode thông báo về trạng thái cho Namenode"
     ],
     "explanation": "Đáp án chính xác là: 'Sử dụng cơ chế heartbeat, định kì các datanode thông báo về trạng thái cho Namenode'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
   },
   {
     "id": 169,
@@ -3178,7 +3178,7 @@
       "các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode"
     ],
     "explanation": "Đáp án chính xác là: 'các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
   },
   {
     "id": 170,
@@ -3196,12 +3196,12 @@
       "Namenode quyết định vị trí các nhân bản của các chunk trên datanode"
     ],
     "explanation": "Đáp án chính xác là: 'Namenode quyết định vị trí các nhân bản của các chunk trên datanode'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "HDFS"
+    "scope": "13"
   },
   {
     "id": 171,
     "type": "single",
-    "text": "Câu 1: Đầu vào dữ liệu cho chương trình Spark có thể là:",
+    "text": "Đầu vào dữ liệu cho chương trình Spark có thể là:",
     "code": "",
     "tables": [],
     "link": "",
@@ -3215,12 +3215,12 @@
       "Cả 3 phương án trên"
     ],
     "explanation": "Đáp án chính xác là: 'Cả 3 phương án trên'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
   },
   {
     "id": 172,
     "type": "single",
-    "text": "Câu 2: Đâu là lệnh lưu dữ liệu ra ngoài chương trình Spark:",
+    "text": "Đâu là lệnh lưu dữ liệu ra ngoài chương trình Spark:",
     "code": "",
     "tables": [],
     "link": "",
@@ -3234,12 +3234,12 @@
       "input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')"
     ],
     "explanation": "Đáp án chính xác là: 'input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
   },
   {
     "id": 173,
     "type": "single",
-    "text": "Câu 3: Đâu là cách submit đúng một job lên Spark cluster hoặc chế độ local:",
+    "text": "Đâu là cách submit đúng một job lên Spark cluster hoặc chế độ local:",
     "code": "",
     "tables": [],
     "link": "",
@@ -3253,12 +3253,12 @@
       "A. ./spark-submit wordcount.py README.md"
     ],
     "explanation": "Đáp án chính xác là: './spark-submit wordcount.py README.md'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
   },
   {
     "id": 174,
     "type": "single",
-    "text": "Câu 4: Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào.",
+    "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
     "code": "input.flatMap(lambda x: x.split(\"\\t\")).map(lambda x: (x, 1)).reduceByKey(add)",
     "tables": [],
     "link": "",
@@ -3272,6 +3272,6 @@
       "Tab"
     ],
     "explanation": "Đáp án chính xác là: 'Tab'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
-    "scope": "Spark"
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
   }
 ]

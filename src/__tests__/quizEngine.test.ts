@@ -21,7 +21,14 @@ import {
   sanitizeExamJsonText,
   invalidateExamCache,
   onExamCacheUpdated,
+  extractExamStats,
 } from '../data/dataLoader';
+import {
+  sampleAndPrepareQuestions,
+  filterQuestionsByChapter,
+} from '../engine/sampler';
+import { questionStatsService } from '../services/questionStatsService';
+import { QuizConfig } from '../types/quiz';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -165,6 +172,48 @@ export function runUnitTests(): TestSuiteSummary {
     check(evaluateQuestion(qDropdown, ['a', 'c']).isCorrect, 'Grades dropdown with option IDs ["a", "c"] as correct');
     check(evaluateQuestion(qDropdown, ['0', '2']).isCorrect, 'Grades dropdown with numeric indices ["0", "2"] as correct');
 
+    // Dropdown Format B: options is array of slot objects with choices (e.g. IT3120)
+    const qDropdownChoices = normalizeQuestion(
+      {
+        id: 1021,
+        type: 'dropdown',
+        text: 'Chọn mô tả đúng:',
+        options: [
+          { label: 'Khách hàng:', choices: ['Private', 'Public', 'Protected'] },
+          { label: 'Mã số:', choices: ['Private', 'Public', 'Protected'] }
+        ],
+        correctAnswers: ['Public', 'Private']
+      },
+      2
+    );
+    check(qDropdownChoices.type === 'dropdown', 'Preserves type dropdown for Format B with choices');
+    check(qDropdownChoices.dropdownSlots?.length === 2, 'Builds 2 dropdown slots for Format B');
+    check(qDropdownChoices.dropdownSlots?.[0].label === 'Khách hàng:', 'Preserves slot label in Format B');
+    check(evaluateQuestion(qDropdownChoices, ['Public', 'Private']).isCorrect, 'Grades Format B dropdown with exact texts as correct');
+    check(evaluateQuestion(qDropdownChoices, ['b', 'a']).isCorrect, 'Grades Format B dropdown with option IDs ["b", "a"] as correct');
+
+    // Dropdown Format C: raw options is empty, extracted from table rows (e.g. IT3080 Q797)
+    const qDropdownTable = normalizeQuestion(
+      {
+        id: 1022,
+        type: 'dropdown',
+        text: 'Phân loại switch và router:',
+        options: [],
+        table: {
+          headers: ['Đặc điểm', 'Chọn 1 trong 2'],
+          rows: [
+            ['Chuyển dữ liệu trong cùng mạng', 'Switch/ Router'],
+            ['Chuyển dữ liệu qua mạng khác', 'Switch/ Router']
+          ]
+        },
+        correctAnswers: ['Switch', 'Router']
+      },
+      3
+    );
+    check(qDropdownTable.type === 'dropdown', 'Never demotes Format C table dropdown to essay');
+    check(qDropdownTable.dropdownSlots?.length === 2, 'Extracts 2 dropdown slots from table rows');
+    check(evaluateQuestion(qDropdownTable, ['Switch', 'Router']).isCorrect, 'Grades Format C dropdown as correct');
+
     // Fill-in-the-blank with C++ operators (>>, &) and Vietnamese diacritics
     const qFillOp = normalizeQuestion(
       {
@@ -229,6 +278,108 @@ export function runUnitTests(): TestSuiteSummary {
     invalidateExamCache('/2026.1/test/exam.json');
     unsub();
     check(notifiedPath === '/2026.1/test/exam.json', 'Notifies subscribers when exam cache is invalidated');
+    passed++;
+  }
+
+  // 6. Chapter Extraction, Stats Aggregation & Chapter Filtering Tests
+  {
+    const rawBank = [
+      {
+        id: 1,
+        chapter: 1,
+        chapter_name: 'Tổng quan',
+        text: 'Câu 1',
+        options: ['A', 'B'],
+        correctAnswers: ['A'],
+      },
+      {
+        id: 2,
+        chapter: 1,
+        chapter_name: 'Tổng quan',
+        text: 'Câu 2',
+        options: ['A', 'B'],
+        correctAnswers: ['B'],
+      },
+      {
+        id: 3,
+        chapter: 2,
+        chapter_name: 'Kiến trúc',
+        text: 'Câu 3',
+        options: ['A', 'B'],
+        correctAnswers: ['A'],
+      },
+      {
+        id: 4,
+        chapter: 2,
+        chapter_name: 'Kiến trúc',
+        type: 'essay',
+        text: 'Câu 4 tự luận',
+      },
+    ];
+
+    const questions = normalizeExam(rawBank);
+    check(questions[0].chapter === 1 && questions[0].chapter_name === 'Tổng quan', 'Preserves chapter and chapter_name');
+    check(questions[2].chapter === 2 && questions[2].chapter_name === 'Kiến trúc', 'Preserves chapter 2');
+
+    const stats = extractExamStats(questions);
+    check(Boolean(stats.chapters && stats.chapters.length === 2), 'Aggregates exactly 2 chapters');
+    check(stats.chapters![0].count === 2 && stats.chapters![0].mcqCount === 2, 'Chapter 1 has 2 MCQs');
+    check(stats.chapters![1].count === 2 && stats.chapters![1].mcqCount === 1 && stats.chapters![1].essayCount === 1, 'Chapter 2 has 1 MCQ and 1 essay');
+
+    const ch1Questions = filterQuestionsByChapter(questions, '1');
+    check(ch1Questions.length === 2 && ch1Questions.every((q) => q.chapter === 1), 'Filters questions by chapter id');
+
+    const ch2Questions = filterQuestionsByChapter(questions, 'Kiến trúc');
+    check(ch2Questions.length === 2 && ch2Questions.every((q) => q.chapter === 2), 'Filters questions by chapter name');
+    passed++;
+  }
+
+  // 7. Question Attempt Prioritization (Spaced Repetition) Sampling Tests
+  {
+    const testQuestions = [
+      { id: 'q1', type: 'single' as const, text: 'Q1', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+      { id: 'q2', type: 'single' as const, text: 'Q2', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+      { id: 'q3', type: 'single' as const, text: 'Q3', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+      { id: 'q4', type: 'single' as const, text: 'Q4', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+    ];
+
+    // Mock attempt counts: q1 done 3 times, q2 done 0 times, q3 done 1 time, q4 done 0 times
+    const attemptCounts = {
+      q1: 3,
+      q2: 0,
+      q3: 1,
+      q4: 0,
+    };
+
+    const config: QuizConfig = {
+      subjectId: 'IT-TEST',
+      examFilePath: '/test/exam.json',
+      mcqCount: 2,
+      essayCount: 0,
+      shuffleQuestions: false,
+      shuffleOptions: false,
+      timeMode: 'auto',
+      seed: 'SEED123',
+      prioritizeLeastAttempted: true,
+    };
+
+    // Selecting 2 questions out of 4:
+    // q2 and q4 have 0 attempts, q3 has 1 attempt, q1 has 3 attempts.
+    // The 2 questions chosen MUST be q2 and q4!
+    const sampled = sampleAndPrepareQuestions(testQuestions, config, attemptCounts);
+    check(sampled.length === 2, 'Samples requested 2 questions');
+    const sampledIds = new Set(sampled.map((q) => String(q.id)));
+    check(sampledIds.has('q2') && sampledIds.has('q4'), 'Strictly prioritizes questions with 0 attempts over 1 or 3 attempts');
+
+    // If requesting 3 questions: must include q2, q4 (tier 0) and q3 (tier 1), but NOT q1 (tier 3)
+    const config3 = { ...config, mcqCount: 3 };
+    const sampled3 = sampleAndPrepareQuestions(testQuestions, config3, attemptCounts);
+    const sampled3Ids = new Set(sampled3.map((q) => String(q.id)));
+    check(sampled3Ids.has('q2') && sampled3Ids.has('q4') && sampled3Ids.has('q3') && !sampled3Ids.has('q1'), 'Samples tier 0 then tier 1 before tier 3');
+
+    // Test questionStatsService progress calculation
+    const progress = questionStatsService.getSubjectProgress('test-user', 'IT-TEST', testQuestions);
+    check(progress.totalQuestions === 4, 'Reports 4 total questions');
     passed++;
   }
 

@@ -1,4 +1,4 @@
-import { Question } from '../types/quiz';
+import { Question, ChapterInfo } from '../types/quiz';
 import { normalizeExam } from '../engine/normalizer';
 
 interface CachedExamEntry {
@@ -313,12 +313,7 @@ export async function loadExamFile(
 
   // 5. Normalize to unified schema in RAM
   const questions = normalizeExam(parsed);
-  const essayCount = questions.filter((q) => q.type === 'essay').length;
-  const stats: ExamStats = {
-    totalCount: questions.length,
-    mcqCount: questions.length - essayCount,
-    essayCount,
-  };
+  const stats: ExamStats = extractExamStats(questions);
 
   // 6. Cache and return
   examCache.set(cacheKey, {
@@ -336,6 +331,72 @@ export interface ExamStats {
   totalCount: number;
   mcqCount: number;
   essayCount: number;
+  chapters?: ChapterInfo[];
+}
+
+/**
+ * Extracts count and chapter statistics from a normalized question list.
+ */
+export function extractExamStats(questions: Question[]): ExamStats {
+  const essayCount = questions.filter((q) => q.type === 'essay').length;
+
+  const chapterMap = new Map<string, ChapterInfo>();
+  let hasChapters = false;
+
+  for (const q of questions) {
+    if (q.chapter !== undefined || q.chapter_name) {
+      hasChapters = true;
+      const rawKey =
+        q.chapter !== undefined
+          ? String(q.chapter).trim()
+          : (q.chapter_name || '').trim();
+
+      if (!chapterMap.has(rawKey)) {
+        let name = q.chapter_name ? q.chapter_name.trim() : `Chương ${q.chapter}`;
+        if (
+          q.chapter !== undefined &&
+          q.chapter_name &&
+          !/^chương\s+/i.test(q.chapter_name.trim())
+        ) {
+          name = `Chương ${q.chapter}: ${q.chapter_name.trim()}`;
+        }
+        chapterMap.set(rawKey, {
+          id: rawKey,
+          chapter: q.chapter,
+          name,
+          count: 0,
+          mcqCount: 0,
+          essayCount: 0,
+        });
+      }
+      const entry = chapterMap.get(rawKey)!;
+      entry.count++;
+      if (q.type === 'essay') {
+        entry.essayCount++;
+      } else {
+        entry.mcqCount++;
+      }
+    }
+  }
+
+  let chapters: ChapterInfo[] | undefined = undefined;
+  if (hasChapters && chapterMap.size > 0) {
+    chapters = Array.from(chapterMap.values()).sort((a, b) => {
+      const aNum = Number(a.chapter);
+      const bNum = Number(b.chapter);
+      if (!Number.isNaN(aNum) && !Number.isNaN(bNum)) {
+        return aNum - bNum;
+      }
+      return a.name.localeCompare(b.name, 'vi', { numeric: true });
+    });
+  }
+
+  return {
+    totalCount: questions.length,
+    mcqCount: questions.length - essayCount,
+    essayCount,
+    chapters,
+  };
 }
 
 /**
@@ -360,10 +421,5 @@ export async function getExamStats(
   const cached = examCache.get(cacheKey);
   if (cached) return cached.stats;
 
-  const essayCount = questions.filter((q) => q.type === 'essay').length;
-  return {
-    totalCount: questions.length,
-    mcqCount: questions.length - essayCount,
-    essayCount,
-  };
+  return extractExamStats(questions);
 }

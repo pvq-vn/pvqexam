@@ -20,7 +20,7 @@ export function isQuestionAnswered(
   if (userAns === undefined || userAns === null) return false;
   if (q.type === 'dropdown') {
     if (!Array.isArray(userAns)) return false;
-    const expectedSlots = q.correctAnswers?.length || 1;
+    const expectedSlots = q.dropdownSlots?.length || q.correctAnswers?.length || 1;
     if (userAns.length < expectedSlots) return false;
     return userAns
       .slice(0, expectedSlots)
@@ -80,24 +80,24 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
     if (isAnswered) {
       return 'bg-blue-600 text-white border-blue-600 font-bold shadow-2xs';
     }
-    return 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:bg-blue-50/40';
+    return 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-slate-700';
   };
 
   return (
-    <div className="flex flex-col h-full bg-white border border-slate-200 rounded-2xl shadow-xs overflow-hidden">
+    <div className="flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs overflow-hidden">
       {/* Navigator Header + Progress Bar */}
-      <div className="p-4 border-b border-slate-100 space-y-2.5">
+      <div className="p-4 border-b border-slate-100 dark:border-slate-800 space-y-2.5">
         <div className="flex items-center justify-between">
-          <h3 className="font-bold text-slate-800 text-sm">
+          <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm">
             {isReview ? 'Tổng quan kết quả' : 'Tiến độ làm bài'}
           </h3>
-          <span className="text-xs text-slate-600 font-semibold">
+          <span className="text-xs text-slate-600 dark:text-slate-400 font-semibold">
             {answeredCount} / {questions.length} đã làm
           </span>
         </div>
 
         {!isReview && (
-          <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-blue-600 rounded-full transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
@@ -126,7 +126,7 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
                 {/* Flag Dot */}
                 {isFlagged && (
                   <span
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-amber-500 border-2 border-white rounded-full"
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-amber-500 border-2 border-white dark:border-slate-900 rounded-full"
                     title="Đã cắm cờ"
                   />
                 )}
@@ -136,7 +136,7 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
         </div>
 
         {/* Legend */}
-        <div className="mt-5 pt-4 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs text-slate-600">
+        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
           {!isReview ? (
             <>
               <div className="flex items-center gap-2">
@@ -144,7 +144,7 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
                 <span>Đã làm ({answeredCount})</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-white border border-slate-300 rounded-xs shrink-0" />
+                <div className="w-3 h-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xs shrink-0" />
                 <span>Chưa làm ({questions.length - answeredCount})</span>
               </div>
               <div className="flex items-center gap-2 col-span-2">
@@ -176,7 +176,7 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
       </div>
 
       {/* Navigator Footer Action */}
-      <div className="p-4 border-t border-slate-100 bg-slate-50/80">
+      <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80">
         {!isReview ? (
           <button
             type="button"
@@ -190,7 +190,7 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
             <button
               type="button"
               onClick={onRetryClick}
-              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 text-sm"
+              className="w-full bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 text-sm"
             >
               <RefreshCcw size={15} /> LÀM ĐỀ KHÁC
             </button>

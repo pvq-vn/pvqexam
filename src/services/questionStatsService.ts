@@ -1,0 +1,333 @@
+import { Question, QuestionEvaluation, QuestionStat, SubjectProgress } from '../types/quiz';
+import { supabase, isSupabaseConfigured } from './supabase';
+
+const LOCAL_QSTATS_PREFIX = 'hust_quiz_qstats_';
+
+const memStorageMap = new Map<string, string>();
+const storage = {
+  getItem(key: string): string | null {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        return window.localStorage.getItem(key);
+      }
+      if (typeof localStorage !== 'undefined') {
+        return localStorage.getItem(key);
+      }
+    } catch {
+      // ignore
+    }
+    return memStorageMap.get(key) || null;
+  },
+  setItem(key: string, val: string): void {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, val);
+        return;
+      }
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(key, val);
+        return;
+      }
+    } catch {
+      // ignore
+    }
+    memStorageMap.set(key, val);
+  },
+  removeItem(key: string): void {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.removeItem(key);
+        return;
+      }
+      if (typeof localStorage !== 'undefined') {
+        localStorage.removeItem(key);
+        return;
+      }
+    } catch {
+      // ignore
+    }
+    memStorageMap.delete(key);
+  },
+};
+
+function getStorageKey(userId?: string): string {
+  const safeId = userId && !userId.startsWith('local-') ? userId : 'local_guest';
+  return `${LOCAL_QSTATS_PREFIX}${safeId}`;
+}
+
+export const questionStatsService = {
+  /**
+   * Retrieves stored question stats for a specific user and subject from localStorage.
+   */
+  getSubjectQuestionStats(
+    userId: string | undefined,
+    subjectId: string
+  ): Record<string, QuestionStat> {
+    try {
+      const key = getStorageKey(userId);
+      const raw = storage.getItem(key);
+      if (!raw) return {};
+      const allSubjectsStats = JSON.parse(raw);
+      return allSubjectsStats[subjectId] || {};
+    } catch (e) {
+      console.warn('Failed reading question stats from localStorage:', e);
+      return {};
+    }
+  },
+
+  /**
+   * Returns a lightweight mapping of questionId -> attemptCount for question sampling.
+   */
+  getQuestionAttempts(
+    userId: string | undefined,
+    subjectId: string
+  ): Record<string, number> {
+    const stats = questionStatsService.getSubjectQuestionStats(userId, subjectId);
+    const result: Record<string, number> = {};
+    for (const [qId, stat] of Object.entries(stats)) {
+      result[qId] = stat.attempts || 0;
+    }
+    return result;
+  },
+
+  /**
+   * Records a completed quiz attempt for all questions in the quiz,
+   * updating their attempt count and correctness in localStorage and Supabase.
+   */
+  async recordQuizAttempts(
+    userId: string | undefined,
+    subjectId: string,
+    questions: Question[],
+    _answers: Record<string | number, string | string[]>,
+    evaluations: Record<string | number, QuestionEvaluation> = {}
+  ): Promise<void> {
+    if (!questions || questions.length === 0) return;
+
+    const storageKey = getStorageKey(userId);
+    let allSubjectsData: Record<string, Record<string, QuestionStat>> = {};
+    try {
+      const raw = storage.getItem(storageKey);
+      if (raw) {
+        allSubjectsData = JSON.parse(raw);
+      }
+    } catch {
+      allSubjectsData = {};
+    }
+
+    if (!allSubjectsData[subjectId]) {
+      allSubjectsData[subjectId] = {};
+    }
+
+    const nowIso = new Date().toISOString();
+    const updatedQuestionRows: Array<{
+      user_id: string;
+      subject_id: string;
+      question_id: string;
+      attempt_count: number;
+      correct_count: number;
+      wrong_count: number;
+      last_attempted_at: string;
+    }> = [];
+
+    for (const q of questions) {
+      const qIdStr = String(q.id);
+      const prev = allSubjectsData[subjectId][qIdStr] || {
+        attempts: 0,
+        correctCount: 0,
+        wrongCount: 0,
+        lastAttemptedAt: nowIso,
+      };
+
+      const evalItem = evaluations[q.id] || evaluations[qIdStr];
+      const isCorrect = evalItem?.isCorrect ?? false;
+      const isUnanswered = evalItem?.isUnanswered ?? false;
+
+      const newAttempts = prev.attempts + 1;
+      const newCorrect = prev.correctCount + (isCorrect ? 1 : 0);
+      const newWrong =
+        prev.wrongCount + (!isCorrect && !isUnanswered && q.type !== 'essay' ? 1 : 0);
+
+      const updatedStat: QuestionStat = {
+        attempts: newAttempts,
+        correctCount: newCorrect,
+        wrongCount: newWrong,
+        lastAttemptedAt: nowIso,
+      };
+
+      allSubjectsData[subjectId][qIdStr] = updatedStat;
+
+      if (userId && !userId.startsWith('local-')) {
+        updatedQuestionRows.push({
+          user_id: userId,
+          subject_id: subjectId,
+          question_id: qIdStr,
+          attempt_count: newAttempts,
+          correct_count: newCorrect,
+          wrong_count: newWrong,
+          last_attempted_at: nowIso,
+        });
+      }
+    }
+
+    // 1. Save to storage immediately
+    try {
+      storage.setItem(storageKey, JSON.stringify(allSubjectsData));
+    } catch (err) {
+      console.warn('Failed saving question stats to storage:', err);
+    }
+
+    // 2. Sync to Supabase in background if authenticated
+    if (
+      isSupabaseConfigured &&
+      supabase &&
+      userId &&
+      !userId.startsWith('local-') &&
+      updatedQuestionRows.length > 0
+    ) {
+      try {
+        const { error } = await supabase
+          .from('user_question_stats')
+          .upsert(updatedQuestionRows, {
+            onConflict: 'user_id,subject_id,question_id',
+          });
+        if (error) {
+          console.warn('Failed syncing user_question_stats to Supabase:', error.message);
+        }
+      } catch (err) {
+        console.warn('Network error syncing question stats to Supabase:', err);
+      }
+    }
+  },
+
+  /**
+   * Fetches remote question stats from Supabase and merges them into localStorage.
+   */
+  async syncRemoteStats(
+    userId: string,
+    subjectId: string
+  ): Promise<Record<string, number>> {
+    if (!isSupabaseConfigured || !supabase || !userId || userId.startsWith('local-')) {
+      return questionStatsService.getQuestionAttempts(userId, subjectId);
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('user_question_stats')
+        .select('question_id, attempt_count, correct_count, wrong_count, last_attempted_at')
+        .eq('user_id', userId)
+        .eq('subject_id', subjectId);
+
+      if (!error && Array.isArray(data) && data.length > 0) {
+        const key = getStorageKey(userId);
+        let allSubjectsData: Record<string, Record<string, QuestionStat>> = {};
+        try {
+          const raw = storage.getItem(key);
+          if (raw) allSubjectsData = JSON.parse(raw);
+        } catch {
+          allSubjectsData = {};
+        }
+
+        if (!allSubjectsData[subjectId]) {
+          allSubjectsData[subjectId] = {};
+        }
+
+        for (const row of data) {
+          const qIdStr = String(row.question_id);
+          const current = allSubjectsData[subjectId][qIdStr];
+          const remoteAttempts = row.attempt_count || 0;
+
+          // Merge: preserve highest attempts
+          if (!current || remoteAttempts > current.attempts) {
+            allSubjectsData[subjectId][qIdStr] = {
+              attempts: remoteAttempts,
+              correctCount: row.correct_count || 0,
+              wrongCount: row.wrong_count || 0,
+              lastAttemptedAt: row.last_attempted_at || new Date().toISOString(),
+            };
+          }
+        }
+
+        storage.setItem(key, JSON.stringify(allSubjectsData));
+      }
+    } catch (err) {
+      console.warn('Failed syncing remote question stats:', err);
+    }
+
+    return questionStatsService.getQuestionAttempts(userId, subjectId);
+  },
+
+  /**
+   * Calculates overall progress and mastery metrics for a subject or chapter question pool.
+   */
+  getSubjectProgress(
+    userId: string | undefined,
+    subjectId: string,
+    questions: Question[]
+  ): SubjectProgress {
+    if (!questions || questions.length === 0) {
+      return {
+        totalQuestions: 0,
+        attemptedQuestions: 0,
+        neverAttemptedQuestions: 0,
+        totalAttempts: 0,
+        accuracy: 0,
+      };
+    }
+
+    const stats = questionStatsService.getSubjectQuestionStats(userId, subjectId);
+    let attemptedCount = 0;
+    let totalAttempts = 0;
+    let totalCorrect = 0;
+    let totalAnswered = 0;
+
+    for (const q of questions) {
+      const qStat = stats[String(q.id)];
+      if (qStat && qStat.attempts > 0) {
+        attemptedCount++;
+        totalAttempts += qStat.attempts;
+        totalCorrect += qStat.correctCount || 0;
+        totalAnswered += (qStat.correctCount || 0) + (qStat.wrongCount || 0);
+      }
+    }
+
+    const accuracy =
+      totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+
+    return {
+      totalQuestions: questions.length,
+      attemptedQuestions: attemptedCount,
+      neverAttemptedQuestions: Math.max(0, questions.length - attemptedCount),
+      totalAttempts,
+      accuracy,
+    };
+  },
+
+  /**
+   * Resets question statistics for a specific subject (e.g. if user wants to start over).
+   */
+  async clearSubjectStats(userId: string | undefined, subjectId: string): Promise<void> {
+    const key = getStorageKey(userId);
+    try {
+      const raw = storage.getItem(key);
+      if (raw) {
+        const all = JSON.parse(raw);
+        delete all[subjectId];
+        storage.setItem(key, JSON.stringify(all));
+      }
+    } catch (e) {
+      console.warn('Failed clearing subject stats in localStorage:', e);
+    }
+
+    if (isSupabaseConfigured && supabase && userId && !userId.startsWith('local-')) {
+      try {
+        await supabase
+          .from('user_question_stats')
+          .delete()
+          .eq('user_id', userId)
+          .eq('subject_id', subjectId);
+      } catch (err) {
+        console.warn('Failed deleting user_question_stats from Supabase:', err);
+      }
+    }
+  },
+};

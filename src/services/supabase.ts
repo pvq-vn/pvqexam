@@ -1,13 +1,21 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const globalProcess =
+  typeof globalThis !== 'undefined' ? (globalThis as any).process : undefined;
+
+const env =
+  typeof import.meta !== 'undefined' && import.meta?.env
+    ? import.meta.env
+    : globalProcess?.env || {};
+
+const supabaseUrl = env?.VITE_SUPABASE_URL;
+const supabaseAnonKey = env?.VITE_SUPABASE_ANON_KEY;
 
 export const isSupabaseConfigured = Boolean(
   supabaseUrl && 
   supabaseAnonKey && 
-  supabaseUrl.trim() !== '' && 
-  supabaseAnonKey.trim() !== ''
+  String(supabaseUrl).trim() !== '' && 
+  String(supabaseAnonKey).trim() !== ''
 );
 
 export const supabase: SupabaseClient | null = isSupabaseConfigured
@@ -18,7 +26,7 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
  * Returns list of admin email addresses configured in env.
  */
 export function getAdminEmails(): string[] {
-  const adminEnv = import.meta.env.VITE_ADMIN_EMAILS || '';
+  const adminEnv = String(env?.VITE_ADMIN_EMAILS || '');
   return adminEnv
     .split(',')
     .map((e: string) => e.trim().toLowerCase())

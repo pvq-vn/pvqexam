@@ -1,0 +1,3277 @@
+[
+  {
+    "id": 1,
+    "type": "single",
+    "text": "NoSQL có đặc điểm nào dưới đây?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Mở rộng theo chiều dọc, thiết kế phức tạp, tinh chỉnh được tính sẵn sàng của hệ thống",
+      "Không thể sử dụng SQL để truy vấn dữ liệu NoSQL",
+      "Mở rộng theo chiều ngang, tinh chỉnh được tính sẵn sàng của hệ thống",
+      "Mở rộng theo chiều dọc, thiết kế đơn giản, khó tinh chỉnh tính sẵn sàng của hệ thống"
+    ],
+    "correctAnswers": [
+      "Mở rộng theo chiều ngang, tinh chỉnh được tính sẵn sàng của hệ thống"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'NoSQL có đặc điểm nào dưới đây?...'. Đáp án chính xác được xác định là: Mở rộng theo chiều ngang, tinh chỉnh được tính sẵn sàng của hệ thống.",
+    "scope": "Bigdata - quiz.pdf — Trang 1"
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "text": "Cơ chế nhân bản dữ liệu trong HDFS?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Client quyết định vị trí lưu trữ các nhân bản với từng chunk.",
+      "Datanode là primary quyết định vị trí các nhân bản của các chunk tại các secondary datanode.",
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode."
+    ],
+    "correctAnswers": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Cơ chế nhân bản dữ liệu trong HDFS?...'. Đáp án chính xác được xác định là: Namenode quyết định vị trí các nhân bản của các chunk trên datanode..",
+    "scope": "Bigdata - quiz.pdf — Trang 1"
+  },
+  {
+    "id": 3,
+    "type": "single",
+    "text": "Các mục tiêu chính của Apache Hadoop?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Xử lý dữ liệu lớn mạnh mẽ",
+      "Trực quan hoá dữ liệu hiệu quả",
+      "Lưu trữ dữ liệu khả mở",
+      "Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ",
+      "Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả"
+    ],
+    "correctAnswers": [
+      "Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Các mục tiêu chính của Apache Hadoop?...'. Đáp án chính xác được xác định là: Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ 17/10/2023, 16:20 Big Data https://huyenvtk.notion.site/Big-Data-5d7866cbf54c4127bb7f6ee75d8316f8 2/10.",
+    "scope": "Bigdata - quiz.pdf — Trang 1"
+  },
+  {
+    "id": 4,
+    "type": "multiple",
+    "text": "Thành phần nào không thuộc thành phần lõi của Hadoop?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Mapreduce framework",
+      "Apache Zookeeper",
+      "Hệ thống tệp tin phân tán HDFS",
+      "YARN: yet another resource negotiator",
+      "Apache Hbase"
+    ],
+    "correctAnswers": [
+      "Apache Zookeeper",
+      "Apache Hbase"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Thành phần nào không thuộc thành phần lõi của Hado...'. Đáp án chính xác được xác định là: Apache Zookeeper, Apache Hbase.",
+    "scope": "Bigdata - quiz.pdf — Trang 1"
+  },
+  {
+    "id": 5,
+    "type": "single",
+    "text": "Các đặc điểm của virtual node trên AmazonDB. Chọn phương án sai:",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Mỗi node vật lý có thể được ánh xạ thành nhiều node ảo, nằm liên tiếp nhau trong vòng tròn không gian khoá.",
+      "Số lượng các node ảo đối với mỗi node vật lý là khác nhau tuỳ vào từng node vật lý.",
+      "Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý.",
+      "Node ảo đóng vai trò quan trọng trong bài toán cân bằng tải và hiệu năng khi một node vật lý ra hoặc kết nối vào cụm."
+    ],
+    "correctAnswers": [
+      "Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Các đặc điểm của virtual node trên AmazonDB. Chọn ...'. Đáp án chính xác được xác định là: Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý..",
+    "scope": "Bigdata - quiz.pdf — Trang 2"
+  },
+  {
+    "id": 6,
+    "type": "single",
+    "text": "Phát biểu nào đúng về Amazon DynamoDB",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "DynamoDB là zero-hop DHT",
+      "DynamoDB là one-hop DHT",
+      "DynamoDB là multipe-hop DHT"
+    ],
+    "correctAnswers": [
+      "DynamoDB là zero-hop DHT"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào đúng về Amazon DynamoDB...'. Đáp án chính xác được xác định là: DynamoDB là zero-hop DHT.",
+    "scope": "Bigdata - quiz.pdf — Trang 2"
+  },
+  {
+    "id": 7,
+    "type": "single",
+    "text": "Phát biểu nào sai về Presto",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Presto có thể truy vấn nhiều data storages khác nhau như HDFS, Cassandra",
+      "Presto thường nhanh hơn Hive hay Pig",
+      "Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống"
+    ],
+    "correctAnswers": [
+      "Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sai về Presto...'. Đáp án chính xác được xác định là: Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống.",
+    "scope": "Bigdata - quiz.pdf — Trang 2"
+  },
+  {
+    "id": 8,
+    "type": "single",
+    "text": "Thao tác nào không được hỗ trợ bởi Hbase",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Scan",
+      "Multiput",
+      "Put",
+      "Join",
+      "Get"
+    ],
+    "correctAnswers": [
+      "Join"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Thao tác nào không được hỗ trợ bởi Hbase...'. Đáp án chính xác được xác định là: Join.",
+    "scope": "Bigdata - quiz.pdf — Trang 2"
+  },
+  {
+    "id": 9,
+    "type": "multiple",
+    "text": "Ưu điểm của kiến trúc NAS (Network attached Storage)?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Máy khách có thể kết nối tới NAS bằng đường truyền Ethernet thông thường (Chuẩn kết nối TCP/IP).",
+      "Đơn giản hoá việc chia sẻ dữ liệu.",
+      "Tính khả mở cao."
+    ],
+    "correctAnswers": [
+      "Đơn giản hoá việc chia sẻ dữ liệu.",
+      "Tính khả mở cao."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Ưu điểm của kiến trúc NAS (Network attached Storag...'. Đáp án chính xác được xác định là: Đơn giản hoá việc chia sẻ dữ liệu., Tính khả mở cao..",
+    "scope": "Bigdata - quiz.pdf — Trang 3"
+  },
+  {
+    "id": 10,
+    "type": "single",
+    "text": "Đâu là một dạng của NoSQL",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "MySQL",
+      "JSON",
+      "Key-value store",
+      "OLAP"
+    ],
+    "correctAnswers": [
+      "Key-value store"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là một dạng của NoSQL...'. Đáp án chính xác được xác định là: Key-value store.",
+    "scope": "Bigdata - quiz.pdf — Trang 3"
+  },
+  {
+    "id": 11,
+    "type": "single",
+    "text": "Đâu là vấn đề khi xử lý dữ liệu lớn với MapReduce?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Xử lý dữ liệu lớn trong thời gian tương tác",
+      "Xử lý luồng dữ liệu lớn",
+      "Xử lý chuỗi các công việc",
+      "Xử lý dữ liệu lớn theo lô (Bulk processing)"
+    ],
+    "correctAnswers": [
+      "Xử lý dữ liệu lớn trong thời gian tương tác"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là vấn đề khi xử lý dữ liệu lớn với MapReduce?...'. Đáp án chính xác được xác định là: Xử lý dữ liệu lớn trong thời gian tương tác.",
+    "scope": "Bigdata - quiz.pdf — Trang 3"
+  },
+  {
+    "id": 12,
+    "type": "single",
+    "text": "Phát biểu nào sai về Kafka?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Kafka producer có thể gửi message đến nhiều broker khác nhau.",
+      "Thứ tự của message trong mỗi partition do key của message quyết định.",
+      "Kafka producer quyết định message sẽ được gửi đến partition nào trong topic."
+    ],
+    "correctAnswers": [
+      "Kafka producer quyết định message sẽ được gửi đến partition nào trong topic."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sai về Kafka?...'. Đáp án chính xác được xác định là: Kafka producer quyết định message sẽ được gửi đến partition nào trong topic..",
+    "scope": "Bigdata - quiz.pdf — Trang 3"
+  },
+  {
+    "id": 13,
+    "type": "multiple",
+    "text": "Kiến trúc xử lý dữ liệu Lambda có đặc điểm gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử.",
+      "Bao gồm các tiến trình ETL (extract, transform, load) đưa dữ liệu vào hồ dữ liệu (data lake)",
+      "Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng",
+      "Kết hợp xử lý dữ liệu theo lô và theo luồng",
+      "Giúp giải quyết vấn đề độ trễ từ khi dữ liệu được thu thập tới kết quả phân tích của mô hình xử lý theo lô"
+    ],
+    "correctAnswers": [
+      "Kết hợp xử lý dữ liệu theo lô và theo luồng",
+      "Giúp giải quyết vấn đề độ trễ từ khi dữ liệu được thu thập tới kết quả phân tích của mô hình xử lý theo lô"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Kiến trúc xử lý dữ liệu Lambda có đặc điểm gì?...'. Đáp án chính xác được xác định là: Kết hợp xử lý dữ liệu theo lô và theo luồng, Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được thập tới kết quả phân tích của mô hình xử lý theo lô.",
+    "scope": "Bigdata - quiz.pdf — Trang 4"
+  },
+  {
+    "id": 14,
+    "type": "single",
+    "text": "Phát biểu nào sau sai về Kafka?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Tiến trình quảng bá message lên cụm Kafka gọi là publishers.",
+      "Các máy chủ chạy Kafka gọi là các brokers.",
+      "Tiến trình đăng ký theo dõi các topics gọi là consumers.",
+      "Kafka quản lý các luồng thông điệp (messages) thành các nhóm gọi là các Topics."
+    ],
+    "correctAnswers": [
+      "Tiến trình quảng bá message lên cụm Kafka gọi là publishers."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sau sai về Kafka?...'. Đáp án chính xác được xác định là: Tiến trình quảng bá message lên cụm Kafka gọi là publishers..",
+    "scope": "Bigdata - quiz.pdf — Trang 4"
+  },
+  {
+    "id": 15,
+    "type": "single",
+    "text": "Phát biểu nào đúng về Presto?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Presto có cơ chế chịu lỗi khi thực thi truy vấn",
+      "Các stage được thực thi theo cơ chế pipeline, không có thời gian chờ giữa các stage như Map Reduce",
+      "Presto cho phép xử lý kết tập dữ liệu mà kích thước lớn hơn kích thước bộ nhớ trong"
+    ],
+    "correctAnswers": [
+      "Các stage được thực thi theo cơ chế pipeline, không có thời gian chờ giữa các stage như Map Reduce"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào đúng về Presto?...'. Đáp án chính xác được xác định là: Các stage được thực thi theo cơ chế pipeline, không có thời gian chờ giữa các stage như Map Reduce.",
+    "scope": "Bigdata - quiz.pdf — Trang 4"
+  },
+  {
+    "id": 16,
+    "type": "single",
+    "text": "Phát biểu nào sau đây không đúng về Apache Hadoop?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hadoop thiết kế để mở rộng thông qua kỹ thuật scale-out, tăng số lượng máy chủ",
+      "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao",
+      "Xử lý dữ liệu phân tán với mô hình lập trình đơn giản, thân thiện hơn như MapReduce.",
+      "Thiết kế để vận hành trên phần cứng phổ thông, có khả năng chống chịu lỗi phần cứng"
+    ],
+    "correctAnswers": [
+      "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sau đây không đúng về Apache Hadoop?...'. Đáp án chính xác được xác định là: Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao.",
+    "scope": "Bigdata - quiz.pdf — Trang 4"
+  },
+  {
+    "id": 17,
+    "type": "single",
+    "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai:",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Các công việc cần tính toán được phân mảnh thành các tác vụ độc lập.",
+      "Hadoop chịu lỗi thông qua kỹ thuật dư thừa",
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID",
+      "Các tệp tin được phân mảnh, các mảnh được nhân bản ra các node khác trên cụm"
+    ],
+    "correctAnswers": [
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Hadoop giải quyết bài toán chịu lỗi thông qua kỹ t...'. Đáp án chính xác được xác định là: Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID.",
+    "scope": "Bigdata - quiz.pdf — Trang 5"
+  },
+  {
+    "id": 18,
+    "type": "single",
+    "text": "Phát biểu nào sai về Hfile trong Hbase?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn theo những khoảng thời gian nhất định",
+      "Một version của 1 dòng hay 1 bản ghi trong Hbase table có thể được phân rã trên nhiều Hfile khác nhau",
+      "Hfile chứa một tập hợp các dòng bản ghi trong Hbase table",
+      "Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn khi cần thiết"
+    ],
+    "correctAnswers": [
+      "Một version của 1 dòng hay 1 bản ghi trong Hbase table có thể được phân rã trên nhiều Hfile khác nhau"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sai về Hfile trong Hbase?...'. Đáp án chính xác được xác định là: Một version của 1 dòng hay 1 bản ghi trong Hbase table có thể được phân rã trên nhiều Hfile khác nhau.",
+    "scope": "Bigdata - quiz.pdf — Trang 5"
+  },
+  {
+    "id": 19,
+    "type": "single",
+    "text": "Các biến đổi (transformation) trên Spark có đặc điểm gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Thực hiện theo cơ chế lười biếng, khi nào một hành động (action) cần tới phép biến đổi trước đó phải thực hiện thì mới phải thực hiện",
+      "Mỗi phép biến đổi trên RDD được thực thi bởi một hay nhiều Spark worker",
+      "Các biến đổi (transformation) luôn tạo ra RDD mới có cùng số partition với RDD đầu vào"
+    ],
+    "correctAnswers": [
+      "Các biến đổi (transformation) luôn tạo ra RDD mới có cùng số partition với RDD đầu vào"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Các biến đổi (transformation) trên Spark có đặc đi...'. Đáp án chính xác được xác định là: Các biến đổi (transformation) luôn tạo ra RDD mới có cùng số partition với RDD đầu vào.",
+    "scope": "Bigdata - quiz.pdf — Trang 5"
+  },
+  {
+    "id": 20,
+    "type": "multiple",
+    "text": "Đâu là ưu điểm của Spark so với MapReduce?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hỗ trợ tốt cho xử lý chuỗi các biến đổi",
+      "Có khả năng chịu lỗi",
+      "Có thể khai phá dữ liệu trong thời gian tương tác",
+      "Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS"
+    ],
+    "correctAnswers": [
+      "Hỗ trợ tốt cho xử lý chuỗi các biến đổi",
+      "Có khả năng chịu lỗi",
+      "Có thể khai phá dữ liệu trong thời gian tương tác",
+      "Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là ưu điểm của Spark so với MapReduce?...'. Đáp án chính xác được xác định là: Hỗ trợ tốt cho xử lý chuỗi các biến đổi 17/10/2023, 16:20 Big Data https://huyenvtk.notion.site/Big-Data-5d7866cbf54c4127bb7f6ee75d8316f8 6/10, Có khả năng chịu lỗi, Có thể khai phá dữ liệu trong thời gian tương tác, Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS.",
+    "scope": "Bigdata - quiz.pdf — Trang 5"
+  },
+  {
+    "id": 21,
+    "type": "single",
+    "text": "Đâu không phải là tính năng mà NoSQL nào cũng đáp ứng",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Khả năng mở rộng linh hoạt",
+      "Phù hợp với dữ liệu lớn",
+      "Tính sẵn sàng cao"
+    ],
+    "correctAnswers": [
+      "Tính sẵn sàng cao"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu không phải là tính năng mà NoSQL nào cũng đáp ...'. Đáp án chính xác được xác định là: Tính sẵn sàng cao.",
+    "scope": "Bigdata - quiz.pdf — Trang 6"
+  },
+  {
+    "id": 22,
+    "type": "single",
+    "text": "Các đặc trưng của HDFS. Chọn đáp án sai.",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hỗ trợ cơ chế phân quyền và kiểm soát người dùng của UNIX",
+      "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin",
+      "Hỗ trợ nén dữ liệu để tiết kiệm chi phí",
+      "Tối ưu cho các tệp tin có kích thước lớn"
+    ],
+    "correctAnswers": [
+      "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Các đặc trưng của HDFS. Chọn đáp án sai....'. Đáp án chính xác được xác định là: Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin.",
+    "scope": "Bigdata - quiz.pdf — Trang 6"
+  },
+  {
+    "id": 23,
+    "type": "single",
+    "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gần với ANSI SQL hơn?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Pig",
+      "Pig và Hive đều không có giao diện truy vấn gần với SQL.",
+      "Hive"
+    ],
+    "correctAnswers": [
+      "Hive"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Giữa Pig và Hive, công cụ nào có giao diện truy vấ...'. Đáp án chính xác được xác định là: Hive.",
+    "scope": "Bigdata - quiz.pdf — Trang 6"
+  },
+  {
+    "id": 24,
+    "type": "single",
+    "text": "Phát biểu nào sai về cơ chế scheduling của Presto?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Một task có thể được lập lịch chạy trên bất kỳ worker nào",
+      "Stage có thể được lập lịch all-at-once",
+      "Split được gán cho task theo cơ chế lazy",
+      "Stage có thể được lập lịch theo giai đoạn"
+    ],
+    "correctAnswers": [
+      "Một task có thể được lập lịch chạy trên bất kỳ worker nào"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sai về cơ chế scheduling của Presto?...'. Đáp án chính xác được xác định là: Một task có thể được lập lịch chạy trên bất kỳ worker nào.",
+    "scope": "Bigdata - quiz.pdf — Trang 6"
+  },
+  {
+    "id": 25,
+    "type": "multiple",
+    "text": "Ưu điểm của hệ thống tệp tin phân tán là gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống.",
+      "Tập trung hoá việc quản trị.",
+      "Đơn giản hoá việc chia sẻ dữ liệu."
+    ],
+    "correctAnswers": [
+      "Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống.",
+      "Đơn giản hoá việc chia sẻ dữ liệu."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Ưu điểm của hệ thống tệp tin phân tán là gì?...'. Đáp án chính xác được xác định là: Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống. 17/10/2023, 16:20 Big Data https://huyenvtk.notion.site/Big-Data-5d7866cbf54c4127bb7f6ee75d8316f8 7/10, Đơn giản hoá việc chia sẻ dữ liệu..",
+    "scope": "Bigdata - quiz.pdf — Trang 7"
+  },
+  {
+    "id": 26,
+    "type": "single",
+    "text": "HDFS giải quyết bài toán một điểm hỏng hóc duy nhất (single-point-of-failure) cho Namenode bằng cách nào?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode.",
+      "Sử dụng thêm secondary namenode theo cơ chế active-active. Cả Namenode và Secondary namenode cùng online trong hệ thống"
+    ],
+    "correctAnswers": [
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'HDFS giải quyết bài toán một điểm hỏng hóc duy nhấ...'. Đáp án chính xác được xác định là: Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode..",
+    "scope": "Bigdata - quiz.pdf — Trang 7"
+  },
+  {
+    "id": 27,
+    "type": "single",
+    "text": "Chọn phát biểu đúng khi nói về MongoDB",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Các văn bản có thể chứa nhiều cặp key-value hoặc key-array, hoặc các văn bản lồng (nested documents).",
+      "MongoDB hay các NoSQL có khả năng khả mở tốt hơn các CSDL quan hệ truyền thống.",
+      "MongoDB có các trình điều khiển driver cho nhiều ngôn ngữ lập trình khác nhau.",
+      "Tất cả các phương án đã đưa ra."
+    ],
+    "correctAnswers": [
+      "Tất cả các phương án đã đưa ra."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Chọn phát biểu đúng khi nói về MongoDB...'. Đáp án chính xác được xác định là: Tất cả các phương án đã đưa ra..",
+    "scope": "Bigdata - quiz.pdf — Trang 7"
+  },
+  {
+    "id": 28,
+    "type": "single",
+    "text": "Cơ chế chịu lỗi của datanode trong HDFS?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.",
+      "Sử dụng Zookeeper để quản lý các thành viên datanode trong cụm.",
+      "Sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của các datanode."
+    ],
+    "correctAnswers": [
+      "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Cơ chế chịu lỗi của datanode trong HDFS?...'. Đáp án chính xác được xác định là: Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode..",
+    "scope": "Bigdata - quiz.pdf — Trang 7"
+  },
+  {
+    "id": 29,
+    "type": "single",
+    "text": "Phát biểu nào sai về Hbase",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hbase có hệ thuộc vào các dịch vụ cung cấp bởi HDFS",
+      "Hbase có lệ thuộc vào các dịch vụ cung cấp bởi Zookeeper",
+      "Hbase không hỗ trợ versioning",
+      "Hbase hỗ trợ truy vấn dạng SQL"
+    ],
+    "correctAnswers": [
+      "Hbase không hỗ trợ versioning"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sai về Hbase...'. Đáp án chính xác được xác định là: Hbase không hỗ trợ versioning 17/10/2023, 16:20 Big Data https://huyenvtk.notion.site/Big-Data-5d7866cbf54c4127bb7f6ee75d8316f8 8/10.",
+    "scope": "Bigdata - quiz.pdf — Trang 8"
+  },
+  {
+    "id": 30,
+    "type": "single",
+    "text": "Hệ thống nào cho phép đọc ghi dữ liệu tại vị trí ngẫu nhiên, thời gian thực tới hàng terabyte dữ liệu",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Flume",
+      "Pig",
+      "HDFS",
+      "Hbase"
+    ],
+    "correctAnswers": [
+      "Hbase"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Hệ thống nào cho phép đọc ghi dữ liệu tại vị trí n...'. Đáp án chính xác được xác định là: Hbase.",
+    "scope": "Bigdata - quiz.pdf — Trang 8"
+  },
+  {
+    "id": 31,
+    "type": "multiple",
+    "text": "Đâu là đặc điểm của RDD (Resilient distributed dataset) của Spark?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Người lập trình có thể quyết định số các phân mảnh của mỗi RDD",
+      "Người sử dụng không thể quyết định số các phân mảnh của mỗi RDD",
+      "Được chia thành các phân mảnh (partition)",
+      "Có khả năng chịu lỗi"
+    ],
+    "correctAnswers": [
+      "Người lập trình có thể quyết định số các phân mảnh của mỗi RDD",
+      "Được chia thành các phân mảnh (partition)",
+      "Có khả năng chịu lỗi"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là đặc điểm của RDD (Resilient distributed dat...'. Đáp án chính xác được xác định là: Người lập trình có thể quyết định số các phân mảnh của mỗi RDD, Được chia thành các phân mảnh (partition), Có khả năng chịu lỗi.",
+    "scope": "Bigdata - quiz.pdf — Trang 8"
+  },
+  {
+    "id": 32,
+    "type": "single",
+    "text": "Đâu là cơ chế chịu lỗi của Apache Spark?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Chịu lỗi qua cơ chế huyết thống",
+      "Chịu lỗi qua cơ chế nhân bản",
+      "Chịu lỗi qua cơ chế lưu lại lịch sử nhiều phiên bản"
+    ],
+    "correctAnswers": [
+      "Chịu lỗi qua cơ chế lưu lại lịch sử nhiều phiên bản"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là cơ chế chịu lỗi của Apache Spark?...'. Đáp án chính xác được xác định là: Chịu lỗi qua cơ chế lưu lại lịch sử nhiều phiên bản.",
+    "scope": "Bigdata - quiz.pdf — Trang 8"
+  },
+  {
+    "id": 33,
+    "type": "multiple",
+    "text": "Ưu điểm của kiến trúc SAN (Storage area network)?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hiệu năng, băng thông tốt hơn với NAS.",
+      "Quản trị dễ dàng hơn so với NAS.",
+      "Máy khách có thể kết nối tới SAN bằng đường truyền Ethernet thông thường (Chuẩn kết nối TCP/IP)."
+    ],
+    "correctAnswers": [
+      "Hiệu năng, băng thông tốt hơn với NAS.",
+      "Quản trị dễ dàng hơn so với NAS."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Ưu điểm của kiến trúc SAN (Storage area network)?...'. Đáp án chính xác được xác định là: Hiệu năng, băng thông tốt hơn với NAS., Quản trị dễ dàng hơn so với NAS..",
+    "scope": "Bigdata - quiz.pdf — Trang 9"
+  },
+  {
+    "id": 34,
+    "type": "single",
+    "text": "Đâu là kỹ thuật có thể được dùng để thích nghi các giải thuật học máy cho dữ liệu lớn?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "(2) Song song hoá trên Mapreduce hay Spark",
+      "(3) Các kiến trúc mới xử lý luồng liên tục như mini-batch, complex event processing",
+      "Tất cả các ý (1), (2), (3)",
+      "(1) Sub-sampling, principal component analysis, feature extraction và feature selection",
+      "Các ý (2) và (3)"
+    ],
+    "correctAnswers": [
+      "Tất cả các ý (1), (2), (3)"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là kỹ thuật có thể được dùng để thích nghi các...'. Đáp án chính xác được xác định là: Tất cả các ý (1), (2), (3).",
+    "scope": "Bigdata - quiz.pdf — Trang 9"
+  },
+  {
+    "id": 35,
+    "type": "single",
+    "text": "Phát biểu nào sau đây sai về Kafka?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Kafka bảo đảm thứ tự của các message với mỗi topics.",
+      "Message sau khi được tiêu thụ (consume) thì không bị xoá.",
+      "Partition được nhân bản ra nhiều brokers.",
+      "Các topic gồm nhiều partition"
+    ],
+    "correctAnswers": [
+      "Kafka bảo đảm thứ tự của các message với mỗi topics."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sau đây sai về Kafka?...'. Đáp án chính xác được xác định là: Kafka bảo đảm thứ tự của các message với mỗi topics..",
+    "scope": "Bigdata - quiz.pdf — Trang 9"
+  },
+  {
+    "id": 36,
+    "type": "single",
+    "text": "Phát biểu nào sau đây sai về Kafka?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Tất cả các thao tác ghi, đọc được xử lý bởi leader, follower làm theo leader.",
+      "Mỗi partition có 1 leader và nhiều followers.",
+      "Nếu leader bị lỗi, 1 follower sẽ thay thế trở thành leader mới"
+    ],
+    "correctAnswers": [
+      "Mỗi partition có 1 leader và nhiều followers."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Phát biểu nào sau đây sai về Kafka?...'. Đáp án chính xác được xác định là: Mỗi partition có 1 leader và nhiều followers..",
+    "scope": "Bigdata - quiz.pdf — Trang 9"
+  },
+  {
+    "id": 37,
+    "type": "single",
+    "text": "Thế nào là UNIX semantic?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp.",
+      "Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi.",
+      "Tệp tin là chỉ đọc, không cho phép cập nhật và ghi đè. Mọi tiến trình đều có thể đọc tệp tin đồng thời."
+    ],
+    "correctAnswers": [
+      "Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp."
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Thế nào là UNIX semantic?...'. Đáp án chính xác được xác định là: Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp..",
+    "scope": "Bigdata - quiz.pdf — Trang 10"
+  },
+  {
+    "id": 38,
+    "type": "single",
+    "text": "Vai trò của YARN?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Cung cấp các chức năng phối hợp phân tán độ tin cậy cao như quản lý thành viên, bầu cử, giám sát trạng thái hệ thống",
+      "Quản lý và phân phối tài nguyên trong cụm Hadoop",
+      "Cung cấp giao diện người dùng mức cao, biến đổi truy vấn thành các job Mapreduce"
+    ],
+    "correctAnswers": [
+      "Quản lý và phân phối tài nguyên trong cụm Hadoop"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Vai trò của YARN?...'. Đáp án chính xác được xác định là: Quản lý và phân phối tài nguyên trong cụm Hadoop 17/10/2023, 16:20 Big Data https://huyenvtk.notion.site/Big-Data-5d7866cbf54c4127bb7f6ee75d8316f8 10/10.",
+    "scope": "Bigdata - quiz.pdf — Trang 10"
+  },
+  {
+    "id": 39,
+    "type": "single",
+    "text": "Đâu là đặc điểm của Spark streaming?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Không thể thực hiện các truy vấn SQL",
+      "Có thể nhận đầu vào là các luồng dữ liệu từ Kafka",
+      "Có thể nhận đầu vào là các tệp tin trên HDFS"
+    ],
+    "correctAnswers": [
+      "Có thể nhận đầu vào là các luồng dữ liệu từ Kafka"
+    ],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Đâu là đặc điểm của Spark streaming?...'. Đáp án chính xác được xác định là: Có thể nhận đầu vào là các luồng dữ liệu từ Kafka.",
+    "scope": "Bigdata - quiz.pdf — Trang 10"
+  },
+  {
+    "id": 40,
+    "type": "single",
+    "text": "Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Phân mảnh và phân tán dữ liệu ra nhiều máy chủ",
+      "Giao diện truy vấn đơn giản hơn so với CSQL quan hệ truyền thốn"
+    ],
+    "correctAnswers": ["Phân mảnh và phân tán dữ liệu ra nhiều máy chủ"],
+    "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi...'. Xem xét các khái niệm kiến trúc chuẩn của hệ sinh thái Hadoop/Spark/NoSQL.",
+    "scope": "Bigdata - quiz.pdf — Trang 10"
+  },
+  {
+    "id": 41,
+    "type": "single",
+    "text": "Bản chất DStream:",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "là một chuỗi liên tục RDD",
+      "Là một chuỗi liên tục DataFrame",
+      "Là một chuỗi liên tục DataSet",
+      "ko có đáp án đúng"
+    ],
+    "correctAnswers": [
+      "là một chuỗi liên tục RDD"
+    ],
+    "explanation": "DStream (Discretized Stream) trong Spark Streaming là sự trừu tượng hóa cơ bản đại diện cho một chuỗi liên tục các RDD (Resilient Distributed Datasets) theo thời gian.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 1"
+  },
+  {
+    "id": 42,
+    "type": "single",
+    "text": "Trong hệ sinh thái của Spark không có công cụ hay thành phần nào sau đây:",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "MLib",
+      "GraphX",
+      "Sqoop",
+      "Cluster Managers"
+    ],
+    "correctAnswers": [
+      "Sqoop"
+    ],
+    "explanation": "Apache Sqoop là công cụ truyền dữ liệu giữa Hadoop và CSDL quan hệ, không phải là thư viện tính toán thuộc hệ sinh thái lõi của Spark (Spark gồm Spark Core, Spark SQL, Spark Streaming, MLlib, GraphX).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 1"
+  },
+  {
+    "id": 43,
+    "type": "single",
+    "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Thiết kế phân tán ngay từ đầu, mặc định triển khai trên cụm máy chủ",
+      "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu",
+      "Các node tham gia vào cụm đóng cả 2 vai trò tính toán và lưu trữ",
+      "Các node thêm vào cụm có thể có cấu hình, độ tin cậy cao"
+    ],
+    "correctAnswers": [
+      "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu"
+    ],
+    "explanation": "Hadoop được thiết kế để mở rộng theo chiều ngang (Scale-out) trên phần cứng thương mại phổ thông (commodity hardware) có độ tin cậy thấp, không đòi hỏi phần cứng cao cấp đắt tiền.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 1"
+  },
+  {
+    "id": 44,
+    "type": "single",
+    "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì? Chọn đáp án SAI",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Kỹ thuật dư thừa",
+      "Các tệp tin được phân mảnh, các mảnh được nhân bản ra các node khác trên cụm",
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID",
+      "Các công việc cần tính toán được phân mảnh thành các tác vụ độc lập"
+    ],
+    "correctAnswers": [
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID"
+    ],
+    "explanation": "Hadoop HDFS giải quyết bài toán chịu lỗi thông qua nhân bản dữ liệu (replication) phân tán trên nhiều node khác nhau, không dựa vào phần cứng hay cơ chế RAID cục bộ.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 1"
+  },
+  {
+    "id": 45,
+    "type": "single",
+    "text": "Các đặc trưng của HDFS. Chọn đáp án SAI",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Tối ưu cho các tệp tin có kích thước lớn",
+      "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin",
+      "Hỗ trợ nén dữ liệu để tiết kiệm chi phí",
+      "Hỗ trợ cơ chế  phân quyền và kiểm soát người dùng của UNIX"
+    ],
+    "correctAnswers": [
+      "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin"
+    ],
+    "explanation": "HDFS tuân thủ mô hình Write-once-read-many (WORM), không hỗ trợ ghi ngẫu nhiên hoặc đọc ghi tương tranh tự do tại các vị trí bất kỳ trong file chunk.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 2"
+  },
+  {
+    "id": 46,
+    "type": "single",
+    "text": "Spark Streaming trừu tượng hóa cũng như thao tác với các dòng dữ liệu (data stream) dựa trên khái niệm nào:",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "shared variable",
+      "RDD",
+      "DStream",
+      "DataFrame"
+    ],
+    "correctAnswers": [
+      "DStream"
+    ],
+    "explanation": "Spark Streaming trừu tượng hóa dòng dữ liệu thời gian thực thành Discretized Stream (DStream).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 2"
+  },
+  {
+    "id": 47,
+    "type": "single",
+    "text": "Spark hỗ trợ các cluster manager nào",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Standalone Cluster manager",
+      "MESOS",
+      "YARN",
+      "Tất cả đáp án trên"
+    ],
+    "correctAnswers": [
+      "Tất cả đáp án trên"
+    ],
+    "explanation": "Spark hỗ trợ nhiều cluster manager bao gồm: Standalone, Apache Mesos, Hadoop YARN, và Kubernetes.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 2"
+  },
+  {
+    "id": 48,
+    "type": "single",
+    "text": "Đáp án nào không phải là một “output operation ” khi thao tác với DStream",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "saveAsTextFile",
+      "foreachRDD",
+      "saveasHadoopFile",
+      "reduceByKetAndWindow"
+    ],
+    "correctAnswers": [
+      "reduceByKetAndWindow"
+    ],
+    "explanation": "reduceByKeyAndWindow là một phép biến đổi (Transformation) dạng cửa sổ trượt, không phải là Output Operation (như print, saveAsTextFile, foreachRDD).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 2"
+  },
+  {
+    "id": 49,
+    "type": "multiple",
+    "text": "Đáp án nào không phải là một “Transformation” khi thao tác với DStream",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "reduceByWindow",
+      "window",
+      "foreachWindow",
+      "countByWindow"
+    ],
+    "correctAnswers": [
+      "foreachWindow"
+    ],
+    "explanation": "foreachWindow (hoặc foreachRDD) là output operation thực thi hành động trên mỗi RDD của window, không phải là transformation.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 3"
+  },
+  {
+    "id": 50,
+    "type": "multiple",
+    "text": "Mục đích của sử dụng sparkML là gì",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "chạy MapReduce",
+      "chạy các thuật toán dự đoán",
+      "tính toán phân toán"
+    ],
+    "correctAnswers": [
+      "chạy các thuật toán dự đoán",
+      "tính toán phân toán"
+    ],
+    "explanation": "Spark MLlib cung cấp các thuật toán học máy phân tán (dự đoán, phân cụm, hồi quy) và công cụ tính toán quy mô lớn.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 3"
+  },
+  {
+    "id": 51,
+    "type": "single",
+    "text": "Mục đích của lệnh sau đây là gì:",
+    "code": "(trainingData, testData) = dataset.randomSplit([0.8, 0.2], seed=100)",
+    "table": "",
+    "link": "",
+    "options": [
+      "chia dữ liệu học và dữ liệu kiểm tra",
+      "chạy chương trình học",
+      "tạo dữ liệu ngẫu nhiên cho dữ liệu học và dữ liệu kiểm tra",
+      "chạy chương trình dự đoán"
+    ],
+    "correctAnswers": [
+      "chia dữ liệu học và dữ liệu kiểm tra"
+    ],
+    "explanation": "Hàm randomSplit([0.8, 0.2]) dùng để phân chia tập dữ liệu ngẫu nhiên thành tập huấn luyện (80%) và tập kiểm tra (20%).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 3"
+  },
+  {
+    "id": 52,
+    "type": "single",
+    "text": "label và feature của câu lệnh bên dưới có nghĩa là gì?",
+    "code": "LogisticRegression(labelCol = “label” , featuresCol = “features”, maxIter = 10)",
+    "table": "",
+    "link": "",
+    "options": [
+      "dữ liệu đầu vào được gán là feature và dự đoán được gán vào label",
+      "dữ liệu đầu vào được gán là label và kết quả của dữ liệu đầu vào đó được gán vào feature",
+      "dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào được gán vào label",
+      "dữ liệu đầu vào được gán là lebl và kết quả dự đoán được gán vào feature"
+    ],
+    "correctAnswers": [
+      "dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào được gán vào label"
+    ],
+    "explanation": "Trong Spark ML, featuresCol chứa vector các đặc trưng đầu vào và labelCol chứa nhãn mục tiêu cần dự đoán.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 3"
+  },
+  {
+    "id": 53,
+    "type": "single",
+    "text": "Đâu là lệnh lưu trữ dữ liệu ra ngoài chương trình Spark:",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "input.saveAsTextFile(‘file:///usr/momoinu/mon_loz/hihi.txt’)",
+      "input.saveAsTextFile(‘/usr/momoinu/mon_loz/hihi.txt’)",
+      "input.saveAs (‘file:///usr/momoinu/mon_loz/hihi.txt’)",
+      "input.saveAsTextFile: ‘file:///usr/momoinu/mon_loz/hihi.txt’"
+    ],
+    "correctAnswers": [
+      "input.saveAsTextFile(‘file:///usr/momoinu/mon_loz/hihi.txt’)"
+    ],
+    "explanation": "Cú pháp saveAsTextFile nhận URI đường dẫn tệp tin để xuất dữ liệu RDD ra ngoài hệ thống.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
+  },
+  {
+    "id": 54,
+    "type": "multiple",
+    "text": "Đâu là cách submit đúng 1 job lên Spark cluster hoặc chế độ local",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "./spark-submit wordcount.py README.md",
+      "./spark-submit README.md wordcount.py",
+      "spark-submit README.md wordcount.py"
+    ],
+    "correctAnswers": [
+      "./spark-submit wordcount.py README.md"
+    ],
+    "explanation": "Cú pháp spark-submit nhận file script thực thi và tham số đầu vào: ./spark-submit <app-jar/python-file> [app arguments].",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
+  },
+  {
+    "id": 55,
+    "type": "single",
+    "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
+    "code": "input.flatMap(lambda x: x.split(“\\t”) ).map(lambda x: (x, 1)).reduceByKey(add)",
+    "table": "",
+    "link": "",
+    "options": [
+      "Tab",
+      "Dấu cách",
+      "Dấu hai chấm",
+      "Dấu phẩy"
+    ],
+    "correctAnswers": [
+      "Tab"
+    ],
+    "explanation": "Lệnh lambda line: line.split(' ') phân tách dòng văn bản thành danh sách từ dựa trên ký tự khoảng trắng.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
+  },
+  {
+    "id": 56,
+    "type": "single",
+    "text": "Cơ chế chịu lỗi của datanode trong HDFS",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "sử dụng ZooKeeper để quản lý các thành viên datanode trong cụm",
+      "sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode",
+      "sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của datanode"
+    ],
+    "correctAnswers": [
+      "sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode"
+    ],
+    "explanation": "DataNode định kỳ gửi tín hiệu Heartbeat và Blockreport về cho NameNode để báo hiệu rằng nó vẫn sống và các khối dữ liệu vẫn toàn vẹn.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 4"
+  },
+  {
+    "id": 57,
+    "type": "single",
+    "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode",
+      "các chunk là các vùng dữ liệu liên tục trên ổ cứng của máy chủ data node",
+      "các chunk được lưu trữ tin cậy trên datanode theo cơ chế RAID"
+    ],
+    "correctAnswers": [
+      "các chunk là các vùng dữ liệu liên tục trên ổ cứng của máy chủ data node"
+    ],
+    "explanation": "Trong HDFS DataNode, mỗi block/chunk thực chất được lưu dưới dạng một file độc lập trong hệ thống tệp cục bộ (ext4, NTFS,...) của hệ điều hành.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 5"
+  },
+  {
+    "id": 58,
+    "type": "single",
+    "text": "Cơ chế nhân bản dữ liệu trong HDFS",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên các datanode",
+      "Datanode là primary quyết định vị trí các nhân bản của cac chunk tại các secondary datanode",
+      "Client quyết định vị trí lưu trữ các nhân bản với từng chunk"
+    ],
+    "correctAnswers": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên các datanode"
+    ],
+    "explanation": "NameNode là thành phần quản lý siêu dữ liệu (metadata) và đưa ra quyết định đặt các bản sao (replica placement) trên DataNode theo chiến lược rack-awareness.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 5"
+  },
+  {
+    "id": 59,
+    "type": "single",
+    "text": "HDFS giải quyết  bài toán single-point-of-failure cho Namenode bằng cách nào",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "sử dụng thêm secondary namenode theo cơ chế active-active. Cả Namenode và Secondary Namenode cùng online trong hệ thống",
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với namenode"
+    ],
+    "correctAnswers": [
+      "sử dụng thêm secondary namenode theo cơ chế active-active. Cả Namenode và Secondary Namenode cùng online trong hệ thống"
+    ],
+    "explanation": "Hadoop 2.x trở đi giải quyết SPOF của NameNode bằng cách triển khai cặp NameNode Active - Standby đồng bộ qua Quorum Journal Manager (QJM) và ZooKeeper Failover Controller (ZKFC).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 5"
+  },
+  {
+    "id": 60,
+    "type": "single",
+    "text": "Các mục tiêu chính của Apache Hadoop",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "lưu trữ dữ liệu khả mở",
+      "xử lý dữ liệu lớn mạnh mẽ",
+      "trực quan hóa dữ liệu hiệu quả",
+      "lưu trữ dữ liệu khả mở và xử lý dữ liệu lớn mạnh mẽ",
+      "Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hóa dữ liệu hiệu quả"
+    ],
+    "correctAnswers": [
+      "lưu trữ dữ liệu khả mở và xử lý dữ liệu lớn mạnh mẽ"
+    ],
+    "explanation": "Mục tiêu cốt lõi của Hadoop là cung cấp hệ thống lưu trữ phân tán khả mở (HDFS) và khung tính toán xử lý dữ liệu lớn phân tán (MapReduce/YARN).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 5"
+  },
+  {
+    "id": 61,
+    "type": "single",
+    "text": "Phát biểu nào không đúng về Apache Hadoop",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "xử lý dữ liệu phân tán với mô hình lập trình đơn giản, thân thiện hơn như MapReduce",
+      "Hadoop thiết kế để mở rộng thông qua kỹ thuật scale-outm tăng số lượng máy chủ",
+      "thiết kế để vận hành trên phần cứng phổ thống, có khả năng chống chịu lỗi phần cứng",
+      "thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
+    ],
+    "correctAnswers": [
+      "thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
+    ],
+    "explanation": "Hadoop được thiết kế để vận hành trên cụm các máy chủ phổ thông (commodity machines) có độ tin cậy thấp, chấp nhận lỗi phần cứng là điều bình thường.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
+  },
+  {
+    "id": 62,
+    "type": "single",
+    "text": "Thành phần nào không thuộc thành phần lõi của Hadoop",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hệ thống tập tin phân tán HDFS",
+      "MapReduce Framework",
+      "YARN: yet another resource negotiator",
+      "Apache ZooKeeper",
+      "Apache Hbase."
+    ],
+    "correctAnswers": [
+      "Apache Hbase."
+    ],
+    "explanation": "Các thành phần lõi của Apache Hadoop gồm HDFS, YARN, MapReduce và Hadoop Common. ZooKeeper là dự án độc lập cấp cao của Apache.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
+  },
+  {
+    "id": 63,
+    "type": "single",
+    "text": "Spark có thể chạy ở chế độ nào khi chạy trên nhiều máy",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "chạy trên YARN",
+      "chạy trên ZooKeeper",
+      "Cả 2 đáp án đều sai"
+    ],
+    "correctAnswers": [
+      "chạy trên YARN"
+    ],
+    "explanation": "Khi chạy trên cụm nhiều máy, Spark chạy ở chế độ Cluster mode với Master/Worker hoặc thông qua YARN/Mesos/K8s.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
+  },
+  {
+    "id": 64,
+    "type": "single",
+    "text": "phát biểu nào sau đây sai về kafka",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "partition được nhân bản ra nhiều brokers",
+      "message sau khi được tiêu thụ (consume) thì không bị xóa.",
+      "các topic gồm nhiều partitions",
+      "Kafka đảm bảo thứ tự của các message với mỗi topics"
+    ],
+    "correctAnswers": [
+      "message sau khi được tiêu thụ (consume) thì không bị xóa."
+    ],
+    "explanation": "Kafka lưu trữ toàn bộ message bền vững (persisted) trên ổ đĩa theo cấu trúc commit log và cho phép cấu hình thời gian lưu giữ (retention period).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 6"
+  },
+  {
+    "id": 65,
+    "type": "single",
+    "text": "Mô tả cách thức một client đọc dữ liệu trên HDFS",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "client thông báo tới namenode để bắt đầu quá trình đọc sau đó client chạy truy vấn các datanode để trực tiếp đọc các chunks",
+      "client truy vấn Namenode để biết được vị trí các chunks. Nếu namenode không biết thì namenode sẽ hỏi các datanode., Sau đó namenode gửi lại thông tin vị trí các chunk cho client. client kết nối song song tới các Datanode để đọc các chunk",
+      "client truy vấn namenode để đưa thông tin về thao tác đọc, Namenode kết nối song song tới các datanode để lấy dữ liệu, sau đó trả về cho client",
+      "client truy vấn namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunks"
+    ],
+    "correctAnswers": [
+      "client truy vấn namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunks"
+    ],
+    "explanation": "Client hỏi NameNode danh sách các DataNode chứa bản sao của block cần đọc, sau đó trực tiếp thiết lập kết nối đọc dữ liệu từ DataNode tối ưu nhất.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
+  },
+  {
+    "id": 66,
+    "type": "single",
+    "text": "Đâu không phải là tính năng mà NoSQL nào cũng đáp ứng",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "tính sẵn sàng cao",
+      "khả năng mở rộng linh hoạt",
+      "phù hợp với dữ liệu lớn"
+    ],
+    "correctAnswers": [
+      "phù hợp với dữ liệu lớn"
+    ],
+    "explanation": "Hầu hết các hệ quản trị NoSQL hy sinh tính chất ACID nghiêm ngặt (đặc biệt là tính nhất quán tức thời Consistency) để đổi lấy tính sẵn sàng cao và khả năng mở rộng (BASE properties).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
+  },
+  {
+    "id": 67,
+    "type": "single",
+    "text": "Hệ thống nào cho phép đọc ghi dữ liệu tại vị trí ngẫu nhiên, thời gian thực tới hàng terabyte dữ liệu",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Hbase",
+      "Flume",
+      "Pig",
+      "HDFS"
+    ],
+    "correctAnswers": [
+      "HDFS"
+    ],
+    "explanation": "HBase là CSDL NoSQL hướng cột xây dựng trên nền tảng HDFS, cung cấp khả năng đọc/ghi ngẫu nhiên thời gian thực (real-time read/write) trên tập dữ liệu hàng tỷ bản ghi.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
+  },
+  {
+    "id": 68,
+    "type": "single",
+    "text": "Phát biểu nào đúng về Quorum trong Amazon DynamoDB",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "với N là tổng số nhân bản, R là số nhân bản cần đọc trong 1 thao tác đọc. W là số nhân bản cần ghi trong 1 thao tác ghi. N > R + W",
+      "với N là tổng số nhân bản, R là số nhân bản cần đọc trong 1 thao tác đọc. W là số nhân bản cần ghi trong 1 thao tác ghi. N < R + W",
+      "với N là tổng số nhân bản, R là số nhân bản cần đọc trong 1 thao tác đọc. W là số nhân bản cần ghi trong 1 thao tác ghi. N = R + W"
+    ],
+    "correctAnswers": [
+      "với N là tổng số nhân bản, R là số nhân bản cần đọc trong 1 thao tác đọc. W là số nhân bản cần ghi trong 1 thao tác ghi. N < R + W"
+    ],
+    "explanation": "Theo cơ chế Quorum trong DynamoDB, khi tổng số node đọc ($R$) và số node ghi ($W$) lớn hơn số bản sao ($N$) ($R + W > N$), hệ thống đảm bảo đọc được dữ liệu mới nhất (Strong Consistency).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 7"
+  },
+  {
+    "id": 69,
+    "type": "single",
+    "text": "Phát biểu nào sau đây sai về Kafka",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "nhiều consumer có thể cùng đọc 1 topic",
+      "1 message có thể được đọc bởi nhiểu consumer khác nhau",
+      "số lượng consumer phải ít hơn hoặc bằng số lượng partitions",
+      "1 message chỉ có thể được đọc bởi 1 consumer trong 1 consumer group"
+    ],
+    "correctAnswers": [
+      "1 message chỉ có thể được đọc bởi 1 consumer trong 1 consumer group"
+    ],
+    "explanation": "Trong Kafka, Consumer hoạt động theo mô hình Pull (chủ động kéo dữ liệu từ broker theo tốc độ xử lý của mình), không phải Push.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 8"
+  },
+  {
+    "id": 70,
+    "type": "single",
+    "text": "Đâu là một dạng của NoSQL",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "MySQL",
+      "JSON",
+      "Key-value store",
+      "OLAP."
+    ],
+    "correctAnswers": [
+      "Key-value store"
+    ],
+    "explanation": "MongoDB là hệ quản trị CSDL NoSQL hướng tài liệu (Document-oriented database) phổ biến hàng đầu.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 8"
+  },
+  {
+    "id": 71,
+    "type": "single",
+    "text": "phát biểu nào sai về Presto",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "presto là một engine truy vấn SQL hiệu năng cao, phân tán cho dữ liệu lớn.",
+      "presto thích hợp với các công cụ Business Intelligence",
+      "presto được quản lý bởi presto software foundation",
+      "presto được quản lý bởi apache software foundation"
+    ],
+    "correctAnswers": [
+      "presto được quản lý bởi apache software foundation"
+    ],
+    "explanation": "Presto hỗ trợ nhiều Connectors cho phép truy vấn liên kết đa nguồn dữ liệu bao gồm cả MySQL, PostgreSQL, SQL Server, Cassandra, Hive/HDFS.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 8"
+  },
+  {
+    "id": 72,
+    "type": "single",
+    "text": "Phát biểu nào đúng về Presto",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "các stage được thực thi theo cơ chế pipeline, không có thời gian chờ giữa các stage như Map Reduce",
+      "Presto cho phép xử lý kết tập dữ liệu mà kích thước lớn hơn kích thước bộ nhớ trong",
+      "Presto có cơ chế chịu lỗi khi thực thi truy vấn"
+    ],
+    "correctAnswers": [
+      "các stage được thực thi theo cơ chế pipeline, không có thời gian chờ giữa các stage như Map Reduce"
+    ],
+    "explanation": "Presto được thiết kế cho các truy vấn phân tích tương tác (Interactive Analytical Queries) xử lý trong bộ nhớ (in-memory) với độ trễ thấp.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 8"
+  },
+  {
+    "id": 73,
+    "type": "single",
+    "text": "Chọn phát biểu đúng khi nói về MongoDB",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "MongoDB có các trình điều khiển driver cho nhiều ngôn ngữ lập trình khác nhau.",
+      "các văn bản có thể chứa nhiều cặp key-value hoặc key-array, hoặc các văn bản lồng (nested documents)",
+      "tất cả các phương án trên",
+      "MongoDB hay các NoSQL có khả năng khả mở tốt hơn các CSDL quan hệ truyền thống."
+    ],
+    "correctAnswers": [
+      "tất cả các phương án trên"
+    ],
+    "explanation": "MongoDB lưu trữ dữ liệu dưới dạng các tài liệu BSON (Binary JSON) linh hoạt schema.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 9"
+  },
+  {
+    "id": 74,
+    "type": "single",
+    "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gắn với ANSI SQL hơn",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Pig",
+      "không phải 2 đáp án trên",
+      "Hive"
+    ],
+    "correctAnswers": [
+      "Hive"
+    ],
+    "explanation": "Apache Hive cung cấp ngôn ngữ truy vấn HiveQL tương tự chuẩn ANSI SQL, trong khi Pig sử dụng ngôn ngữ luồng dữ liệu Pig Latin.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 9"
+  },
+  {
+    "id": 75,
+    "type": "single",
+    "text": "Công ty nào đã phát triển  Apache Cassandra giai đoạn đầu tiên",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Google",
+      "twitter",
+      "linkedin",
+      "facebook"
+    ],
+    "correctAnswers": [
+      "facebook"
+    ],
+    "explanation": "Apache Cassandra ban đầu được phát triển tại Facebook để phục vụ tính năng tìm kiếm hộp thư đến (Inbox Search) và sau đó được mã nguồn mở cho Apache Foundation.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 9"
+  },
+  {
+    "id": 76,
+    "type": "essay",
+    "text": "Phát biểu về định lý CAP?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "Định lý CAP chỉ ra rằng một hệ thống cơ sở dữ liệu phân tán không thể đồng thời đáp ứng nhiều hơn 2 trong 3 đặc tính sau:\n1. Consistency (Nhất quán): Trạng thái mọi dữ liệu trên các node đều đồng nhất với nhau.\n2. Availability (Sẵn sàng): Mỗi client đều nhận được phản hồi, bất kể có node nào đó trong hệ thống bị lỗi.\n3. Partition tolerance (Dung sai phân vùng): Hệ thống vẫn tiếp tục hoạt động (đọc/ghi) ngay cả khi một số node hoặc kết nối mạng trong hệ thống có vấn đề."
+    ],
+    "explanation": "Định lý CAP của Eric Brewer khẳng định trong môi trường mạng phân tán có khả năng xảy ra phân mảnh mạng (Partition Tolerance), hệ thống chỉ có thể chọn đánh đổi giữa Consistency (nhất quán) hoặc Availability (tính sẵn sàng).",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 9"
+  },
+  {
+    "id": 77,
+    "type": "essay",
+    "text": "Giải thích ngắn gọn về các phương pháp tổng quát trong việc thích nghi các giải thuật học máy cho dữ liệu lớn.",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "Các phương pháp tổng quát trong việc thích nghi các giải thuật học máy cho dữ liệu lớn bao gồm:\n1. Học phân tán và tính toán song song (Distributed & Parallel Learning): Chia nhỏ dữ liệu hoặc mô hình để xử lý đồng thời trên cụm nhiều máy tính (cluster) bằng các framework như Apache Spark (MLlib) hoặc Hadoop.\n2. Học trực tuyến / Học tăng dần (Online / Incremental Learning): Cập nhật trọng số của mô hình liên tục từng phần hoặc theo từng lô nhỏ (mini-batch) thay vì phải tải toàn bộ dữ liệu vào bộ nhớ cùng lúc.\n3. Lấy mẫu dữ liệu (Data Sampling): Trích xuất một tập con đại diện có kích thước nhỏ hơn từ tập dữ liệu khổng lồ để huấn luyện mô hình, giúp giảm thiểu chi phí tính toán nhưng vẫn đảm bảo độ chính xác.\n4. Giảm chiều dữ liệu (Dimensionality Reduction): Sử dụng các kỹ thuật (như PCA) để loại bỏ những đặc trưng (features) dư thừa hoặc ít quan trọng, làm giảm không gian lưu trữ và tăng tốc độ huấn luyện."
+    ],
+    "explanation": "Để thích nghi các thuật toán ML cho Big Data, người ta kết hợp kỹ thuật tiền xử lý (PCA, sampling), mô hình phân tán song song dữ liệu (Data Parallelism trên Spark MLlib) và kiến trúc xử lý luồng sự kiện.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 10"
+  },
+  {
+    "id": 78,
+    "type": "single",
+    "text": "Cho đoạn chương trình bên dưới. Output của chương trình là gì?",
+    "code": "rdd = sc.parallelize([“hello”,  “world”, “good”, “hello”], 2)\nrdd = rdd.map(lambda w : (w, 1))\nprint(rdd.glom().collect())",
+    "table": "",
+    "link": "",
+    "options": [
+      "[[('hello', 1), ('world', 1)], [('good', 1), ('hello', 1)]]",
+      "[('hello', 1), ('world', 1), ('good', 1), ('hello', 1)]",
+      "[('hello', 2), ('world', 1), ('good', 1)]",
+      "[[('hello', 1), ('hello', 1)], [('world', 1), ('good', 1)]]"
+    ],
+    "correctAnswers": [
+      "[[('hello', 1), ('world', 1)], [('good', 1), ('hello', 1)]]"
+    ],
+    "explanation": "Đoạn mã sử dụng hàm flatMap, map và reduceByKey để thực hiện thuật toán WordCount kinh điển trên Spark.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 10"
+  },
+  {
+    "id": 79,
+    "type": "essay",
+    "text": "Giả sử một textfile kích thước lớn được đặt ở đường dẫn hdfs://user/bigfile.txt. Viết chương trình Spark đếm số lần xuất hiện của chuỗi “big data processing” trong file text này.",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [],
+    "correctAnswers": [
+      "linesRDD = sc.textFile(\"hdfs://user/bigfile.txt\")\nrdd = linesRDD.map(lambda x: x.count(\"big data processing\"))\nrdd.reduce(lambda x, y: x + y)"
+    ],
+    "explanation": "Thao tác filter và count trên RDD đọc từ HDFS được dùng để thống kê số bản ghi hợp lệ.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 10"
+  },
+  {
+    "id": 80,
+    "type": "essay",
+    "text": "Cho đoạn chương trình bên dưới. Output là gì?",
+    "code": "def mystr(d):\n    return d\n\ndef myconcat(a, b):\n    return a + b\n\ndef mypartConcat(a, b):\n    return a + b\n\nrdd = sc.parallelize([ (\"a\", 1), (\"b\", 1), (\"a\", 2), (\"a\", 8), (\"c\", 4), (\"a\", 12), (\"a\", 18), (\"c\", 14) ], 3)\n\nreq = rdd.combineByKey(mystr, myconcat, mypartConcat).collect()\nprint(req)",
+    "table": "",
+    "link": "",
+    "options": [
+      "[('b', 1), ('a', 41), ('c', 18)]",
+      "[('a', 41), ('b', 1), ('c', 18)]",
+      "[('a', 4), ('b', 1), ('c', 2)]",
+      "[('a', 1), ('b', 1), ('c', 4)]"
+    ],
+    "correctAnswers": [
+      "[('b', 1), ('a', 41), ('c', 18)]"
+    ],
+    "explanation": "Đoạn chương trình cấu hình các tham số và gọi hàm fit trên DataFrame để tạo mô hình Logistic Regression.",
+    "scope": "Bigdata - cuối kì 20202.pdf — Trang 10"
+  },
+  {
+    "id": 81,
+    "type": "single",
+    "text": "Thành phần nào của Hadoop phụ trách lưu trữ phân tán?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "HDFS",
+      "MapReduce",
+      "HiveQL",
+      "Oozie"
+    ],
+    "correctAnswers": [
+      "HDFS"
+    ],
+    "explanation": "HDFS (Hadoop Distributed File System) là hệ thống tệp tin phân tán của Hadoop phụ trách lưu trữ dữ liệu phân tán trên các nút trong cụm.",
+    "scope": "Quiz01.pdf — Trang 3"
+  },
+  {
+    "id": 82,
+    "type": "single",
+    "text": "Trong 5V của dữ liệu lớn, Volume đề cập đến điều gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Khối lượng dữ liệu",
+      "Độ tin cậy của dữ liệu",
+      "Tốc độ truyền mạng",
+      "Hình thức biểu đồ"
+    ],
+    "correctAnswers": [
+      "Khối lượng dữ liệu"
+    ],
+    "explanation": "Trong mô hình 5V của Big Data, Volume đề cập đến quy mô, dung lượng hoặc khối lượng khổng lồ của dữ liệu.",
+    "scope": "Quiz01.pdf — Trang 3"
+  },
+  {
+    "id": 83,
+    "type": "single",
+    "text": "HBase là ...",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Kho dữ liệu phân tán định hướng cột xây trên HDFS",
+      "Công cụ gửi email",
+      "Bộ lập lịch luồng công việc",
+      "Công cụ chuyển dữ liệu giữa RDBMS và HDFS"
+    ],
+    "correctAnswers": [
+      "Kho dữ liệu phân tán định hướng cột xây trên HDFS"
+    ],
+    "explanation": "Apache HBase là một hệ quản trị cơ sở dữ liệu NoSQL phân tán định hướng cột (column-oriented) mã nguồn mở được xây dựng hoạt động trên nền tảng HDFS.",
+    "scope": "Quiz01.pdf — Trang 2"
+  },
+  {
+    "id": 84,
+    "type": "single",
+    "text": "Dữ liệu lớn thường là các tập dữ liệu có đặc điểm nào?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Luôn có cấu trúc bảng",
+      "Nhỏ và không thay đổi",
+      "Lớn hoặc phức tạp đến mức công cụ xử lý truyền thống không đủ đáp ứng",
+      "Chỉ có thể lưu trên một USB"
+    ],
+    "correctAnswers": [
+      "Lớn hoặc phức tạp đến mức công cụ xử lý truyền thống không đủ đáp ứng"
+    ],
+    "explanation": "Dữ liệu lớn (Big Data) là các tập dữ liệu có dung lượng và độ phức tạp vượt quá khả năng thu thập, quản lý và xử lý của các công cụ và hệ quản trị cơ sở dữ liệu truyền thống.",
+    "scope": "Quiz01.pdf — Trang 2"
+  },
+  {
+    "id": 85,
+    "type": "single",
+    "text": "Một khối HDFS thường được sao chép trên bao nhiêu nút khác nhau?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "10"
+    ],
+    "correctAnswers": [
+      "3"
+    ],
+    "explanation": "Theo mặc định, hệ số nhân bản (replication factor) của mỗi khối (block) trong HDFS là 3 nhằm đảm bảo tính sẵn sàng và khả năng chịu lỗi cao.",
+    "scope": "Quiz01.pdf — Trang 1"
+  },
+  {
+    "id": 86,
+    "type": "single",
+    "text": "Trong HDFS, NameNode giữ vai trò nào?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Quản lý không gian tên và siêu dữ liệu",
+      "Lưu nội dung mọi khối như DataNode",
+      "Chạy truy vấn HiveQL trên trình duyệt",
+      "Biên dịch"
+    ],
+    "correctAnswers": [
+      "Quản lý không gian tên và siêu dữ liệu"
+    ],
+    "explanation": "NameNode là nút master trong HDFS đảm nhận vai trò quản lý không gian tên tệp tin (namespace) và lưu trữ toàn bộ thông tin siêu dữ liệu (metadata) của hệ thống.",
+    "scope": "Quiz01.pdf — Trang 1"
+  },
+  {
+    "id": 87,
+    "type": "single",
+    "text": "Apache Hadoop cung cấp ...",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Khung lưu trữ và xử lý phân tán dữ liệu lớn trên cụm máy tính",
+      "Trình soạn thảo văn bản",
+      "Hệ quản trị cơ sở dữ liệu quan hệ trên một máy",
+      "Phần mềm chỉ để vẽ biểu đồ"
+    ],
+    "correctAnswers": [
+      "Khung lưu trữ và xử lý phân tán dữ liệu lớn trên cụm máy tính"
+    ],
+    "explanation": "Apache Hadoop là một framework mã nguồn mở cung cấp môi trường lưu trữ phân tán (HDFS) và xử lý phân tán dữ liệu quy mô lớn trên các cụm máy tính.",
+    "scope": "Quiz01.pdf — Trang 7"
+  },
+  {
+    "id": 88,
+    "type": "single",
+    "text": "Kafka giúp tách rời những thành phần nào của luồng dữ liệu?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Producer và consumer",
+      "NameNode và DataNode",
+      "Mapper và bộ nhớ RAM",
+      "Pig và HiveQL"
+    ],
+    "correctAnswers": [
+      "Producer và consumer"
+    ],
+    "explanation": "Apache Kafka đóng vai trò trung gian phân tán (message broker) giúp tách rời hoàn toàn (decouple) các thành phần tạo dữ liệu (producer) và thành phần xử lý dữ liệu (consumer).",
+    "scope": "Quiz01.pdf — Trang 7"
+  },
+  {
+    "id": 89,
+    "type": "single",
+    "text": "MapReduce là ...",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Mô hình lập trình xử lý dữ liệu",
+      "Một ngôn ngữ lập trình bắt buộc",
+      "Một định dạng ảnh",
+      "Một hệ điều hành"
+    ],
+    "correctAnswers": [
+      "Mô hình lập trình xử lý dữ liệu"
+    ],
+    "explanation": "MapReduce là một mô hình lập trình (programming model) và framework xử lý dữ liệu song song phân tán trên các cụm máy tính.",
+    "scope": "Quiz01.pdf — Trang 6"
+  },
+  {
+    "id": 90,
+    "type": "single",
+    "text": "Trong 5V của dữ liệu lớn, Velocity đề cập đến điều gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Giá trị kinh doanh",
+      "Tốc độ phát sinh và xử lý dữ liệu",
+      "Quyền truy cập",
+      "Số loại định dạng"
+    ],
+    "correctAnswers": [
+      "Tốc độ phát sinh và xử lý dữ liệu"
+    ],
+    "explanation": "Trong 5V của Big Data, Velocity đặc trưng cho tốc độ dữ liệu được tạo ra, truyền tải và yêu cầu xử lý liên tục theo thời gian thực hoặc gần thời gian thực.",
+    "scope": "Quiz01.pdf — Trang 6"
+  },
+  {
+    "id": 91,
+    "type": "single",
+    "text": "Trong MapReduce, dữ liệu đầu vào và đầu ra của map/reduce được biểu diễn dưới dạng nào?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Cặp khóa–giá trị",
+      "Chỉ mảng số nguyên",
+      "Chỉ ảnh bitmap",
+      "Chỉ chuỗi không có khóa"
+    ],
+    "correctAnswers": [
+      "Cặp khóa–giá trị"
+    ],
+    "explanation": "Trong mô hình MapReduce, mọi dữ liệu đầu vào và đầu ra qua các giai đoạn Map và Reduce đều được chuẩn hóa dưới dạng các cặp khóa–giá trị (key-value pairs).",
+    "scope": "Quiz01.pdf — Trang 5"
+  },
+  {
+    "id": 92,
+    "type": "single",
+    "text": "Khả năng mở rộng (scalability) trong quản lý dữ liệu nghĩa là gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Quản lý được khối lượng dữ liệu ngày càng tăng",
+      "Ẩn toàn bộ dữ liệu khỏi người dùng",
+      "Chỉ lưu dữ liệu trên một thiết bị",
+      "Không cho phép thêm nút mới"
+    ],
+    "correctAnswers": [
+      "Quản lý được khối lượng dữ liệu ngày càng tăng"
+    ],
+    "explanation": "Khả năng mở rộng (scalability) là năng lực của hệ thống duy trì hiệu quả hoạt động và quản lý trơn tru khối lượng dữ liệu và lưu lượng công việc ngày càng gia tăng.",
+    "scope": "Quiz01.pdf — Trang 5"
+  },
+  {
+    "id": 93,
+    "type": "single",
+    "text": "Pha shuffle & sort có vai trò nào?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Sắp xếp và gom các đầu ra trung gian của Mapper theo khóa để đưa tới Reducer",
+      "Xóa dữ liệu trung gian",
+      "Trộn dữ liệu từ các DataNode",
+      "Sắp xếp kết quả đầu ra"
+    ],
+    "correctAnswers": [
+      "Sắp xếp và gom các đầu ra trung gian của Mapper theo khóa để đưa tới Reducer"
+    ],
+    "explanation": "Pha Shuffle & Sort chịu trách nhiệm chuyển giao dữ liệu trung gian từ các Mapper qua mạng, đồng thời sắp xếp và nhóm các bản ghi có cùng khóa trước khi cung cấp cho Reducer.",
+    "scope": "Quiz01.pdf — Trang 4"
+  },
+  {
+    "id": 94,
+    "type": "single",
+    "text": "Khi một DataNode gặp sự cố, cơ chế nào hỗ trợ khôi phục mức sao chép dữ liệu?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Sao chép từ bản sao còn lại",
+      "Xóa mọi bản sao",
+      "Tắt NameNode vĩnh viễn",
+      "Chuyển toàn bộ dữ liệu sang giấy"
+    ],
+    "correctAnswers": [
+      "Sao chép từ bản sao còn lại"
+    ],
+    "explanation": "Khi một DataNode gặp sự cố, NameNode sẽ nhận biết sự sụt giảm số bản sao (under-replicated blocks) và kích hoạt việc sao chép thêm từ các bản sao còn lại trên các DataNode khác.",
+    "scope": "Quiz01.pdf — Trang 4"
+  },
+  {
+    "id": 95,
+    "type": "single",
+    "text": "Thành phần nào của Hadoop phụ trách lưu trữ phân tán?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "HDFS",
+      "MapReduce",
+      "HiveQL",
+      "Oozie"
+    ],
+    "correctAnswers": [
+      "HDFS"
+    ],
+    "explanation": "Khi một DataNode gặp sự cố, NameNode sẽ nhận biết sự sụt giảm số bản sao (under-replicated blocks) và kích hoạt việc sao chép thêm từ các bản sao còn lại trên các DataNode khác.",
+    "scope": "Quiz01.pdf — Trang 3"
+  },
+  {
+    "id": 96,
+    "type": "single",
+    "text": "Cách tăng năng lực cụm Hadoop theo chiều ngang là gì?",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Thêm các nút vào cụm",
+      "Nâng cấp CPU và RAM cho NameNode",
+      "Tăng dung lượng ổ cứng cho từng DataNode đơn lẻ",
+      "Tăng kích thước mặc định của khối HDFS"
+    ],
+    "correctAnswers": [
+      "Thêm các nút vào cụm"
+    ],
+    "explanation": "Mở rộng theo chiều ngang (scale-out) trong kiến trúc phân tán như Hadoop là việc bổ sung thêm các máy tính (nút/node) vào hệ thống cụm thay vì nâng cấp phần cứng của từng máy đơn lẻ (scale-up).",
+    "scope": "Quiz01.pdf"
+  },
+  {
+    "id": 97,
+    "type": "single",
+    "text": "Mô hình ghi dữ liệu đặc trưng của HDFS là ...",
+    "code": "",
+    "table": "",
+    "link": "",
+    "options": [
+      "Ghi một lần, đọc nhiều lần; hỗ trợ ghi nối tiếp",
+      "Ghi nhiều lần, đọc một lần; cho phép ghi đè ngẫu nhiên",
+      "Chỉ cho phép đọc, không cho phép cập nhật hay nối thêm",
+      "Hỗ trợ ghi và cập nhật ngẫu nhiên trên toàn bộ tệp"
+    ],
+    "correctAnswers": [
+      "Ghi một lần, đọc nhiều lần; hỗ trợ ghi nối tiếp"
+    ],
+    "explanation": "HDFS áp dụng mô hình 'Write-once-read-many' (WORM), tối ưu cho việc đọc luồng tuần tự khối lượng lớn, không hỗ trợ sửa đổi tùy ý tại vị trí bất kỳ trong file mà chỉ hỗ trợ ghi thêm dữ liệu (append).",
+    "scope": "Quiz01.pdf"
+  },
+  {
+    "id": 98,
+    "type": "multiple",
+    "text": "Cơ chế chịu lỗi của datanode trong HDFS?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của các datanode.",
+      "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.",
+      "Sử dụng Zookeeper để quản lý các thành viên datanode trong cụm."
+    ],
+    "correctAnswers": [
+      "Sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của các datanode.",
+      "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của các datanode., Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 1"
+  },
+  {
+    "id": 99,
+    "type": "multiple",
+    "text": "Các mục tiêu chính của Apache Hadoop?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả",
+      "Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ",
+      "Trực quan hoá dữ liệu hiệu quả",
+      "Lưu trữ dữ liệu khả mở",
+      "Xử lý dữ liệu lớn mạnh mẽ"
+    ],
+    "correctAnswers": [
+      "Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả"
+    ],
+    "explanation": "Đáp án chính xác là: 'Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 2"
+  },
+  {
+    "id": 100,
+    "type": "multiple",
+    "text": "Chọn phát biểu sai",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "NoSQL yêu cầu lược đồ CSDL phải được định nghĩa trước khi thêm dữ liệu",
+      "NoSQL cho phép thêm vào dữ liệu mà không cần định nghĩa trước lược đồ dữ liệu",
+      "NoSQL được đưa ra nhằm bổ sung các giải pháp mà CSDL truyền thống không đáp ứng tốt"
+    ],
+    "correctAnswers": [
+      "NoSQL yêu cầu lược đồ CSDL phải được định nghĩa trước khi thêm dữ liệu"
+    ],
+    "explanation": "Đáp án chính xác là: 'NoSQL yêu cầu lược đồ CSDL phải được định nghĩa trước khi thêm dữ liệu'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 3"
+  },
+  {
+    "id": 101,
+    "type": "multiple",
+    "text": "Phát biểu nào sau sai về Kafka?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tiến trình quảng bá message lên cụm Kafka gọi là publishers",
+      "Kafka quản lý các luồng thông điệp (messages) thành các nhóm gọi là các Topics.",
+      "Tiến trình đăng ký theo dõi các topics gọi là consumers.",
+      "Các máy chủ chạy Kafka gọi là các brokers."
+    ],
+    "correctAnswers": [
+      "Tiến trình quảng bá message lên cụm Kafka gọi là publishers"
+    ],
+    "explanation": "Đáp án chính xác là: 'Tiến trình quảng bá message lên cụm Kafka gọi là publishers'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 4"
+  },
+  {
+    "id": 102,
+    "type": "multiple",
+    "text": "Đâu là đặc điểm của RDD (Resilient distributed dataset) của Spark?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Người sử dụng không thể quyết định số các phân mảnh của mỗi RDD",
+      "Có khả năng chịu lỗi",
+      "Được chia thành các phân mảnh (partition)",
+      "Người lập trình có thể quyết định số các phân mảnh của mỗi RDD"
+    ],
+    "correctAnswers": [
+      "Có khả năng chịu lỗi",
+      "Được chia thành các phân mảnh (partition)",
+      "Người lập trình có thể quyết định số các phân mảnh của mỗi RDD"
+    ],
+    "explanation": "Đáp án chính xác là: 'Có khả năng chịu lỗi, Được chia thành các phân mảnh (partition), Người lập trình có thể quyết định số các phân mảnh của mỗi RDD'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 5"
+  },
+  {
+    "id": 103,
+    "type": "multiple",
+    "text": "Đâu là đặc điểm của Spark streaming?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Có thể nhận đầu vào là các tệp tin trên HDFS",
+      "Không thể thực hiện các truy vấn SQL",
+      "Có thể nhận đầu vào là các luồng dữ liệu từ Kafka"
+    ],
+    "correctAnswers": [
+      "Có thể nhận đầu vào là các tệp tin trên HDFS",
+      "Có thể nhận đầu vào là các luồng dữ liệu từ Kafka"
+    ],
+    "explanation": "Đáp án chính xác là: 'Có thể nhận đầu vào là các tệp tin trên HDFS, Có thể nhận đầu vào là các luồng dữ liệu từ Kafka'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 6"
+  },
+  {
+    "id": 104,
+    "type": "multiple",
+    "text": "Kiến trúc xử lý dữ liệu Lambda có đặc điểm gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được nhập tới kết quả phân tích của mô hình xử lý theo lô",
+      "Kết hợp xử lý dữ liệu theo lô và theo luồng",
+      "Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử.",
+      "Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng",
+      "Bao gồm các tiến trình ETL (extract, transform, load) đưa dữ liệu vào hồ dữ liệu (data lake)"
+    ],
+    "correctAnswers": [
+      "Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được nhập tới kết quả phân tích của mô hình xử lý theo lô",
+      "Kết hợp xử lý dữ liệu theo lô và theo luồng",
+      "Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử.",
+      "Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng"
+    ],
+    "explanation": "Đáp án chính xác là: 'Giúp giải quyến vấn đề độ trễ từ khi dữ liệu được thâp tới kết quả phân tích của mô hình xử lý theo lô, Kết hợp xử lý dữ liệu theo lô và theo luồng, Giúp giải quyết vấn đề nhược điểm của xử lý theo luồng là kết quả phân tích không khai thác được toàn bộ dữ liệu trong lịch sử., Có kiến trúc gồm 2 tầng: tầng xử lý theo lô và tầng xử lý theo luồng'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Big Data Architecture. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Big Data Architecture trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 7"
+  },
+  {
+    "id": 105,
+    "type": "multiple",
+    "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode.",
+      "Các chunk được lưu trữ tin cậy trên datanode theo cơ chế RAID.",
+      "Các chunk là các vùng dữ liệu liên tục trên ổ cứng của máy chủ datanode."
+    ],
+    "correctAnswers": [
+      "Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 8"
+  },
+  {
+    "id": 106,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về Presto?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Presto là một engine truy vấn SQL hiệu năng cao, phân tán cho dữ liệu lớn",
+      "Presto được quản lý bở Apache Software foundation",
+      "Presto cho phép tích hợp với các công cụ Business Intelligence",
+      "Presto được quản lý bở Presto Software foundation"
+    ],
+    "correctAnswers": [
+      "Presto được quản lý bở Apache Software foundation"
+    ],
+    "explanation": "Đáp án chính xác là: 'Presto được quản lý bở Apache Software foundation'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Presto. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Presto trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 9"
+  },
+  {
+    "id": 107,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về Hfile trong Hbase?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn theo những khoảng thời gian nhất định",
+      "Hfile chứa một tập hợp các dòng bản ghi trong Hbase table",
+      "Một version của 1 dòng hay 1 bản ghi trong Hbase table có thể được phân rã trên nhiều Hfile khác nhau",
+      "Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn khi cần thiết"
+    ],
+    "correctAnswers": [
+      "Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn theo những khoảng thời gian nhất định"
+    ],
+    "explanation": "Đáp án chính xác là: 'Nhiều Hfile có thể được gộp lại thành 1 Hfile lớn theo những khoảng thời gian nhất định'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 10"
+  },
+  {
+    "id": 108,
+    "type": "multiple",
+    "text": "Công cụ nào có thể sử dụng để hỗ trợ import, export dữ liệu vào ra hệ sinh thái Hadoop?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Flume",
+      "Sqoop",
+      "Hive",
+      "Oozie"
+    ],
+    "correctAnswers": [
+      "Sqoop"
+    ],
+    "explanation": "Đáp án chính xác là: 'Sqoop'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop Ecosystem. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop Ecosystem trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 11"
+  },
+  {
+    "id": 109,
+    "type": "multiple",
+    "text": "Thế nào là UNIX semantic?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tệp tin là chỉ đọc, không cho phép cập nhật và ghi đè. Mọi tiến trình đều có thể đọc tệp tin đồng thời.",
+      "Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi.",
+      "Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp."
+    ],
+    "correctAnswers": [
+      "Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi."
+    ],
+    "explanation": "Đáp án chính xác là: 'Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 12"
+  },
+  {
+    "id": 110,
+    "type": "multiple",
+    "text": "Cơ chế nhân bản dữ liệu trong HDFS?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Datanode là primary quyết định vị trí các nhân bản của các chunk tại các secondary datanode.",
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode.",
+      "Client quyết định vị trí lưu trữ các nhân bản với từng chunk."
+    ],
+    "correctAnswers": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Namenode quyết định vị trí các nhân bản của các chunk trên datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 13"
+  },
+  {
+    "id": 111,
+    "type": "multiple",
+    "text": "Đâu là vấn đề khi xử lý dữ liệu lớn với MapReduce?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Xử lý dữ liệu lớn theo lô (Bulk processing)",
+      "Xử lý dữ liệu lớn trong thời gian tương tác",
+      "Xử lý chuỗi các công việc",
+      "Xử lý luồng dữ liệu lớn"
+    ],
+    "correctAnswers": [
+      "Xử lý dữ liệu lớn trong thời gian tương tác",
+      "Xử lý chuỗi các công việc",
+      "Xử lý luồng dữ liệu lớn"
+    ],
+    "explanation": "Đáp án chính xác là: 'Xử lý dữ liệu lớn trong thời gian tương tác, Xử lý chuỗi các công việc, Xử lý luồng dữ liệu lớn'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của MapReduce. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của MapReduce trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 14"
+  },
+  {
+    "id": 112,
+    "type": "multiple",
+    "text": "Đâu là một dạng của NoSQL",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "OLAP",
+      "JSON",
+      "Key-value store",
+      "MySQL"
+    ],
+    "correctAnswers": [
+      "Key-value store"
+    ],
+    "explanation": "Đáp án chính xác là: 'Key-value store'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 15"
+  },
+  {
+    "id": 113,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về cơ chế scheduling của Presto?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Stage có thể được lập lịch theo giai đoạn",
+      "Một task có thể được lập lịch chạy trên bất kỳ worker nào",
+      "Split được gán cho task theo cơ chế lazy",
+      "Stage có thể được lập lịch all-at-once"
+    ],
+    "correctAnswers": [
+      "Một task có thể được lập lịch chạy trên bất kỳ worker nào"
+    ],
+    "explanation": "Đáp án chính xác là: 'Một task có thể được lập lịch chạy trên bất kỳ worker nào'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Presto. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Presto trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 16"
+  },
+  {
+    "id": 114,
+    "type": "multiple",
+    "text": "Thao tác nào không được hỗ trợ bởi Hbase",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Put",
+      "Multiput",
+      "Scan",
+      "Join",
+      "Get"
+    ],
+    "correctAnswers": [
+      "Multiput",
+      "Join"
+    ],
+    "explanation": "Đáp án chính xác là: 'Multiput, Join'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 17"
+  },
+  {
+    "id": 115,
+    "type": "multiple",
+    "text": "Hbase có thể được sử dụng cho kiểu dữ liệu nào",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Dữ liệu có cấu trúc",
+      "Dữ liệu phi cấu trúc",
+      "Dữ liệu bán cấu trúc",
+      "Tất cả các phương án được đưa ra."
+    ],
+    "correctAnswers": [
+      "Tất cả các phương án được đưa ra."
+    ],
+    "explanation": "Đáp án chính xác là: 'Tất cả các phương án được đưa ra.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 18"
+  },
+  {
+    "id": 116,
+    "type": "multiple",
+    "text": "HDFS giải quyết bài toán một điểm hỏng hóc duy nhất (single-point-of-failure) cho Namenode bằng cách nào?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode.",
+      "Sử dụng thêm secondary namenode theo cơ chế active-active. Cả Namenode và Secondary namenode cùng online trong hệ thống"
+    ],
+    "correctAnswers": [
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 19"
+  },
+  {
+    "id": 117,
+    "type": "multiple",
+    "text": "Chọn phát biểu đúng về NoSQL",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Không hỗ trợ các truy vấn SQL",
+      "Không thể được sử dụng kết hợp với các CSDL quan hệ",
+      "Đáp ứng khả năng xử lý giao dịch với tính nhất quán chặt",
+      "Rất phù hợp cho các tập dữ liệu phân tán quy mô lớn"
+    ],
+    "correctAnswers": [
+      "Không hỗ trợ các truy vấn SQL",
+      "Rất phù hợp cho các tập dữ liệu phân tán quy mô lớn"
+    ],
+    "explanation": "Đáp án chính xác là: 'Không hỗ trợ các truy vấn SQL, Rất phù hợp cho các tập dữ liệu phân tán quy mô lớn'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 20"
+  },
+  {
+    "id": 118,
+    "type": "multiple",
+    "text": "Phát biểu nào sau đây không đúng về Apache Hadoop?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hadoop thiết kế để mở rộng thông qua kĩ thuật scale-out, tăng số lượng máy chủ",
+      "Xử lý dữ liệu phân tán với mô hình lập trình đơn giản, thân thiện hơn như MapReduce.",
+      "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao",
+      "Thiết kế để vận hành trên phần cứng phổ thông, có khả năng chống chịu lỗi phần cứng"
+    ],
+    "correctAnswers": [
+      "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
+    ],
+    "explanation": "Đáp án chính xác là: 'Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 21"
+  },
+  {
+    "id": 119,
+    "type": "multiple",
+    "text": "Ưu điểm của hệ thống tệp tin phân tán là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tập trung hoá việc quản trị.",
+      "Đơn giản hoá việc chia sẻ dữ liệu.",
+      "Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống."
+    ],
+    "correctAnswers": [
+      "Tập trung hoá việc quản trị.",
+      "Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống."
+    ],
+    "explanation": "Đáp án chính xác là: 'Tập trung hoá việc quản trị., Cho phép người dùng có cái nhìn hợp nhất (như nhau) về toàn bộ dữ liệu trong hệ thống.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Distributed File System. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Distributed File System trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 22"
+  },
+  {
+    "id": 120,
+    "type": "multiple",
+    "text": "Phát biểu nào đúng về Amazon DynamoDB",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "DynamoDB là multipe-hop DHT",
+      "DynamoDB là one-hop DHT",
+      "DynamoDB là zero-hop DHT"
+    ],
+    "correctAnswers": [
+      "DynamoDB là zero-hop DHT"
+    ],
+    "explanation": "Đáp án chính xác là: 'DynamoDB là zero-hop DHT'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của DynamoDB. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của DynamoDB trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 23"
+  },
+  {
+    "id": 121,
+    "type": "multiple",
+    "text": "Đâu là các thao tác có thể thực hiện trên RDD (Resilient distributed dataset) của Spark?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Yêu cầu Spark lưu RDD ở bộ nhớ đệm",
+      "Thực hiện các hành động (action)",
+      "Thực hiện các biến đổi mà cập nhật các bản ghi trong RDD",
+      "Thực hiện các biến đổi (transformation)",
+      "Thực hiện các biến đổi mà xoá các bản ghi trong RDD"
+    ],
+    "correctAnswers": [
+      "Thực hiện các hành động (action)",
+      "Thực hiện các biến đổi (transformation)"
+    ],
+    "explanation": "Đáp án chính xác là: 'Thực hiện các hành động (action), Thực hiện các biến đổi (transformation)'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 24"
+  },
+  {
+    "id": 122,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về Kafka?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Thứ tự của message trong mỗi partition do key của message quyết định.",
+      "Kafka producer quyết định message sẽ được gửi đến partition nào trong topic.",
+      "Kafka producer có thể gửi message đến nhiều broker khác nhau."
+    ],
+    "correctAnswers": [
+      "Thứ tự của message trong mỗi partition do key của message quyết định."
+    ],
+    "explanation": "Đáp án chính xác là: 'Thứ tự của message trong mỗi partition do key của message quyết định.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 25"
+  },
+  {
+    "id": 123,
+    "type": "single",
+    "text": "CSDL nào dưới đây không phải là NoSQL",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "MongoDB",
+      "Không phải các đáp án đã đưa ra",
+      "Cassandra",
+      "Microsoft SQL server"
+    ],
+    "correctAnswers": [
+      "Microsoft SQL server"
+    ],
+    "explanation": "Đáp án chính xác là: 'Microsoft SQL server'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Database. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Database trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 26"
+  },
+  {
+    "id": 124,
+    "type": "multiple",
+    "text": "Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Phân mảnh và phân tán dữ liệu ra nhiều máy chủ",
+      "Nhân bản (Replication)",
+      "Giao diện truy vấn đơn giản hơn so với CSQL quan hệ truyền thống"
+    ],
+    "correctAnswers": [
+      "Nhân bản (Replication)"
+    ],
+    "explanation": "Đáp án chính xác là: 'Nhân bản (Replication)'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 27"
+  },
+  {
+    "id": 125,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về Kafka?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Các message trên Kafka được lưu lại theo thời gian (time-based)",
+      "Các message trên Kafka được lưu lại theo kích thước partition (size-based)",
+      "Các message trên Kafka được lưu lại trước khi thực hiện compaction",
+      "Message sau khi được tiêu thụ bởi tất cả các consumer thì bị xoá."
+    ],
+    "correctAnswers": [
+      "Message sau khi được tiêu thụ bởi tất cả các consumer thì bị xoá."
+    ],
+    "explanation": "Đáp án chính xác là: 'Message sau khi được tiêu thụ bởi tất cả các consumer thì bị xoá.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 28"
+  },
+  {
+    "id": 126,
+    "type": "multiple",
+    "text": "Các biến đổi (transformation) trên Spark có đặc điểm gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Mỗi phép biến đổi trên RDD được thực thi bởi một hay nhiều Spark worker",
+      "Thực hiện theo cơ chế lười biếng. khi nào một hành động (action) cần tới phép biến đổi trước đó phải thực hiện thì mới phải thực hiện",
+      "Các biến đổi (transformation) luôn tạo ra RDD mới có cùng số partition với RDD đầu vào"
+    ],
+    "correctAnswers": [
+      "Mỗi phép biến đổi trên RDD được thực thi bởi một hay nhiều Spark worker",
+      "Thực hiện theo cơ chế lười biếng. khi nào một hành động (action) cần tới phép biến đổi trước đó phải thực hiện thì mới phải thực hiện"
+    ],
+    "explanation": "Đáp án chính xác là: 'Mỗi phép biến đổi trên RDD được thực thi bởi một hay nhiều Spark worker, Thực hiện theo cơ chế lười biếng. khi nào một hành động (action) cần tới phép biến đổi trước đó phải thực hiện thì mới phải thực hiện'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 29"
+  },
+  {
+    "id": 127,
+    "type": "multiple",
+    "text": "Các đặc điểm của virtual node trên AmazonDB. Chọn phương án sai",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Số lượng các node ảo đối với mỗi node vật lý là khác nhau tuỳ vào từng node vật lý.",
+      "Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý.",
+      "Node ảo đóng vai trò quan trọng trong bài toán cân bằng tải và hiệu năng khi một node vật lý ra hoặc kết nối vào cụm.",
+      "Mỗi node vật lý có thể được ánh xạ thành nhiều node ảo, nằm liên tiếp nhau trong vòng tròn không gian khoá."
+    ],
+    "correctAnswers": [
+      "Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý."
+    ],
+    "explanation": "Đáp án chính xác là: 'Số lượng các node ảo bắt buộc cần phải căn cứ vào khả năng lưu trữ của node vật lý.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của DynamoDB. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của DynamoDB trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 30"
+  },
+  {
+    "id": 128,
+    "type": "multiple",
+    "text": "Thế nào là Session semantic?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tệp tin là chỉ đọc, không cho phép cập nhật và ghi đè. Mọi tiến trình đều có thể đọc tệp tin đồng thời.",
+      "Cập nhật tới tệp tin có thể được nhìn thấy ngay lập tức bởi các tiến trình khác mà mở tệp tin đó cùng thời điểm với tiến trình ghi.",
+      "Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp."
+    ],
+    "correctAnswers": [
+      "Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp."
+    ],
+    "explanation": "Đáp án chính xác là: 'Cập nhật tới tệp tin chỉ có thể thấy được bởi các tiến trình khác sau khi tiến trình ghi thực hiện thao tác đóng tệp.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Distributed File System. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Distributed File System trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 31"
+  },
+  {
+    "id": 129,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về Hbase",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hbase có lệ thuộc vào các dịch vụ cung cấp bởi Zookeeper",
+      "Hbase hỗ trợ truy vấn dạng SQL",
+      "Hbase không hỗ trợ versioning",
+      "Hbase có hệ thuộc vào các dịch vụ cung cấp bởi HDFS"
+    ],
+    "correctAnswers": [
+      "Hbase hỗ trợ truy vấn dạng SQL"
+    ],
+    "explanation": "Đáp án chính xác là: 'Hbase hỗ trợ truy vấn dạng SQL'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hbase. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hbase trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 32"
+  },
+  {
+    "id": 130,
+    "type": "multiple",
+    "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gần với ANSI SQL hơn?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Pig",
+      "Hive",
+      "Pig và Hive đều không có giao diện truy vấn gần với SQL."
+    ],
+    "correctAnswers": [
+      "Hive"
+    ],
+    "explanation": "Đáp án chính xác là: 'Hive'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop Ecosystem. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop Ecosystem trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 33"
+  },
+  {
+    "id": 131,
+    "type": "multiple",
+    "text": "Ưu điểm của kiến trúc SAN (Storage area network)?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Quản trị dễ dàng hơn so với NAS.",
+      "Hiệu năng, băng thông tốt hơn với NAS.",
+      "Máy khách có thể kết nối tới SAN bằng đường truyền Ethernet thông thường (Chuẩn kết nối TCP/IP)."
+    ],
+    "correctAnswers": [
+      "Hiệu năng, băng thông tốt hơn với NAS."
+    ],
+    "explanation": "Đáp án chính xác là: 'Hiệu năng, băng thông tốt hơn với NAS.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Storage Architecture. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Storage Architecture trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 34"
+  },
+  {
+    "id": 132,
+    "type": "multiple",
+    "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai.",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Các node thêm vào cụm cần có cấu hình, độ tin cậy cao",
+      "Các node tham gia vào cụm đóng cả 2 vai trò tính toán và lưu trữ",
+      "Thiết kế hướng phân tán ngay từ đầu, mặc định triển khai trên cụm máy chủ",
+      "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu"
+    ],
+    "correctAnswers": [
+      "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu"
+    ],
+    "explanation": "Đáp án chính xác là: 'Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 35"
+  },
+  {
+    "id": 133,
+    "type": "multiple",
+    "text": "Đâu là ưu điểm của Spark so với MapReduce?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hỗ trợ tốt cho xử lý chuỗi các biến đổi",
+      "Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS",
+      "Có khả năng chịu lỗi",
+      "Có thể khai phá dữ liệu trong thời gian tương tác"
+    ],
+    "correctAnswers": [
+      "Hỗ trợ tốt cho xử lý chuỗi các biến đổi",
+      "Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS",
+      "Có khả năng chịu lỗi",
+      "Có thể khai phá dữ liệu trong thời gian tương tác"
+    ],
+    "explanation": "Đáp án chính xác là: 'Hỗ trợ tốt cho xử lý chuỗi các biến đổi, Khai thác bộ nhớ trong thay vì sử dụng hệ thống lưu trữ ngoài như HDFS, Có khả năng chịu lỗi, Có thể khai phá dữ liệu trong thời gian tương tác'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark vs MapReduce. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark vs MapReduce trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 36"
+  },
+  {
+    "id": 134,
+    "type": "multiple",
+    "text": "Thành phần nào không thuộc thành phần lõi của Hadoop?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Apache Zookeeper",
+      "Hệ thống tệp tin phân tán HDFS",
+      "Apache Hbase",
+      "Mapreduce framework",
+      "YARN: yet another resource negotiator"
+    ],
+    "correctAnswers": [
+      "Apache Zookeeper",
+      "Apache Hbase"
+    ],
+    "explanation": "Đáp án chính xác là: 'Apache Zookeeper, Apache Hbase'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 37"
+  },
+  {
+    "id": 135,
+    "type": "multiple",
+    "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai.",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hadoop chịu lỗi thông qua kỹ thuật dư thừa",
+      "Các công việc cần tính toán được phân mảnh thành các tác vụ độc lập.",
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID",
+      "Các tệp tin được phân mảnh, các mảnh được nhân bản ra các node khác trên cụm"
+    ],
+    "correctAnswers": [
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID"
+    ],
+    "explanation": "Đáp án chính xác là: 'Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 38"
+  },
+  {
+    "id": 136,
+    "type": "multiple",
+    "text": "Phát biểu sau đây đúng hay sai: Trong cụm Kafka, 1 server đóng vai trò leader, các server còn lại đóng vai trò follower.",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Sai",
+      "Đúng"
+    ],
+    "correctAnswers": [
+      "Sai"
+    ],
+    "explanation": "Đáp án chính xác là: 'Sai'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Kafka. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Kafka trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 39"
+  },
+  {
+    "id": 137,
+    "type": "multiple",
+    "text": "Phát biểu nào sai về Presto",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Presto thường nhanh hơn Hive hay Pig",
+      "Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống",
+      "Presto có thể truy vấn nhiều data storages khác nhau như HDFS, Cassandra"
+    ],
+    "correctAnswers": [
+      "Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống"
+    ],
+    "explanation": "Đáp án chính xác là: 'Presto không truy vấn được dữ liệu trong MySQL, MS SQL và các CSDL quan hệ truyền thống'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Presto. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Presto trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "2021.1 - Câu 40"
+  },
+  {
+    "id": 138,
+    "type": "single",
+    "text": "CƠ CHẾ MÀ NOSQL SỬ DỤNG ĐỂ TĂNG KHẢ NĂNG CHỊU LỖI",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "REPLICATION",
+      "GIAO DIỆN TRUY VẤN ĐƠN GIẢN HƠN SO VỚI CSQL QUAN HỆ TRUYỀN THỐNG",
+      "PHÂN MẢNH VÀ PHÂN TÁN DỮ LIỆU RA NHIỀU MÁY CHỦ",
+      "DÙNG RAID"
+    ],
+    "correctAnswers": [
+      "REPLICATION"
+    ],
+    "explanation": "Đáp án chính xác là: 'REPLICATION'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của NoSQL. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của NoSQL trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 1"
+  },
+  {
+    "id": 139,
+    "type": "single",
+    "text": "ĐÂU LÀ MỘT CSDL DẠNG CỘT MỞ RỘNG?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "CASSANDRA",
+      "REDIS",
+      "ELASTICSEARCH",
+      "MONGODB"
+    ],
+    "correctAnswers": [
+      "CASSANDRA"
+    ],
+    "explanation": "Đáp án chính xác là: 'CASSANDRA'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Database. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Database trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 2"
+  },
+  {
+    "id": 140,
+    "type": "single",
+    "text": "ĐÂU LÀ CHƯƠNG TRÌNH WORDCOUNT ĐÚNG, VỚI INPUT LÀ MỘT RDD CHỨA DỮ LIỆU ĐỌC TỪ FILE VĂN BẢN",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "INPUT.FLATMAP(LAMBDA X: X.SPLIT(' ')).MAP(LAMBDA X:(X, 1)).REDUCEBYVALUE(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])",
+      "INPUT.MAP(LAMBDA X: X.SPLIT(' ')).FLATMAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])",
+      "INPUT.MAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])",
+      "INPUT.FLATMAP(LAMBDA X: X.SPLIT(' ')).MAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])"
+    ],
+    "correctAnswers": [
+      "INPUT.FLATMAP(LAMBDA X: X.SPLIT(' ')).MAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])"
+    ],
+    "explanation": "Đáp án chính xác là: 'INPUT.FLATMAP(LAMBDA X: X.SPLIT(' ')).MAP(LAMBDA X:(X, 1)).REDUCEBYKEY(LAMBDA X,Y:X+Y).SORTBY(LAMBDA X: -X[1])'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 3"
+  },
+  {
+    "id": 141,
+    "type": "single",
+    "text": "CSDL NÀO PHÙ HỢP VỚI DỮ LIỆU MẠNG XÃ HỘI, DỮ LIỆU CÓ SỰ LIÊN KẾT",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "DOCUMENT STORE",
+      "KEY-VALUE",
+      "COLUMNAR STORE",
+      "GRAPH STORE"
+    ],
+    "correctAnswers": [
+      "GRAPH STORE"
+    ],
+    "explanation": "Đáp án chính xác là: 'GRAPH STORE'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Database. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Database trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 4"
+  },
+  {
+    "id": 142,
+    "type": "single",
+    "text": "SPARK HỖ TRỢ CÁC CLUSTER MANAGER NÀO?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "MESOS",
+      "TẤT CẢ CÁC ĐÁP ÁN TRÊN",
+      "STANDALONE CLUSTER MANAGER",
+      "YARN"
+    ],
+    "correctAnswers": [
+      "TẤT CẢ CÁC ĐÁP ÁN TRÊN"
+    ],
+    "explanation": "Đáp án chính xác là: 'TẤT CẢ CÁC ĐÁP ÁN TRÊN'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 5"
+  },
+  {
+    "id": 143,
+    "type": "single",
+    "text": "Các mục tiêu chính của Apache Hadoop",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Lưu trữ dữ liệu khả mở",
+      "Xử lý dữ liệu lớn mạnh mẽ",
+      "Trực quan hoá dữ liệu hiệu quả",
+      "Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ",
+      "Lưu trữ dữ liệu khả mở, xử lý dữ liệu lớn mạnh mẽ và trực quan hoá dữ liệu hiệu quả"
+    ],
+    "correctAnswers": [
+      "Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ"
+    ],
+    "explanation": "Đáp án chính xác là: 'Lưu trữ dữ liệu khả mở và Xử lý dữ liệu lớn mạnh mẽ'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
+  },
+  {
+    "id": 144,
+    "type": "single",
+    "text": "Phát biểu nào sau đây không đúng về Apache Hadoop",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Xử lý dữ liệu phân tán với mô hình lập trình đơn giản, thân thiện hơn như MapReduce",
+      "Hadoop thiết kế để mở rộng thông qua kĩ thuật scale-out, tăng số lượng máy chủ",
+      "Thiết kế để vận hành trên phần cứng phổ thông, có khả năng chống chịu lỗi phần cứng",
+      "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
+    ],
+    "correctAnswers": [
+      "Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao"
+    ],
+    "explanation": "Đáp án chính xác là: 'Thiết kế để vận hành trên siêu máy tính, cấu hình mạnh, độ tin cậy cao'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
+  },
+  {
+    "id": 145,
+    "type": "multiple",
+    "text": "Thành phần nào không thuộc thành phần lõi của Hadoop",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hệ thống tệp tin phân tán HDFS",
+      "Mapreduce framework",
+      "YARN: yet another resource negotiator",
+      "Apache Zookeeper",
+      "Apache Hbase"
+    ],
+    "correctAnswers": [
+      "Apache Zookeeper",
+      "Apache Hbase"
+    ],
+    "explanation": "Đáp án chính xác là: 'Apache Zookeeper, Apache Hbase'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
+  },
+  {
+    "id": 146,
+    "type": "single",
+    "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai.",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Thiết kế hướng phân tán ngay từ đầu, mặc định triển khai trên cụm máy chủ",
+      "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu",
+      "Các node tham gia vào cụm đóng cả 2 vai trò tính toán và lưu trữ",
+      "Các node thêm vào cụm có thể có cấu hình, độ tin cậy cao"
+    ],
+    "correctAnswers": [
+      "Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu"
+    ],
+    "explanation": "Đáp án chính xác là: 'Các node tham gia vào cụm Hadoop được gán vai trò hoặc là node tính toán hoặc là node lưu trữ dữ liệu'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 6"
+  },
+  {
+    "id": 147,
+    "type": "single",
+    "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Hadoop chịu lỗi thông qua kỹ thuật dư thừa",
+      "Các tệp tin được phân mảnh, các mảnh được nhân bản ra các node khác trên cụm",
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID",
+      "Các công việc cần tính toán được phân mảnh thành các tác vụ độc lập."
+    ],
+    "correctAnswers": [
+      "Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID"
+    ],
+    "explanation": "Đáp án chính xác là: 'Các tệp tin được phân mảnh, các mảnh được lưu trữ tin cậy trên ổ cứng theo cơ chế RAID'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
+  },
+  {
+    "id": 148,
+    "type": "single",
+    "text": "Các đặc trưng của HDFS. Chọn đáp án sai",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tối ưu cho các tệp tin có kích thước lớn",
+      "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin",
+      "Hỗ trợ nén dữ liệu để tiết kiệm chi phí",
+      "Hỗ trợ cơ chế phân quyền và kiểm soát người dùng của UNIX"
+    ],
+    "correctAnswers": [
+      "Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin"
+    ],
+    "explanation": "Đáp án chính xác là: 'Hỗ trợ thao tác đọc ghi tương tranh tại chunk (phân mảnh) trên tệp tin'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
+  },
+  {
+    "id": 149,
+    "type": "single",
+    "text": "Mô tả cách thức một client đọc dữ liệu trên HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Client truy vấn Namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunk",
+      "Client thông báo tới namenode để bắt đầu quá trình đọc sau đó client truy vấn các datanode để trực tiếp đọc các chunks",
+      "Client truy vấn Namenode để đưa thông tin về thao tác đọc. Namenode kết nối song song tới các datanode để lấy dữ liệu, sau đó trả về cho client.",
+      "Client truy vấn Namenode để biết được vị trí các chunks. Nếu Namenode không biết về vị trí các chunk thì namenode sẽ hỏi các datanode. Sau đó Namenode gửi lại thông tin vị trí các chunk cho client. Client kết nối song song tới các datanode để đọc các chunk."
+    ],
+    "correctAnswers": [
+      "Client truy vấn Namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunk"
+    ],
+    "explanation": "Đáp án chính xác là: 'Client truy vấn Namenode để biết được vị trí các chunks. Namenode trả về vị trí các chunks. Client kết nối song song tới các datanode để đọc các chunk'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
+  },
+  {
+    "id": 150,
+    "type": "single",
+    "text": "Mô tả cách thức một client ghi dữ liệu trên HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Client kết nối tới Namenode chỉ định muốn ghi vào chunk nào. Namenode trả về vị trí các chunk cho client. Client ghi đồng thời vào các datanode.",
+      "Client kết nối tới Namenode chỉ định khối lượng dữ liệu cần ghi. Namenode trả về vị trí các chunk cho client. Client ghi chunk tới datanode đầu tiên, sau đó các datanode tự động thực thi nhân bản. Quá trình ghi kết thúc thi tất cả các chunk và các nhân bản đã được ghi thành công.",
+      "Client kết nối tới Namenode chỉ định khối lượng dữ liệu cần ghi. Namenode trả về vị trí các chunk cho client. Client ghi đồng thời các chunk vào datanode. Với mỗi chunk, các datanode thực thi nhân bản tự động sau khi thao tác ghi thành công."
+    ],
+    "correctAnswers": [
+      "Client kết nối tới Namenode chỉ định khối lượng dữ liệu cần ghi. Namenode trả về vị trí các chunk cho client. Client ghi chunk tới datanode đầu tiên, sau đó các datanode tự động thực thi nhân bản. Quá trình ghi kết thúc thi tất cả các chunk và các nhân bản đã được ghi thành công."
+    ],
+    "explanation": "Đáp án chính xác là: 'Client kết nối tới Namenode chỉ định khối lượng dữ liệu cần ghi. Namenode trả về vị trí các chunk cho client. Client ghi chunk tới datanode đầu tiên, sau đó các datanode tự động thực thi nhân bản. Quá trình ghi kết thúc thi tất cả các chunk và các nhân bản đã được ghi thành công.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 7"
+  },
+  {
+    "id": 151,
+    "type": "single",
+    "text": "Cơ chế chịu lỗi của datanode trong HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Sử dụng Zookeeper để quản lý các thành viên datanode trong cụm.",
+      "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.",
+      "Sử dụng cơ chế heartbeat, Namenode định kỳ hỏi các datanode về trạng thái tồn tại của các datanode."
+    ],
+    "correctAnswers": [
+      "Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Sử dụng cơ chế heartbeat, định kỳ các datanode thông báo về trạng thái cho Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 152,
+    "type": "single",
+    "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode.",
+      "Các chunk là các vùng dữ liệu liên tục trên ổ cứng của máy chủ datanode.",
+      "Các chunk được lưu trữ tin cậy trên datanode theo cơ chế RAID."
+    ],
+    "correctAnswers": [
+      "Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 153,
+    "type": "single",
+    "text": "Cơ chế nhân bản dữ liệu trong HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode.",
+      "Datanode là primary quyết định vị trí các nhân bản của các chunk tại các secondary datanode.",
+      "Client quyết định vị trí lưu trữ các nhân bản với từng chunk."
+    ],
+    "correctAnswers": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Namenode quyết định vị trí các nhân bản của các chunk trên datanode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 154,
+    "type": "single",
+    "text": "HDFS giải quyết bài toán single-point-of-failure cho Namenode bằng cách nào?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Sử dụng thêm secondary namenode theo cơ chế active-active. Cả Namenode và Secondary namenode cùng online trong hệ thống",
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode."
+    ],
+    "correctAnswers": [
+      "Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode."
+    ],
+    "explanation": "Đáp án chính xác là: 'Sử dụng Secondary namenode theo cơ chế active-passive. Secondary namenode chỉ hoạt động khi có vấn đề với Namenode.'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 155,
+    "type": "single",
+    "text": "Đầu vào dữ liệu cho chương trình Spark có thể là:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Local file",
+      "HDFS, NFS",
+      "Amazon S3, Elasticsearch",
+      "Cả 3 phương án trên"
+    ],
+    "correctAnswers": [
+      "Cả 3 phương án trên"
+    ],
+    "explanation": "Đáp án chính xác là: 'Cả 3 phương án trên'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 156,
+    "type": "single",
+    "text": "Đâu là lệnh lưu dữ liệu ra ngoài chương trình Spark:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')",
+      "input.saveAsTextFile('/usr/zeppelin/notebook/dataset/new.txt')",
+      "input.saveAs('file:///usr/zeppelin/notebook/dataset/new.txt')",
+      "input.saveAsTextFile:'file:///usr/zeppelin/notebook/dataset/new.txt'"
+    ],
+    "correctAnswers": [
+      "input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')"
+    ],
+    "explanation": "Đáp án chính xác là: 'input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 157,
+    "type": "single",
+    "text": "Đâu là cách submit đúng một job lên Spark cluster hoặc chế độ local:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "A. ./spark-submit wordcount.py README.md",
+      "B. ./spark-submit README.md wordcount.py",
+      "C. spark-submit README.md wordcount.py",
+      "D. Phương án A và C"
+    ],
+    "correctAnswers": [
+      "A. ./spark-submit wordcount.py README.md"
+    ],
+    "explanation": "Đáp án chính xác là: './spark-submit wordcount.py README.md'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 158,
+    "type": "single",
+    "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
+    "code": "input.flatMap(lambda x: x.split(\"\\t\")).map(lambda x: (x, 1)).reduceByKey(add)",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tab",
+      "Dấu cách",
+      "Dấu hai chấm",
+      "Dấu phẩy"
+    ],
+    "correctAnswers": [
+      "Tab"
+    ],
+    "explanation": "Đáp án chính xác là: 'Tab'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 8"
+  },
+  {
+    "id": 159,
+    "type": "multiple",
+    "text": "Data Pipeline nào sau đây là đúng trên Spark",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Spark -> RabbitMQ -> Elasticsearch -> Hiển thị",
+      "Dữ liệu sensor -> RabbitMQ -> Elasticsearch -> Spark -> Hiển thị",
+      "Dữ liệu sensor -> Elasticsearch -> RabbitMQ -> Spark -> Hiển thị",
+      "Spark -> Elasticsearch -> Hiển thị"
+    ],
+    "correctAnswers": [
+      "Spark -> RabbitMQ -> Elasticsearch -> Hiển thị",
+      "Spark -> Elasticsearch -> Hiển thị"
+    ],
+    "explanation": "Đáp án chính xác là: 'Spark -> RabbitMQ -> Elasticsearch -> Hiển thị, Spark -> Elasticsearch -> Hiển thị'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 10"
+  },
+  {
+    "id": 160,
+    "type": "single",
+    "text": "Mục đích của sử dụng RabbitMQ là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Lưu trữ dữ liệu",
+      "Tránh dữ liệu bị mất mát",
+      "Hiển thị dữ liệu",
+      "Phân tích dữ liệu"
+    ],
+    "correctAnswers": [
+      "Tránh dữ liệu bị mất mát"
+    ],
+    "explanation": "Đáp án chính xác là: 'Tránh dữ liệu bị mất mát'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Message Queue. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Message Queue trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 10"
+  },
+  {
+    "id": 161,
+    "type": "single",
+    "text": "Spark có thể chạy ở chế độ nào khi chạy trên nhiều máy?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "A. Chạy trên YARN",
+      "B. Chạy trên ZooKeeper",
+      "C. Phương án A và B đều sai",
+      "D. Cả 2 phương án A và B"
+    ],
+    "correctAnswers": [
+      "A. Chạy trên YARN"
+    ],
+    "explanation": "Đáp án chính xác là: 'Chạy trên YARN'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 10"
+  },
+  {
+    "id": 162,
+    "type": "single",
+    "text": "Mục đích của sử dụng Spark ML là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "A. Chạy MapReduce",
+      "B. Chạy các thuật toán dự đoán",
+      "C. Tính toán phân tán",
+      "D. Cả B and C"
+    ],
+    "correctAnswers": [
+      "D. Cả B and C"
+    ],
+    "explanation": "Đáp án chính xác là: 'Cả B and C'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark ML. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark ML trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 11"
+  },
+  {
+    "id": 163,
+    "type": "single",
+    "text": "Mục đích của lệnh sau đây là gì?",
+    "code": "(trainingData, testData) = dataset.randomSplit([0.8, 0.2], seed=100)",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Chia dữ liệu học và dữ liệu kiểm tra",
+      "Chạy chương trình học",
+      "Tạo dữ liệu ngẫu nhiên cho dữ liệu học và kiểm tra",
+      "Chạy chương trình dự đoán"
+    ],
+    "correctAnswers": [
+      "Chia dữ liệu học và dữ liệu kiểm tra"
+    ],
+    "explanation": "Đáp án chính xác là: 'Chia dữ liệu học và dữ liệu kiểm tra'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark ML. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark ML trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 11"
+  },
+  {
+    "id": 164,
+    "type": "single",
+    "text": "Label và Feature của câu lệnh bên dưới có nghĩa là gì?",
+    "code": "LogisticRegression(labelCol=\"label\", featuresCol=\"features\", maxIter=10)",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Dữ liệu đầu vào được gán là feature và dự đoán được gán vào label",
+      "Dữ liệu đầu vào được gán là label và kết quả của dữ liệu đầu vào đó được gán vào feature",
+      "Dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào đó được gán vào label",
+      "Dữ liệu đầu vào được gán là label và kết quả dự đoán được gán vào feature"
+    ],
+    "correctAnswers": [
+      "Dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào đó được gán vào label"
+    ],
+    "explanation": "Đáp án chính xác là: 'Dữ liệu đầu vào được gán là feature và kết quả của dữ liệu đầu vào đó được gán vào label'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark ML. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark ML trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 11"
+  },
+  {
+    "id": 165,
+    "type": "single",
+    "text": "Đâu là kĩ thuật có thể dùng để thích nghi các giải thuật học máy cho dữ liệu lớn:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "A. sub-samping, principal componenet analysis, feature extraction và feature selection",
+      "B. song song hóa trên mapreduce hay spark",
+      "C. các kiến trúc mới xử lý luồn liên tục như mini-batch, complex event processing",
+      "D. tất cả",
+      "E. ý B, C"
+    ],
+    "correctAnswers": [
+      "D. tất cả"
+    ],
+    "explanation": "Đáp án chính xác là: 'tất cả'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Machine Learning. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Machine Learning trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
+  },
+  {
+    "id": 166,
+    "type": "single",
+    "text": "Các mục tiêu chính của apache hadoop",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "lưu trữ dữ liệu khá mở",
+      "Xử lý dữ liệu lớn mạnh mẽ",
+      "trực quan hóa dữ liệu hiệu quả",
+      "lưu trữ dữ liệu khá mở và xử lý dữ liệu lớn mạnh mẽ",
+      "lưu trữ dữ liệu khá mở và xử lý dữ liệu lớn mạnh mẽ và trực quan hóa dữ liệu hiệu quả"
+    ],
+    "correctAnswers": [
+      "lưu trữ dữ liệu khá mở và xử lý dữ liệu lớn mạnh mẽ"
+    ],
+    "explanation": "Đáp án chính xác là: 'lưu trữ dữ liệu khá mở và xử lý dữ liệu lớn mạnh mẽ'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
+  },
+  {
+    "id": 167,
+    "type": "single",
+    "text": "Phạt biểu sai về hadoop",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "xử lý dữ liệu phân tán với mô hình lập trình đơn giản, thân thiện hơn như mapreduce",
+      "Hadoop thiết kế để mở rộng thông qua kỹ thuật scale-out, tăng số lượng máy chủ",
+      "Thiết kế để vận hành trên phần cứng phổ thông, có khả năng chống chịu lỗi phần cứng",
+      "Thiết kế để vận hành trên siêu máy tính, câu hình mạnh, dộ tin cậy cao"
+    ],
+    "correctAnswers": [
+      "Thiết kế để vận hành trên siêu máy tính, câu hình mạnh, dộ tin cậy cao"
+    ],
+    "explanation": "Đáp án chính xác là: 'Thiết kế để vận hành trên siêu máy tính, câu hình mạnh, dộ tin cậy cao'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Hadoop. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Hadoop trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
+  },
+  {
+    "id": 168,
+    "type": "multiple",
+    "text": "cơ chế chịu lỗi của datanode trong HDFS?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "sử dụng zookeeper để quản lý các thành viên datanode trong cụm",
+      "Sử dụng cơ chế heartbeat, định kì các datanode thông báo về trạng thái cho Namenode",
+      "Sử dụng cơ chế heartbeat, Namenode định kì hỏi các datanode về trạng thái tồn tại của các datanode"
+    ],
+    "correctAnswers": [
+      "Sử dụng cơ chế heartbeat, định kì các datanode thông báo về trạng thái cho Namenode"
+    ],
+    "explanation": "Đáp án chính xác là: 'Sử dụng cơ chế heartbeat, định kì các datanode thông báo về trạng thái cho Namenode'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
+  },
+  {
+    "id": 169,
+    "type": "single",
+    "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode",
+      "các chunk là các vùng dữ liệu liên tục trên ổ cứng của máy chủ datanode",
+      "các chunk được lưu trữ tin cậy trên datanode theo cơ chế RAID"
+    ],
+    "correctAnswers": [
+      "các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode"
+    ],
+    "explanation": "Đáp án chính xác là: 'các chunk là các tệp tin trong hệ thống tệp tin cục bộ của máy chủ datanode'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 12"
+  },
+  {
+    "id": 170,
+    "type": "single",
+    "text": "Cơ chế nhân bản dữ liệu trong HDFS",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode",
+      "Datanode là primary quyết định vị trí các nhân bản của các chunk tại các secondary datanode",
+      "Client quyết định vị trí lưu trữ các nhân bản với từng chunk"
+    ],
+    "correctAnswers": [
+      "Namenode quyết định vị trí các nhân bản của các chunk trên datanode"
+    ],
+    "explanation": "Đáp án chính xác là: 'Namenode quyết định vị trí các nhân bản của các chunk trên datanode'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của HDFS. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của HDFS trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "13"
+  },
+  {
+    "id": 171,
+    "type": "single",
+    "text": "Đầu vào dữ liệu cho chương trình Spark có thể là:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Local file",
+      "HDFS, NFS",
+      "Amazon S3, Elasticsearch",
+      "Cả 3 phương án trên"
+    ],
+    "correctAnswers": [
+      "Cả 3 phương án trên"
+    ],
+    "explanation": "Đáp án chính xác là: 'Cả 3 phương án trên'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
+  },
+  {
+    "id": 172,
+    "type": "single",
+    "text": "Đâu là lệnh lưu dữ liệu ra ngoài chương trình Spark:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')",
+      "input.saveAsTextFile('/usr/zeppelin/notebook/dataset/new.txt')",
+      "input.saveAs('file:///usr/zeppelin/notebook/dataset/new.txt')",
+      "input.saveAsTextFile:'file:///usr/zeppelin/notebook/dataset/new.txt'"
+    ],
+    "correctAnswers": [
+      "input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')"
+    ],
+    "explanation": "Đáp án chính xác là: 'input.saveAsTextFile('file:///usr/zeppelin/notebook/dataset/new.txt')'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
+  },
+  {
+    "id": 173,
+    "type": "single",
+    "text": "Đâu là cách submit đúng một job lên Spark cluster hoặc chế độ local:",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "A. ./spark-submit wordcount.py README.md",
+      "B. ./spark-submit README.md wordcount.py",
+      "C. spark-submit README.md wordcount.py",
+      "D. Phương án A và C"
+    ],
+    "correctAnswers": [
+      "A. ./spark-submit wordcount.py README.md"
+    ],
+    "explanation": "Đáp án chính xác là: './spark-submit wordcount.py README.md'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
+  },
+  {
+    "id": 174,
+    "type": "single",
+    "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
+    "code": "input.flatMap(lambda x: x.split(\"\\t\")).map(lambda x: (x, 1)).reduceByKey(add)",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Tab",
+      "Dấu cách",
+      "Dấu hai chấm",
+      "Dấu phẩy"
+    ],
+    "correctAnswers": [
+      "Tab"
+    ],
+    "explanation": "Đáp án chính xác là: 'Tab'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
+    "scope": "Bigdata - ôn tập.pdf - Trang 9"
+  }
+]

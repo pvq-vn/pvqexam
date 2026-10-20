@@ -12,16 +12,16 @@ export const SUBJECT_CATALOG: Subject[] = [
     badge: 'Đề thi & Ngân hàng đầy đủ',
     examFiles: [
       {
-        label: 'Ngân hàng tổng hợp (OldExam.json - 723 câu)',
+        label: 'Ngân hàng tổng hợp (OldExam.json)',
         filePath: '/2025.2/IT3080 - Mạng máy tính/Gemini/OldExam.json',
         isDefault: true,
       },
       {
-        label: 'Bộ câu hỏi chọn lọc (GeneratedQuiz.json - 279 câu)',
+        label: 'Bộ câu hỏi chọn lọc (GeneratedQuiz.json)',
         filePath: '/2025.2/IT3080 - Mạng máy tính/Gemini/GeneratedQuiz.json',
       },
       {
-        label: 'Bộ câu hỏi đã phân loại (SortedExam.json - 722 câu)',
+        label: 'Bộ câu hỏi đã phân loại (SortedExam.json)',
         filePath: '/2025.2/IT3080 - Mạng máy tính/Gemini/SortedExam.json',
       },
     ],
@@ -35,12 +35,12 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Kỹ thuật lập trình C/C++, con trỏ, cấp phát bộ nhớ, đệ quy, tối ưu mã nguồn và cấu trúc dữ liệu cơ bản.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (OldExam.json - 540 câu)',
+        label: 'Ngân hàng đề thi (OldExam.json)',
         filePath: '/2025.2/IT3040 - Kỹ thuật lập trình/Gemini/OldExam.json',
         isDefault: true,
       },
       {
-        label: 'Bộ câu hỏi trắc nghiệm (GeneratedQuiz.json - 221 câu)',
+        label: 'Bộ câu hỏi trắc nghiệm (GeneratedQuiz.json)',
         filePath: '/2025.2/IT3040 - Kỹ thuật lập trình/Gemini/GeneratedQuiz.json',
       },
     ],
@@ -52,15 +52,15 @@ export const SUBJECT_CATALOG: Subject[] = [
     semester: '2025.2',
     description:
       'Tiến trình, luồng, đồng bộ hóa, bế tắc (deadlock), quản lý bộ nhớ, hệ thống file và ảo hóa.',
-    badge: '880+ câu hỏi & bài tập',
+    badge: 'Ngân hàng & Bài tập tổng hợp',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (OldExam.json - 883 câu)',
+        label: 'Ngân hàng đề thi (OldExam.json)',
         filePath: '/2025.2/IT3070 - Nguyên lý hệ điều hành/Gemini/OldExam.json',
         isDefault: true,
       },
       {
-        label: 'Bộ câu hỏi trắc nghiệm (GeneratedQuiz.json - 199 câu)',
+        label: 'Bộ câu hỏi trắc nghiệm (GeneratedQuiz.json)',
         filePath:
           '/2025.2/IT3070 - Nguyên lý hệ điều hành/Gemini/GeneratedQuiz.json',
       },
@@ -75,12 +75,12 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Mô hình dữ liệu quan hệ, đại số quan hệ, SQL chuẩn, chuẩn hóa dữ liệu (1NF-3NF/BCNF) và tối ưu hóa truy vấn.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (OldExam.json - 207 câu)',
+        label: 'Ngân hàng đề thi (OldExam.json)',
         filePath: '/2025.2/IT3090 - Cơ sở dữ liệu/Gemini/OldExam.json',
         isDefault: true,
       },
       {
-        label: 'Bộ câu hỏi trắc nghiệm (GeneratedQuiz.json - 60 câu)',
+        label: 'Bộ câu hỏi trắc nghiệm (GeneratedQuiz.json)',
         filePath: '/2025.2/IT3090 - Cơ sở dữ liệu/Gemini/GeneratedQuiz.json',
       },
     ],
@@ -94,10 +94,10 @@ export const SUBJECT_CATALOG: Subject[] = [
     semester: '2026.1',
     description:
       'Mô hình hóa hệ thống thông tin, chuẩn UML, Use Case, Sequence Diagram, Class Diagram, Activity Diagram.',
-    badge: '560+ câu hỏi UML & Thiết kế',
+    badge: 'Mô hình UML & Thiết kế chuẩn',
     examFiles: [
       {
-        label: 'Ngân hàng đề chính thức (exam.json - 562 câu)',
+        label: 'Ngân hàng đề chính thức (exam.json)',
         filePath:
           '/2026.1/IT3120 - Phân tích và thiết kế hệ thống/Gemini/exam.json',
         isDefault: true,
@@ -111,10 +111,10 @@ export const SUBJECT_CATALOG: Subject[] = [
     semester: '2026.1',
     description:
       'Quy trình phát triển phần mềm (Agile/Scrum, Waterfall, V-Model), phân tích yêu cầu, thiết kế kiến trúc và kiểm thử.',
-    badge: '1.065 câu hỏi & tự luận',
+    badge: 'Lý thuyết & Bài tập tự luận',
     examFiles: [
       {
-        label: 'Ngân hàng đề tổng hợp (exam.json - 1065 câu)',
+        label: 'Ngân hàng đề tổng hợp (exam.json)',
         filePath:
           '/2026.1/IT3180 - Nhập môn công nghệ phần mềm/Gemini/exam.json',
         isDefault: true,
@@ -130,7 +130,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Hồi quy, phân lớp (SVM, Decision Tree, Naive Bayes), gom cụm (K-means, Hierarchical), giảm chiều dữ liệu (PCA).',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (Exam.json - 188 câu)',
+        label: 'Ngân hàng đề thi (Exam.json)',
         filePath:
           '/2026.1/IT3190 - Học máy và khai phá dữ liệu/Gemini/Exam.json',
         isDefault: true,
@@ -146,7 +146,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Lập kế hoạch, ước lượng chi phí, quản trị rủi ro, quản trị tiến độ CPM/PERT và quản lý chất lượng dự án.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 65 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath: '/2026.1/IT4244 - Quản trị dự án CNTT/Gemini/exam.json',
         isDefault: true,
       },
@@ -159,10 +159,10 @@ export const SUBJECT_CATALOG: Subject[] = [
     semester: '2026.1',
     description:
       'Thu thập, làm sạch dữ liệu, trực quan hóa, phân tích thăm dò EDA, thống kê suy diễn và thuật toán mạng/đồ thị.',
-    badge: '360+ câu hỏi & ma trận',
+    badge: 'Phân tích & Thống kê dữ liệu',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 361 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath: '/2026.1/IT4930 - Nhập môn khoa học dữ liệu/Gemini/exam.json',
         isDefault: true,
       },
@@ -177,7 +177,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Hệ thống tệp phân tán HDFS, mô hình MapReduce, Apache Spark, NoSQL (HBase, Cassandra, MongoDB) và Kafka.',
     examFiles: [
       {
-        label: 'Ngân hàng đề chính thức (exam.json - 174 câu)',
+        label: 'Ngân hàng đề chính thức (exam.json)',
         filePath:
           '/2026.1/IT4931 - Lưu trữ và xử lý dữ liệu lớn/Gemini/exam.json',
         isDefault: true,
@@ -195,7 +195,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Mật mã học đối xứng, bất đối xứng (RSA, AES), hàm băm, chữ ký số, chứng chỉ số và bảo mật mạng.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 125 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath:
           '/2026.2/IT4015 - Nhập môn an toàn thông tin/Gemini/exam.json',
         isDefault: true,
@@ -211,7 +211,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Lọc cộng tác (Collaborative Filtering), gợi ý dựa trên nội dung (Content-based), phân rã ma trận (Matrix Factorization).',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 6 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath: '/2026.2/IT4613 - Hệ gợi ý/Gemini/exam.json',
         isDefault: true,
       },
@@ -226,7 +226,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Mạng nơ-ron sâu MLP, CNN trong thị giác máy tính, RNN/LSTM/Transformer trong xử lý ngôn ngữ tự nhiên.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 193 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath: '/2026.2/IT4653 - Học sâu và ứng dụng/Gemini/exam.json',
         isDefault: true,
       },
@@ -241,7 +241,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Quy hoạch tuyến tính, nguyên lý tối ưu Bellman, giải thuật nhánh cận và tìm kiếm meta-heuristic.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 8 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath: '/2026.2/IT4663 - Tối ưu lập kế hoạch/Gemini/exam.json',
         isDefault: true,
       },
@@ -256,7 +256,7 @@ export const SUBJECT_CATALOG: Subject[] = [
       'Giải thuật di truyền GA (Genetic Algorithms), bầy đàn PSO, lập trình tiến hóa và chiến lược tiến hóa.',
     examFiles: [
       {
-        label: 'Ngân hàng đề thi (exam.json - 25 câu)',
+        label: 'Ngân hàng đề thi (exam.json)',
         filePath: '/2026.2/IT4906 - Tính toán tiến hóa/Gemini/exam.json',
         isDefault: true,
       },

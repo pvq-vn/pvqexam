@@ -5,6 +5,11 @@ export interface Option {
   text: string;
 }
 
+export interface DropdownSlot {
+  label?: string; // Optional prompt/label for this slot (e.g. 'Khách hàng:', 'Vị trí [1]')
+  choices: Option[]; // Available selectable options for this slot
+}
+
 export interface Question {
   id: string | number;
   type: QuestionType;
@@ -13,6 +18,7 @@ export interface Question {
   table?: string;
   link?: string;
   options?: Option[];
+  dropdownSlots?: DropdownSlot[];
   // For single/multiple/fill: string representations
   // For dropdown: can be string[] of correct options or indices
   correctAnswers: string[];
@@ -23,8 +29,34 @@ export interface Question {
   // Raw references
   originalNum?: number;
   topic?: string;
+  chapter?: number | string;
+  chapter_name?: string;
   driveImageId?: string;
   imageUrl?: string;
+}
+
+export interface ChapterInfo {
+  id: string; // e.g. "1", "2", "3" or name if no number
+  chapter?: number | string;
+  name: string;
+  count: number;
+  mcqCount: number;
+  essayCount: number;
+}
+
+export interface QuestionStat {
+  attempts: number;
+  correctCount: number;
+  wrongCount: number;
+  lastAttemptedAt: string;
+}
+
+export interface SubjectProgress {
+  totalQuestions: number;
+  attemptedQuestions: number;
+  neverAttemptedQuestions: number;
+  totalAttempts: number;
+  accuracy: number;
 }
 
 export interface Subject {
@@ -53,6 +85,8 @@ export interface QuizConfig {
   timeMode: TimeMode;
   customMinutes?: number;
   seed: string;
+  selectedChapter?: string; // 'all' or chapter identifier
+  prioritizeLeastAttempted?: boolean; // Default true: prioritize questions with fewest attempts
 }
 
 export interface QuestionEvaluation {

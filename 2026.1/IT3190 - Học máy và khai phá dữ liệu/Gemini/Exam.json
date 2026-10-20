@@ -16,7 +16,9 @@
       "A và trung điểm BC"
     ],
     "explanation": "Khởi tạo 2 tâm cụm ban đầu $m_1 = A(0,2)$ và $m_2 = B(0,1)$.\n\n**Vòng lặp 1:**\n- Tính khoảng cách từ các điểm tới tâm cụm:\n  + Điểm $A$: $d(A, m_1) = 0$, $d(A, m_2) = 1 \\Rightarrow A \\in C_1$\n  + Điểm $B$: $d(B, m_1) = 1$, $d(B, m_2) = 0 \\Rightarrow B \\in C_2$\n  + Điểm $C(1,0)$: $d(C, m_1) = \\sqrt{(1-0)^2 + (0-2)^2} = \\sqrt{5} \\approx 2.236$; $d(C, m_2) = \\sqrt{(1-0)^2 + (0-1)^2} = \\sqrt{2} \\approx 1.414 \\Rightarrow C \\in C_2$\n- Cập nhật tâm cụm:\n  + $m_1$ mới = trung bình của $C_1 = \\{A\\} \\Rightarrow m_1 = A(0,2)$\n  + $m_2$ mới = trung bình của $C_2 = \\{B, C\\} \\Rightarrow m_2 = \\left(\\frac{0+1}{2}, \\frac{1+0}{2}\\right) = (0.5, 0.5)$, tức là trung điểm của $BC$.\n\n**Vòng lặp 2:**\n- $d(A, m_1) = 0$, $d(A, m_2) = \\sqrt{0.5^2 + 1.5^2} = \\sqrt{2.5} > 0 \\Rightarrow A \\in C_1$\n- $d(B, m_1) = 1$, $d(B, m_2) = \\sqrt{0.5^2 + 0.5^2} = \\sqrt{0.5} < 1 \\Rightarrow B \\in C_2$\n- $d(C, m_1) = \\sqrt{5}$, $d(C, m_2) = \\sqrt{0.5^2 + 0.5^2} = \\sqrt{0.5} \\Rightarrow C \\in C_2$\nCấu hình các cụm không thay đổi nên thuật toán hội tụ. Hai tâm cụm cuối cùng là $A$ và trung điểm $BC$.",
-    "scope": "2021.1 - Câu 2"
+    "scope": "2021.1 - Câu 2",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 2,
@@ -34,7 +36,9 @@
       "ReLUs chấp nhận tính toán lan truyền ngược gradient nhanh hơn"
     ],
     "explanation": "Hàm ReLU (Rectified Linear Unit) được định nghĩa là $f(x) = \\max(0, x)$. Đạo hàm của ReLU vô cùng đơn giản: bằng $1$ khi $x > 0$ và bằng $0$ khi $x < 0$. Điều này giúp thuật toán lan truyền ngược (Backpropagation) tính toán gradient rất nhanh, đồng thời giúp mô hình tránh được vấn đề triệt tiêu đạo hàm (Vanishing Gradient) ở các giá trị kích hoạt dương lớn thường gặp phải ở hàm Sigmoid.",
-    "scope": "2021.1 - Câu 3"
+    "scope": "2021.1 - Câu 3",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 3,
@@ -53,7 +57,9 @@
       "là một phương pháp học có giám sát"
     ],
     "explanation": "Cây quyết định (Decision Tree) là một thuật toán học máy sử dụng dữ liệu huấn luyện đã được gắn nhãn (labeled data) để tạo ra các tập luật quyết định (dưới dạng cấu trúc cây) cho việc phân loại (Classification) hoặc hồi quy (Regression). Do đó, nó thuộc lớp các phương pháp **học có giám sát** (Supervised Learning).",
-    "scope": "2021.1 - Câu 4"
+    "scope": "2021.1 - Câu 4",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 4,
@@ -72,7 +78,9 @@
       "một sự kiện mà có thể quan sát được trong thực tế"
     ],
     "explanation": "Trong thống kê và học máy, \"biến quan sát được\" (observable variable) dùng để chỉ các đặc trưng, thuộc tính hoặc sự kiện mà chúng ta có thể trực tiếp đo lường, thu thập giá trị và ghi nhận trong thực tế (trái ngược với các \"biến ẩn\" - latent/hidden variables).",
-    "scope": "2021.1 - Câu 5"
+    "scope": "2021.1 - Câu 5",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 5,
@@ -90,7 +98,9 @@
       "Gain Ratio"
     ],
     "explanation": "Tiêu chuẩn *Information Gain* có thiên hướng (bias) thiên vị các thuộc tính có nhiều giá trị phân biệt (ví dụ: ID sinh viên, số hộ chiếu). Để khắc phục hạn chế này, *Gain Ratio* (Tỷ lệ lợi ích thông tin) được giới thiệu trong thuật toán C4.5. Nó chuẩn hóa Information Gain bằng cách chia cho *SplitInformation* (thông tin phân tách), giúp đánh giá công bằng hơn đối với các thuộc tính định danh có nhiều mức giá trị.",
-    "scope": "2021.1 - Câu 6"
+    "scope": "2021.1 - Câu 6",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 6,
@@ -108,7 +118,9 @@
       "Chọn kết quả mà $\\frac{1}{N} \\sum_{i=1}^{N} ||x_i - m_{z_i}||^2$ đạt giá trị nhỏ nhất trong 50 lần, với $m_{z_i}$ là tâm cụm mà $x_i$ được gán vào."
     ],
     "explanation": "Thuật toán K-means thực chất là giải bài toán tối ưu hóa nhằm cực tiểu hóa hàm mục tiêu WCSS (Within-Cluster Sum of Squares) hay còn gọi là quán tính (inertia), biểu diễn tổng bình phương khoảng cách từ mỗi điểm dữ liệu đến tâm cụm của nó. Do thuật toán thường hội tụ về cực tiểu cục bộ phụ thuộc vào việc chọn tâm khởi tạo ban đầu, thực thi nhiều lần và chọn mô hình có giá trị hàm mục tiêu nhỏ nhất là phương pháp tiêu chuẩn.",
-    "scope": "2021.1 - Câu 7"
+    "scope": "2021.1 - Câu 7",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 7,
@@ -127,7 +139,9 @@
       "Một hàm được gọi là bị quá khớp so với hàm khác nếu nó xấp xỉ chính xác hơn trên tập dữ liệu huấn luyện, nhưng kém chính xác hơn khi phán đoán các dữ liệu trong tương lai"
     ],
     "explanation": "Quá khớp (Overfitting) xảy ra khi một mô hình học thuật quá phức tạp, nó không chỉ học được cấu trúc phân bố chung của dữ liệu mà còn \"học thuộc\" cả các nhiễu ngẫu nhiên trong tập huấn luyện. Hệ quả là mô hình mang lại độ chính xác rất cao trên tập huấn luyện nhưng mất đi khả năng tổng quát hóa, dẫn tới độ chính xác bị suy giảm mạnh khi đưa ra dự đoán trên dữ liệu tương lai (tập kiểm thử).",
-    "scope": "2021.1 - Câu 8"
+    "scope": "2021.1 - Câu 8",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 8,
@@ -144,7 +158,9 @@
       "False"
     ],
     "explanation": "Phương pháp bình phương tối thiểu (Ordinary Least Squares - OLS) được dùng để ước lượng tham số của mô hình hồi quy tuyến tính bằng cách cực tiểu hóa tổng bình phương các sai số. Hệ số độ dốc (slope) và hệ số tự do (bias) hoàn toàn có thể là số âm, số dương hoặc bằng không, tùy thuộc vào mối quan hệ tương quan (thuận hay nghịch) giữa các biến số. Không có bất kỳ ràng buộc nào về dấu của các hệ số.",
-    "scope": "2021.1 - Câu 9"
+    "scope": "2021.1 - Câu 9",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 9,
@@ -166,7 +182,9 @@
       "Số lượng vector hỗ trợ độc lập với $m$"
     ],
     "explanation": "1. \"Có thể không có vector hỗ trợ\" là SAI: Trong SVM, ranh giới quyết định và lề luôn được xác định dựa trên một tập hợp ít nhất là 2 vector hỗ trợ (đối diện nhau qua siêu phẳng).\n2. \"Bộ phân loại học được có thể đưa ra dự đoán sai cho tất cả tập dữ liệu huấn luyện\" là SAI: Bản chất của SVM là tối ưu hóa để tìm ra ranh giới có lỗi phân loại thấp nhất trên tập huấn luyện, do đó mô hình không bao giờ sai trên toàn bộ tập dữ liệu.\n3. \"Số lượng vector hỗ trợ độc lập với $m$\" là SAI: Số lượng vector hỗ trợ thực tế có liên quan (phụ thuộc) vào sự phân bố và số lượng điểm dữ liệu tổng thể $m$.",
-    "scope": "2021.1 - Câu 10"
+    "scope": "2021.1 - Câu 10",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 10,
@@ -186,7 +204,9 @@
       "Tất cả các mẫu nằm bên trong lề"
     ],
     "explanation": "Trong bài toán Soft-margin SVM, biến lỏng $\\xi_i$ (slack variable) đo mức độ vi phạm lề của điểm dữ liệu thứ $i$.\n- Khi điểm dữ liệu nằm ngoài lề biên hoặc đúng trên lề biên hướng về phía lớp đúng, $\\xi_i = 0$.\n- Khi điểm dữ liệu rơi vào trong không gian \"bên trong lề\" nhưng vẫn ở đúng phía ranh giới (đúng lớp), $0 < \\xi_i < 1$.\n- Khi điểm dữ liệu rơi vượt quá ranh giới phân lớp sang lãnh thổ của lớp kia (bị sai lớp), $\\xi_i > 1$.\nNhư vậy, cả mẫu nằm bên trong lề và mẫu phân loại sai đều có $\\xi_i > 0$.",
-    "scope": "2021.1 - Câu 11"
+    "scope": "2021.1 - Câu 11",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 11,
@@ -205,7 +225,9 @@
       "Chúng không giao nhau"
     ],
     "explanation": "Đây là bài toán về bản chất toán học của các không gian định nghĩa. Không gian tham số $\\mathbf{W}$ là tập hợp các điểm/vectơ $\\mathbf{w} \\in \\mathbb{R}^{n+1}$, định nghĩa lên các hệ số vô hướng. Trong khi đó, không gian hàm $\\mathbf{F}$ là tập hợp chứa các ánh xạ/hàm số toán học có dạng $f: X \\rightarrow Y$. Về mặt cấu trúc đại số, phần tử của chúng mang bản chất hoàn toàn khác biệt nhau (vectơ hệ số vs. hàm số), vì thế hai tập hợp/không gian này không giao nhau.",
-    "scope": "2021.1 - Câu 12"
+    "scope": "2021.1 - Câu 12",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 12,
@@ -223,7 +245,9 @@
       "Mô hình tuyến tính"
     ],
     "explanation": "Hàm $f(x)$ được biểu diễn dưới dạng một tổ hợp tuyến tính (linear combination) của các biến đầu vào $x_i$ với các hệ số trọng số tương ứng $w_i$. Phương trình này chính là phương trình của một siêu phẳng, đây là định nghĩa cơ bản của một Mô hình tuyến tính (Linear Model).",
-    "scope": "2021.1 - Câu 13"
+    "scope": "2021.1 - Câu 13",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 13,
@@ -241,7 +265,9 @@
       "Bất kể số lượng các thuộc tính kiểu số, giải thuật học láng giềng gần nhất đạt độ chính xác cao hơn nếu các thuộc tính kiểu số đó có cùng khoảng giá trị."
     ],
     "explanation": "K-Nearest Neighbors (K-NN) là thuật toán dựa trên phép đo khoảng cách (metric-based) như khoảng cách Euclidean hoặc Manhattan. Nếu các thuộc tính không được chuẩn hóa (Normalization/Standardization) về cùng khoảng giá trị, thuộc tính nào có miền giá trị lớn (vd: Thu nhập tính bằng triệu đồng) sẽ làm lu mờ hoàn toàn các thuộc tính có miền giá trị nhỏ (vd: Tuổi tác), dẫn tới sai lệch trong việc xác định độ láng giềng. Yêu cầu đưa về cùng miền giá trị là thiết yếu không phụ thuộc vào việc có bao nhiêu thuộc tính kiểu số.",
-    "scope": "2021.1 - Câu 19"
+    "scope": "2021.1 - Câu 19",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 14,
@@ -262,7 +288,9 @@
       "MAP có thể ước lượng phân bố hậu nghiệm đầy đủ từ một tập dữ liệu"
     ],
     "explanation": "1. Ước lượng MAP là phương pháp thuộc trường phái Bayes áp dụng định lý Bayes, do đó **bắt buộc phải có tri thức tiên nghiệm (Prior Distribution)** về các tham số. Phát biểu \"không cần biết bất kỳ tri thức nào...\" là sai.\n2. MAP chỉ là kỹ thuật ước lượng điểm (Point Estimation), nó đi tìm **đỉnh (mode)** của phân bố hậu nghiệm để làm tham số ước lượng tối ưu, chứ MAP **không ước lượng toàn bộ phân bố hậu nghiệm đầy đủ** (việc duy trì cả một phân bố là đặc quyền của Suy diễn Bayes hoàn toàn - Full Bayesian Inference). Do đó phát biểu ước lượng phân bố đầy đủ là sai.",
-    "scope": "2021.1 - Câu 20"
+    "scope": "2021.1 - Câu 20",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 15,
@@ -280,7 +308,9 @@
       "việc đánh giá hiệu quả (chất lượng) của một mô hình hoặc phương pháp phân tích dữ liệu, bằng cách sử dụng một hoặc nhiều tập dữ liệu"
     ],
     "explanation": "Đánh giá mô hình (Model Evaluation) là một quy trình nhằm đo lường và định lượng chất lượng, độ chính xác cũng như mức độ tổng quát hóa của thuật toán/mô hình học máy. Việc này trong thực hành luôn được thực hiện một cách có hệ thống bằng cách áp dụng mô hình lên một hoặc nhiều tập dữ liệu riêng biệt (như Validation Set, Test Set, hay thông qua Cross-validation).",
-    "scope": "2021.1 - Câu 21"
+    "scope": "2021.1 - Câu 21",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 16,
@@ -299,7 +329,9 @@
       "K-NN"
     ],
     "explanation": "K-NN (K-Nearest Neighbors) là một thuật toán học lười (Lazy Learning). Giai đoạn huấn luyện của nó thực chất chỉ là việc lưu trữ (ghi nhớ) lại toàn bộ tập dữ liệu huấn luyện vào bộ nhớ mà không cần thực hiện bất kỳ phép tối ưu hóa lặp hay xây dựng hàm trọng số nào. Do đó, thời gian huấn luyện của K-NN có thể coi là $O(1)$ hoặc vô cùng nhỏ so với các thuật toán yêu cầu tính toán tham số nặng nề (Eager Learning) như SVM hay Mạng Nơ-ron.",
-    "scope": "2021.1 - Câu 22"
+    "scope": "2021.1 - Câu 22",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 17,
@@ -318,7 +350,9 @@
       "Một hàm được gọi là bị kém khớp so với hàm khác nếu nó xấp xỉ kém chính xác hơn trên tập dữ liệu huấn luyện và phán đoán các dữ liệu trong tương lai kém chính xác hơn"
     ],
     "explanation": "Kém khớp (Underfitting) là trạng thái mà mô hình quá đơn giản so với độ phức tạp của dữ liệu, dẫn đến việc mô hình không nắm bắt được bản chất (underlying pattern) của dữ liệu. Do đó, mô hình dưới mức khớp sẽ trả về kết quả dự đoán với sai số rất cao ở ngay trên tập dữ liệu huấn luyện, và tự nhiên cũng sẽ dự đoán kém chính xác trên cả dữ liệu kiểm thử trong tương lai.",
-    "scope": "2021.1 - Câu 23"
+    "scope": "2021.1 - Câu 23",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 18,
@@ -338,7 +372,9 @@
       "Cắt đi những luật có support nhỏ hơn ngưỡng minsup"
     ],
     "explanation": "Quy trình thực thi của thuật toán Apriori chia thành hai công đoạn chính:\n1. Tìm kiếm các tập phổ biến (Frequent Itemsets): Dựa vào nguyên lý Apriori, thuật toán thực hiện tỉa cành (prune) loại bỏ sớm tất cả những ứng viên có độ hỗ trợ (support) thấp hơn ngưỡng tối thiểu (`minsup`). \n2. Sinh luật kết hợp (Rule Generation): Từ những tập dữ liệu đạt chuẩn trên, nó trích xuất ra thành luật, giữ lại các luật nào thỏa mãn độ tin cậy (confidence) cao hơn hoặc bằng ngưỡng `minconf` đề ra.",
-    "scope": "2021.1 - Câu 24"
+    "scope": "2021.1 - Câu 24",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 19,
@@ -359,7 +395,9 @@
       "ước lượng khả năng cực đại của một mô hình"
     ],
     "explanation": "Maximum Likelihood Estimation (MLE) là phương pháp thống kê đóng vai trò làm khung toán học cốt lõi cho việc huấn luyện (fit data). Quá trình đi tìm một bộ tham số $\\theta$ tối ưu nhất cho hàm giả thuyết sao cho phân bố xác suất dự đoán khớp nhất với tập huấn luyện thực chất chính là quá trình \"học một mô hình\". Đồng thời, định nghĩa thuần túy của MLE chính là việc tối đa hóa hàm hợp lý (likelihood function), hay \"ước lượng khả năng cực đại\".",
-    "scope": "2021.1 - Câu 25"
+    "scope": "2021.1 - Câu 25",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 20,
@@ -378,7 +416,9 @@
       "Hàm khoảng cách Manhattan được dùng cho các biến (thuộc tính) kiểu liên tục"
     ],
     "explanation": "Khoảng cách Manhattan (L1 Norm) tính tổng sự sai khác tuyệt đối trên từng tọa độ: $d(x,y) = \\sum |x_i - y_i|$. Phép toán trừ và tính giá trị tuyệt đối mang ý nghĩa toán học trên các biến số có thể đo lường thứ tự mức độ, đó là các biến kiểu số hoặc liên tục (Continuous/Numeric variables). Đối với biến định danh (Nominal) không có quan hệ thứ tự hay tỷ lệ, ta thường phải dùng khoảng cách Hamming hoặc Simple Matching.",
-    "scope": "2021.1 - Câu 26"
+    "scope": "2021.1 - Câu 26",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 21,
@@ -397,7 +437,9 @@
       "là một nhóm các đối tượng giống nhau và chúng khác biệt lớn với các đối tượng của nhóm khác"
     ],
     "explanation": "Theo định nghĩa của kỹ thuật phân cụm (Clustering), một cụm (cluster) là một tập hợp phân nhóm các thực thể dữ liệu sao cho các dữ liệu cùng nằm trong một nhóm thì có độ tương đồng (similarity) cực kỳ cao với nhau, đồng thời thể hiện tính dị biệt (dissimilarity) lớn khi so sánh với các dữ liệu nằm tại những cụm khác.",
-    "scope": "2021.1 - Câu 27"
+    "scope": "2021.1 - Câu 27",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 22,
@@ -416,7 +458,9 @@
       "một đường đi duy nhất trong cây"
     ],
     "explanation": "Thuật toán cây quyết định biểu diễn tri thức ở dạng cấu trúc rẽ nhánh mang tính bao hàm mutually exclusive. Khi đưa một mẫu dữ liệu mới vào dự đoán, mẫu này sẽ xuất phát từ nút gốc, kiểm tra giá trị của một thuộc tính, và chỉ thỏa mãn để rẽ xuống chính xác **một** nhánh tương ứng duy nhất ở mỗi nút cấp dưới, quá trình này lặp lại cho đến khi chạm tới một nút lá cụ thể mang nhãn phân loại. Do vậy, nó chỉ duyệt qua một đường đi duy nhất.",
-    "scope": "2021.1 - Câu 28"
+    "scope": "2021.1 - Câu 28",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 23,
@@ -433,7 +477,9 @@
       "False"
     ],
     "explanation": "Thuật toán Apriori truyền thống thuộc về khai phá luật kết hợp dạng boolean. Nó chỉ quan tâm duy nhất đến yếu tố **tần suất xuất hiện** (cùng có mặt hay vắng mặt) của các item (sản phẩm) trong cơ sở dữ liệu giao dịch để tính toán ra support và confidence. Mọi thông tin về định lượng vật lý như giá cả (Price), số lượng mua (Quantity) đều bị loại trừ và không ảnh hưởng gì tới chất lượng thuật toán.",
-    "scope": "2021.1 - Câu 29"
+    "scope": "2021.1 - Câu 29",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 24,
@@ -451,7 +497,9 @@
       "Với một xác suất cao, nó yêu cầu bộ nhớ lớn nhất so với các loại tập thường xuyên kích thước khác."
     ],
     "explanation": "Trong bước sinh ứng viên (candidate generation), tập ứng viên kích thước 2 ($C_2$) được tạo ra bằng cách ghép đôi mọi item phổ biến từ $L_1$. Số lượng cặp ứng viên này là tổ hợp chập 2: $O(|L_1|^2)$. Đây là giai đoạn sinh ra không gian ứng viên phình to nhất, đòi hỏi phải cấp phát dung lượng bộ nhớ khổng lồ để chứa và kiểm tra tần suất quét của chúng. Các tập $k$-itemsets lớn hơn ($k \\ge 3$) sau đó sẽ giảm đột ngột về số lượng do sự tỉa cành mạnh tay của nguyên lý Apriori.",
-    "scope": "2021.1 - Câu 30"
+    "scope": "2021.1 - Câu 30",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 25,
@@ -471,7 +519,9 @@
       "đẩy các thuộc tính có độ giảm nhiều hơn về mức độ hỗn tạp về phía gần hơn nút gốc"
     ],
     "explanation": "Chiến lược tham lam của Information Gain (trong ID3) là tại mỗi vòng lặp luôn ưu tiên phân tách bằng thuộc tính đem lại lượng giảm entropy (mức độ hỗn tạp) lớn nhất. \n- Vì chọn lớn nhất trước, các thuộc tính có độ giảm nhiều (mang nhiều thông tin nhất) sẽ được đẩy lên chiếm vị trí cao sớm nhất trên cây (gần nút gốc).\n- Suy ra, các thuộc tính kém hơn có mức độ giảm hỗn tạp ít đành phải chọn ở các lần tách sau ở cấp độ sâu hơn, dẫn đến trôi dạt về phía các nút lá.",
-    "scope": "2021.1 - Câu 31"
+    "scope": "2021.1 - Câu 31",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 26,
@@ -490,7 +540,9 @@
       "chuyển đổi từ liên tục thành rời rạc"
     ],
     "explanation": "Rời rạc hóa (Discretization/Binning) là kỹ thuật tiền xử lý dữ liệu nơi một dải thuộc tính có giá trị liên tục (chẳng hạn khoảng nhiệt độ $20.5^{\\circ}C$, $25.1^{\\circ}C$,...) được chia cắt thành một số hữu hạn các phân nhóm/khoảng rời rạc (ví dụ: Lạnh, Mát, Nóng).",
-    "scope": "2021.1 - Câu 32"
+    "scope": "2021.1 - Câu 32",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 27,
@@ -543,7 +595,9 @@
       "{I1, I2, I4}"
     ],
     "explanation": "Nguyên lý phản đơn điệu (Anti-Monotonicity property) cốt lõi của Apriori chỉ ra rằng: Nếu một tập $X$ không thường xuyên, thì mọi siêu tập $Y \\supset X$ cũng chắc chắn không thường xuyên.\nỞ đây với minsup = 6, tập `\\{I1, I4\\}` chỉ có đếm bằng 4 $\\rightarrow$ nó không phổ biến.\nBởi vì `\\{I1, I2, I4\\}` là siêu tập chứa tập con `\\{I1, I4\\}`, nó chắc chắn bị tỉa bỏ và không phải là tập phổ biến.",
-    "scope": "2021.1 - Câu 33"
+    "scope": "2021.1 - Câu 33",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 28,
@@ -561,7 +615,9 @@
       "$\\mathbf{w}^* = \\arg\\min_{\\mathbf{w}} \\sum_{i=1}^{M} (y_i - w_0 - w_1x_{i1} - \\dots - w_nx_{in})^2$"
     ],
     "explanation": "Hàm mục tiêu chuẩn của OLS (Bình phương tối thiểu) thuần túy là việc tối thiểu hóa tổng bình phương phần dư (Residual Sum of Squares), không chứa yếu tố điều chuẩn (Regularization term). Biểu thức $\\sum_{i=1}^M (y_i - \\hat{y}_i)^2$ chính là hình thức chuẩn xác. Công thức có chứa $+ \\lambda ||\\mathbf{w}||_2^2$ là của phương pháp hồi quy Ridge (Ridge Regression).",
-    "scope": "2021.1 - Câu 34"
+    "scope": "2021.1 - Câu 34",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 29,
@@ -581,7 +637,9 @@
       "Giải thuật học láng giềng gần nhất sẽ có xu hướng học chưa khớp (underfitting)"
     ],
     "explanation": "Khi giá trị $k$ trong K-NN được xét cực lớn (ví dụ $k = N$, lấy toàn bộ dữ liệu làm láng giềng), vùng quyết định bị làm mịn quá mức tạo nên hiện tượng High Bias. \n1. Mô hình không còn học được cấu trúc phân chia tinh tế, sinh ra tình trạng **kém khớp (underfitting)**.\n2. Ở điểm mù này, quyết định luôn được ấn định theo quy tắc vote đa số tuyệt đối, tức là cứ mẫu nào thuộc lớp có số lượng đông nhất toàn cục thì dự đoán nhãn đó cho mọi Query $\\Rightarrow$ kết quả dự đoán trở nên **hiển nhiên (trivial)**.",
-    "scope": "2021.1 - Câu 35"
+    "scope": "2021.1 - Câu 35",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 30,
@@ -599,7 +657,9 @@
       "Cả tín hiệu vào $x$ và bộ trọng số"
     ],
     "explanation": "Kiến trúc tổng thể của Mạng Nơ-ron lan truyền thẳng là một ánh xạ $y = f(x; W)$. Hàm kích hoạt phi tuyến (như Sigmoid, Tanh, ReLU) áp dụng làm biến dạng tuyến tính trực tiếp lên không gian véctơ đặc trưng đầu vào $x$. Hơn nữa, vì các tầng ẩn được xếp chồng theo cơ chế phân cấp hàm $f_2(W_2 \\cdot f_1(W_1 \\cdot x))$, tín hiệu đi qua bị biến đổi phi tuyến đối với cả hệ thống tham số ma trận trọng số $W$. Do đó, ANN thể hiện tính phi tuyến đối với toàn cục gồm cả tín hiệu vào và cả kiến trúc kết nối trọng số.",
-    "scope": "2021.1 - Câu 36"
+    "scope": "2021.1 - Câu 36",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 31,
@@ -618,7 +678,9 @@
       "giảm khả năng overfitting"
     ],
     "explanation": "Trong bài toán Soft-margin SVM, tham số $C$ kiểm soát sự đánh đổi (trade-off) giữa việc cực đại hóa lề (tỷ lệ nghịch với $||\\mathbf{w}||^2$) và cực tiểu hóa lỗi phân loại trên tập huấn luyện (thông qua biến lỏng $\\xi_i$). Khi **giảm giá trị của $C$**, thuật toán sẽ đặt ít trọng số hơn vào việc phạt các điểm bị phân loại sai, cho phép lề (margin) rộng hơn. Việc nới lỏng ranh giới này giúp mô hình trở nên tổng quát hóa tốt hơn, ít bị cuốn theo các nhiễu cục bộ, từ đó **giảm khả năng bị quá khớp (overfitting)**. (Lưu ý: Hệ quả đi kèm là mô hình cũng \"ít nhạy cảm với ngoại lai\", nhưng xét về bức tranh tổng thể của tối ưu siêu tham số, mục đích chính của việc giảm $C$ là để giảm overfitting).",
-    "scope": "2021.1 - Câu 37"
+    "scope": "2021.1 - Câu 37",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 32,
@@ -637,7 +699,9 @@
       "nhạy cảm với dữ liệu ngoại lai (outliers)"
     ],
     "explanation": "1. **Phụ thuộc vào khởi tạo:** K-means giải bài toán tối ưu hóa không lồi (non-convex) bằng phương pháp lặp. Do đó, nó thường bị mắc kẹt ở các điểm cực tiểu cục bộ (local minima) thay vì cực tiểu toàn cục. Kết quả phân cụm cuối cùng phụ thuộc rất lớn vào vị trí khởi tạo tâm cụm ban đầu.\n2. **Nhạy cảm với ngoại lai:** Tâm cụm (centroid) được cập nhật bằng cách tính giá trị trung bình (mean) của các điểm trong cụm. Phép tính trung bình về mặt toán học vô cùng nhạy cảm với các giá trị bất thường (outliers), một điểm ngoại lai có thể kéo lệch toàn bộ tâm cụm đi rất xa.",
-    "scope": "2021.1 - Câu 38"
+    "scope": "2021.1 - Câu 38",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 33,
@@ -654,7 +718,9 @@
       "False"
     ],
     "explanation": "Không phải *tất cả* mạng nơ-ron đều tính toán hàm phi tuyến. Nếu một mạng nơ-ron nhiều tầng chỉ sử dụng các **hàm kích hoạt tuyến tính** (Identity function $f(x) = x$) tại tất cả các nơ-ron ẩn, thì bất kể mạng có bao nhiêu tầng, hệ thống tích chập của các ma trận trọng số cuối cùng cũng sẽ sụp đổ (collapse) về một phép biến đổi tuyến tính duy nhất dạng $Y = W^T X$. Tính phi tuyến chỉ xuất hiện khi mạng áp dụng các hàm kích hoạt phi tuyến (ReLU, Sigmoid, Tanh...).",
-    "scope": "2021.1 - Câu 39"
+    "scope": "2021.1 - Câu 39",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 34,
@@ -671,7 +737,9 @@
       "True"
     ],
     "explanation": "Giảm chiều dữ liệu (Dimensionality Reduction) thông qua các kỹ thuật như PCA (Principal Component Analysis), t-SNE hay LDA là một bước tiền xử lý cực kỳ phổ biến. Nó giúp loại bỏ các đặc trưng dư thừa hoặc tương quan tuyến tính cao (multicollinearity), nén thông tin để giảm thời gian huấn luyện, triệt tiêu bớt nhiễu và trực tiếp giải quyết vấn đề \"Lời nguyền đa chiều\" (Curse of Dimensionality) cho các thuật toán như K-means hay Mạng nơ-ron.",
-    "scope": "2021.1 - Câu 40"
+    "scope": "2021.1 - Câu 40",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 35,
@@ -690,7 +758,9 @@
       "Khi giải quyết bài toán đối ngẫu của SVM, chúng ta chỉ cần tích vô hướng của $x_i$ và $x_j$ cho tất cả $i, j$, và không cần thông tin của $x_i$."
     ],
     "explanation": "1. Bài toán SVM nguyên thủy (Primal) tối thiểu hóa hàm mục tiêu bậc hai $\\frac{1}{2}||w||^2$ tuân theo các ràng buộc bất đẳng thức **tuyến tính** $y_i(w^T x_i + b) \\ge 1$. Do đó, phương pháp nhân tử Lagrange được áp dụng trên các ràng buộc tuyến tính này.\n2. Bài toán đối ngẫu (Dual Problem) của SVM (Wolfe Dual) hoàn toàn triệt tiêu $w$ và $b$, chỉ phụ thuộc vào các nhân tử $\\alpha_i$ và **tích vô hướng** $\\langle x_i, x_j \\rangle$ của các cặp điểm dữ liệu. Điều này mở đường cho Kernel Trick hoạt động ở không gian chiều cao.",
-    "scope": "2021.1 - Câu 41"
+    "scope": "2021.1 - Câu 41",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 36,
@@ -708,7 +778,9 @@
       "Một lớp các thuật toán mà sử dụng các tính toán về xác suất hậu nghiệm"
     ],
     "explanation": "Bộ phân loại Naive Bayes hoạt động dựa trên cốt lõi là Định lý Bayes. Mục tiêu của nó là gán nhãn $y$ cho đầu vào $x$ bằng cách tìm lớp cực đại hóa **xác suất hậu nghiệm** (Posterior probability) $P(y|x)$. Theo công thức $P(y|x) = \\frac{P(x|y)P(y)}{P(x)}$, thuật toán sẽ tính toán các thành phần Tiên nghiệm $P(y)$ và Likelihood $P(x|y)$ để suy ra hậu nghiệm.",
-    "scope": "2021.1 - Câu 42"
+    "scope": "2021.1 - Câu 42",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 37,
@@ -726,7 +798,9 @@
       "Đúng"
     ],
     "explanation": "Bản chất định nghĩa của Học máy là việc nghiên cứu các thuật toán và mô hình thống kê cho phép hệ thống máy tính có khả năng tự động học hỏi từ dữ liệu (phân tích) để đưa ra các nhận định, quyết định hoặc dự đoán cho dữ liệu chưa từng thấy trong tương lai (quan sát mới). Học máy không tập trung vào kỹ thuật tăng tốc phần cứng hay tài nguyên xử lý (đó là lĩnh vực Kiến trúc máy tính & Tính toán song song).",
-    "scope": "2021.1 - Câu 43"
+    "scope": "2021.1 - Câu 43",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 38,
@@ -744,7 +818,9 @@
       "Lựa chọn mô hình quan tâm đến việc tìm thiết đặt tốt nhất về bộ (siêu) tham số trong một mô hình khi huấn luyện nó từ một tập dữ liệu. Đôi khi nó cũng nói đến việc lựa chọn một trong số các mô hình đang có."
     ],
     "explanation": "Trong kỹ nghệ Học máy, thuật ngữ Lựa chọn mô hình (Model Selection) mang ý nghĩa rộng, bao gồm 2 khía cạnh chính:\n1. Thuật toán/Lớp mô hình: Chọn ra phương pháp thuật toán tổng thể phù hợp nhất (Ví dụ: So sánh chọn SVM thay vì Decision Tree).\n2. Tối ưu siêu tham số (Hyperparameter Tuning): Quá trình tìm kiếm không gian siêu tham số nội bộ của cùng một thuật toán để tìm cấu hình mô hình đem lại mức tổng quát hóa tốt nhất (Ví dụ: Chọn K=5 hay K=7 trong K-NN).",
-    "scope": "2021.1 - Câu 44"
+    "scope": "2021.1 - Câu 44",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 39,
@@ -766,7 +842,9 @@
       "Đánh giá chéo không bị ảnh hưởng xấu từ sự ngẫu nhiên, nghĩa là việc chia tập dữ liệu một cách ngẫu nhiên không làm ảnh hưởng nhiều đến kết quả đánh giá"
     ],
     "explanation": "1. Đánh giá chéo (Cross-validation) như K-Fold thường được kết hợp với Grid Search/Random Search để tinh chỉnh siêu tham số, đồng thời để ước lượng hiệu suất mô hình.\n2. Vì mô hình phải huấn luyện lại $K$ lần từ đầu trên từng nếp gấp (fold) khác nhau, quá trình này tiêu tốn thời gian gấp nhiều lần so với Hold-out thông thường.\n3. Nhờ cơ chế hoán vị liên tục toàn bộ tập huấn luyện/kiểm thử và lấy trung bình các lần đo, K-Fold làm giảm thiểu đáng kể độ lệch phương sai (variance bias) gây ra bởi việc chia cắt ngẫu nhiên thiên lệch một lần.",
-    "scope": "2021.1 - Câu 45"
+    "scope": "2021.1 - Câu 45",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 40,
@@ -785,7 +863,9 @@
       "giá trị lặp lại nhiều nhất"
     ],
     "explanation": "Trong Thống kê học đại cương, \"Mode\" (Yếu vị) của một tập dữ liệu hoặc một phân phối xác suất được định nghĩa là giá trị xuất hiện với tần số cao nhất (giá trị lặp lại nhiều nhất). Khác với Mean (giá trị trung bình) hay Median (giá trị trung vị nằm ở giữa).",
-    "scope": "2021.1 - Câu 14"
+    "scope": "2021.1 - Câu 14",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 41,
@@ -806,7 +886,9 @@
       "Thử nghiệm với các tốc độ học khác nhau (learning rate) và bổ sung thêm thành phần hiệu chỉnh (regularization) vào hàm mục tiêu"
     ],
     "explanation": "Hiện tượng lỗi huấn luyện cực thấp nhưng lỗi kiểm thử rất cao chính xác là triệu chứng của **Overfitting** (Quá khớp). Các phương pháp chống overfitting bao gồm:\n- Thu thập thêm dữ liệu: Dataset càng lớn, mô hình càng khó ghi nhớ cục bộ và buộc phải học quy luật tổng quát.\n- Regularization (L1/L2/Dropout): Trực tiếp hạn chế độ phức tạp của hàm trọng số, ép mạng nơ-ron trơn tru hơn.\n- Kỹ thuật kết hợp (Ensemble): Huấn luyện nhiều mạng với khởi tạo ngẫu nhiên khác nhau và lấy trung bình (như Bagging) sẽ làm giảm phương sai (variance) của phán đoán.\n*Chú ý: Việc thêm tầng ẩn (tăng tham số) sẽ chỉ làm mô hình mạnh thêm và làm tình trạng Overfitting tồi tệ hơn.*",
-    "scope": "2021.1 - Câu 15"
+    "scope": "2021.1 - Câu 15",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 42,
@@ -827,7 +909,9 @@
       "Khi $\\lambda \\rightarrow 0$, hàm học được sẽ có xu hướng bị overfitting"
     ],
     "explanation": "Trong Hồi quy Ridge (Tikhonov Regularization), tham số $\\lambda$ điều khiển cường độ phạt (penalty) độ lớn các trọng số.\n- Khi $\\lambda \\rightarrow 0$: Hình phạt biến mất, hàm mục tiêu thoái hóa hoàn toàn về OLS bình thường, do đó cho phép các trọng số tự do phình to khớp mọi nhiễu, làm mô hình dễ bị Overfitting (Quá khớp).\n- Khi $\\lambda \\rightarrow +\\infty$: Hình phạt quá khắc nghiệt, buộc toàn bộ vector trọng số $\\mathbf{w}$ bị triệt tiêu về $0$ để làm hài lòng hàm mục tiêu. Khi đó mô hình chỉ phán đoán một hằng số phẳng (đường nằm ngang), dẫn đến tình trạng Underfitting (Kém khớp).",
-    "scope": "2021.1 - Câu 16"
+    "scope": "2021.1 - Câu 16",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 43,
@@ -845,7 +929,9 @@
       "Ảnh hưởng xấu của sự mất cân bằng giữa các lớp"
     ],
     "explanation": "Phương pháp Hold-out truyền thống chia dữ liệu ngẫu nhiên bất chấp phân bố nhãn. Đối với dữ liệu cực kỳ mất cân bằng (Imbalanced class), việc chia ngẫu nhiên có nguy cơ cao loại bỏ hoàn toàn các mẫu của thiểu số (minority class) khỏi tập Train hoặc tập Test, dẫn đến đánh giá sai lệch toàn diện. **Lấy mẫu phân tầng (Stratified Sampling)** giải quyết triệt để điều này bằng cách ép buộc phân phối tỷ lệ giữa các lớp trong tập chia tách (train/test) phải giữ nguyên giống hệt tỷ lệ trong tập dữ liệu ban đầu.",
-    "scope": "2021.1 - Câu 17"
+    "scope": "2021.1 - Câu 17",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 44,
@@ -914,7 +1000,9 @@
       "$c_2$"
     ],
     "explanation": "Gọi điểm truy vấn là $Q(1,1)$. Ta tính bình phương khoảng cách Euclid $d^2 = (x_1 - 1)^2 + (x_2 - 1)^2$ cho 8 điểm dữ liệu:\n1. $(-1, 1): d^2 = (-2)^2 + 0^2 = 4 \\rightarrow c_2$\n2. $(0, 1): d^2 = (-1)^2 + 0^2 = 1 \\rightarrow c_1$\n3. $(0, 2): d^2 = (-1)^2 + 1^2 = 2 \\rightarrow c_2$\n4. $(1, -1): d^2 = 0^2 + (-2)^2 = 4 \\rightarrow c_2$\n5. $(1, 0): d^2 = 0^2 + (-1)^2 = 1 \\rightarrow c_1$\n6. $(1, 2): d^2 = 0^2 + 1^2 = 1 \\rightarrow c_1$\n7. $(2, 2): d^2 = 1^2 + 1^2 = 2 \\rightarrow c_2$\n8. $(2, 3): d^2 = 1^2 + 2^2 = 5 \\rightarrow c_1$\n\nVì $k=7$, ta lấy 7 láng giềng gần nhất (loại bỏ điểm $(2,3)$ xa nhất với $d^2=5$). \nTập 7 láng giềng bao gồm: $(0,1)$ nhãn $c_1$, $(1,0)$ nhãn $c_1$, $(1,2)$ nhãn $c_1$, $(0,2)$ nhãn $c_2$, $(2,2)$ nhãn $c_2$, $(-1,1)$ nhãn $c_2$, $(1,-1)$ nhãn $c_2$.\nTổng số phiếu Vote: lớp $c_1$ có 3 phiếu; lớp $c_2$ có 4 phiếu. \nĐa số tuyệt đối thuộc về $c_2$, nên nhãn dự đoán là $c_2$.",
-    "scope": "2021.1 - Câu 18"
+    "scope": "2021.1 - Câu 18",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 45,
@@ -932,7 +1020,9 @@
       "Thu thập dữ liệu, tiền xử lý dữ liệu, mô hình hoá, đánh giá kết quả"
     ],
     "explanation": "Quy trình xây dựng Pipeline chuẩn cho một dự án Machine Learning (CRISP-DM framework) phải tuân theo trật tự nhân quả của luồng thông tin:\n1. Thu thập dữ liệu (Data Gathering): Nguồn tài nguyên thô đầu vào.\n2. Tiền xử lý (Data Preprocessing): Làm sạch, chuẩn hóa, mã hóa, kỹ nghệ đặc trưng trên dữ liệu thô.\n3. Mô hình hóa (Modeling): Đưa dữ liệu sạch vào thuật toán để học cấu trúc.\n4. Đánh giá (Evaluation): Chạy mô hình trên tập kiểm thử để đo lường độ chính xác trước khi ra quyết định triển khai.",
-    "scope": "2021.2 - Câu 1"
+    "scope": "2021.2 - Câu 1",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 46,
@@ -950,7 +1040,9 @@
       "Đúng"
     ],
     "explanation": "Bản chất định nghĩa của Học máy là việc nghiên cứu các thuật toán và mô hình thống kê cho phép hệ thống máy tính tự động học hỏi từ dữ liệu để đưa ra dự đoán, phán đoán. Chức năng tăng tốc tính toán cấp phần cứng (như vi kiến trúc CPU/GPU, điện toán lưới) không thuộc phạm trù toán học cốt lõi của Học máy.",
-    "scope": "2021.2 - Câu 2"
+    "scope": "2021.2 - Câu 2",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 47,
@@ -969,7 +1061,9 @@
       "Một hàm được gọi là bị quá khớp so với hàm khác nếu nó xấp xỉ chính xác hơn trên tập dữ liệu huấn luyện, nhưng kém chính xác hơn khi phán đoán các dữ liệu trong tương lai"
     ],
     "explanation": "Quá khớp (Overfitting) xảy ra khi mô hình quá phức tạp so với lượng dữ liệu thực tế. Nó sẽ học vẹt luôn cả nhiễu và những đặc trưng không mang tính đại diện (noise/outliers) trong tập huấn luyện, từ đó đạt chỉ số hiệu năng cực cao (xấp xỉ chính xác) trên Data Train. Tuy nhiên, nó thất bại thảm hại ở khả năng tổng quát hóa, dẫn tới dự đoán kém chính xác trên tập kiểm thử chưa từng thấy trong tương lai (Unseen Data).",
-    "scope": "2021.2 - Câu 3"
+    "scope": "2021.2 - Câu 3",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 48,
@@ -987,7 +1081,9 @@
       "Sử dụng Hiệu chỉnh (regularization), nhằm giới hạn lại không gian tìm kiếm của hàm cần học"
     ],
     "explanation": "Hiệu chỉnh (Regularization) là kỹ thuật kinh điển nhất giải quyết Overfitting bằng cách tác động trực tiếp vào hàm mục tiêu. Bằng cách cộng thêm một thành phần phạt (penalty term, ví dụ $L_1$ hoặc $L_2$ norm) dựa trên độ lớn của vector tham số, nó ép buộc mô hình phải duy trì trọng số nhỏ, trực tiếp giới hạn không gian giả thuyết phức tạp và tạo ra ranh giới quyết định trơn tru, bao quát hơn. Bỏ bớt dữ liệu là một bước đi sai lầm vì dữ liệu càng lớn Overfitting càng giảm.",
-    "scope": "2021.2 - Câu 4"
+    "scope": "2021.2 - Câu 4",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 49,
@@ -1006,7 +1102,9 @@
       "một thuật toán không giám sát làm việc trên dữ liệu không có nhãn"
     ],
     "explanation": "K-means thuộc phân nhóm Học không giám sát (Unsupervised Learning) đặc trưng cho bài toán phân cụm (Clustering). Mục tiêu của nó là tự động tìm ra cấu trúc ẩn bằng cách gom nhóm dữ liệu thô chưa hề được gán nhãn mục tiêu (unlabeled data) dựa trên sự đo lường độ tương đồng khoảng cách giữa các điểm trong không gian đặc trưng.",
-    "scope": "2021.2 - Câu 5"
+    "scope": "2021.2 - Câu 5",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 50,
@@ -1027,7 +1125,9 @@
       "K-means không thể bị quá khớp (overfitting) do không có hàm lỗi nào được sử dụng cho huấn luyện"
     ],
     "explanation": "Hai phát biểu sai:\n1. \"K-means có thể bị underfitting khi TĂNG số lượng cụm\": Ngược lại, khi số cụm K tăng, ranh giới phân mảnh chi tiết hơn, nó fit càng khít vào dữ liệu (lỗi WCSS tiến dần về 0), tình trạng này có xu hướng Overfitting thay vì Underfitting.\n2. \"K-means không thể bị quá khớp do không có hàm lỗi\": Thuật toán này vẫn có Hàm mục tiêu / Hàm lỗi (Inertia hoặc WCSS). Nó hoàn toàn có thể Overfitting khi ta ép $K = N$ (số cụm bằng số lượng điểm dữ liệu), lúc đó thuật toán học thuộc từng điểm dữ liệu không còn ý nghĩa phân cụm tổng quát nữa.",
-    "scope": "2021.2 - Câu 6"
+    "scope": "2021.2 - Câu 6",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 51,
@@ -1047,7 +1147,9 @@
       "Từ các kiểu sử dụng của người dùng trên một trang web, hãy xác định các nhóm người dùng khác nhau."
     ],
     "explanation": "Phân cụm (Clustering) là bài toán học không giám sát nhằm mục đích chia nhỏ tập dữ liệu hỗn hợp thành các tập con (groups/segments) tương đồng nội bộ. Việc \"nhóm phân khúc thị trường\" (Customer Segmentation) và \"xác định các nhóm người dùng web\" là những bài toán kinh điển của phân cụm. Trong khi đó, việc \"dự đoán doanh số\" là bài toán Hồi quy (Regression), và việc \"dự đoán mưa/nắng\" là bài toán Phân loại (Classification) dựa trên học giám sát.",
-    "scope": "2021.2 - Câu 7"
+    "scope": "2021.2 - Câu 7",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 52,
@@ -1064,7 +1166,9 @@
       "False"
     ],
     "explanation": "Số lượng cụm $K$ trong thuật toán K-means là một Siêu tham số (Hyperparameter) bắt buộc phải do người kỹ sư dữ liệu tự định nghĩa, thiết lập thủ công (hoặc thông qua các phép heuristic như Elbow Method, Silhouette score) ngay từ ban đầu trước khi thuật toán chạy. K-means không được thiết kế kiến trúc để tự động dò tìm số lượng cụm linh hoạt (khác với DBSCAN hay Mean-shift).",
-    "scope": "2021.2 - Câu 8"
+    "scope": "2021.2 - Câu 8",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 53,
@@ -1083,7 +1187,9 @@
       "Chúng không giao nhau"
     ],
     "explanation": "Không gian tham số $\\mathbf{W}$ là một không gian Euclidean sinh ra bởi tập các vectơ chứa hệ số $\\mathbf{w} \\in \\mathbb{R}^{n+1}$. Còn không gian hàm $\\mathbf{F}$ là một không gian véc-tơ hàm, nơi cấu thành phần tử của nó là các hàm số (ánh xạ) chứ không phải là vectơ tọa độ điểm. Do tính chất cơ sở bản thể luận của hai tập hợp toán học này hoàn toàn sai biệt, chúng không giao nhau (Disjoint sets).",
-    "scope": "2021.2 - Câu 9"
+    "scope": "2021.2 - Câu 9",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 54,
@@ -1104,7 +1210,9 @@
       "c. B và C"
     ],
     "explanation": "- Mệnh đề B ĐÚNG: Nguyên lý cơ bản để khớp mô hình là cực tiểu hóa độ lệch (như RSS - Hàm bình phương phần dư) chứ không phải lấy trung bình độ lệch thông thường (vì âm dương sẽ triệt tiêu nhau, mệnh đề A sai).\n- Mệnh đề C ĐÚNG: Hồi quy tuyến tính bản chất sinh ra dự đoán giá trị liên tục, nhưng người ta hoàn toàn có thể sử dụng phương trình Hồi quy tuyến tính để cấu thành bộ phân loại nhị phân (Linear Probability Model / Chỉ thị phân lớp) bằng cách thiết lập một điểm cắt Threshold (ví dụ: $y \\ge 0.5$ quy là class 1, $< 0.5$ là class 0). \nTừ đó suy ra tổ hợp phù hợp nhất là C: B và C.",
-    "scope": "2021.2 - Câu 10"
+    "scope": "2021.2 - Câu 10",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 55,
@@ -1122,7 +1230,9 @@
       "$\\mathbf{w}^* = \\arg\\min_{\\mathbf{w}} \\sum_{i=1}^{M} (y_i - w_0 - w_1x_{i1} - \\dots - w_nx_{in})^2$"
     ],
     "explanation": "Hàm mục tiêu của Phương pháp Bình phương tối thiểu (Ordinary Least Squares - OLS) chỉ bao gồm một phần duy nhất là Tối thiểu hóa tổng bình phương phần dư sai số: $RSS = \\sum_{i=1}^{M} (y_i - \\hat{y}_i)^2$. Công thức có chứa phần tử hình phạt $+ \\lambda ||\\mathbf{w}||_2^2$ thuộc về phương pháp Hồi quy Ridge, không phải bình phương tối thiểu thuần túy.",
-    "scope": "2021.2 - Câu 11"
+    "scope": "2021.2 - Câu 11",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 56,
@@ -1143,7 +1253,9 @@
       "Khi $\\lambda \\rightarrow +\\infty$, hàm học được sẽ có xu hướng bị underfitting"
     ],
     "explanation": "Trong kỹ thuật Regularization $L_2$ (Ridge), $\\lambda$ là hằng số kiểm soát phạt.\n- $\\lambda = 0$: Mô hình quay về là hồi quy tuyến tính không ràng buộc, khả năng cao sẽ ôm trọn các nhiễu dữ liệu và gây Overfitting.\n- $\\lambda \\rightarrow +\\infty$: Hình phạt tác động quá mạnh, thuật toán buộc phải ép tất cả các trọng số $w_i \\rightarrow 0$. Lúc này mô hình gần như không học được đặc trưng biến thiên nào ngoài một bias cố định, gây ra Underfitting mạnh.",
-    "scope": "2021.2 - Câu 12"
+    "scope": "2021.2 - Câu 12",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 57,
@@ -1161,7 +1273,9 @@
       "Lựa chọn mô hình quan tâm đến việc tìm thiết đặt tốt nhất về bộ (siêu) tham số trong một mô hình khi huấn luyện nó từ một tập dữ liệu. Đôi khi nó cũng nói đến việc lựa chọn một trong số các mô hình đang có."
     ],
     "explanation": "Thuật ngữ Lựa chọn mô hình (Model Selection) không bị giới hạn ở việc so sánh xem thuật toán A tốt hơn hay thuật toán B tốt hơn, mà bản thể sâu sắc hơn của nó trong thực hành Học máy là quy trình Tối ưu hóa Siêu tham số (Hyperparameter Tuning). Việc chạy Grid Search tinh chỉnh tham số nội bộ để chọn ra phiên bản mô hình có cấu hình mạnh nhất chính là bước lựa chọn mô hình quan trọng nhất.",
-    "scope": "2021.2 - Câu 13"
+    "scope": "2021.2 - Câu 13",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 58,
@@ -1179,7 +1293,9 @@
       "việc đánh giá hiệu quả (chất lượng) của một mô hình hoặc phương pháp phân tích dữ liệu, bằng cách sử dụng một hoặc nhiều tập dữ liệu"
     ],
     "explanation": "Đánh giá mô hình (Model Evaluation) là tiến trình định lượng sức mạnh phán đoán và mức độ sai số của mô hình học máy. Việc này thực tiễn được đo đếm khách quan thông qua các hàm tính lỗi trên tập xác thực (Validation sets) hoặc tập kiểm thử (Test sets) cách ly hoàn toàn với quá trình huấn luyện.",
-    "scope": "2021.2 - Câu 14"
+    "scope": "2021.2 - Câu 14",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 59,
@@ -1199,7 +1315,9 @@
       "Recall cho từng lớp"
     ],
     "explanation": "Trong trường hợp dữ liệu bị lệch sâu sắc (Imbalanced data: 99.9% Rác - 0.1% Thường), độ đo Accuracy (Độ chính xác toàn cục) là vô dụng vì một thuật toán dở tệ chỉ cần dự đoán bừa \"Mọi mail đều là mail Rác\" cũng sẽ nghiễm nhiên đạt độ chính xác 99.9%. Để đánh giá bản chất khả năng nhận diện lớp thiểu số, ta bắt buộc phải đi sâu vào Ma trận nhầm lẫn (Confusion Matrix) tính toán Precision (Độ chuẩn xác) và Recall (Độ phủ) đối với từng lớp cụ thể (kết hợp lại thành F1-Score). Mean squared error (MSE) là hàm mất mát dành riêng cho Hồi quy số thực, không dùng cho phân loại.",
-    "scope": "2021.2 - Câu 15"
+    "scope": "2021.2 - Câu 15",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 60,
@@ -1219,7 +1337,9 @@
       "Huấn luyện trên nhiều dữ liệu hơn"
     ],
     "explanation": "Độ chính xác Train rất cao (99%) đi đôi với Test/Kaggle rất thấp (67%) là minh chứng tiêu biểu cho tình trạng Quá khớp (Overfitting).\n- Tăng cường dữ liệu (Huấn luyện trên nhiều dữ liệu hơn) luôn là phương pháp tốt nhất để ranh giới quyết định được tiệm cận sát với phân bố thực của thế giới.\n- Dùng bước tối ưu siêu tham số, đặc biệt là điều chỉnh tăng các hệ số Regularization (Hiệu chỉnh) hoặc giảm độ sâu cây, cấu trúc mạng... sẽ hạ bớt bậc tự do mô hình.\n- (Lưu ý: Đặt hệ số hiệu chỉnh = 0 sẽ vứt bỏ hoàn toàn bộ khiên chống Overfitting, làm mô hình càng tệ hơn).",
-    "scope": "2021.2 - Câu 16"
+    "scope": "2021.2 - Câu 16",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 61,
@@ -1288,7 +1408,9 @@
       "$c_1$"
     ],
     "explanation": "Tính bình phương khoảng cách Euclid $d^2 = (x_1 - 1)^2 + (x_2 - 1)^2$ từ điểm truy vấn $Q(1,1)$ tới các điểm dữ liệu. Ta có các khoảng cách:\n1. $(0, 1): d^2 = 1 \\rightarrow c_1$\n2. $(1, 0): d^2 = 1 \\rightarrow c_1$\n3. $(1, 2): d^2 = 1 \\rightarrow c_1$\n4. $(0, 2): d^2 = 2 \\rightarrow c_2$\n5. $(2, 2): d^2 = 2 \\rightarrow c_2$\n6. $(-1, 1): d^2 = 4 \\rightarrow c_2$\n7. $(1, -1): d^2 = 4 \\rightarrow c_2$\n8. $(2, 3): d^2 = 5 \\rightarrow c_1$\nVới $k=3$, ba láng giềng gần nhất đều có $d^2 = 1$ và chúng đều thuộc nhãn $c_1$. Theo quy tắc bỏ phiếu đa số tuyệt đối (3/3 phiếu), mẫu mới được phân loại vào nhãn $c_1$.",
-    "scope": "2021.2 - Câu 17"
+    "scope": "2021.2 - Câu 17",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 62,
@@ -1309,7 +1431,9 @@
       "Giải thuật học láng giềng gần nhất có thể là tối ưu Bayes với các điều kiện phù hợp"
     ],
     "explanation": "1. Khác với quy trình huấn luyện tìm siêu phẳng tốn kém tính toán của SVM, K-NN là thuật toán **học lười (Lazy learning)**. Pha huấn luyện của nó thực chất có chi phí $O(1)$ vì chỉ đơn giản là lưu trữ lại toàn bộ tập dữ liệu thô vào bộ nhớ.\n2. Về mặt lý thuyết xác suất và thống kê (Cover & Hart, 1967), dưới các điều kiện lý tưởng khi số lượng mẫu dữ liệu $N \\to \\infty$, thuật toán K-NN tiệm cận tỷ lệ lỗi của **bộ phân loại tối ưu Bayes (Bayes optimal classifier)**. \n(Lưu ý: Các lựa chọn liên quan đến thời gian/chi phí dự đoán ít hơn là hoàn toàn sai, vì pha dự đoán của K-NN cực kỳ chậm và đắt đỏ do phải rà quét tính khoảng cách tới toàn bộ dữ liệu).",
-    "scope": "2021.2 - Câu 18"
+    "scope": "2021.2 - Câu 18",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 63,
@@ -1329,7 +1453,9 @@
       "Giải thuật học láng giềng gần nhất sẽ có xu hướng học chưa khớp (underfitting)"
     ],
     "explanation": "Khi thiết lập hệ số $K$ cực lớn (ví dụ $K = N$ - lấy toàn bộ tập dữ liệu làm láng giềng), vùng quyết định của thuật toán bị làm nhẵn toàn cục, mất đi khả năng nắm bắt ranh giới phức tạp của dữ liệu, gây ra hiện tượng **Kém khớp (Underfitting/High Bias)**. \nỞ trạng thái này, mọi truy vấn dự đoán bất kỳ sẽ bị chi phối tuyệt đối bởi lớp chiếm đa số nhất trong toàn bộ dữ liệu. Kết quả trả về luôn giống hệt nhau một cách **hiển nhiên (trivial)** mà không phụ thuộc vào vị trí không gian của mẫu đầu vào.",
-    "scope": "2021.2 - Câu 19"
+    "scope": "2021.2 - Câu 19",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 64,
@@ -1398,7 +1524,9 @@
       "$c_2$"
     ],
     "explanation": "Tính bình phương khoảng cách Euclid $d^2$ từ điểm $Q(1,1)$ tới toàn bộ 8 điểm dữ liệu. Khoảng cách xa nhất thuộc về điểm $(2,3)$ với $d^2 = 5$ mang nhãn $c_1$. \nVì ta sử dụng thuật toán KNN với $K=7$, ta sẽ lấy 7 láng giềng gần nhất bằng cách loại bỏ đi điểm xa nhất duy nhất là $(2,3)$. \nTrong 7 láng giềng còn lại, phân bố lớp như sau: 3 phiếu cho $c_1$ (các điểm $(0,1), (1,0), (1,2)$) và 4 phiếu cho $c_2$ (các điểm $(0,2), (2,2), (-1,1), (1,-1)$).\nĐa số phiếu thuộc về $c_2$ (4 > 3), kết quả phân lớp cuối cùng là $c_2$.",
-    "scope": "2021.2 - Câu 20"
+    "scope": "2021.2 - Câu 20",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 65,
@@ -1417,7 +1545,9 @@
       "giá trị lặp lại nhiều nhất"
     ],
     "explanation": "Trong Thống kê mô tả (Descriptive Statistics), \"Mode\" (Yếu vị) là đặc trưng đại diện cho giá trị xuất hiện với tần suất cao nhất (lặp lại nhiều nhất) trong một tập dữ liệu hoặc phân phối xác suất. Nó đặc biệt hữu dụng khi xử lý và điền khuyết liệu (Imputation) cho các thuộc tính mang tính phân loại (Categorical variables).",
-    "scope": "2021.2 - Câu 21"
+    "scope": "2021.2 - Câu 21",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 66,
@@ -1435,7 +1565,9 @@
       "là quá trình biến đổi dữ liệu thô tới một dạng thích hợp để cho bước phân tích"
     ],
     "explanation": "Tiền xử lý dữ liệu (Data Preprocessing) là một khâu kỹ thuật cơ sở trong chu trình khai phá dữ liệu (KDD). Dữ liệu thô (raw data) trong thực tế thường chứa nhiều nhiễu, dữ liệu khuyết, không nhất quán và phân kỳ. Tiền xử lý (bao gồm làm sạch, tích hợp, chuẩn hóa, mã hóa đặc trưng, rời rạc hóa) đóng vai trò căn bản để chuyển đổi đống dữ liệu thô thành định dạng tinh gọn và hợp lý, tối ưu hoá cho các bộ thuật toán phân tích và huấn luyện.",
-    "scope": "2021.2 - Câu 22"
+    "scope": "2021.2 - Câu 22",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 67,
@@ -1453,7 +1585,9 @@
       "Tiền xử lý giữ toàn bộ thông tin từ tập dữ liệu gốc"
     ],
     "explanation": "Mệnh đề \"giữ toàn bộ thông tin gốc\" là **SAI**. Bản chất của tiền xử lý thường đi kèm với đánh đổi: một lượng thông tin cục bộ hoặc chi tiết sẽ bị mất mát. Chẳng hạn, khi loại bỏ các bản ghi chứa null (Deletion), ép kiểu dữ liệu liên tục thành phân khúc tĩnh (Discretization), hoặc áp dụng giảm chiều PCA/SVD (vứt bỏ các thành phần phương sai thấp), mô hình sẽ vĩnh viễn mất đi một phần thông tin thô của tập dữ liệu gốc.",
-    "scope": "2021.2 - Câu 23"
+    "scope": "2021.2 - Câu 23",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 68,
@@ -1472,7 +1606,9 @@
       "những nơi đã được liệt kê trong các lựa chọn khác"
     ],
     "explanation": "Trong kỹ nghệ Học máy, lý thuyết về Uncertainty (Sự không chắc chắn) tồn tại song song ở hai khía cạnh toàn diện: \n1. **Aleatoric Uncertainty (Độ bất định dữ liệu)**: Sự không chắc chắn nằm sẵn trong tập dữ liệu thu thập được do nhiễu vật lý, lỗi cảm biến hoặc tính ngẫu nhiên.\n2. **Epistemic Uncertainty (Độ bất định mô hình)**: Sự thiếu hiểu biết mang tính chủ quan, phát sinh từ việc lựa chọn sai lớp hàm quy nạp (Model Class Uncertainty) hoặc không thể hội tụ bộ tham số trọng số (Parameter Uncertainty) do tập dữ liệu huấn luyện không đủ bao quát.",
-    "scope": "2021.2 - Câu 24"
+    "scope": "2021.2 - Câu 24",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 69,
@@ -1490,7 +1626,9 @@
       "xác suất của một mô hình hoặc giả thuyết khi cho trước (một tập) dữ liệu"
     ],
     "explanation": "Theo Định lý Bayes toán học: $P(\\text{Giả thuyết}|\\text{Dữ liệu}) = \\frac{P(\\text{Dữ liệu}|\\text{Giả thuyết}) \\times P(\\text{Giả thuyết})}{P(\\text{Dữ liệu})}$. \nBiểu thức $P(\\text{Giả thuyết}|\\text{Dữ liệu})$ được gọi là **Xác suất hậu nghiệm (Posterior probability)**. Định nghĩa kinh điển của nó chính xác là xác suất để giả thuyết/mô hình đó là chính xác *sau khi* mô hình đã được cung cấp bằng chứng, quan sát thực tế (cho trước dữ liệu). \nLựa chọn đầu tiên \"xác suất dữ liệu khi biết giả thuyết\" chính là hàm Likelihood $P(\\text{Dữ liệu}|\\text{Giả thuyết})$.",
-    "scope": "2021.2 - Câu 25"
+    "scope": "2021.2 - Câu 25",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 70,
@@ -1508,7 +1646,9 @@
       "Một lớp các thuật toán mà sử dụng các tính toán về xác suất hậu nghiệm"
     ],
     "explanation": "Các thuật toán Phân loại thuộc họ Bayes (Naive Bayes, Bayesian Belief Networks) thuộc về mô hình học máy sinh xác suất (Probabilistic generative models). Nguyên lý hoạt động cao nhất của chúng là thực hiện MAP (Maximum a Posteriori) – tối ưu hoá bằng cách liên tục tính toán **xác suất hậu nghiệm** $P(y|X)$ và ra phán quyết gán nhãn cho lớp nào đem lại xác suất hậu nghiệm cao nhất.",
-    "scope": "2021.2 - Câu 26"
+    "scope": "2021.2 - Câu 26",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 71,
@@ -1527,7 +1667,9 @@
       "Khi giải quyết bài toán đối ngẫu của SVM, chúng ta chỉ cần tích vô hướng của $x_i$ và $x_j$ cho tất cả $i, j$, và không cần thông tin của $x_i$"
     ],
     "explanation": "1. Bài toán SVM gốc (Primal) tối thiểu hóa hàm mục tiêu tuân theo ràng buộc để phân chia không gian: $y_i(w^T x_i + b) \\ge 1$, đây hoàn toàn là ràng buộc bất đẳng thức **tuyến tính**. Hàm nhân tử Lagrange được áp dụng để giải bất đẳng thức tuyến tính này.\n2. Lợi ích tối cao của việc chuyển sang dạng bài toán đối ngẫu (Wolfe Dual form) là ở hàm mục tiêu, vector đặc trưng $x$ không bao giờ đứng đơn lẻ mà luôn nằm trong cụm **tích vô hướng** $\\langle x_i, x_j \\rangle$. Tính chất tuyệt vời này là chìa khóa mở đường cho Kernel Trick (thay thế tích vô hướng bằng một hàm nhân) giúp tính toán trên không gian vô hạn chiều mà không cần nhúng và trích xuất tọa độ cụ thể của $x_i$.",
-    "scope": "2021.2 - Câu 27"
+    "scope": "2021.2 - Câu 27",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 72,
@@ -1546,7 +1688,9 @@
       "$C = 100$"
     ],
     "explanation": "Biến nới lỏng $\\xi_i$ đóng vai trò đo lường sai số (lỗi phân loại hoặc vi phạm lề). Hệ số $C$ quy định mức độ \"nhân nhượng\" của hệ thống với lỗi. Khi gán một giá trị cực lớn như $C=100$, thuật toán sẽ xử phạt khốc liệt từng vi phạm nhỏ nhất. Để tối thiểu hóa hàm, SVM buộc phải bóp méo, bẻ cong cực độ siêu phẳng (khiến Margin cực hẹp) nhằm cố gắng bao trọn chính xác tuyệt đối mọi điểm huấn luyện kể cả các điểm nhiễu (outliers). Do đó, C càng lớn, tính khái quát càng mất đi và rủi ro Overfitting đạt mức nguy hiểm nhất.",
-    "scope": "2021.2 - Câu 28"
+    "scope": "2021.2 - Câu 28",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 73,
@@ -1563,7 +1707,9 @@
       "False"
     ],
     "explanation": "Khác biệt cốt lõi với Hồi quy Logistic hay Naive Bayes (tạo ra xác suất bằng xác suất hậu nghiệm học được), bản chất của Support Vector Machine hoàn toàn mang tính Hình học Không gian (Geometric margin). Đầu ra trực tiếp của bộ mô hình $f(x) = \\mathbf{w}^T\\mathbf{x} + b$ là một đại lượng vô hướng vật lý đo lường khoảng cách từ điểm $x$ đến ranh giới quyết định. Do đó, SVM không trực tiếp sinh ra xác suất. Việc chuyển đổi khoảng cách đó thành phân bố xác suất $P(y|x)$ đòi hỏi một bước hiệu chuẩn hàm phi tuyến phụ trợ riêng biệt (như kỹ thuật Platt Scaling / Sigmoid fitting).",
-    "scope": "2021.2 - Câu 29"
+    "scope": "2021.2 - Câu 29",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 74,
@@ -1583,7 +1729,9 @@
       "Tăng tham số $C$ hướng tới giảm lề"
     ],
     "explanation": "Trong hàm Loss của Soft-margin SVM: $\\min \\frac{1}{2}||w||^2 + C \\sum \\xi_i$.\n1. \"Giảm lỗi huấn luyện\" và \"Giảm lề\": Hai hiện tượng này là quan hệ nhân quả tuyệt đối. Việc tăng mạnh $C$ ép mô hình ưu tiên cực điểm mục tiêu không để bất kỳ mẫu nào rơi khỏi đúng ranh (giảm cực tiểu lỗi tập huấn luyện). Hành động ép dữ liệu này dẫn đến cái giá phải trả là margin (tỷ lệ với $\\frac{1}{||w||}$) bị thu hẹp đáng kể.\n2. Phát biểu Hard-margin là khi $C=0$ là SAI. Hard-margin là giới hạn hội tụ khi $C \\to \\infty$ (bất khả xâm phạm lề).\n3. Tăng $C$ khiến margin co hẹp bao ôm lấy nhiễu, làm mô hình TĂNG tính nhạy cảm với outliers chứ không phải giảm.",
-    "scope": "2021.2 - Câu 31"
+    "scope": "2021.2 - Câu 31",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 75,
@@ -1602,7 +1750,9 @@
       "một đường đi duy nhất trong cây"
     ],
     "explanation": "Bản chất kiến trúc đồ thị của mô hình Cây quyết định (Decision Tree) là các tập luật phân rã loại trừ lẫn nhau (Mutually exclusive rules). Tại mỗi nút phi lá (node), dữ liệu phải đáp ứng điều kiện biểu thức logic Boolean khắt khe. Do tính chất điều hướng nhị phân này, một mẫu tin (instance) đầu vào mới luôn xuất phát từ nút gốc và men theo **duy nhất một đường rẽ nhánh độc lập** từ trên xuống chạm đến nút lá (leaf) để nhận nhãn.",
-    "scope": "2021.2 - Câu 32"
+    "scope": "2021.2 - Câu 32",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 76,
@@ -1620,7 +1770,9 @@
       "nhằm giảm độ hỗn tạp của tập học khi được phân chia vào các nhánh mới."
     ],
     "explanation": "Độ phân biệt (Discriminativeness) ở đây đề cập tới các hàm độ đo chia tách nút như Information Gain (của thuật toán ID3) hay Gini Impurity giảm thiểu (của thuật toán CART). Mục đích tối hậu của các hàm heuristic tham lam này là lựa chọn thuộc tính làm đặc trưng cắt sao cho các phân vùng dữ liệu con tạo ra có mức độ thuần khiết cao nhất có thể, đồng nghĩa với việc **làm suy giảm mức độ hỗn tạp** (Entropy / Impurity) xuống mức thấp nhất so với nút cha mẹ.",
-    "scope": "2021.2 - Câu 33"
+    "scope": "2021.2 - Câu 33",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 77,
@@ -1641,7 +1793,9 @@
       "chuyển đổi cây quyết định thành một tập các luật, rồi tiến hành cắt tỉa các luật đó"
     ],
     "explanation": "Cây quyết định dễ bùng nổ Overfitting nếu không bị giới hạn. Có 2 kỹ thuật cơ bản trong Machine learning để ngăn chặn điều này riêng cho cây:\n1. **Pre-pruning (Cắt tỉa trước/Ngừng sớm)**: Đặt tham số can thiệp để thuật toán không chẻ thêm lá khi cây chạm mốc `max_depth` hoặc số lượng lá đạt `min_samples_split`.\n2. **Post-pruning (Cắt tỉa sau)**: Để cây bùng nổ tự nhiên, sau đó mô hình hóa cây dưới dạng danh sách luật IF-THEN (như C4.5 xử lý) và sử dụng thuật toán thống kê cắt bỏ bớt những quy tắc suy luận thừa thãi làm lỗi Validation.\n(Mệnh đề giảm dữ liệu là vô nghĩa vì dữ liệu càng ít càng gia tăng overfitting).",
-    "scope": "2021.2 - Câu 34"
+    "scope": "2021.2 - Câu 34",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 78,
@@ -1661,7 +1815,9 @@
       "Rừng ngẫu nhiên kết hợp các cây học chưa khớp (underfitting) khác nhau để xử lý vấn đề học chưa khớp"
     ],
     "explanation": "Những phát biểu SAI:\n1. \"Rừng ngẫu nhiên cần cắt tỉa để giảm overfitting\": Điều vĩ đại của Rừng ngẫu nhiên là nó cố tình để các cây trong rừng phát triển hết cỡ không bị ràng buộc (không cắt tỉa), tạo ra các bộ học cơ sở cực mạnh với phương sai lớn. Quá trình tính trung bình (Voting/Bagging) các cây này sau đó sẽ tự động dập tắt phương sai, từ đó khắc chế Overfitting mà không cần tỉa cành nội bộ.\n2. \"Kết hợp các cây chưa khớp (underfitting)\": Bagging kết hợp các cây **Quá khớp (Strong learners)**. Việc kết hợp chuỗi các cây Chưa khớp (Weak learners) để bù trừ lẫn nhau nhằm giảm Bias gọi là cơ chế Boosting (như AdaBoost, XGBoost), chứ không phải Random Forest.",
-    "scope": "2021.2 - Câu 35"
+    "scope": "2021.2 - Câu 35",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 79,
@@ -1680,7 +1836,9 @@
       "nhạy cảm với dữ liệu ngoại lai (outliers)"
     ],
     "explanation": "1. Do bản chất tối ưu hoá bằng chiến lược gradient cục bộ của K-means trên không gian phi lồi (non-convex function), thuật toán bị kẹt tại các điểm cực tiểu địa phương. Vị trí hạt giống tạo điểm ban đầu (centroid initialization) quyết định trực tiếp đường đi của cực tiểu này.\n2. Quá trình cập nhật tọa độ K-means tại tâm sử dụng phép Toán Trung bình (Mean). Khác với Trung vị (Median), hệ thống Mean cực kỳ mong manh và nhạy cảm trước nhiễu. Bất kỳ mẫu điểm văng ra ngoài không gian (Outliers) đều có khả năng bóp méo tọa độ cụm làm suy giảm nghiêm trọng độ chính xác.",
-    "scope": "2021.2 - Câu 36"
+    "scope": "2021.2 - Câu 36",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 80,
@@ -1699,7 +1857,9 @@
       "Ở tập dữ liệu huấn luyện, học có giám sát thường yêu cầu biết nhãn hoặc đầu ra cho mỗi quan sát cho giai đoạn huấn luyện"
     ],
     "explanation": "Định nghĩa kinh điển phân chia hai phương thức luận Machine Learning này dựa hoàn toàn vào Cấu trúc không gian dữ liệu cung cấp: Học có giám sát (Supervised Learning) bắt buộc hàm chứa cặp dữ liệu $(X, y)$, nơi $y$ là Ground-truth (nhãn/trọng số biến mục tiêu định sẵn). Trái ngược hoàn toàn, học không giám sát khai thác trực diện cấu trúc quy luật của chuỗi dữ liệu đầu vào $X$ tự do mà không sở hữu bất kỳ nhãn $y$ định hướng nào.",
-    "scope": "2021.2 - Câu 37"
+    "scope": "2021.2 - Câu 37",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 81,
@@ -1720,7 +1880,9 @@
       "$f^*(x)$ có khả năng tổng quát cao nhất trong lớp hàm dạng tuyến tính"
     ],
     "explanation": "Trường hợp lỗi thực nghiệm (Training error) của hồi quy tuyến tính giảm chạm mức 0 tuyệt đối thường báo hiệu việc số chiều dữ liệu tương đương hoặc vượt số quan sát, đường siêu phẳng đã bẻ cong qua tất cả các điểm huấn luyện (Kể cả Noise).\n1. Vì đường hồi quy đã ôm khít dữ liệu đạt tỷ lệ lỗi 0%, nó không thể nào là Underfitting (kém khớp - học không tới) được. Mệnh đề bị underfitting là SAI.\n2. Do chắc chắn đã bị Overfitting (Quá khớp), biểu đồ hàm sẽ dao động dữ dội vượt ngoài tính quy luật. Khả năng nó mang lại Generalization (Tổng quát hóa trên tập Test) là cực tồi. Mệnh đề cho rằng nó mang khả năng tổng quát cao nhất là SAI.",
-    "scope": "2021.2 - Câu 38"
+    "scope": "2021.2 - Câu 38",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 82,
@@ -1738,7 +1900,9 @@
       "Đánh giá mô hình và lựa chọn mô hình trong Học máy là hai thứ độc lập với nhau"
     ],
     "explanation": "Đánh giá mô hình (Model Evaluation) và Lựa chọn mô hình (Model Selection/Hyperparameter Tuning) là một hệ sinh thái tuần hoàn thống nhất (ví dụ Grid-Search luôn tích hợp Cross-Validation). Bạn không thể lựa chọn một mô hình siêu việt nếu không có ma trận Đánh giá (Metrics). Và một kết quả Đánh giá không thể chốt hạn nếu bạn chưa Lựa chọn được phiên bản cấu trúc tốt nhất. Do đó, bảo chúng là 2 quy trình \"độc lập với nhau\" là SAI hoàn toàn.",
-    "scope": "2021.2 - Câu 39"
+    "scope": "2021.2 - Câu 39",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 83,
@@ -1755,7 +1919,9 @@
       "Cho giai đoạn dự đoán"
     ],
     "explanation": "Thuật toán K-NN (K-Nearest Neighbors) là điển hình kinh điển của \"Lazy Learner\". Pha huấn luyện gần như không tiêu thụ chi phí tính toán (chỉ thực hiện phép tải I/O để lưu bảng tọa độ dữ liệu vào không gian mẫu với $O(1)$). Đổi lại, để có thể dự đoán một kết quả cho Truy vấn Mới, thuật toán phải thi hành hàng loạt quy trình tính Metric đo lường khoảng cách đến **toàn bộ** các điểm dữ liệu lịch sử trong cơ sở dữ liệu, tiếp tục tốn $O(N \\log N)$ để sắp xếp (Sort). Mọi tài nguyên CPU đều dồn vào Pha dự đoán.",
-    "scope": "2021.2 - Câu 40"
+    "scope": "2021.2 - Câu 40",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 84,
@@ -1773,7 +1939,9 @@
       "Không, nó là một chiến lược để đánh giá một mô hình"
     ],
     "explanation": "Phương pháp Hold-out không liên quan đến Data Preprocessing hay EDA. Nó là một kỹ thuật phân tách chiến lược trong khâu **Đánh giá mô hình (Model Evaluation)**. Quy trình Hold-out hoạt động bằng cách chia khối dữ liệu sạch duy nhất thành hai khu vực độc lập, không xâm phạm (Tập Train và Tập Test) nhằm tạo ra một môi trường giả lập đánh giá mô phỏng xem mô hình sẽ phản ứng ra sao với nguồn dữ liệu ngoài thế giới thực.",
-    "scope": "2022.1 - Ảnh 1"
+    "scope": "2022.1 - Ảnh 1",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 85,
@@ -1792,7 +1960,9 @@
       "là một phương pháp học có giám sát"
     ],
     "explanation": "Thuật toán Decision Tree (Cây quyết định) phục vụ mục đích khai phá tri thức Phân loại (Classification Tree) hoặc Hồi quy (Regression Tree). Ở bước xây dựng thân cây từ trên xuống, thuật toán bắt buộc phải dùng các chỉ số như Gini hoặc Entropy tính toán trên sự thay đổi của biến mục tiêu (Target labels) để phân định ngã rẽ. Yêu cầu tiên quyết phải có Nhãn mục tiêu khiến nó 100% thuộc về nhánh **Học có giám sát (Supervised Learning)**.",
-    "scope": "2022.1 - Ảnh 1"
+    "scope": "2022.1 - Ảnh 1",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 86,
@@ -1811,7 +1981,9 @@
       "sinh ứng viên"
     ],
     "explanation": "Nút thắt cổ chai lớn nhất (Bottleneck) làm sập hệ thống về RAM và Time Complexity của Apriori chính là bước **Sinh ứng viên (Candidate Generation)**. Khi thuật toán dò tập 1-itemsets phổ biến $L_1$ để ghép nối thành tập 2-itemsets $C_2$, tổ hợp ghép đôi tuyến tính tạo ra khối lượng tổ hợp vô cùng vĩ đại $\\frac{|L_1|(|L_1|-1)}{2}$. Hệ thống phải cấp phát bộ nhớ khổng lồ để đối chiếu quét chuỗi ứng viên giả định này trước khi kịp sử dụng tỷ lệ Hỗ trợ (Support) để triệt tiêu chúng.",
-    "scope": "2022.1 - Ảnh 1"
+    "scope": "2022.1 - Ảnh 1",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 87,
@@ -1829,7 +2001,9 @@
       "Một lớp các thuật toán mà sử dụng các tính toán về xác suất hậu nghiệm"
     ],
     "explanation": "Nền tảng của bộ Phân loại Bayes (ví dụ điển hình: Naive Bayes) chính là việc áp dụng logic học của Định lý Bayes toán thống kê. Cơ chế cốt lõi của giải thuật này là xác định nhãn có **xác suất hậu nghiệm** (Posterior probability) lớn nhất (cơ chế MAP) dựa trên hàm likelihood của đặc trưng dữ liệu cung cấp và xác suất tiên nghiệm (Prior probability) của từng lớp đó.",
-    "scope": "2022.1 - Ảnh 1"
+    "scope": "2022.1 - Ảnh 1",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 88,
@@ -1847,7 +2021,9 @@
       "ReLUs chấp nhận tính toán lan truyền ngược gradient nhanh hơn"
     ],
     "explanation": "Bản chất toán học của Hàm ReLU $f(x) = \\max(0, x)$ đem lại đạo hàm bậc 1 là một hàm bậc thang: $f'(x) = 1$ với $x > 0$ và $0$ nếu $x \\le 0$. Việc loại bỏ hoàn toàn các phép tính hàm lũy thừa số mũ (exponent) ở đạo hàm của hàm Sigmoid giúp hàm ReLU đẩy nhanh siêu tốc tốc độ tính toán Gradient trong pha **Lan truyền ngược (Backpropagation)**. Hơn nữa, duy trì Gradient tĩnh ở mức 1 giúp giải quyết trực tiếp thảm họa suy giảm đạo hàm (Vanishing Gradient).",
-    "scope": "2022.1 - Ảnh 2"
+    "scope": "2022.1 - Ảnh 2",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 89,
@@ -1864,7 +2040,9 @@
       "True"
     ],
     "explanation": "K-means giải quyết bài toán giảm thiểu phương sai nội cụm (Within-Cluster Sum of Squares). Tại mỗi vòng lặp bao gồm (1) Gán nhãn cho tâm gần nhất và (2) Di chuyển tâm về giá trị trung bình, hàm mất mát đo lường WCSS được tính bằng tổng bình phương khoảng cách đảm bảo luôn giảm một cách đơn điệu. Kết hợp cùng không gian các cấu hình gán điểm chỉ là một tập hữu hạn $K^N$, thuật toán chắc chắn phải dừng và hội tụ tới một **điểm cực tiểu địa phương (local minimum/stationary point)**.",
-    "scope": "2022.1 - Ảnh 2"
+    "scope": "2022.1 - Ảnh 2",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 90,
@@ -1882,7 +2060,9 @@
       "tăng theo kích thước của tập mục thường xuyên lớn nhất"
     ],
     "explanation": "Kiến trúc Bottom-Up lặp lại của Apriori hoạt động theo chiến lược tìm kiếm theo chiều rộng. Ở vòng lặp thứ 1, nó tìm tập 1-itemsets; vòng lặp 2 tìm tập 2-itemsets... Thuật toán chỉ ngưng lại khi nó không thể sinh ra thêm bất kỳ ứng viên nào có đủ min-support. Về mặt hệ quả logic, kích thước của tập mục thường xuyên dài nhất đạt được (Maximal Frequent Itemset - ký hiệu là $k$) chính là nguyên nhân trực tiếp kéo dài số vòng lặp tối đa của giải thuật lên $k+1$ lần quét.",
-    "scope": "2022.1 - Ảnh 2"
+    "scope": "2022.1 - Ảnh 2",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 91,
@@ -1900,7 +2080,9 @@
       "Bất kể số lượng các thuộc tính kiểu số, giải thuật học láng giềng gần nhất đạt độ chính xác cao hơn nếu các thuộc tính kiểu số đó có cùng khoảng giá trị."
     ],
     "explanation": "K-Nearest Neighbors (K-NN) là thuật toán dựa trên phép đo khoảng cách (như Euclidean). Nếu các đặc trưng (features) không được chuẩn hóa về cùng một thang đo (Feature Scaling/Normalization), những đặc trưng có miền giá trị lớn (ví dụ: Thu nhập) sẽ áp đảo hoàn toàn các đặc trưng có miền giá trị nhỏ (ví dụ: Tuổi tác) trong quá trình tính toán khoảng cách. Điều này làm sai lệch sự đo lường tương đồng. Do đó, việc đưa tất cả các thuộc tính số về cùng khoảng giá trị là bắt buộc để đảm bảo độ chính xác cao, bất kể số lượng thuộc tính kiểu số là bao nhiêu.",
-    "scope": "2022.1 - Ảnh 2"
+    "scope": "2022.1 - Ảnh 2",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 92,
@@ -1919,7 +2101,9 @@
       "Biến đổi dữ liệu (Data Transformation)"
     ],
     "explanation": "Trong quy trình Khám phá tri thức từ dữ liệu (KDD - Knowledge Discovery in Databases), \"Biến đổi dữ liệu\" (Data Transformation) là một bước thuộc giai đoạn Tiền xử lý dữ liệu (Data Preprocessing), đứng trước giai đoạn Khai phá dữ liệu. Các bài toán chính của Khai phá dữ liệu (Data Mining tasks) bao gồm Phân loại (Classification), Phân cụm (Clustering), Khai phá luật kết hợp (Association rule),... Do đó, Biến đổi dữ liệu không được coi là một bài toán của riêng pha Khai phá dữ liệu.",
-    "scope": "2022.1 - Ảnh 3"
+    "scope": "2022.1 - Ảnh 3",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 93,
@@ -1937,7 +2121,9 @@
       "Đúng"
     ],
     "explanation": "Bản chất định nghĩa của Học máy là xây dựng các thuật toán và mô hình thống kê cho phép hệ thống tự học từ dữ liệu lịch sử để đưa ra các dự đoán hoặc quyết định cho dữ liệu mới (quan sát trong tương lai). Chức năng tăng tốc tính toán (như tối ưu phần cứng, điện toán song song) thuộc về lĩnh vực Kiến trúc máy tính và Hệ thống, không phải là định nghĩa của Học máy.",
-    "scope": "2022.1 - Ảnh 3"
+    "scope": "2022.1 - Ảnh 3",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 94,
@@ -1956,7 +2142,9 @@
       "một đường đi duy nhất trong cây"
     ],
     "explanation": "Kiến trúc của Cây quyết định (Decision Tree) bao gồm các nút phân tách dựa trên các tập luật loại trừ lẫn nhau (Mutually exclusive conditions). Tại mỗi nút phi lá, dữ liệu được kiểm tra và chỉ thỏa mãn để đi xuống theo đúng **một nhánh duy nhất**. Do đó, từ nút gốc xuống nút lá mang nhãn phân loại, quá trình duyệt chỉ đi theo đúng một đường đi duy nhất.",
-    "scope": "2022.1 - Ảnh 3"
+    "scope": "2022.1 - Ảnh 3",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 95,
@@ -1975,7 +2163,9 @@
       "một sự kiện mà có thể quan sát được trong thực tế"
     ],
     "explanation": "Trong thống kê và học máy, \"biến quan sát được\" (observable variable) dùng để chỉ các đặc trưng, thuộc tính hoặc hiện tượng mà con người hoặc hệ thống đo lường có thể trực tiếp thu thập, ghi nhận giá trị trong thực tế (phân biệt hoàn toàn với \"biến ẩn\" - latent variables, là những biến không thể đo lường trực tiếp).",
-    "scope": "2022.1 - Ảnh 3"
+    "scope": "2022.1 - Ảnh 3",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 96,
@@ -1994,7 +2184,9 @@
       "trên đường phân tách âm hoặc đường phân tách dương"
     ],
     "explanation": "Trong mô hình Hard-margin SVM, ranh giới phân tách dữ liệu được tối ưu hóa dựa trên hai siêu phẳng lề biên: Siêu phẳng lề dương $\\mathbf{w}^T \\mathbf{x} + b = 1$ và Siêu phẳng lề âm $\\mathbf{w}^T \\mathbf{x} + b = -1$. Các điểm dữ liệu nằm chính xác trên hai siêu phẳng biên này được gọi là các Vector hỗ trợ (Support Vectors).",
-    "scope": "2022.1 - Ảnh 4"
+    "scope": "2022.1 - Ảnh 4",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 97,
@@ -2072,7 +2264,9 @@
       "Income"
     ],
     "explanation": "Tập dữ liệu có $10$ mẫu: $6$ Yes, $4$ No. \nEntropy của hệ thống ban đầu: $H(S) = -0.6\\log_2(0.6) - 0.4\\log_2(0.4) \\approx 0.971$.\n\nTính Entropy cho **Age**:\n- Young (4 mẫu): 2 Yes, 2 No $\\rightarrow H = 1$\n- Medium (2 mẫu): 2 Yes, 0 No $\\rightarrow H = 0$\n- Old (4 mẫu): 2 Yes, 2 No $\\rightarrow H = 1$\n$E(\\text{Age}) = \\frac{4}{10}(1) + \\frac{2}{10}(0) + \\frac{4}{10}(1) = 0.8$.\n$\\Rightarrow \\text{IG}(\\text{Age}) = 0.971 - 0.8 = 0.171$.\n\nTính Entropy cho **Income**:\n- Low (5 mẫu): 1 Yes, 4 No $\\rightarrow H = -0.2\\log_2(0.2) - 0.8\\log_2(0.8) \\approx 0.722$\n- High (5 mẫu): 5 Yes, 0 No $\\rightarrow H = 0$\n$E(\\text{Income}) = \\frac{5}{10}(0.722) + \\frac{5}{10}(0) = 0.361$.\n$\\Rightarrow \\text{IG}(\\text{Income}) = 0.971 - 0.361 = 0.610$.\n\nVì $\\text{IG}(\\text{Income}) > \\text{IG}(\\text{Age})$, thuộc tính **Income** đem lại lượng thông tin phân tách cao nhất và được chọn làm nút gốc.",
-    "scope": "2022.1 - Ảnh 4"
+    "scope": "2022.1 - Ảnh 4",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 98,
@@ -2093,7 +2287,9 @@
       "K-means có thể chịu kết quả học tồi (underfitting) khi tăng số lượng cụm"
     ],
     "explanation": "Các phát biểu SAI bao gồm:\n1. \"K-means không thể bị quá khớp do không có hàm lỗi\": Sai, vì K-means sử dụng hàm mục tiêu WCSS (Inertia) để cực tiểu hóa phương sai nội cụm. Nếu đặt $K = N$ (số lượng cụm bằng số lượng điểm dữ liệu), WCSS = 0, đây chính là trạng thái cực đoan của hiện tượng Quá khớp.\n2. \"K-means có thể bị underfitting khi tăng số lượng cụm\": Sai, khi $K$ càng tăng, không gian được chia nhỏ chi tiết hơn, mô hình càng ôm sát vào dữ liệu huấn luyện, xu hướng xảy ra là Overfitting chứ không thể là Underfitting.",
-    "scope": "2022.1 - Ảnh 5"
+    "scope": "2022.1 - Ảnh 5",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 99,
@@ -2110,7 +2306,9 @@
       "True"
     ],
     "explanation": "Giảm chiều dữ liệu (Dimensionality Reduction, ví dụ qua PCA hoặc SVD) là một kỹ thuật tiền xử lý cốt lõi. Nó giải quyết triệt để \"Lời nguyền đa chiều\" (Curse of Dimensionality), khử nhiễu, nén thông tin và tăng tốc độ huấn luyện cho hầu hết mọi thuật toán hạ nguồn (downstream) bao gồm Cây quyết định, K-Means và Mạng Nơ-ron.",
-    "scope": "2022.1 - Ảnh 5"
+    "scope": "2022.1 - Ảnh 5",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 100,
@@ -2132,7 +2330,9 @@
       "Có thể không có vector hỗ trợ"
     ],
     "explanation": "Những phát biểu SAI:\n1. \"Có thể không có vector hỗ trợ\": Sai. Theo định lý Tối ưu KKT, lề (margin) của SVM luôn bị khóa lại bởi ít nhất 2 vector hỗ trợ nằm trên ranh giới biên.\n2. \"Dự đoán sai cho tất cả dữ liệu huấn luyện\": Sai. Hàm mục tiêu SVM có cơ chế giảm thiểu trực tiếp lỗi phân loại $\\xi_i$. Bộ phân loại tối ưu luôn đảm bảo sai số tập huấn luyện là thấp nhất.\n3. \"Số lượng vector hỗ trợ độc lập với $m$\": Sai. Khi kích thước dữ liệu $m$ tăng, mật độ điểm trong không gian tăng theo, xác suất xuất hiện các điểm rơi vào khu vực lề cũng tăng lên, kéo theo sự thay đổi về số lượng vector hỗ trợ.",
-    "scope": "2022.1 - Ảnh 5"
+    "scope": "2022.1 - Ảnh 5",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 101,
@@ -2149,7 +2349,9 @@
       "False"
     ],
     "explanation": "Không phải mạng nơ-ron nào cũng tính toán phi tuyến. Nếu một mạng nơ-ron chỉ cấu thành bằng cách sử dụng các hàm kích hoạt Tuyến tính (Linear / Identity Function $f(x)=x$) ở tất cả các tầng ẩn, thì hệ thống tích chập của mọi ma trận trọng số sẽ thoái hóa và rút gọn lại thành một phép biến đổi tuyến tính đơn nhất $Y = W^T X$. Tính phi tuyến chỉ xuất hiện khi sử dụng hàm kích hoạt phi tuyến (như ReLU, Sigmoid).",
-    "scope": "2022.1 - Ảnh 6"
+    "scope": "2022.1 - Ảnh 6",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 102,
@@ -2168,7 +2370,9 @@
       "có thể dùng cho bài toán phân loại"
     ],
     "explanation": "Thuật toán ID3 (Iterative Dichotomiser 3) sử dụng Entropy và Information Gain để phát triển cây. Thiết kế nguyên thủy của toán học Information Gain chỉ dùng để xử lý biến mục tiêu dạng rời rạc (categorical variables). Do đó, ID3 chỉ có thể được sử dụng chuyên biệt cho **Bài toán phân loại (Classification)**. Để giải bài toán Hồi quy, ta phải dùng các phiên bản nâng cấp hoặc thuật toán khác như CART (sử dụng phương sai làm chuẩn đo).",
-    "scope": "2022.1 - Ảnh 6"
+    "scope": "2022.1 - Ảnh 6",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 103,
@@ -2187,7 +2391,9 @@
       "chuyển đổi từ liên tục thành rời rạc"
     ],
     "explanation": "Rời rạc hóa (Discretization / Binning) là kỹ thuật tiền xử lý nhóm một dải biến có giá trị số học liên tục (Continuous data) thành các phân nhóm hữu hạn mang tính rời rạc (Discrete data). Ví dụ: Chuyển khoảng giá trị độ tuổi từ $1, 2, \\dots, 80$ thành các nhãn phân loại \"Trẻ\", \"Trung niên\", \"Già\".",
-    "scope": "2022.1 - Ảnh 6"
+    "scope": "2022.1 - Ảnh 6",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 104,
@@ -2205,7 +2411,9 @@
       "Hàm khoảng cách Hamming"
     ],
     "explanation": "Thuộc tính định danh (Nominal variables) là các dữ liệu danh mục không biểu diễn độ lớn hoặc thứ tự toán học (ví dụ: Màu sắc, Giới tính, Mã vùng). \n- Khoảng cách Manhattan (L1) và Euclidean (L2) đòi hỏi việc tính toán phép trừ độ lớn tọa độ, vì vậy chúng vô dụng đối với kiểu định danh.\n- **Khoảng cách Hamming (1)** là phép đo độ khớp (matching) đếm số lượng vị trí mà hai chuỗi/vector khác biệt nhau, do đó nó là hàm duy nhất phù hợp để đánh giá khoảng cách dữ liệu định danh.",
-    "scope": "2022.1 - Ảnh 7"
+    "scope": "2022.1 - Ảnh 7",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 105,
@@ -2224,7 +2432,9 @@
       "nếu dữ liệu phân tách tuyến tính"
     ],
     "explanation": "Theo Định lý Hội tụ Perceptron (Perceptron Convergence Theorem) của Rosenblatt, thuật toán học Perceptron được chứng minh về mặt toán học là chắc chắn sẽ tìm ra một siêu phẳng ranh giới phân lớp và ngừng lặp (hội tụ) **nếu và chỉ nếu** tập dữ liệu huấn luyện có thể phân tách tuyến tính hoàn toàn (Linearly separable). Nếu dữ liệu không phân tách tuyến tính (ví dụ hàm XOR), thuật toán sẽ dao động và lặp vô hạn.",
-    "scope": "2022.1 - Ảnh 7"
+    "scope": "2022.1 - Ảnh 7",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 106,
@@ -2242,7 +2452,9 @@
       "là quá trình biến đổi dữ liệu thô tới một dạng thích hợp để cho bước phân tích"
     ],
     "explanation": "Tiền xử lý dữ liệu (Data Preprocessing) là khâu làm sạch (khử nhiễu, điền khuyết), tích hợp, chuẩn hóa và mã hóa dữ liệu. Mục đích của nó là biến đổi khối dữ liệu thô hỗn loạn thành một cấu trúc và định dạng tiêu chuẩn, sạch sẽ nhằm tối ưu hóa trực tiếp cho các thuật toán mô hình hóa và phân tích chuyên sâu.",
-    "scope": "2022.1 - Ảnh 7"
+    "scope": "2022.1 - Ảnh 7",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 107,
@@ -2261,7 +2473,9 @@
       "Tổng số lượng giao dịch chứa A"
     ],
     "explanation": "Trong khai phá luật kết hợp (Association Rule Mining), thuật ngữ cần phân biệt rõ:\n- **Tổng số hỗ trợ (Support Count/Frequency)**: Là đại lượng đếm vật lý, thể hiện tổng số lượng các đơn giao dịch (transactions) có chứa tập mục A.\n- Độ hỗ trợ (Support): Là đại lượng tỷ lệ, bằng Support Count chia cho tổng số tất cả các giao dịch trong cơ sở dữ liệu.",
-    "scope": "2022.1 - Ảnh 8"
+    "scope": "2022.1 - Ảnh 8",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 108,
@@ -2310,7 +2524,9 @@
       "(6954 + 2588) / 10000"
     ],
     "explanation": "Chỉ số Độ chính xác toàn cục (Accuracy) của một bộ phân loại được tính bằng tỷ lệ số mẫu dự đoán đúng hoàn toàn trên tổng số mọi mẫu được kiểm tra: $\\text{Accuracy} = \\frac{TP + TN}{Total}$.\nDựa trên ma trận nhầm lẫn, số lượng đoán đúng lớp 'yes' (True Positive) là $6954$, số lượng đoán đúng lớp 'no' (True Negative) là $2588$. Tổng số dữ liệu là $10000$. Thay vào biểu thức ta có đáp án $(6954 + 2588) / 10000$.",
-    "scope": "2022.1 - Ảnh 9"
+    "scope": "2022.1 - Ảnh 9",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 109,
@@ -2327,7 +2543,9 @@
       "False"
     ],
     "explanation": "Thuật toán Apriori chỉ quan tâm tới đặc tính boolean của dữ liệu: sự cùng xuất hiện (co-occurrence) hoặc vắng mặt của các item (tên sản phẩm) trong mỗi giỏ hàng để đếm tần suất cấu thành luật. Các thông tin định lượng (quantitative) như giá cả, số lượng mua hoàn toàn bị thuật toán bỏ qua và không đóng góp bất kỳ ảnh hưởng nào tới chất lượng khai phá luật.",
-    "scope": "2022.1 - Ảnh 9"
+    "scope": "2022.1 - Ảnh 9",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 110,
@@ -2346,7 +2564,9 @@
       "giảm khả năng overfitting"
     ],
     "explanation": "Việc giảm giá trị hằng số $C$ đồng nghĩa với việc giảm bớt hình phạt đối với những điểm dữ liệu vi phạm lề (cho phép lỏng lẻo hơn). Khi đó, thuật toán sẽ bỏ qua các mẫu ngoại lai (outliers) và tập trung vào việc tạo ra một hành lang lề (margin) rộng nhất có thể. Ranh giới quyết định trở nên phẳng và tổng quát hóa tốt hơn, trực tiếp dẫn đến việc **giảm khả năng quá khớp (Overfitting)**.",
-    "scope": "2022.1 - Ảnh 10"
+    "scope": "2022.1 - Ảnh 10",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 111,
@@ -2364,7 +2584,9 @@
       "Với một xác suất cao, nó yêu cầu bộ nhớ lớn nhất so với các loại tập thường xuyên kích thước khác."
     ],
     "explanation": "Bất cập lớn nhất của thuật toán Apriori (nút thắt cổ chai) nằm ở quá trình tổ hợp sinh ứng viên $C_2$ (2-itemsets). Số lượng cặp mục này được nhân bản theo công thức tổ hợp $O(|L_1|^2)$. Không gian ứng viên khổng lồ này đòi hỏi thuật toán phải cấp phát một dung lượng bộ nhớ lớn kỉ lục so với các kích thước lớn hơn (vốn đã bị tỉa bớt rất nhiều nhờ luật phản đơn điệu).",
-    "scope": "2022.1 - Ảnh 10"
+    "scope": "2022.1 - Ảnh 10",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 112,
@@ -2384,7 +2606,9 @@
       "Tất cả các mẫu bị sai lớp"
     ],
     "explanation": "Biến lỏng $\\xi_i$ (Slack Variable) đo lường sự vi phạm của dữ liệu đối với lề biên an toàn.\n- $\\xi_i = 0$: Đối với các điểm hoàn toàn hợp lệ (nằm đúng trên lề biên hoặc nằm an toàn ở phần không gian phân lớp đúng bên ngoài lề).\n- $\\xi_i > 0$: Bất cứ khi nào điểm dữ liệu xâm nhập vượt qua lề biên về phía ranh giới (bao gồm: các mẫu vi phạm lề nhưng vẫn nằm đúng phía ranh giới phân lớp; và nghiêm trọng hơn là các mẫu văng hoàn toàn sang phía bên kia bị sai lớp).",
-    "scope": "2022.1 - Ảnh 10"
+    "scope": "2022.1 - Ảnh 10",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 113,
@@ -2403,7 +2627,9 @@
       "Một hàm được gọi là bị quá khớp so với hàm khác nếu nó xấp xỉ chính xác hơn trên tập dữ liệu huấn luyện, nhưng kém chính xác hơn khi phán đoán các dữ liệu trong tương lai"
     ],
     "explanation": "Quá khớp (Overfitting) là hiện tượng khi một mô hình học máy xây dựng ranh giới quyết định quá phức tạp, ghi nhớ luôn cả nhiễu ngẫu nhiên (noise) của tập dữ liệu huấn luyện thay vì học quy luật tổng quát. Hậu quả là mô hình đạt độ chính xác giả tạo rất cao (xấp xỉ chính xác hơn) trên tập Training, nhưng lại vấp phải sai số lớn (kém chính xác hơn) khi phải phán đoán trên tập kiểm thử chưa từng thấy trong tương lai (Unseen data).",
-    "scope": "2022.2 - Trang 1"
+    "scope": "2022.2 - Trang 1",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 114,
@@ -2422,7 +2648,9 @@
       "Ở dữ liệu huấn luyện, học có giám sát thường yêu cầu nhãn/đầu ra cho giai đoạn huấn luyện"
     ],
     "explanation": "Ranh giới phân định quan trọng nhất giữa Supervised Learning (Học có giám sát) và Unsupervised Learning (Học không giám sát) nằm hoàn toàn ở cấu trúc bộ Dữ liệu huấn luyện (Training data). Học có giám sát đòi hỏi dữ liệu bắt buộc phải được gán nhãn Ground-truth, tức là tồn tại biến mục tiêu $y$ song hành cùng ma trận đặc trưng $X$. Ngược lại, học không giám sát chỉ thao tác trên tập không nhãn để tự dò tìm cấu trúc ngầm.",
-    "scope": "2022.2 - Trang 1"
+    "scope": "2022.2 - Trang 1",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 115,
@@ -2441,7 +2669,9 @@
       "quá trình tạo ra tri thức từ một tập dữ liệu"
     ],
     "explanation": "Quy trình Khám phá Tri thức từ Dữ liệu (KDD - Knowledge Discovery in Databases) là một quy trình kỹ thuật toàn diện, trải qua nhiều bước từ tiền xử lý, khai phá đến đánh giá nhằm mục đích tối hậu là tìm ra/tạo ra các tri thức (quy luật, mô hình ẩn, insight) có giá trị cao từ một tập hợp dữ liệu thô khổng lồ.",
-    "scope": "2022.2 - Trang 2"
+    "scope": "2022.2 - Trang 2",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 116,
@@ -2461,7 +2691,9 @@
       "Phát hiện ngoại lai (Outlier detection)"
     ],
     "explanation": "Để xử lý nhiễu ngẫu nhiên trong dữ liệu (Noise data), Kỹ nghệ dữ liệu thường dùng 2 phương pháp:\n1. **Đóng thùng (Binning/Smoothing)**: Phân hoạch dữ liệu liên tục thành các 'thùng', rồi làm mịn bằng cách gán giá trị của thùng bằng trung bình/trung vị của thùng đó, giúp loại bỏ các đỉnh nhiễu.\n2. **Phát hiện ngoại lai (Outlier detection)**: Sử dụng thuật toán phân cụm hoặc phân tích thống kê (như Z-Score, IQR) để định vị và cắt bỏ các điểm dị thường nằm xa phân phối chuẩn.\n(Chuẩn hóa chỉ đổi thang đo chứ không xóa nhiễu; Tập hợp chủ yếu dùng để nén dữ liệu).",
-    "scope": "2022.2 - Trang 2"
+    "scope": "2022.2 - Trang 2",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 117,
@@ -2480,7 +2712,9 @@
       "chuyển đổi các thuộc tính liên tục thành các thuộc tính rời rạc"
     ],
     "explanation": "Rời rạc hóa (Discretization) là một khâu tiền xử lý (Preprocessing) nhằm chia nhỏ miền giá trị của một thuộc tính kiểu số thực (Continuous) thành một tập hữu hạn các phân khúc (Intervals) định danh/rời rạc. Kỹ thuật này bắt buộc phải thực hiện khi đưa dữ liệu vào các thuật toán học máy chỉ làm việc trên dữ liệu phân nhóm như Decision Tree ID3 hay Naive Bayes.",
-    "scope": "2022.2 - Trang 2"
+    "scope": "2022.2 - Trang 2",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 118,
@@ -2499,7 +2733,9 @@
       "quá trình biến đổi một tập dữ liệu thô thành một dạng phù hợp để phân tích"
     ],
     "explanation": "Tiền xử lý dữ liệu (Data Preprocessing) là chuỗi các thao tác làm sạch, chuẩn hóa, mã hóa và giảm chiều. Mục đích của nó là biến đổi khối dữ liệu thô ráp (chứa nhiều nhiễu, thiếu sót, không đồng nhất định dạng) thành một cấu trúc dữ liệu tinh gọn và tiêu chuẩn, tương thích với yêu cầu của các thuật toán mô hình hóa học máy.",
-    "scope": "2022.2 - Trang 3"
+    "scope": "2022.2 - Trang 3",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 119,
@@ -2518,7 +2754,9 @@
       "Giá trị lặp lại nhiều nhất"
     ],
     "explanation": "Trong lĩnh vực Thống kê mô tả, Mode (Yếu vị) là đại lượng đại diện cho giá trị xuất hiện với tần suất cao nhất (lặp lại nhiều nhất) trong một chuỗi quan sát. Khác với Mean (giá trị trung bình) và Median (giá trị trung vị nằm ở giữa), Mode cực kỳ hữu ích trong việc lấp đầy dữ liệu bị khuyết (Imputation) cho các thuộc tính phân loại (Categorical variables).",
-    "scope": "2022.2 - Trang 3"
+    "scope": "2022.2 - Trang 3",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 120,
@@ -2537,7 +2775,9 @@
       "biến đổi dữ liệu để chúng rơi vào một khoảng chung (common range)"
     ],
     "explanation": "Chuẩn hóa (Normalization) là kỹ thuật tiền xử lý ép miền giá trị của tất cả các thuộc tính số học về cùng một khoảng tỷ lệ (ví dụ $[0, 1]$ qua Min-Max Scaling, hoặc phân phối chuẩn qua Z-score). Việc quy về khoảng chung giúp loại bỏ sự thống trị độ lớn của các biến đơn vị lớn so với biến đơn vị nhỏ, đặc biệt quan trọng đối với các thuật toán dùng hệ mét khoảng cách (K-NN, K-Means) và Gradient Descent.",
-    "scope": "2022.2 - Trang 3"
+    "scope": "2022.2 - Trang 3",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 121,
@@ -2556,7 +2796,9 @@
       "Để đo lường sai số theo một nghĩa nào đó và thường đóng vai trò là hàm mục tiêu để huấn luyện một mô hình"
     ],
     "explanation": "Hàm mất mát (Loss Function, ví dụ như MSE, Cross-Entropy) đóng vai trò là kim chỉ nam tối cao của quá trình Học. Nó định lượng độ lệch (sai số) giữa nhãn dự đoán của hệ thống và nhãn thực tế của tập huấn luyện. Dựa vào việc cực tiểu hóa hàm Loss (đóng vai trò hàm mục tiêu - Objective Function), các thuật toán tối ưu (như Gradient Descent) mới tính được đạo hàm để cập nhật và điều chỉnh bộ trọng số.",
-    "scope": "2022.2 - Trang 3"
+    "scope": "2022.2 - Trang 3",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 122,
@@ -2575,7 +2817,9 @@
       "Đánh giá mô hình và lựa chọn mô hình trong học máy là độc lập với nhau"
     ],
     "explanation": "Lựa chọn mô hình (Model Selection/Hyperparameter tuning) và Đánh giá mô hình (Model Evaluation) là một quy trình kết nối tương hỗ chặt chẽ, không hề độc lập. Bạn bắt buộc phải thông qua cơ chế Đánh giá (chạy trên tập Validation) để trích xuất điểm số đo lường hiệu năng, thì từ đó mới làm cơ sở để Lựa chọn ra bộ siêu tham số (Model Selection) tốt nhất.",
-    "scope": "2022.2 - Trang 4"
+    "scope": "2022.2 - Trang 4",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 123,
@@ -2594,7 +2838,9 @@
       "Ảnh hưởng xấu của sự mất cân bằng giữa các lớp"
     ],
     "explanation": "Phương pháp chia ngẫu nhiên Hold-out thông thường có rủi ro cực lớn đối với dữ liệu mất cân bằng nghiêm trọng (Imbalanced Data), vì rất có thể nó sẽ ném toàn bộ dữ liệu của lớp thiểu số vào tập Train, khiến tập Test không còn mẫu thiểu số nào để đánh giá. **Lấy mẫu phân tầng (Stratified Sampling)** giải quyết triệt để điều này bằng cách ép buộc tỷ lệ phân phối giữa các lớp trong tập Train và Test phải hoàn toàn giống với tỷ lệ gốc ban đầu.",
-    "scope": "2022.2 - Trang 4"
+    "scope": "2022.2 - Trang 4",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 124,
@@ -2612,7 +2858,9 @@
       "Không, nó là một chiến lược để đánh giá và lựa chọn mô hình"
     ],
     "explanation": "Hold-out method hoàn toàn không liên quan đến Data Preprocessing. Đây là một chiến lược kỹ thuật cốt lõi trong giai đoạn Evaluation (Đánh giá). Nó hoạt động dựa trên cơ chế phân chia khối dữ liệu sạch thành hai phân khu bất khả xâm phạm (Tập Train để huấn luyện, và Tập Test độc lập để kiểm chứng khả năng tổng quát hóa của mô hình).",
-    "scope": "2022.2 - Trang 4"
+    "scope": "2022.2 - Trang 4",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 125,
@@ -2632,7 +2880,9 @@
       "Độ bao phủ cho từng lớp (Recall for individual class)"
     ],
     "explanation": "Với dữ liệu mất cân bằng $99.9\\% - 0.1\\%$, Accuracy (Độ chính xác toàn cục) hoàn toàn bị vô hiệu hóa, vì một model ngu ngốc đoán mọi email đều là Spam cũng sẽ đạt Accuracy = 99.9%. Để đánh giá bản chất khả năng nhận diện lớp thiểu số (normal emails), ta phải sử dụng ma trận nhầm lẫn tính ra **Precision** (Trong số đoán là bình thường thì bao nhiêu là đúng) và **Recall** (Bắt được bao nhiêu phần trăm số email bình thường thực sự).",
-    "scope": "2022.2 - Trang 4"
+    "scope": "2022.2 - Trang 4",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 126,
@@ -2651,7 +2901,9 @@
       "Khi $\\lambda \\rightarrow 0$, mô hình sẽ có xu hướng underfitting"
     ],
     "explanation": "Đây là phương trình của Hồi quy Ridge (Regularization L2). \nKhi $\\lambda \\to 0$, thành phần phạt (penalty term) bị triệt tiêu, hàm $L_\\lambda$ quay trở lại chính xác nguyên bản thành hàm $L$ của OLS không ràng buộc. Trong trạng thái này, vector trọng số $\\mathbf{w}$ tự do phình to để ôm khít toàn bộ nhiễu của dữ liệu huấn luyện, khiến mô hình phải đối mặt với xu hướng **Overfitting** chứ không phải Underfitting. (Mô hình chỉ Underfitting khi $\\lambda \\to \\infty$).",
-    "scope": "2022.2 - Trang 5"
+    "scope": "2022.2 - Trang 5",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 127,
@@ -2669,7 +2921,9 @@
       "Mô hình tuyến tính (A linear model)"
     ],
     "explanation": "Phương trình $f(x)$ được cấu thành từ tổ hợp tuyến tính tuyệt đối giữa vector trọng số vô hướng $w$ và vector đặc trưng đầu vào $x$. Cấu trúc này không chứa bất kỳ phép toán lũy thừa số mũ hay phép biến đổi hàm phi tuyến (như sigmoid, tanh) nào trên tham số. Nó mô tả một siêu phẳng thẳng tắp trong không gian $\\mathbb{R}^n$, là định nghĩa cốt lõi của **Mô hình tuyến tính**.",
-    "scope": "2022.2 - Trang 5"
+    "scope": "2022.2 - Trang 5",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 128,
@@ -2686,7 +2940,9 @@
       "Không (No)"
     ],
     "explanation": "Phương pháp OLS (Bình phương tối thiểu thông thường) cực tiểu hóa phần dư bằng đạo hàm ma trận. Các hệ số toán học độ dốc (slope $w_1$) hay điểm cắt (bias $w_0$) có thể nhận bất kỳ giá trị thực âm hay dương nào tùy thuộc hoàn toàn vào hệ số tương quan nghịch hay thuận của dữ liệu đầu vào. Hoàn toàn không có bất kỳ ràng buộc nào ép buộc chúng phải là số dương.",
-    "scope": "2022.2 - Trang 5"
+    "scope": "2022.2 - Trang 5",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 129,
@@ -2705,7 +2961,9 @@
       "Chúng không giao nhau (They are disjoint)"
     ],
     "explanation": "Xét về bản thể luận của cấu trúc không gian toán học:\n- Không gian tham số $\\mathbf{W}$ là tập hợp sinh bởi các vector tọa độ (các điểm chứa hệ số vô hướng $w \\in \\mathbb{R}^{n+1}$).\n- Không gian hàm $\\mathbf{F}$ là một không gian vectơ mà mỗi thành viên bên trong nó là một quy tắc ánh xạ (một hàm số $f: X \\to Y$).\nVì phần tử cấu thành bản chất khác hẳn nhau (vector vs function), hai tập không gian này không thể có phần tử chung, tức là chúng **không giao nhau** (Disjoint).",
-    "scope": "2022.2 - Trang 6"
+    "scope": "2022.2 - Trang 6",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 130,
@@ -2725,7 +2983,9 @@
       "k-NN sẽ có xu hướng bị under-fitting"
     ],
     "explanation": "Khi thiết lập hệ số $K$ của thuật toán K-NN cực lớn (trường hợp biên: $K = N$), ranh giới quyết định của mô hình sẽ bị làm nhẵn toàn cục, dẫn đến mất khả năng học được bất kỳ đường bao phức tạp nào của dữ liệu cục bộ $\\Rightarrow$ Gây ra **Underfitting (Kém khớp / High bias)**. \nKhi đó, mô hình sẽ phớt lờ vị trí truy vấn mà chỉ đơn thuần bỏ phiếu đếm đa số toàn cục, trả về mãi một lớp đông dân nhất. Dự đoán lúc này trở thành **hiển nhiên (trivial)** vô giá trị.",
-    "scope": "2022.2 - Trang 6"
+    "scope": "2022.2 - Trang 6",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 131,
@@ -2743,7 +3003,9 @@
       "Nó có thể được sử dụng cho cả phân loại và hồi quy"
     ],
     "explanation": "Thuật toán láng giềng k-NN (K-Nearest Neighbors) là mô hình học phi tham số (non-parametric) hỗ trợ cả 2 bài toán lớn:\n- Đối với Phân loại (Classification): Lấy theo luật bình chọn (Majority Vote) của các láng giềng.\n- Đối với Hồi quy (Regression): Lấy giá trị trung bình cộng hoặc bình quân gia quyền (Weighted Average) số thực của $K$ láng giềng để dự đoán giá trị liên tục.",
-    "scope": "2022.2 - Trang 6"
+    "scope": "2022.2 - Trang 6",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 132,
@@ -2762,7 +3024,9 @@
       "Nó có thể được sử dụng cho các biến liên tục"
     ],
     "explanation": "Khoảng cách Manhattan (L1 Norm) tính tổng độ lệch tuyệt đối: $d(x,y) = \\sum |x_i - y_i|$. Phép trừ toán học này bắt buộc các thuộc tính phải có định lượng số học và duy trì trật tự độ lớn, tức là các **biến số học hoặc biến liên tục (Continuous)**. Các biến định danh (như màu \"Đỏ\", \"Xanh\") không có giá trị số thứ tự nên không thể trừ cho nhau được, phải dùng khoảng cách Hamming thay thế.",
-    "scope": "2022.2 - Trang 6"
+    "scope": "2022.2 - Trang 6",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 133,
@@ -2782,7 +3046,9 @@
       "5"
     ],
     "explanation": "Khoảng cách Euclidean (Norm L2) giữa 2 điểm trong không gian 2D được tính theo định lý Pytago:\n$d(X,Y) = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$\nThay tọa độ $X(1,7)$ và $Y(4,3)$ vào:\n$d = \\sqrt{(4 - 1)^2 + (3 - 7)^2} = \\sqrt{3^2 + (-4)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$.",
-    "scope": "2022.2 - Trang 7"
+    "scope": "2022.2 - Trang 7",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 134,
@@ -2801,7 +3067,9 @@
       "Cả A và B"
     ],
     "explanation": "- Mệnh đề A Đúng: Khi $K$ vươn ra quá rộng, vòng tròn bao tiêu láng giềng vượt xa cụm mật độ gốc của điểm truy vấn, nuốt trọn biên giới sang tận lãnh thổ của các lớp đối nghịch lân cận.\n- Mệnh đề B Đúng: Ở chiều ngược lại, nếu $K$ quá nhỏ (ví dụ $K=1$), vùng quyết định trở nên sắc cạnh và bám dính. Nếu có một điểm nhiễu (outlier) rớt sát vị trí truy vấn, thuật toán sẽ nghe răm rắp điểm nhiễu đó và trả về kết quả sai ngay lập tức.",
-    "scope": "2022.2 - Trang 7"
+    "scope": "2022.2 - Trang 7",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 135,
@@ -2870,7 +3138,9 @@
       "$c_2$"
     ],
     "explanation": "Tính bình phương khoảng cách Euclidean từ $Q(1,1)$ tới tất cả 8 điểm mẫu. Khảo sát mẫu xa nhất là điểm $(2,3)$ có $d^2 = 1^2 + 2^2 = 5$ thuộc lớp $c_1$.\nDo thiết lập $k=7$, ta lấy 7 láng giềng gần nhất bằng cách gạt bỏ đi duy nhất 1 điểm xa nhất là $(2,3)$.\nTổng kết 7 phiếu vote láng giềng còn lại:\n- Lớp $c_1$ có: $(0,1)$, $(1,0)$, $(1,2)$ $\\Rightarrow$ 3 phiếu.\n- Lớp $c_2$ có: $(-1,1)$, $(0,2)$, $(1,-1)$, $(2,2)$ $\\Rightarrow$ 4 phiếu.\nQuy luật đa số $4 > 3$, thuật toán K-NN sẽ trả về phân lớp $c_2$.",
-    "scope": "2022.2 - Trang 8"
+    "scope": "2022.2 - Trang 8",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 136,
@@ -2891,7 +3161,9 @@
       "học một mô hình từ một tập dữ liệu huấn luyện cho trước"
     ],
     "explanation": "Trong kỹ nghệ Học máy thống kê, Ước lượng hợp lý cực đại (MLE) là khung toán học chuẩn. \n- Về mặt bản chất: Đó là bài toán tối ưu đi tìm vector tham số $\\theta$ tối đa hóa hàm Hợp lý (Likelihood function $L(\\theta)$) trên dữ liệu mẫu - hay \"ước lượng khả năng cực đại\".\n- Về mặt quy trình ứng dụng: Quá trình đi tìm nghiệm cực đại $\\theta$ của hàm Loss/Likelihood chính xác là quá trình \"huấn luyện/học\" một mô hình hồi quy (như Logistic Regression, Neural Networks) từ tập huấn luyện thực nghiệm.",
-    "scope": "2022.2 - Trang 8"
+    "scope": "2022.2 - Trang 8",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 137,
@@ -2909,7 +3181,9 @@
       "xác suất của một mô hình/giả thuyết khi cho trước dữ liệu quan sát được"
     ],
     "explanation": "Định lý Bayes biểu thị: $\\text{Posterior} = \\frac{\\text{Likelihood} \\times \\text{Prior}}{\\text{Evidence}}$. Cụ thể: $P(\\theta | X)$. Xác suất hậu nghiệm định lượng độ tin cậy để giả thuyết mô hình $\\theta$ là chính xác **sau khi** (hậu) đã cho trước và chứng kiến một sự kiện dữ liệu/quan sát thực tế $X$. (Còn việc \"xác suất của quan sát khi cho trước mô hình\" $P(X|\\theta)$ là khái niệm Likelihood - Hàm hợp lý).",
-    "scope": "2022.2 - Trang 8"
+    "scope": "2022.2 - Trang 8",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 138,
@@ -2930,7 +3204,9 @@
       "MAP có thể ước lượng toàn bộ phân bố hậu nghiệm từ một tập dữ liệu huấn luyện"
     ],
     "explanation": "Các phát biểu sai gồm:\n1. \"MAP không cần biết kiến thức về tham số\": Sai bét. MAP là công cụ của trường phái Bayesian, nó **bắt buộc** phải có hàm Xác suất tiên nghiệm (Prior $P(\\theta)$) phản ánh tri thức ban đầu/niềm tin về tham số trước khi thấy dữ liệu.\n2. \"MAP ước lượng toàn bộ phân bố hậu nghiệm\": Sai. Mặc dù dựa trên định lý Bayes, MAP chỉ là kỹ thuật ước lượng Điểm (Point Estimation). Nó chỉ dùng đạo hàm để tìm ra tọa độ Đỉnh/Mode lớn nhất của phân bố hậu nghiệm, chứ không mô phỏng lại hình dáng nguyên vẹn của \"toàn bộ phân bố\" (việc đó phải dùng Full Bayesian Inference / MCMC).",
-    "scope": "2022.2 - Trang 9"
+    "scope": "2022.2 - Trang 9",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 139,
@@ -2949,7 +3225,9 @@
       "phân loại (classification)"
     ],
     "explanation": "Thuật toán Iterative Dichotomiser 3 (ID3) sử dụng thước đo Entropy và lượng thông tin đạt được (Information Gain) để xác định tiêu chí rẽ nhánh cây. Lực lượng toán học của hàm Entropy ($-p \\log p$) chỉ được định nghĩa và tương thích để tính độ hỗn tạp của phân bố các Nhãn danh mục (Categorical labels). Vì vậy, ID3 thuần túy chỉ có thể giải quyết các **bài toán phân loại**. Để xây dựng Cây hồi quy (Regression tree) trên không gian số thực, phải dùng thuật toán CART thay thế bằng hàm Variance Reduction.",
-    "scope": "2022.2 - Trang 9"
+    "scope": "2022.2 - Trang 9",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 140,
@@ -2968,7 +3246,9 @@
       "học có giám sát"
     ],
     "explanation": "Để thuật toán Cây quyết định (Decision Tree) có thể tự động lựa chọn đặc trưng tách (Split point), nó bắt buộc phải đo lường độ giảm hỗn tạp (Impurity) liên tục của mục tiêu tại mỗi lá nhánh. Quá trình này đòi hỏi một Ground-Truth vững chắc tại pha huấn luyện – tức là các cột nhãn kết quả phân loại hay hồi quy (biến $y$) phải được gán mác sẵn. Điều này định vị Cây quyết định là thuật toán **Học có giám sát (Supervised Learning)** điển hình.",
-    "scope": "2022.2 - Trang 9"
+    "scope": "2022.2 - Trang 9",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 141,
@@ -2987,7 +3267,9 @@
       "một đường đi duy nhất"
     ],
     "explanation": "Bản chất cấu trúc đồ thị của mô hình Cây quyết định (Decision Tree) bao gồm các nút phân tách dựa trên các tập luật loại trừ lẫn nhau (Mutually exclusive rules). Do tính chất điều hướng nhị phân hoặc đa phân rẽ nhánh tại mỗi nút kiểm tra (test node), một mẫu dữ liệu mới luôn xuất phát từ nút gốc (root) và men theo <b>duy nhất một đường rẽ nhánh độc lập</b> từ trên xuống để chạm đến nút lá (leaf node) nhận nhãn. Không bao giờ có trường hợp một mẫu thỏa mãn nhiều đường đi cùng lúc.",
-    "scope": "2022.2 - Trang 9"
+    "scope": "2022.2 - Trang 9",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 142,
@@ -3008,7 +3290,9 @@
       "Chuyển đổi thành một tập hợp các luật và cắt tỉa (pruning) các luật"
     ],
     "explanation": "Cây quyết định rất dễ bùng nổ độ phức tạp dẫn đến hiện tượng Quá khớp (Overfitting) nếu để nó phát triển tự do đến khi độ tinh khiết đạt 100%. Hai phương pháp kinh điển giải quyết vấn đề này bao gồm: 1. <b>Pre-pruning (Dừng sớm)</b>: Đặt ngưỡng can thiệp như chiều sâu tối đa (max_depth), số mẫu tối thiểu ở nút lá (min_samples_leaf) để thuật toán ngừng chẻ nhánh sớm. 2. <b>Post-pruning (Cắt tỉa sau)</b>: Cho phép cây phát triển hoàn chỉnh, sau đó mô hình hóa thành tập các luật (IF-THEN rules) và sử dụng các thuật toán thống kê cắt tỉa để loại bỏ các luật rườm rà gây nhiễu, đem lại khái quát hóa cao.",
-    "scope": "2022.2 - Trang 10"
+    "scope": "2022.2 - Trang 10",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 143,
@@ -3026,7 +3310,9 @@
       "Cắt tỉa (Pruning) thường đạt được độ chính xác trên tập kiểm thử tốt hơn so với việc dừng sớm."
     ],
     "explanation": "Cắt tỉa (Post-pruning) mang lại độ chính xác tổng quát hóa trên tập kiểm thử cao hơn phương pháp Dừng sớm (Pre-pruning). Lý do là Pre-pruning áp dụng chiến lược tham lam (greedy) cục bộ; việc dừng chẻ nhánh sớm có thể vô tình chặn đứng và bỏ lỡ các tổ hợp thuộc tính mang lại Information Gain cực lớn ở các tầng sâu hơn (hiện tượng chân trời - Horizon effect). Post-pruning khắc phục điều kiện này bằng cách đánh giá hiệu năng toàn cục của cây đã đầy đủ, cắt chính xác nhánh gây nhiễu. (Nút lá không bắt buộc phải tinh khiết 100% nếu có tham số ngưỡng tạp chất).",
-    "scope": "2022.2 - Trang 10"
+    "scope": "2022.2 - Trang 10",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 144,
@@ -3046,7 +3332,9 @@
       "Có thể được thiết kế để hoạt động tốt ngay cả khi số lượng tham số/trọng số lớn hơn nhiều so với số lượng điểm dữ liệu"
     ],
     "explanation": "1. <b>Kết hợp hàm kích hoạt</b>: Kiến trúc mạng Nơ-ron hoàn toàn cho phép linh hoạt sử dụng các hàm kích hoạt khác nhau theo tầng (ví dụ: tầng ẩn dùng ReLU chống Vanishing Gradient, tầng đầu ra dùng Softmax/Sigmoid cho dự đoán). 2. <b>Over-parameterization (Siêu tham số hóa)</b>: Trái với mô hình máy học cổ điển dễ bị quá khớp, các mạng học sâu (Deep Learning) hiện đại thường có số lượng trọng số $W$ lớn hơn rất nhiều so với quy mô dữ liệu. Nhờ cơ chế Regularization (như Dropout, Weight decay) và kết cấu hàm Loss đặc thù (hiện tượng Double Descent), chúng vẫn hội tụ và tổng quát hóa cực kỳ tốt.",
-    "scope": "2022.2 - Trang 10"
+    "scope": "2022.2 - Trang 10",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 145,
@@ -3065,7 +3353,9 @@
       "Nó tính toán đầu ra của một nơ-ron khi cho trước đầu vào mạng (net input) của nó"
     ],
     "explanation": "Trong kiến trúc xử lý của một Nơ-ron nhân tạo, dữ liệu đi qua 2 pha toán học riêng biệt: (1) Tính Đầu vào mạng (Net input): Tính tổng có trọng số $z = \\sum w_i x_i + b$. (2) Chạy Hàm kích hoạt (Activation function): Nhận nguyên khối giá trị tổng $z$ (Net input) và biến đổi phi tuyến thành tín hiệu đầu ra (Output: $a = f(z)$) để kích hoạt mức tín hiệu truyền sang nơ-ron tầng tiếp theo.",
-    "scope": "2022.2 - Trang 11"
+    "scope": "2022.2 - Trang 11",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 146,
@@ -3083,7 +3373,9 @@
       "Cả tín hiệu đầu vào $x$ và các trọng số"
     ],
     "explanation": "Mạng Nơ-ron tiến (Feedforward Neural Network) có cấu trúc toán học là một hàm hợp (Composite function) phức tạp dạng $Y = f(x; W)$. Việc sử dụng các hàm kích hoạt phi tuyến (như ReLU, Tanh) tại các điểm nút ẩn không chỉ bẻ cong không gian đặc trưng của vector tín hiệu đầu vào $x$, mà đồng thời còn áp dụng độ phi tuyến lên cả chuỗi liên kết các ma trận tham số trọng số $W$ qua nhiều tầng xếp chồng (Ví dụ: $f_2(W_2 \\cdot f_1(W_1 \\cdot x))$). Vì vậy, hàm đại diện của mạng nơ-ron phi tuyến trên toàn bộ không gian chứa cả tín hiệu $x$ và trọng số $W$.",
-    "scope": "2022.2 - Trang 11"
+    "scope": "2022.2 - Trang 11",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 147,
@@ -3104,7 +3396,9 @@
       "Các trọng số tốt nhất từ không gian trọng số"
     ],
     "explanation": "Bản chất thực dụng của việc huấn luyện mạng Nơ-ron (Training Phase) là quá trình giải bài toán tối ưu hóa (Gradient Descent / Backpropagation) nhằm liên tục hiệu chỉnh độ dốc và tìm kiếm ra <b>bộ trọng số và độ chệch (Weights & Biases) tốt nhất</b> trong không gian tham số sao cho hàm Loss chạm cực tiểu. Ở bình diện lý thuyết học máy (Hypothesis space), việc cố định thành công một hệ số trọng số tương đương với việc <b>tìm được một hàm toán học cụ thể</b> trực thuộc họ hàm mà kiến trúc mạng đại diện, qua đó hoàn thành mục tiêu ánh xạ quy luật từ vector đặc trưng đầu vào tới nhãn đầu ra. (Lưu ý: Tìm cấu trúc mạng và siêu tham số là công việc của pha Model Selection / Hyperparameter Tuning).",
-    "scope": "2022.2 - Trang 11"
+    "scope": "2022.2 - Trang 11",
+    "chapter": 10,
+    "chapter_name": "Mạng nơ-ron"
   },
   {
     "id": 148,
@@ -3123,7 +3417,9 @@
       "Một nhóm các đối tượng tương tự nhau nhưng khác biệt đáng kể so với các đối tượng ở một nhóm khác"
     ],
     "explanation": "Theo định nghĩa chuẩn tắc của kỹ thuật Khai phá cụm (Clustering Analysis), một \"cụm\" là một phân vùng dữ liệu thỏa mãn đồng thời hai ràng buộc đánh giá khắt khe: (1) Tính gắn kết nội cụm (High Intra-cluster Cohesion) - các phần tử bên trong cùng một cụm phải có sự tương đồng hoặc khoảng cách gần gũi với nhau tối đa; (2) Tính phân ly liên cụm (High Inter-cluster Separation) - Các cụm độc lập phải có sự khác biệt dị biệt đáng kể để tạo thành ranh giới nhận diện rõ ràng.",
-    "scope": "2022.2 - Trang 12"
+    "scope": "2022.2 - Trang 12",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 149,
@@ -3142,7 +3438,9 @@
       "$A$ và trung điểm của $BC$"
     ],
     "explanation": "Khởi tạo 2 tâm cụm $m_1 = A(0,2)$ và $m_2 = B(0,1)$.\n- <b>Vòng lặp 1:</b> $A$ cách $m_1$ là $0 \\Rightarrow A \\in C_1$. $B$ cách $m_2$ là $0 \\Rightarrow B \\in C_2$. Tại điểm $C(1,0)$, khoảng cách Euclid tới $m_1$ là $\\sqrt{5}$, tới $m_2$ là $\\sqrt{2}$. Do $\\sqrt{2} < \\sqrt{5}$ nên $C$ được phân vào cụm $C_2$.\nCập nhật tọa độ tâm (tính Mean): \n$m_1^{new} = A(0,2)$. \n$m_2^{new} = \\text{Mean}(B, C) = (0.5, 0.5)$ (Đây chính xác là tọa độ trung điểm của đoạn thẳng $BC$).\n- <b>Vòng lặp 2:</b> Tính lại khoảng cách với tâm mới, $A$ vẫn gần $m_1^{new}$, $B$ và $C$ vẫn gần $m_2^{new}$ nên không thay đổi cụm. K-means hội tụ dừng lại. Tâm nằm ở $A$ và trung điểm $BC$.",
-    "scope": "2022.2 - Trang 12"
+    "scope": "2022.2 - Trang 12",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 150,
@@ -3162,7 +3460,9 @@
       "nhạy cảm với dữ liệu ngoại lai (outliers)"
     ],
     "explanation": "1. <b>Học không giám sát</b>: K-means không sử dụng nhãn Ground-truth (y) trong quá trình huấn luyện, nó phân lớp chỉ bằng đặc điểm tương quan phân bố khoảng cách của dữ liệu X. 2. <b>Nhạy cảm với ngoại lai</b>: Trọng tâm (Centroid) của K-means được di chuyển bằng phép toán trung bình (Mean) tọa độ các điểm thành viên. Phép Mean không có tính bền bỉ Robustness, chỉ cần một vài điểm Outlier nằm văng rất xa ngoài rìa không gian cũng đủ sức bẻ lệch trọng tâm của cả cụm đi sai hướng. (Ghi chú: Thuật toán không đảm bảo hội tụ toàn cục vì nó giải bài toán tối ưu phi lồi (non-convex) theo nguyên lý tham lam cục bộ).",
-    "scope": "2022.2 - Trang 12"
+    "scope": "2022.2 - Trang 12",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 151,
@@ -3181,7 +3481,9 @@
       "C1: (3,3), C2: (4,4), C3: (6,6)"
     ],
     "explanation": "Trong pha tối đa hóa (Maximization Step) của K-means, tâm cụm (Centroid) được cập nhật bằng công thức lấy Trung bình cộng (Mean vector) tọa độ của tất cả các phần tử điểm dữ liệu thành viên.\n- Tính tâm $m_1$ cho cụm C1 chứa $(0,6), (6,0)$: $m_1 = \\left(\\frac{0+6}{2}, \\frac{6+0}{2}\\right) = (3,3)$.\n- Tính tâm $m_2$ cho cụm C2 chứa $(2,2), (4,4), (6,6)$: $m_2 = \\left(\\frac{2+4+6}{3}, \\frac{2+4+6}{3}\\right) = (4,4)$.\n- Tính tâm $m_3$ cho cụm C3 chứa $(5,5), (7,7)$: $m_3 = \\left(\\frac{5+7}{2}, \\frac{5+7}{2}\\right) = (6,6)$.\nKết quả đúng là C1: (3,3), C2: (4,4), C3: (6,6).",
-    "scope": "2022.2 - Trang 13"
+    "scope": "2022.2 - Trang 13",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 152,
@@ -3201,7 +3503,9 @@
       "sinh ra các luật có confidence cao hơn ngưỡng minimum confidence (minconf)"
     ],
     "explanation": "Giải thuật Apriori trong Khai phá Luật kết hợp (Association Rule Mining) hoạt động theo một quy trình chắt lọc hai bước nghiêm ngặt:\n1. <b>Khai thác tập phổ biến (Frequent Itemsets)</b>: Thuật toán sử dụng nguyên lý phản đơn điệu (Anti-Monotonicity Principle) để đánh giá và <b>cắt tỉa vô điều kiện (prune)</b> mọi tập hợp (và hệ quả siêu tập của chúng) không đạt ngưỡng tần suất hỗ trợ tối thiểu (nhỏ hơn `minsup`).\n2. <b>Trích xuất Luật (Rule Generation)</b>: Từ kho tập phổ biến chắt lọc được, thuật toán tổ hợp sinh ra các luật kéo theo $(A \\rightarrow B)$ và đảm bảo chỉ chấp nhận các luật có mức độ tin cậy thỏa mãn lớn hơn hoặc bằng ngưỡng `minconf`.",
-    "scope": "2022.2 - Trang 13"
+    "scope": "2022.2 - Trang 13",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 153,
@@ -3220,7 +3524,9 @@
       "Tổng số giao dịch chứa A"
     ],
     "explanation": "Trong toán học của mô hình Khai phá luật kết hợp, định nghĩa về Support phân thành hai nhánh:\n- <b>Tần suất hỗ trợ tuyệt đối (Support Count / Absolute Support)</b>: Được biểu thị dưới dạng một số đếm thực thể (Integer), tương đương với tổng số lượng tuyệt đối các dòng giao dịch (transactions) hiện diện tập mục A trong cơ sở dữ liệu.\n- <b>Độ hỗ trợ tương đối (Support / Relative Support)</b>: Là một tham số xác suất (đơn vị phần trăm), thu được bằng cách lấy Support Count chia cho tổng quy mô bộ cơ sở dữ liệu.",
-    "scope": "2022.2 - Trang 13"
+    "scope": "2022.2 - Trang 13",
+    "chapter": 12,
+    "chapter_name": "Khai phá tập mục thường xuyên và các luật kết hợp"
   },
   {
     "id": 154,
@@ -3240,7 +3546,9 @@
       "Dùng bước tối ưu/lựa chọn tham số"
     ],
     "explanation": "Độ chính xác Train cực cao (99%) đi đôi với Test/Kaggle rất thấp (67%) chứng tỏ mô hình bị hội chứng <b>Overfitting (Quá khớp - High Variance)</b>. Giải pháp khắc phục:\n1. <b>Huấn luyện trên nhiều dữ liệu hơn (More Training Data / Data Augmentation)</b>: Khối lượng dữ liệu cực lớn sẽ ép mô hình không thể học thuộc lòng nhiễu ngẫu nhiên, giúp ranh giới quyết định ôm trọn hàm phân phối tổng quát của thế giới thực.\n2. <b>Tối ưu tham số (Hyperparameter Tuning)</b>: Tăng các thành phần Điều chuẩn (Regularization) như hệ số $L_1/L_2$, tinh giảm độ sâu mạng/cây, kích hoạt Dropout nhằm hạ bậc tự do, giảm thiểu mức độ phức tạp nội tại của mô hình.\n(Tuyệt đối không bỏ dữ liệu đi hoặc đặt hệ số điều chuẩn về 0, điều này làm suy yếu khiên phòng ngự Overfitting của mô hình).",
-    "scope": "2024.2 - Trang 1"
+    "scope": "2024.2 - Trang 1",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 155,
@@ -3261,7 +3569,9 @@
       "$f^*(x)$ có thể bị underfitting"
     ],
     "explanation": "Trạng thái hàm Lỗi thực nghiệm (Training Error) chạm ngưỡng lý tưởng tuyệt đối bằng 0 chỉ xảy ra khi mặt phẳng phương trình hồi quy đã bẻ cong qua tất cả mọi tọa độ của dữ liệu huấn luyện, kể cả những điểm nhiễu ngoại lai. Sự ôm khít quá mức này là biểu hiện tột đỉnh của <b>Overfitting (Quá khớp)</b>.\n1. Vì mô hình quá linh hoạt để học hoàn toàn dữ liệu train, nên không thể có chuyện nó bị Underfitting (Chưa khớp). Phát biểu \"Có thể bị underfitting\" là SAI.\n2. Do fit luôn cả các mẫu nhiễu noise, đường hồi quy khi phán đoán các biến thể Unseen Data trên tập Test sẽ tạo ra sai số cực khủng khiếp. Tức là khả năng tổng quát hóa (Generalization) của nó rất Tệ, chứ không thể gọi là Cao nhất. Phát biểu \"khả năng tổng quát cao nhất\" là SAI.",
-    "scope": "2024.2 - Trang 1"
+    "scope": "2024.2 - Trang 1",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 156,
@@ -3282,7 +3592,9 @@
       "K-means có thể chịu kết quả học tồi (underfitting) khi tăng số lượng cụm"
     ],
     "explanation": "Những phát biểu SAI về thuật toán K-means:\n1. <b>\"K-means không thể Overfitting vì không có hàm lỗi\"</b>: Nhận định phi logic. K-means tối ưu hóa trực tiếp một hàm mục tiêu Loss Function có tên là WCSS (Within-Cluster Sum of Squares). Nếu ép hệ số $K$ bằng chính lượng dữ liệu $N$, WCSS giảm về 0, cấu trúc chẻ vỡ vụn mô phỏng từng điểm một - đây là trạng thái cực đoan của Quá khớp (Overfitting).\n2. <b>\"K-means bị underfitting khi TĂNG số lượng cụm\"</b>: Nhận định ngược. Việc tăng $K$ làm vùng ảnh hưởng của các cụm bị cắt nhỏ đi, mô hình khít chặt hơn vào cấu trúc dữ liệu, kéo theo rủi ro ngả dần về Overfitting. Tình trạng Underfitting chỉ xảy ra khi $K$ bị thiết lập quá nhỏ (ví dụ $K=1$, mất hoàn toàn ranh giới giữa các tập hợp đa dạng).",
-    "scope": "2024.2 - Trang 1"
+    "scope": "2024.2 - Trang 1",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 157,
@@ -3301,7 +3613,9 @@
       "Tỷ lệ số lượng các dự đoán chính xác trên tổng số các dự đoán"
     ],
     "explanation": "Theo chuẩn công thức đo lường ma trận Confusion Matrix của mô hình Classification (Phân loại), Đại lượng <b>Độ chính xác (Accuracy)</b> biểu thị tỷ trọng đóng góp của dự báo chính xác so với toàn bộ không gian phép thử. Công thức của nó là $\\text{Accuracy} = \\frac{\\text{True Positives} + \text{True Negatives}}{\\text{Total Population}}$. Nó chỉ phản ánh đúng năng lực thật sự nếu bộ dữ liệu cân bằng (Balanced Classes), nếu dữ liệu quá lệch pha thì Accuracy sẽ bị ảo và không còn đáng tin.",
-    "scope": "2024.2 - Trang 1"
+    "scope": "2024.2 - Trang 1",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 158,
@@ -3319,7 +3633,9 @@
       "nhằm giảm độ hỗn tạp của tập học khi được phân chia vào các nhánh mới."
     ],
     "explanation": "Độ phân biệt (Discriminativeness) là khái niệm đề cập đến sức mạnh phân cắt thông tin của một thuộc tính, được định lượng bằng các hàm như Information Gain (Lượng thông tin đạt được) hoặc Gini Reduction. Mục tiêu của việc sử dụng thuộc tính có độ phân biệt cực lớn làm nút kiểm tra là để chia rẽ tập dữ liệu ở các nút con thành những vùng sở hữu <b>Độ thuần khiết (Purity) lớn nhất</b>, hệ quả là <b>Giảm độ hỗn tạp / vô trật tự (Entropy / Impurity)</b> của tập học xuống biên độ tối đa nhất có thể.",
-    "scope": "2024.2 - Trang 1"
+    "scope": "2024.2 - Trang 1",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 159,
@@ -3338,7 +3654,9 @@
       "trên đường phân tách âm hoặc đường phân tách dương"
     ],
     "explanation": "Trong bài toán Hard-Margin Support Vector Machine, hành lang phân chia quyết định bị chốt chặn bởi mặt phẳng lề biên âm ($H_{-1}: \\mathbf{w}^T\\mathbf{x} + b = -1$) và mặt phẳng lề biên dương ($H_1: \\mathbf{w}^T\\mathbf{x} + b = 1$). Thuật ngữ cốt lõi <b>Vector hỗ trợ (Support Vectors)</b> để ám chỉ trực tiếp các tọa độ điểm dữ liệu huấn luyện nằm vắt ngang và <b>chạm chính xác vào một trong hai siêu phẳng lề biên</b> này (thỏa mãn $\\mathbf{w}^T\\mathbf{x}_i + b = \\pm 1$). Toàn bộ sức mạnh của SVM hoàn toàn được kiến tạo dựa trên các Vector này.",
-    "scope": "2024.2 - Trang 2"
+    "scope": "2024.2 - Trang 2",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 160,
@@ -3358,7 +3676,9 @@
       "Từ các kiểu sử dụng của người dùng trên một trang web, hãy xác định các nhóm người dùng khác nhau."
     ],
     "explanation": "Kỹ thuật Phân cụm (Clustering - Học không giám sát) chuyên xử trị các luồng dữ liệu tự do phi nhãn, với mục đích dò tìm và cô lập chúng thành các phân đoạn (Segments / Clusters) chứa các cá thể tương hợp nội bộ. \n- Việc \"phân khúc thị trường\" (Market Segmentation) và \"tạo nhóm người dùng web\" là những mảng triển khai thuần túy nhất của Khai phá cụm. \n- Ngược lại, Dự đoán doanh số mang tính liên tục thuộc phạm trù bài toán Hồi quy (Regression). Dự đoán Mưa/Nắng mang tính nhị nguyên thuộc phạm trù bài toán Phân loại (Classification) do dữ liệu đã được gán nhãn.",
-    "scope": "2024.2 - Trang 2"
+    "scope": "2024.2 - Trang 2",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 161,
@@ -3376,7 +3696,9 @@
       "Đánh giá mô hình và lựa chọn mô hình trong Học máy là hai thứ độc lập với nhau"
     ],
     "explanation": "Không tồn tại khái niệm tách rời giữa Lựa chọn mô hình (Model Selection / Tối ưu siêu tham số) và Đánh giá mô hình (Model Evaluation). Hai công đoạn này là một mắt xích quy trình tuần hoàn. Hệ thống bắt buộc phải liên tục thi hành các hàm Đánh giá (dựa trên Validation Set / Cross Validation) để trích xuất điểm số ma trận phản hồi (Metrics), từ đó mới làm tiền đề luận chứng cho việc Lựa chọn, chốt hạ một kiến trúc hoặc Hyperparameter tối ưu. Do đó, nói chúng \"độc lập với nhau\" là hoàn toàn SAI lệch kiến trúc Học máy.",
-    "scope": "2024.2 - Trang 2"
+    "scope": "2024.2 - Trang 2",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 162,
@@ -3396,7 +3718,9 @@
       "Để đạt độ chính xác cao hơn, rừng ngẫu nhiên cần thực hiện việc cắt tỉa (pruning) đối với các cây để giảm bớt vấn đề học quá khớp"
     ],
     "explanation": "Các phát biểu mang sai lầm học thuật về Random Forest (RF):\n1. <b>\"RF dùng cắt tỉa (Pruning) để giảm quá khớp\"</b>: RF không bao giờ dùng Pruning. Nó ép hệ thống các cây con bùng nổ độ phức tạp lên cực đại (phát triển tới lá thuần khiết) để tạo các bộ phân loại Phương sai lớn (High Variance). Sau đó, RF dùng quy tắc bỏ phiếu Bagging để san phẳng độ dao động Variance, tự thân triệt tiêu Overfitting mà không cần tỉa cây.\n2. <b>\"Xử lý vấn đề Underfitting\"</b>: Mô thức Bagging (như RF) đi lấy trung bình các Mô hình mạnh (Strong learners) mang tính Quá khớp nhằm hạ nhiệt Phương sai (Variance). Đối với bệnh Chưa khớp (Underfitting - Bias lớn), ngành Machine Learning có một chiến lược Ensemble riêng để xử lý, đó là Boosting (XGBoost, AdaBoost) nhằm liên kết các Mô hình yếu (Weak learners) lại với nhau.",
-    "scope": "2024.2 - Trang 2"
+    "scope": "2024.2 - Trang 2",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 163,
@@ -3414,7 +3738,9 @@
       "Một lớp các thuật toán mà sử dụng các tính toán về xác suất hậu nghiệm"
     ],
     "explanation": "Nhóm thuật toán Phân loại họ Bayes (đại diện tiêu biểu là Naive Bayes) hoạt động dựa trên cơ sở triết học của trường phái Bayesian Inference (Suy diễn Bayes) - lớp các mô hình Generative sinh phân bố xác suất. Khi được cung cấp vector đặc trưng, nó định vị Nhãn mục tiêu $Y$ thông qua cơ chế Ước lượng hợp lý cực đại MAP (Maximum A Posteriori). Cơ chế này tối đa hóa phương trình <b>Xác suất Hậu nghiệm (Posterior Probability)</b> $P(Y|X) = \\frac{P(X|Y) \\cdot P(Y)}{P(X)}$ để ra quyết định phân loại.",
-    "scope": "2024.2 - Trang 2"
+    "scope": "2024.2 - Trang 2",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 164,
@@ -3433,7 +3759,9 @@
       "một sự kiện mà có thể quan sát được trong thực tế"
     ],
     "explanation": "Trong kỹ nghệ mô hình hóa Thống kê, một <b>Biến quan sát được (Observable Variable / Measured Variable)</b> là một đại lượng vật lý hoặc sự kiện định danh trực tiếp thu thập được từ thế giới thực nhờ cảm biến, quá trình đo lường hay ghi nhận khảo sát. Nó tồn tại để đối lập hoàn toàn về mặt bản chất với <b>Biến ẩn (Latent Variable)</b> - vốn là các biến thể đại diện cho cấu trúc ngầm không thể đo lường trực tiếp (Ví dụ: Chỉ số IQ là biến ẩn, nhưng điểm số bài kiểm tra của học sinh là biến quan sát được).",
-    "scope": "2024.2 - Trang 2"
+    "scope": "2024.2 - Trang 2",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 165,
@@ -3452,7 +3780,9 @@
       "một đường đi duy nhất trong cây"
     ],
     "explanation": "Cấu trúc đồ thị mạng lưới của Cây quyết định (Decision Tree) được vận hành bằng vô số các câu lệnh IF-ELSE lồng nhau, tạo thành một ma trận điều kiện loại trừ tương hỗ tuyệt đối. Tại mỗi nút gốc hoặc nút rẽ nhánh, thuộc tính của mẫu thử bị bắt buộc rớt vào một và chỉ một luồng quyết định thỏa mãn biểu thức logic. Sự phân rã độc quyền này đảm bảo mẫu dữ liệu sẽ xuyên thẳng từ gốc xuống nhận nhãn ở lá thông qua <b>duy nhất một đường đi (Single Unique Path)</b>, không bao giờ có sự nhập nhằng rẽ nhánh chéo.",
-    "scope": "2024.2 - Trang 3"
+    "scope": "2024.2 - Trang 3",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 166,
@@ -3471,7 +3801,9 @@
       "$C = 100$"
     ],
     "explanation": "Trong cấu trúc của Soft-Margin SVM, siêu tham số $C$ là hệ số kiểm soát sự đánh đổi (Regularization Trade-off) nhằm ấn định tỷ lệ trọng phạt đối với vi phạm lề (đo lường bằng Slack variable $\\xi_i$). Việc gán <b>$C = 100$ (quá lớn)</b> sẽ áp một hình phạt cực kỳ tàn khốc cho bất kỳ điểm nào vô tình bước hụt vào vùng lề. Áp lực mất mát này buộc thuật toán phải nỗ lực bóp dẹt hành lang Margin, uốn éo siêu phẳng cắt qua mọi ranh giới nhiễu miễn sao Error chạm đáy 0. Hệ quả tất yếu là đánh mất sự khái quát và kích hoạt hiện tượng Overfitting (Quá khớp).",
-    "scope": "2024.2 - Trang 3"
+    "scope": "2024.2 - Trang 3",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 167,
@@ -3491,7 +3823,9 @@
       "5"
     ],
     "explanation": "Áp dụng công thức L2-Norm (Khoảng cách Euclidean) cho tọa độ Descartes 2D: \n$d(X, Y) = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$\nThay thế giá trị tọa độ từ điểm X(1,7) và Y(4,3) vào công thức:\n$d(X, Y) = \\sqrt{(4 - 1)^2 + (3 - 7)^2}$\n$d(X, Y) = \\sqrt{3^2 + (-4)^2}$\n$d(X, Y) = \\sqrt{9 + 16} = \\sqrt{25} = 5$.",
-    "scope": "2024.2 - Trang 3"
+    "scope": "2024.2 - Trang 3",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 168,
@@ -3511,7 +3845,9 @@
       "Tất cả các mẫu nằm bên trong lề"
     ],
     "explanation": "Biến nới lỏng $\\xi_i$ (Slack Variable) có chức năng đo đạc tọa độ xâm phạm lề đối với các điểm không ngoan ngoãn. Phân tích các trường hợp:\n- $\\xi_i = 0$: Các mẫu hoàn hảo nằm êm ấm ngoài ranh giới margin thuộc khu vực phân lớp chuẩn, hoặc chính xác trên siêu phẳng lề an toàn.\n- <b>$0 < \\xi_i \\le 1$</b>: Dành cho các mẫu xâm nhập <b>vào giữa hành lang lề phân cách (Inside the margin)</b>, dù cho nó vẫn đang ở đúng phía của lớp mặt phẳng Quyết định.\n- <b>$\\xi_i > 1$</b>: Điểm cực đoan khi mẫu xuyên thủng mặt phẳng Quyết định rớt sang lãnh thổ của lớp dị biệt (<b>Bị phân sai lớp</b>).",
-    "scope": "2024.2 - Trang 3"
+    "scope": "2024.2 - Trang 3",
+    "chapter": 11,
+    "chapter_name": "Máy vector hỗ trợ (SVM)"
   },
   {
     "id": 169,
@@ -3531,7 +3867,9 @@
       "Recall cho từng lớp"
     ],
     "explanation": "Trường hợp phân bổ dữ liệu bị lệch pha nặng (Class Imbalance - 99.9% Spam so với 0.1% Normal). Do tính chất che mắt thống kê, Accuracy (Độ chính xác toàn cục) hoàn toàn không có hiệu lực, một mô hình hỏng đoán bừa mọi mail đều là rác cũng auto đạt 99.9%. Để không bỏ sót năng lực của mô hình trước lớp thiểu số (Email thường - thiểu số nhưng quan trọng), Kỹ sư dữ liệu buộc phải sử dụng tới độ đo <b>Precision (Độ chuẩn xác)</b> và <b>Recall (Độ bao phủ)</b> để đo đạc Confusion Matrix độc lập cho Từng Lớp. (MSE là độ đo liên tục của thuật toán Hồi quy, sai bối cảnh Phân loại học).",
-    "scope": "2024.2 - Trang 3"
+    "scope": "2024.2 - Trang 3",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 170,
@@ -3552,7 +3890,9 @@
       "Bỏ qua dòng dữ liệu chứa giá trị bị thiếu"
     ],
     "explanation": "Ba phương pháp tiêu chuẩn để giải quyết khủng hoảng Missing Data trong quy trình Tiền xử lý (Data Preprocessing):\n1. <b>Bỏ qua dòng dữ liệu (Listwise/Pairwise Deletion)</b>: Drop trực tiếp các hàng/bản ghi khi mật độ giá trị Null của chúng vượt ngưỡng cho phép, hữu hiệu nếu dữ liệu dồi dào.\n2. <b>Điền thủ công (Manual Imputation)</b>: Kỹ sư/chuyên gia tự điền hoặc ngoại suy trực tiếp dựa trên tri thức miền (Domain knowledge).\n3. <b>Thay thế thống kê (Mean/Median Imputation)</b>: Áp dụng trung bình hoặc trung vị của biến số đó (tính toán giới hạn trong cùng một Class để giảm sai số phương sai) bù đắp lỗ hổng.\n(Lưu ý: Normalization là kỹ thuật Data Scaling thay đổi tỷ lệ thước đo số thực, không có tác dụng cứu vãn trường dữ liệu null).",
-    "scope": "2024.2 - Trang 3"
+    "scope": "2024.2 - Trang 3",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 171,
@@ -3573,7 +3913,9 @@
       "ước lượng khả năng cực đại của một mô hình"
     ],
     "explanation": "Maximum Likelihood Estimation (MLE) là phương pháp thống kê đóng vai trò làm khung toán học cốt lõi cho quá trình Học (Fit data). Quá trình đi tìm một bộ tham số $\\theta$ tối ưu nhất cho hàm giả thuyết sao cho phân bố xác suất dự đoán khớp nhất với tập huấn luyện thực chất chính là quá trình <b>\"học một mô hình\"</b>. Đồng thời, định nghĩa thuần túy của MLE chính là việc tối đa hóa hàm hợp lý (Likelihood function), hay <b>\"ước lượng khả năng cực đại\"</b>.",
-    "scope": "2024.2 - Trang 4"
+    "scope": "2024.2 - Trang 4",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 172,
@@ -3592,7 +3934,9 @@
       "1 và 2"
     ],
     "explanation": "- Mệnh đề 1 ĐÚNG: Khi $K$ quá lớn, bán kính vùng xét duyệt láng giềng vươn ra quá xa khỏi mật độ cụm gốc của điểm truy vấn, dẫn đến việc thu nạp nhầm các điểm dữ liệu thuộc về lãnh thổ của các phân lớp lân cận, gây nhiễu loạn quy tắc bỏ phiếu.\n- Mệnh đề 2 ĐÚNG: Khi $K$ quá nhỏ (đặc biệt $K=1$), vùng quyết định trở nên sắc cạnh và bám dính. Thuật toán mất đi khả năng làm mịn, dẫn đến việc nếu có một điểm ngoại lai (Outlier/Noise) lọt vào sát vị trí truy vấn, nó sẽ tin tưởng tuyệt đối vào điểm nhiễu đó và trả về kết quả sai ngay lập tức.",
-    "scope": "2024.2 - Trang 4"
+    "scope": "2024.2 - Trang 4",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 173,
@@ -3614,7 +3958,9 @@
       "Lựa chọn mô hình không phù hợp"
     ],
     "explanation": "Overfitting (Quá khớp) sinh ra khi ranh giới quyết định của mô hình mất đi tính tổng quát hóa do học thuộc lòng tập Train. Các nguyên nhân kinh điển:\n1. <b>Mô hình quá phức tạp</b> (High Variance): Có quá nhiều bậc tự do, trọng số khổng lồ (như cây quá sâu, đa thức bậc cao) vượt xa quy mô dữ liệu.\n2. <b>Nhiễu trong dữ liệu (Noise)</b>: Tập huấn luyện chứa quá nhiều Outliers, mô hình phức tạp sẽ cố bẻ cong mặt phẳng để ôm trọn các điểm nhiễu này.\n3. <b>Lựa chọn mô hình không phù hợp</b>: Không sử dụng Regularization, hoặc chọn thuật toán không hợp với cấu trúc hàm phân phối của dữ liệu.\n(\"Lỗi trong huấn luyện\" hay \"độ phức tạp bài toán\" là khái niệm chung chung, không phải nguyên nhân toán học trực tiếp của Overfitting).",
-    "scope": "2024.2 - Trang 4"
+    "scope": "2024.2 - Trang 4",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 174,
@@ -3633,7 +3979,9 @@
       "một thuật toán không giám sát làm việc trên dữ liệu không có nhãn"
     ],
     "explanation": "K-means thuộc phân nhóm Học không giám sát (Unsupervised Learning) đặc trưng cho bài toán phân cụm (Clustering). Khác với bài toán Phân loại, K-means hoạt động hoàn toàn trên ma trận dữ liệu thô chưa hề được gán nhãn mục tiêu (Unlabeled data). Nó tự động nhóm các điểm dữ liệu lại với nhau thành $K$ cụm nội sinh dựa trên sự đo lường tương đồng khoảng cách trong không gian đặc trưng.",
-    "scope": "2024.2 - Trang 4"
+    "scope": "2024.2 - Trang 4",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 175,
@@ -3651,7 +3999,9 @@
       "$\\mathbf{w}^* = \\arg\\min_{\\mathbf{w}} \\sum_{i=1}^{M} (y_i - w_0 - w_1x_{i1} - \\dots - w_nx_{in})^2$"
     ],
     "explanation": "Hàm mục tiêu của Phương pháp Bình phương tối thiểu (Ordinary Least Squares - OLS) thuần túy định nghĩa việc Tối thiểu hóa Tổng bình phương phần dư (Residual Sum of Squares): $\\min \\sum_{i=1}^{M} (y_i - \\hat{y}_i)^2$. Công thức có chứa phần tử hình phạt $+ \\lambda ||\\mathbf{w}||_2^2$ thuộc về Hồi quy Ridge (Regularization L2), còn công thức không có bình phương thì bị triệt tiêu âm dương nên vô nghĩa về mặt tối ưu.",
-    "scope": "2024.2 - Trang 4"
+    "scope": "2024.2 - Trang 4",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 176,
@@ -3669,7 +4019,9 @@
       "Tiền xử lý giữ toàn bộ thông tin từ tập dữ liệu gốc"
     ],
     "explanation": "Mệnh đề \"giữ toàn bộ thông tin gốc\" là <b>SAI</b>. Bản chất của tiền xử lý thường đi kèm với đánh đổi: một lượng thông tin chi tiết sẽ vĩnh viễn bị mất mát. Chẳng hạn, khi loại bỏ các bản ghi chứa Null (Deletion), ép kiểu dữ liệu liên tục thành phân khúc tĩnh (Discretization), làm mịn bằng Binning, hoặc áp dụng giảm chiều PCA/SVD (vứt bỏ các thành phần phương sai thấp), mô hình sẽ chủ động hy sinh một phần thông tin thô của tập dữ liệu gốc để đổi lấy sự gọn gàng và ổn định.",
-    "scope": "2024.2 - Trang 5"
+    "scope": "2024.2 - Trang 5",
+    "chapter": 2,
+    "chapter_name": "Thu thập và tiền xử lý dữ liệu"
   },
   {
     "id": 177,
@@ -3689,7 +4041,9 @@
       "Độ phức tạp tính toán của giải thuật học láng giềng gần nhất phụ thuộc vào số lượng các ví dụ học."
     ],
     "explanation": "Thuật toán K-Nearest Neighbors (K-NN) là điển hình kinh điển của trường phái Học lười (Lazy Learning) / Memory-based Learning:\n1. <b>Nó không thực sự \"Học mô hình\"</b>: K-NN không tối ưu hóa hàm mục tiêu hay đi tìm hệ số siêu phẳng ranh giới nào cả. Giai đoạn huấn luyện của nó chỉ đơn giản là bê nguyên toàn bộ cơ sở dữ liệu nhét vào bộ nhớ. Do đó nói nó \"không học nhiều mô hình\" là chuẩn xác.\n2. <b>Độ phức tạp phụ thuộc tuyến tính vào lượng dữ liệu</b>: Do pha Inference (Dự đoán) yêu cầu tính toán phương trình Metric khoảng cách tới <b>toàn bộ $N$ điểm dữ liệu lịch sử</b> đang lưu trong RAM, nên kích thước tập mẫu càng phình to, thời gian CPU dự đoán càng trễ (Độ phức tạp $O(N)$).",
-    "scope": "2024.2 - Trang 5"
+    "scope": "2024.2 - Trang 5",
+    "chapter": 7,
+    "chapter_name": "Học dựa trên láng giềng gần nhất (KNN)"
   },
   {
     "id": 178,
@@ -3767,7 +4121,9 @@
       "Income"
     ],
     "explanation": "Tập dữ liệu có $10$ mẫu: $6$ Yes, $4$ No. \nEntropy hệ thống: $H(S) = -0.6\\log_2(0.6) - 0.4\\log_2(0.4) \\approx 0.971$.\n\nThuộc tính **Age**:\n- Young (4 mẫu): 2 Yes, 2 No $\\rightarrow H = 1$\n- Medium (2 mẫu): 2 Yes, 0 No $\\rightarrow H = 0$\n- Old (4 mẫu): 2 Yes, 2 No $\\rightarrow H = 1$\n$E(\\text{Age}) = \\frac{4}{10}(1) + \\frac{2}{10}(0) + \\frac{4}{10}(1) = 0.8$.\n$\\Rightarrow \\text{IG}(\\text{Age}) = 0.971 - 0.8 = 0.171$.\n\nThuộc tính **Income**:\n- Low (5 mẫu): 1 Yes, 4 No $\\rightarrow H = -0.2\\log_2(0.2) - 0.8\\log_2(0.8) \\approx 0.722$\n- High (5 mẫu): 5 Yes, 0 No $\\rightarrow H = 0$\n$E(\\text{Income}) = \\frac{5}{10}(0.722) + \\frac{5}{10}(0) = 0.361$.\n$\\Rightarrow \\text{IG}(\\text{Income}) = 0.971 - 0.361 = 0.610$.\n\nVì $\\text{IG}(\\text{Income}) > \\text{IG}(\\text{Age})$, thuộc tính **Income** loại bỏ sự hỗn tạp tốt hơn và được chọn làm nút gốc phân tách.",
-    "scope": "2024.2 - Trang 5"
+    "scope": "2024.2 - Trang 5",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 179,
@@ -3785,7 +4141,9 @@
       "Ảnh hưởng xấu của sự mất cân bằng giữa các lớp"
     ],
     "explanation": "Phương pháp Hold-out truyền thống chia dữ liệu hoàn toàn ngẫu nhiên. Đối với tập dữ liệu mất cân bằng trầm trọng (Imbalanced Data), sự ngẫu nhiên này sẽ tạo ra rủi ro chí mạng: loại bỏ sạch trơn các mẫu thuộc phân lớp thiểu số (minority class) ra khỏi tập Training hoặc Test, dẫn đến đánh giá sụp đổ toàn diện. Kỹ thuật <b>Lấy mẫu phân tầng (Stratified Sampling)</b> cứu vãn điều này bằng cách can thiệp ép buộc duy trì tỷ lệ phần trăm phân bố nhãn ở tập Train/Test y hệt như cấu trúc tỷ lệ của tập dữ liệu mẹ ban đầu.",
-    "scope": "2024.2 - Trang 5"
+    "scope": "2024.2 - Trang 5",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 180,
@@ -3804,7 +4162,9 @@
       "Một hàm được gọi là bị kém khớp so với hàm khác nếu nó xấp xỉ kém chính xác hơn trên tập dữ liệu huấn luyện và phán đoán các dữ liệu trong tương lai kém chính xác hơn"
     ],
     "explanation": "Kém khớp (Underfitting / High Bias) là trạng thái thảm họa khi mô hình học máy quá đơn điệu, cứng nhắc, bị thiếu hụt số lượng tham số để có khả năng bẻ cong và nắm bắt cấu trúc (underlying pattern) của dữ liệu. Do không đủ sức học thuộc cả quy luật cơ bản nhất, biểu hiện đặc trưng của Underfitting là việc mô hình dự đoán <b>kém chính xác với sai số cực cao ngay trên chính tập huấn luyện (Training Set)</b>, và hệ quả tất yếu dẫn đến việc <b>kém chính xác luôn cả trên dữ liệu kiểm thử tương lai (Test Set)</b>.",
-    "scope": "2024.2 - Trang 5"
+    "scope": "2024.2 - Trang 5",
+    "chapter": 6,
+    "chapter_name": "Phân loại và Đánh giá hiệu năng"
   },
   {
     "id": 181,
@@ -3822,7 +4182,9 @@
       "Đúng"
     ],
     "explanation": "Bản chất định nghĩa kinh điển của Học máy (theo Arthur Samuel, Tom Mitchell) là việc cung cấp cho máy tính các thuật toán, mô hình thống kê cho phép hệ thống tự động học hỏi quy luật từ dữ liệu kinh nghiệm (Data Analysis) nhằm thực hiện dự đoán, quyết định (Phán đoán quan sát tương lai). Nhiệm vụ nâng cấp khả năng tăng tốc điện toán cơ học (như xung nhịp CPU, kiến trúc song song) thuộc về chuyên ngành Phần cứng Máy tính, hoàn toàn không phải mục tiêu lõi của Học máy.",
-    "scope": "2024.2 - Trang 6"
+    "scope": "2024.2 - Trang 6",
+    "chapter": 1,
+    "chapter_name": "Giới thiệu về Học máy và khai phá dữ liệu"
   },
   {
     "id": 182,
@@ -3842,7 +4204,9 @@
       "Học một hàm mà có thể ánh xạ từ một đầu vào tới một đầu ra"
     ],
     "explanation": "Một cỗ máy học (Machine Learning model) được cấu trúc để tiêu thụ <b>dữ liệu thực nghiệm (kinh nghiệm E)</b> để thực hiện tác vụ dự đoán $T$ trên dữ liệu mới. Toán học hóa hành vi đó, bản chất sâu xa của pha Huấn luyện chính là việc nội suy, đi tìm kiếm một hàm toán học $f(x)$ tối ưu trong không gian hàm để ánh xạ ma trận đầu vào $X$ thành biến mục tiêu đầu ra $Y$ (Mapping function). (Các lựa chọn \"Không cần dữ liệu\" là phản khoa học vì dữ liệu là nhiên liệu bắt buộc của Machine Learning).",
-    "scope": "2024.2 - Trang 6"
+    "scope": "2024.2 - Trang 6",
+    "chapter": 9,
+    "chapter_name": "Học dựa trên xác suất"
   },
   {
     "id": 183,
@@ -3861,7 +4225,9 @@
       "có thể dùng cho bài toán phân loại"
     ],
     "explanation": "Thuật toán ID3 (Iterative Dichotomiser 3) do Ross Quinlan phát triển sử dụng hàm đo lường Entropy và lượng thông tin đạt được (Information Gain) để xác định tiêu chí rẽ nhánh cây. Lực lượng toán học của hàm Shannon Entropy chỉ được định nghĩa và tương thích để tính độ bất định của phân bố các Nhãn danh mục (Categorical labels). Vì vậy, ID3 thuần túy thiết kế riêng cho **Bài toán phân loại (Classification)**. Để xây dựng Cây hồi quy (Regression tree) xuất ra số thực liên tục, người ta phải dùng phiên bản sau này như thuật toán CART (sử dụng Gini hoặc Variance Reduction).",
-    "scope": "2024.2 - Trang 6"
+    "scope": "2024.2 - Trang 6",
+    "chapter": 8,
+    "chapter_name": "Cây quyết định và Rừng ngẫu nhiên"
   },
   {
     "id": 184,
@@ -3878,7 +4244,9 @@
       "Sai"
     ],
     "explanation": "Trong cấu trúc tham số của thuật toán K-means, số lượng cụm $K$ là một **Siêu tham số (Hyperparameter)** bắt buộc phải được truyền vào theo phương thức thủ công (Hard-coded) bởi kỹ sư dữ liệu trước khi thuật toán bắt đầu chạy. K-means hoàn toàn không sở hữu kiến trúc nội sinh để tự động dò tìm số lượng cụm linh hoạt, nó sẽ ép dữ liệu chia làm $K$ cụm bất kể cấu trúc phân phối thế nào. (Khác biệt với thuật toán DBSCAN hay Mean-shift có thể tự động phát hiện số cụm).",
-    "scope": "2024.2 - Trang 6"
+    "scope": "2024.2 - Trang 6",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   },
   {
     "id": 185,
@@ -3897,7 +4265,9 @@
       "Chúng không giao nhau"
     ],
     "explanation": "Luận điểm này phân tách bản chất toán học của 2 không gian định nghĩa:\n- Không gian tham số $\\mathbf{W}$ là tập hợp các vector chứa trọng số vô hướng (điểm trong không gian $\\mathbb{R}^{n+1}$).\n- Không gian hàm $\\mathbf{F}$ là một không gian trừu tượng, mỗi phần tử cấu thành nó là một đối tượng ánh xạ, một hàm số $f: X \\to Y$.\nDo tính chất cơ sở bản thể của hai tập hợp toán học này hoàn toàn sai biệt (Vector tĩnh khác biệt với Hàm số toán học), không có bất kỳ phần tử chung nào tồn tại giữa chúng, tức là chúng **không giao nhau (Disjoint sets)**.",
-    "scope": "2024.2 - Trang 6"
+    "scope": "2024.2 - Trang 6",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 186,
@@ -3915,7 +4285,9 @@
       "Mô hình tuyến tính"
     ],
     "explanation": "Cấu trúc phương trình $f(x)$ biểu diễn một tổ hợp cộng thuần túy (Linear combination) giữa vector trọng số $w$ và vector đặc trưng $x$. Nó không chứa bất cứ phép biến đổi toán học phức tạp nào như số mũ, hàm logarit, hay các hàm kích hoạt phi tuyến (Sigmoid/ReLU). Hình học của phương trình này là một Siêu phẳng phẳng lì cắt ngang không gian $\\mathbb{R}^n$, tuân thủ chặt chẽ định nghĩa cốt lõi của **Mô hình tuyến tính (Linear Model)**.",
-    "scope": "2024.2 - Trang 6"
+    "scope": "2024.2 - Trang 6",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 187,
@@ -3932,7 +4304,9 @@
       "Sai"
     ],
     "explanation": "Phương pháp Bình phương tối thiểu (Ordinary Least Squares - OLS) được dùng để ước lượng bộ tham số của mô hình hồi quy tuyến tính thông qua việc cực tiểu hóa tổng bình phương sai số phần dư. Do cơ chế giải hệ phương trình đạo hàm riêng, hệ số góc (slope) hay hệ số tự do (bias) hoàn toàn có thể là số dương, số âm hoặc số 0. Chúng mô tả tương quan thuận/nghịch thực tế của tập dữ liệu, hoàn toàn không bị ép buộc ràng buộc điều kiện >0 nào.",
-    "scope": "2024.2 - Trang 7"
+    "scope": "2024.2 - Trang 7",
+    "chapter": 3,
+    "chapter_name": "Hồi quy tuyến tính"
   },
   {
     "id": 188,
@@ -3951,6 +4325,8 @@
       "$A$ và trung điểm $BC$"
     ],
     "explanation": "Tọa độ tâm khởi tạo: $m_1 = A(0,2)$, $m_2 = B(0,1)$.\n- <b>Vòng lặp 1: Phân cụm:</b> $A$ cách $m_1$ khoảng cách 0 $\\rightarrow C_1$. $B$ cách $m_2$ khoảng 0 $\\rightarrow C_2$. Điểm $C(1,0)$ cách $m_1(0,2)$ là $\\sqrt{5}$, cách $m_2(0,1)$ là $\\sqrt{2}$ $\\rightarrow C \\in C_2$.\n- <b>Vòng lặp 1: Cập nhật tâm:</b> $m_1^{new} = A(0,2)$. $m_2^{new}$ là trung bình cộng tọa độ của $B$ và $C$, tức là $(0.5, 0.5)$ (Đây chính là trung điểm của $BC$).\n- <b>Vòng lặp 2: Phân cụm lại:</b> $A(0,2)$ cách $m_1$ là $0$, cách $m_2(0.5, 0.5)$ là $\\sqrt{2.5} \\rightarrow C_1$. $B(0,1)$ cách $m_1$ là $1$, cách $m_2$ là $\\sqrt{0.5} \\rightarrow C_2$. $C(1,0)$ cách $m_1$ là $\\sqrt{5}$, cách $m_2$ là $\\sqrt{0.5} \\rightarrow C_2$.\nNhãn cụm không thay đổi nên thuật toán K-means chạm điểm hội tụ. Vị trí hai tâm cố định tại $A$ và trung điểm $BC$.",
-    "scope": "2024.2 - Trang 7"
+    "scope": "2024.2 - Trang 7",
+    "chapter": 4,
+    "chapter_name": "Phân cụm"
   }
 ]

@@ -1,5 +1,6 @@
 import { QuizAttempt } from '../types/quiz';
 import { supabase, isSupabaseConfigured } from './supabase';
+import { questionStatsService } from './questionStatsService';
 
 const LOCAL_ATTEMPTS_KEY = 'hust_quiz_local_attempts';
 
@@ -49,6 +50,19 @@ export const historyService = {
       } catch (err) {
         console.warn('Error connecting to Supabase quiz_attempts table:', err);
       }
+    }
+
+    // 3. Record question stats (attempt count, accuracy per question)
+    try {
+      await questionStatsService.recordQuizAttempts(
+        attempt.userId,
+        attempt.subjectId,
+        attempt.questions,
+        attempt.answers,
+        attempt.result?.evaluations
+      );
+    } catch (err) {
+      console.warn('Failed recording question stats in historyService:', err);
     }
   },
 
