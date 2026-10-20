@@ -139,20 +139,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden sm:inline">Lịch sử</span>
           </button>
 
-          {/* Admin Reports link (always visible or highlighted for owner) */}
-          <button
-            type="button"
-            onClick={() => onNavigate('admin')}
-            className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 ${
-              currentRoute === 'admin'
-                ? 'bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 font-bold border border-rose-200 dark:border-rose-800'
-                : 'text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/30'
-            }`}
-            title="Bảng điều khiển quản lý báo lỗi câu hỏi"
-          >
-            <ShieldAlert size={16} className="text-rose-500" />
-            <span className="hidden md:inline">Báo lỗi</span>
-          </button>
+          {/* Admin Reports & Management link (only visible for admin) */}
+          {currentUser?.isAdmin && (
+            <button
+              type="button"
+              onClick={() => onNavigate('admin')}
+              className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
+                currentRoute === 'admin'
+                  ? 'bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 font-bold border border-rose-200 dark:border-rose-800'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/30'
+              }`}
+              title="Bảng điều khiển quản trị hệ thống"
+            >
+              <ShieldAlert size={16} className="text-rose-500" />
+              <span className="hidden md:inline">Báo lỗi & Quản trị</span>
+            </button>
+          )}
         </nav>
 
         {/* Right side: Theme Toggle, User Account / Auth & Storage status */}
@@ -225,13 +227,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                     )}
                   </div>
 
+                  {currentUser.isAdmin && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowDropdown(false);
+                        onNavigate('admin');
+                      }}
+                      className="w-full text-left px-3 py-2 hover:bg-rose-50 dark:hover:bg-rose-950/50 flex items-center gap-2 text-rose-600 dark:text-rose-400 font-semibold cursor-pointer"
+                    >
+                      <ShieldAlert size={14} /> Quản trị & Báo lỗi
+                    </button>
+                  )}
+
                   <button
                     type="button"
                     onClick={() => {
                       setShowDropdown(false);
                       onNavigate('history');
                     }}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 flex items-center gap-2"
+                    className="w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/60 flex items-center gap-2 cursor-pointer"
                   >
                     <History size={14} /> Lịch sử thi
                   </button>

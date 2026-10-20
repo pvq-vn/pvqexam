@@ -5,6 +5,9 @@ export interface UserProfile {
   email: string;
   fullName?: string;
   isAdmin: boolean;
+  isApproved?: boolean;
+  role?: 'admin' | 'user';
+  allowedExamSources?: string[];
 }
 
 const LOCAL_USER_KEY = 'hust_quiz_local_user';
@@ -18,11 +21,44 @@ export const authService = {
       try {
         const { data: { user } } = await supabase.auth.getUser();
         if (user && user.email) {
+          const isAdmin = isAdminEmail(user.email);
+
+          // Fetch user profile from user_profiles table
+          let isApproved = isAdmin;
+          let role: 'admin' | 'user' = isAdmin ? 'admin' : 'user';
+          let allowedExamSources: string[] = [];
+
+          try {
+            const { data: profile } = await supabase
+              .from('user_profiles')
+              .select('*')
+              .eq('id', user.id)
+              .maybeSingle();
+
+            if (profile) {
+              if (profile.role === 'admin') {
+                role = 'admin';
+                isApproved = true;
+              } else {
+                isApproved = Boolean(profile.is_approved);
+                role = 'user';
+                allowedExamSources = Array.isArray(profile.allowed_exam_sources)
+                  ? profile.allowed_exam_sources
+                  : [];
+              }
+            }
+          } catch (profileErr) {
+            console.warn('Could not query user_profiles table:', profileErr);
+          }
+
           return {
             id: user.id,
             email: user.email,
             fullName: user.user_metadata?.full_name || user.email.split('@')[0],
-            isAdmin: isAdminEmail(user.email),
+            isAdmin: isAdmin || role === 'admin',
+            isApproved: isAdmin || role === 'admin' ? true : isApproved,
+            role: isAdmin || role === 'admin' ? 'admin' : 'user',
+            allowedExamSources,
           };
         }
       } catch (err) {
@@ -35,9 +71,13 @@ export const authService = {
     if (local) {
       try {
         const user = JSON.parse(local);
+        const isAdmin = isAdminEmail(user.email);
         return {
           ...user,
-          isAdmin: isAdminEmail(user.email),
+          isAdmin,
+          isApproved: isAdmin ? true : Boolean(user.isApproved),
+          role: isAdmin ? 'admin' : (user.role || 'user'),
+          allowedExamSources: user.allowedExamSources || [],
         };
       } catch {
         localStorage.removeItem(LOCAL_USER_KEY);

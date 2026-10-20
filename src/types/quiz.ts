@@ -78,6 +78,7 @@ export type TimeMode = 'auto' | 'unlimited' | '15' | '30' | '45' | '60' | 'custo
 export interface QuizConfig {
   subjectId: string;
   examFilePath: string;
+  examFilePaths?: string[];
   mcqCount: number;
   essayCount: number;
   shuffleQuestions: boolean;

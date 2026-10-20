@@ -104,22 +104,52 @@ export const reportService = {
    * Updates status of a report (e.g. 'reviewing', 'resolved', 'rejected').
    */
   async updateReportStatus(reportId: string, status: ReportStatus, adminNote?: string): Promise<void> {
+    return reportService.updateReport(reportId, { status, adminNote });
+  },
+
+  /**
+   * Updates any fields of a report and persists to Supabase and localStorage.
+   */
+  async updateReport(reportId: string, updates: Partial<ErrorReport>): Promise<void> {
     // 1. Update in local storage
     const local = reportService.getLocalReports();
-    const updatedLocal = local.map((r) =>
-      r.id === reportId ? { ...r, status, adminNote: adminNote ?? r.adminNote } : r
-    );
+    const updatedLocal = local.map((r) => {
+      if (r.id === reportId) {
+        return {
+          ...r,
+          ...updates,
+          adminNote: updates.adminNote !== undefined ? updates.adminNote : r.adminNote,
+          status: updates.status || r.status,
+        };
+      }
+      return r;
+    });
     localStorage.setItem(LOCAL_REPORTS_KEY, JSON.stringify(updatedLocal));
 
     // 2. Update in Supabase
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase
+        const payload: Record<string, any> = {
+          updated_at: new Date().toISOString(),
+        };
+        if (updates.status) payload.status = updates.status;
+        if (updates.adminNote !== undefined) payload.admin_note = updates.adminNote;
+        if (updates.type) payload.type = updates.type;
+        if (updates.description) payload.description = updates.description;
+        if (updates.questionText) payload.question_text = updates.questionText;
+
+        const { error } = await supabase
           .from('error_reports')
-          .update({ status, admin_note: adminNote })
+          .update(payload)
           .eq('id', reportId);
+
+        if (error) {
+          console.warn('Failed updating error_reports in Supabase:', error);
+          throw error;
+        }
       } catch (err) {
-        console.warn('Supabase update report status warning:', err);
+        console.warn('Supabase update report error:', err);
+        throw err;
       }
     }
   },

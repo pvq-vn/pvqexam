@@ -462,3 +462,45 @@ export async function getExamStats(
 
   return extractExamStats(questions);
 }
+
+/**
+ * Loads and merges questions from multiple exam file paths.
+ * Questions are deduplicated by their normalized text content and type.
+ */
+export async function loadMultipleExamFiles(
+  filePaths: string[],
+  options?: LoadExamOptions
+): Promise<Question[]> {
+  if (!filePaths || filePaths.length === 0) return [];
+  if (filePaths.length === 1) return loadExamFile(filePaths[0], options);
+
+  const questionLists = await Promise.all(
+    filePaths.map((fp) => loadExamFile(fp, options))
+  );
+
+  const merged: Question[] = [];
+  const seenKeys = new Set<string>();
+
+  for (const list of questionLists) {
+    for (const q of list) {
+      const key = `${String(q.text || '').trim().toLowerCase()}:::${q.type}`;
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        merged.push(q);
+      }
+    }
+  }
+
+  return merged;
+}
+
+/**
+ * Gets aggregated statistics from multiple exam file paths.
+ */
+export async function getMultipleExamStats(
+  filePaths: string[],
+  options?: LoadExamOptions
+): Promise<ExamStats> {
+  const mergedQuestions = await loadMultipleExamFiles(filePaths, options);
+  return extractExamStats(mergedQuestions);
+}

@@ -13,7 +13,7 @@ import {
   QuizResult,
   QuizAttempt,
 } from '../types/quiz';
-import { loadExamFile } from '../data/dataLoader';
+import { loadExamFile, loadMultipleExamFiles } from '../data/dataLoader';
 import { sampleAndPrepareQuestions } from '../engine/sampler';
 import { calculateQuizResult } from '../engine/scoring';
 import { QuestionCard } from '../components/QuestionCard';
@@ -223,7 +223,11 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     setLoadingError(null);
     setActiveFilter('all');
 
-    loadExamFile(config.examFilePath)
+    const targetPaths = (config.examFilePaths && config.examFilePaths.length > 0)
+      ? config.examFilePaths
+      : [config.examFilePath];
+
+    loadMultipleExamFiles(targetPaths)
       .then(async (allQuestions) => {
         if (!isMounted) return;
 

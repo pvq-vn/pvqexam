@@ -64,7 +64,14 @@ export function App() {
       if (hash.startsWith('#/history')) {
         setCurrentRoute('history');
       } else if (hash.startsWith('#/admin')) {
-        setCurrentRoute('admin');
+        authService.getCurrentUser().then((user) => {
+          if (user?.isAdmin) {
+            setCurrentRoute('admin');
+          } else {
+            setCurrentRoute('home');
+            window.location.hash = '#/';
+          }
+        });
       } else if (hash.startsWith('#/quiz/')) {
         const parts = hash.replace('#/quiz/', '').split('?');
         const subjectCode = parts[0];
@@ -191,6 +198,11 @@ export function App() {
   };
 
   const handleNavigate = (route: 'home' | 'history' | 'admin') => {
+    if (route === 'admin' && !currentUser?.isAdmin) {
+      setCurrentRoute('home');
+      window.location.hash = '#/';
+      return;
+    }
     setCurrentRoute(route);
     setActiveDraft(draftService.getDraft());
     if (route === 'home') window.location.hash = '#/';
@@ -283,7 +295,28 @@ export function App() {
             />
           )}
 
-          {currentRoute === 'admin' && <AdminReportsPage />}
+          {currentRoute === 'admin' && (
+            currentUser?.isAdmin ? (
+              <AdminReportsPage onNavigateHome={() => handleNavigate('home')} />
+            ) : (
+              <div className="text-center py-20 space-y-3">
+                <div className="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
+                  <AlertCircle size={32} />
+                </div>
+                <h2 className="text-xl font-bold">Khu vực dành riêng cho Quản trị viên</h2>
+                <p className="text-xs text-slate-500 max-w-md mx-auto">
+                  Bạn cần đăng nhập bằng tài khoản Quản trị viên để truy cập tính năng này.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => handleNavigate('home')}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700 cursor-pointer"
+                >
+                  Quay về trang chủ
+                </button>
+              </div>
+            )
+          )}
         </Suspense>
       </div>
 

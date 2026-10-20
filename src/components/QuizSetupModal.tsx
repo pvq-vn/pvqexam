@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Subject, QuizConfig, TimeMode, Question, SubjectProgress } from '../types/quiz';
 import {
   getExamStats,
@@ -6,10 +6,12 @@ import {
   loadExamFile,
   onExamCacheUpdated,
   canonicalizeExamPath,
+  loadMultipleExamFiles,
+  getMultipleExamStats,
 } from '../data/dataLoader';
 import { generateSeed } from '../engine/shuffle';
 import { questionStatsService } from '../services/questionStatsService';
-import { authService } from '../services/authService';
+import { authService, UserProfile } from '../services/authService';
 import {
   Play,
   Shuffle,
@@ -37,6 +39,9 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
   onStartQuiz,
   onCancel,
 }) => {
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
+  const [userLoaded, setUserLoaded] = useState(false);
+
   const defaultFile =
     subject.examFiles.find((f) => f.isDefault) || subject.examFiles[0];
   const [selectedFile, setSelectedFile] = useState(defaultFile.filePath);
@@ -48,7 +53,6 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
 
   // Chapter & Smart Selection
   const [selectedChapter, setSelectedChapter] = useState<string>('all');
-  const [prioritizeLeastAttempted, setPrioritizeLeastAttempted] = useState<boolean>(true);
   const [chapterProgress, setChapterProgress] = useState<SubjectProgress | null>(null);
 
   // Active counts
@@ -60,6 +64,40 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
   const [customMinutesInput, setCustomMinutesInput] = useState<number>(45);
   const [seed, setSeed] = useState<string>(initialSeed || generateSeed());
 
+  // Check auth & permissions
+  useEffect(() => {
+    let isMounted = true;
+    authService.getCurrentUser().then((user) => {
+      if (isMounted) {
+        setCurrentUser(user);
+        setUserLoaded(true);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const isAdmin = Boolean(currentUser?.isAdmin);
+  const isApproved = Boolean(currentUser?.isApproved);
+
+  // Calculate allowed exam files based on admin/approved permissions
+  const allowedFiles = useMemo(() => {
+    if (!userLoaded) return [];
+    if (isAdmin) {
+      return subject.examFiles;
+    }
+    if (isApproved && currentUser?.allowedExamSources) {
+      const userAllowed = currentUser.allowedExamSources.map((p) =>
+        canonicalizeExamPath(p).toLowerCase()
+      );
+      return subject.examFiles.filter((f) =>
+        userAllowed.includes(canonicalizeExamPath(f.filePath).toLowerCase())
+      );
+    }
+    return [];
+  }, [userLoaded, isAdmin, isApproved, currentUser, subject.examFiles]);
+
   // Determine active chapter limits
   const activeChapter = stats?.chapters?.find((c) => c.id === selectedChapter);
   const maxAvailableMcq = activeChapter ? activeChapter.mcqCount : (stats?.mcqCount || 0);
@@ -68,35 +106,75 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
 
   const fetchStats = useCallback(
     (forceReload = false, preserveCounts = false) => {
+      if (!userLoaded) return;
+
+      // If no files allowed (unauthenticated or unapproved or no sources granted)
+      if (allowedFiles.length === 0) {
+        setStats(null);
+        setAllQuestions([]);
+        setLoadingStats(false);
+        setStatsError(null);
+        setMcqCount(0);
+        setEssayCount(0);
+        return;
+      }
+
       setLoadingStats(true);
       setStatsError(null);
 
-      Promise.all([
-        getExamStats(selectedFile, { forceReload }),
-        loadExamFile(selectedFile, { forceReload }),
-      ])
-        .then(([resStats, questions]) => {
-          setStats(resStats);
-          setAllQuestions(questions);
-          setLoadingStats(false);
+      if (isAdmin) {
+        // Admin loads chosen individual file
+        Promise.all([
+          getExamStats(selectedFile, { forceReload }),
+          loadExamFile(selectedFile, { forceReload }),
+        ])
+          .then(([resStats, questions]) => {
+            setStats(resStats);
+            setAllQuestions(questions);
+            setLoadingStats(false);
 
-          if (!preserveCounts) {
-            setMcqCount(resStats.mcqCount > 0 ? Math.min(40, resStats.mcqCount) : 0);
-            setEssayCount(resStats.essayCount > 0 ? Math.min(2, resStats.essayCount) : 0);
-          } else {
-            setMcqCount((prev) => Math.min(prev, resStats.mcqCount));
-            setEssayCount((prev) => Math.min(prev, resStats.essayCount));
-          }
-        })
-        .catch((err) => {
-          setStatsError((err as Error).message);
-          setLoadingStats(false);
-        });
+            if (!preserveCounts) {
+              setMcqCount(resStats.mcqCount > 0 ? Math.min(40, resStats.mcqCount) : 0);
+              setEssayCount(resStats.essayCount > 0 ? Math.min(2, resStats.essayCount) : 0);
+            } else {
+              setMcqCount((prev) => Math.min(prev, resStats.mcqCount));
+              setEssayCount((prev) => Math.min(prev, resStats.essayCount));
+            }
+          })
+          .catch((err) => {
+            setStatsError((err as Error).message);
+            setLoadingStats(false);
+          });
+      } else {
+        // Regular approved user: load all granted sources merged together
+        const filePaths = allowedFiles.map((f) => f.filePath);
+        Promise.all([
+          getMultipleExamStats(filePaths, { forceReload }),
+          loadMultipleExamFiles(filePaths, { forceReload }),
+        ])
+          .then(([resStats, questions]) => {
+            setStats(resStats);
+            setAllQuestions(questions);
+            setLoadingStats(false);
+
+            if (!preserveCounts) {
+              setMcqCount(resStats.mcqCount > 0 ? Math.min(40, resStats.mcqCount) : 0);
+              setEssayCount(resStats.essayCount > 0 ? Math.min(2, resStats.essayCount) : 0);
+            } else {
+              setMcqCount((prev) => Math.min(prev, resStats.mcqCount));
+              setEssayCount((prev) => Math.min(prev, resStats.essayCount));
+            }
+          })
+          .catch((err) => {
+            setStatsError((err as Error).message);
+            setLoadingStats(false);
+          });
+      }
     },
-    [selectedFile]
+    [userLoaded, allowedFiles, isAdmin, selectedFile]
   );
 
-  // Load stats whenever selected exam file changes
+  // Load stats whenever selected exam file or allowed files change
   useEffect(() => {
     setSelectedChapter('all');
     fetchStats(false, false);
@@ -109,30 +187,28 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
       return;
     }
 
-    authService.getCurrentUser().then((user) => {
-      let filtered = allQuestions;
-      if (selectedChapter !== 'all') {
-        const target = selectedChapter.trim().toLowerCase();
-        filtered = allQuestions.filter((q) => {
-          const qChapterStr = q.chapter !== undefined ? String(q.chapter).trim().toLowerCase() : '';
-          const qChapterName = q.chapter_name ? q.chapter_name.trim().toLowerCase() : '';
-          const qTopic = q.topic ? q.topic.trim().toLowerCase() : '';
-          return (
-            qChapterStr === target ||
-            qChapterName === target ||
-            qTopic === target ||
-            `chương ${qChapterStr}` === target
-          );
-        });
-      }
-      const progress = questionStatsService.getSubjectProgress(
-        user?.id,
-        subject.id,
-        filtered
-      );
-      setChapterProgress(progress);
-    });
-  }, [allQuestions, selectedChapter, subject.id]);
+    let filtered = allQuestions;
+    if (selectedChapter !== 'all') {
+      const target = selectedChapter.trim().toLowerCase();
+      filtered = allQuestions.filter((q) => {
+        const qChapterStr = q.chapter !== undefined ? String(q.chapter).trim().toLowerCase() : '';
+        const qChapterName = q.chapter_name ? q.chapter_name.trim().toLowerCase() : '';
+        const qTopic = q.topic ? q.topic.trim().toLowerCase() : '';
+        return (
+          qChapterStr === target ||
+          qChapterName === target ||
+          qTopic === target ||
+          `chương ${qChapterStr}` === target
+        );
+      });
+    }
+    const progress = questionStatsService.getSubjectProgress(
+      currentUser?.id,
+      subject.id,
+      filtered
+    );
+    setChapterProgress(progress);
+  }, [allQuestions, selectedChapter, subject.id, currentUser?.id]);
 
   // Listen for live HMR updates when the owner modifies exam.json on disk in dev mode
   useEffect(() => {
@@ -180,6 +256,8 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
   );
 
   const handleStart = () => {
+    if (allowedFiles.length === 0) return;
+
     const resolvedCustomMinutes =
       timeMode === 'auto'
         ? calculatedMinutes
@@ -187,19 +265,37 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
         ? Math.max(1, Math.min(300, customMinutesInput || 45))
         : undefined;
 
-    onStartQuiz({
-      subjectId: subject.id,
-      examFilePath: selectedFile,
-      mcqCount,
-      essayCount,
-      shuffleQuestions,
-      shuffleOptions,
-      timeMode,
-      customMinutes: resolvedCustomMinutes,
-      seed: seed.trim().toUpperCase() || generateSeed(),
-      selectedChapter: selectedChapter !== 'all' ? selectedChapter : undefined,
-      prioritizeLeastAttempted: true,
-    });
+    if (isAdmin) {
+      onStartQuiz({
+        subjectId: subject.id,
+        examFilePath: selectedFile,
+        examFilePaths: [selectedFile],
+        mcqCount,
+        essayCount,
+        shuffleQuestions,
+        shuffleOptions,
+        timeMode,
+        customMinutes: resolvedCustomMinutes,
+        seed: seed.trim().toUpperCase() || generateSeed(),
+        selectedChapter: selectedChapter !== 'all' ? selectedChapter : undefined,
+        prioritizeLeastAttempted: true,
+      });
+    } else {
+      onStartQuiz({
+        subjectId: subject.id,
+        examFilePath: allowedFiles[0].filePath,
+        examFilePaths: allowedFiles.map((f) => f.filePath),
+        mcqCount,
+        essayCount,
+        shuffleQuestions,
+        shuffleOptions,
+        timeMode,
+        customMinutes: resolvedCustomMinutes,
+        seed: seed.trim().toUpperCase() || generateSeed(),
+        selectedChapter: selectedChapter !== 'all' ? selectedChapter : undefined,
+        prioritizeLeastAttempted: true,
+      });
+    }
   };
 
   const mcqPresets = [10, 20, 40, 60].filter((c) => c <= maxAvailableMcq);
@@ -221,7 +317,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
           <button
             type="button"
             onClick={onCancel}
-            className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="Đóng cửa sổ"
           >
             <X size={18} />
@@ -249,16 +345,23 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
 
         {/* Form Body */}
         <div className="p-5 sm:p-6 space-y-5 max-h-[68vh] overflow-y-auto custom-scrollbar">
-          {/* File selector if course has multiple banks */}
-          {subject.examFiles.length > 1 && (
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
-                Chọn nguồn đề thi / ngân hàng câu hỏi
-              </label>
+          {/* Exam Source Selection: Empty for unauthorized, real labels for admin, single standard option for approved user */}
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+              Chọn nguồn đề thi / ngân hàng câu hỏi
+            </label>
+            {allowedFiles.length === 0 ? (
+              <select
+                disabled
+                className="w-full p-2.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm text-slate-400 dark:text-slate-500 font-medium outline-none cursor-not-allowed"
+              >
+                <option value="">(Trống)</option>
+              </select>
+            ) : isAdmin ? (
               <select
                 value={selectedFile}
                 onChange={(e) => setSelectedFile(e.target.value)}
-                className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-800 font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
+                className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm text-slate-800 dark:text-slate-100 font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
               >
                 {subject.examFiles.map((f) => (
                   <option key={f.filePath} value={f.filePath}>
@@ -266,21 +369,28 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                   </option>
                 ))}
               </select>
-            </div>
-          )}
+            ) : (
+              <select
+                disabled
+                className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm text-slate-800 dark:text-slate-100 font-medium outline-none"
+              >
+                <option value="merged">Bộ đề luyện tập tổng hợp</option>
+              </select>
+            )}
+          </div>
 
           {/* Loading or Stats Banner */}
-          {loadingStats ? (
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm text-slate-500 animate-pulse">
+          {allowedFiles.length === 0 ? null : loadingStats ? (
+            <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-center text-sm text-slate-500 dark:text-slate-400 animate-pulse">
               Đang phân tích ngân hàng câu hỏi...
             </div>
           ) : statsError ? (
-            <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-700 flex items-center justify-between gap-2">
+            <div className="p-4 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 rounded-xl text-xs text-rose-700 dark:text-rose-300 flex items-center justify-between gap-2">
               <span>{statsError}</span>
               <button
                 type="button"
                 onClick={() => fetchStats(true, false)}
-                className="px-2.5 py-1 bg-white border border-rose-300 rounded-lg font-semibold shrink-0 hover:bg-rose-100"
+                className="px-2.5 py-1 bg-white dark:bg-slate-800 border border-rose-300 dark:border-rose-700 rounded-lg font-semibold shrink-0 hover:bg-rose-100 dark:hover:bg-slate-700"
               >
                 Thử lại
               </button>
@@ -294,15 +404,17 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 </span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => fetchStats(true, true)}
-                className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/80 dark:bg-slate-700 hover:bg-white text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-slate-600 font-semibold transition-colors shrink-0"
-                title="Đọc lại dữ liệu mới nhất từ file JSON"
-              >
-                <RefreshCw size={12} />
-                <span className="hidden sm:inline">Làm mới</span>
-              </button>
+              {isAdmin && (
+                <button
+                  type="button"
+                  onClick={() => fetchStats(true, true)}
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white/80 dark:bg-slate-700 hover:bg-white text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-slate-600 font-semibold transition-colors shrink-0 cursor-pointer"
+                  title="Đọc lại dữ liệu mới nhất từ file JSON"
+                >
+                  <RefreshCw size={12} />
+                  <span className="hidden sm:inline">Làm mới</span>
+                </button>
+              )}
             </div>
           ) : null}
 
@@ -397,7 +509,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                     key={count}
                     type="button"
                     onClick={() => setMcqCount(count)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
+                    className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all cursor-pointer ${
                       mcqCount === count
                         ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                         : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
@@ -409,7 +521,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setMcqCount(maxAvailableMcq)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all cursor-pointer ${
                     mcqCount === maxAvailableMcq
                       ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                       : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
@@ -440,7 +552,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                       key={count}
                       type="button"
                       onClick={() => setEssayCount(count)}
-                      className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
+                      className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all cursor-pointer ${
                         essayCount === count
                           ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                           : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
@@ -454,7 +566,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setEssayCount(maxAvailableEssay)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all ${
+                    className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border transition-all cursor-pointer ${
                       essayCount === maxAvailableEssay
                         ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                         : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-slate-300'
@@ -468,12 +580,14 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
           )}
 
           {/* System Default Notice: Smart Prioritization */}
-          <div className="flex items-center gap-2.5 p-3 bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/70 dark:border-amber-800/40 rounded-xl text-xs text-amber-900 dark:text-amber-200">
-            <Sparkles size={15} className="text-amber-600 dark:text-amber-400 shrink-0" />
-            <span className="font-medium">
-              Hệ thống mặc định tự động ưu tiên các câu hỏi làm ít nhất để tối ưu hóa quá trình học.
-            </span>
-          </div>
+          {stats && (
+            <div className="flex items-center gap-2.5 p-3 bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/70 dark:border-amber-800/40 rounded-xl text-xs text-amber-900 dark:text-amber-200">
+              <Sparkles size={15} className="text-amber-600 dark:text-amber-400 shrink-0" />
+              <span className="font-medium">
+                Hệ thống mặc định tự động ưu tiên các câu hỏi làm ít nhất để tối ưu hóa quá trình học.
+              </span>
+            </div>
+          )}
 
           {/* Shuffle Options */}
           <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
@@ -520,7 +634,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                   key={item.mode}
                   type="button"
                   onClick={() => setTimeMode(item.mode as TimeMode)}
-                  className={`p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all text-left flex items-center gap-2 ${
+                  className={`p-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all text-left flex items-center gap-2 cursor-pointer ${
                     timeMode === item.mode
                       ? 'border-blue-600 bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 ring-1 ring-blue-600'
                       : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -549,7 +663,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
               <button
                 type="button"
                 onClick={() => setSeed(generateSeed())}
-                className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold"
+                className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold cursor-pointer"
               >
                 <RotateCw size={12} /> Tạo mã ngẫu nhiên
               </button>
@@ -576,15 +690,15 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
           <button
             type="button"
             onClick={onCancel}
-            className="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-sm transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-sm transition-colors cursor-pointer"
           >
             Đóng
           </button>
           <button
             type="button"
-            disabled={loadingStats || totalQuestions <= 0}
+            disabled={loadingStats || totalQuestions <= 0 || allowedFiles.length === 0}
             onClick={handleStart}
-            className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-sm shadow-md hover:shadow transition-all flex items-center gap-2"
+            className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm shadow-md hover:shadow transition-all flex items-center gap-2 cursor-pointer"
           >
             <Play size={16} fill="currentColor" /> BẮT ĐẦU LÀM BÀI (
             {totalQuestions} CÂU)
