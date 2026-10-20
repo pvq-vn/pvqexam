@@ -29,6 +29,7 @@
 !postcss.config.js
 !index.html
 !.env.example
+!vercel.json
 !src/
 !src/**
 !public/

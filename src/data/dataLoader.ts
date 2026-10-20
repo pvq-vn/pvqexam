@@ -16,14 +16,20 @@ const examCache = new Map<string, CachedExamEntry>();
 type ExamUpdateListener = (filePath?: string) => void;
 const updateListeners = new Set<ExamUpdateListener>();
 
+// Polyfill import.meta.glob only for Node.js / non-Vite test runners
+if (
+  typeof process !== 'undefined' &&
+  process.versions?.node &&
+  typeof (import.meta as any).glob !== 'function'
+) {
+  (import.meta as any).glob = () => ({});
+}
+
 // Vite glob to load all JSON files across semesters as raw text strings in production builds
-const rawExamModules =
-  typeof (import.meta as any).glob === 'function'
-    ? (import.meta as any).glob(
-        ['/20*/**/Gemini/*.json', '/20*/**/Gemini/*.JSON'],
-        { query: '?raw', import: 'default' }
-      )
-    : {};
+const rawExamModules = import.meta.glob<string>(
+  ['/20*/**/Gemini/*.json', '/20*/**/Gemini/*.JSON'],
+  { query: '?raw', import: 'default' }
+);
 
 /**
  * Normalizes a file path to a canonical leading-slash NFC form so paths with
@@ -238,6 +244,8 @@ export async function loadExamFile(
   }
 
   // 2. Try matching from Vite rawExamModules (bundled chunks in production or fallback in dev)
+  let parsed: any = null;
+
   if (!rawContent) {
     const moduleKey = Object.keys(rawExamModules).find(
       (key) => canonicalizeExamPath(key).toLowerCase() === cacheKey
@@ -245,8 +253,17 @@ export async function loadExamFile(
 
     if (moduleKey && rawExamModules[moduleKey]) {
       try {
-        const loader = rawExamModules[moduleKey] as () => Promise<string>;
-        rawContent = await loader();
+        const loader = rawExamModules[moduleKey] as () => Promise<any>;
+        const mod = await loader();
+        if (typeof mod === 'string') {
+          rawContent = mod;
+        } else if (mod && typeof mod.default === 'string') {
+          rawContent = mod.default;
+        } else if (mod && Array.isArray(mod.default)) {
+          parsed = mod.default;
+        } else if (Array.isArray(mod)) {
+          parsed = mod;
+        }
       } catch (e) {
         console.warn(
           `Failed loading raw module for ${normalizedPath}, falling back to fetch`,
@@ -256,8 +273,29 @@ export async function loadExamFile(
     }
   }
 
-  // 3. Fallback to browser fetch
-  if (!rawContent) {
+  // 3. Fallback for Node.js / CLI test environments
+  if (!rawContent && !parsed && typeof window === 'undefined' && typeof process !== 'undefined') {
+    try {
+      const nodeRequire =
+        typeof module !== 'undefined' && (module as any).require
+          ? (module as any).require
+          : (globalThis as any).require;
+      if (typeof nodeRequire === 'function') {
+        const fsMod = nodeRequire('fs');
+        const pathMod = nodeRequire('path');
+        const cleanRel = normalizedPath.replace(/^\/+/, '');
+        const fullPath = pathMod.resolve(process.cwd(), cleanRel);
+        if (fsMod.existsSync(fullPath)) {
+          rawContent = fsMod.readFileSync(fullPath, 'utf8');
+        }
+      }
+    } catch {
+      // ignore Node fs fallback error
+    }
+  }
+
+  // 4. Fallback to browser fetch
+  if (!rawContent && !parsed) {
     try {
       const encodedPath = encodeURI(normalizedPath);
       const fetchUrl = isDev
@@ -286,22 +324,23 @@ export async function loadExamFile(
     }
   }
 
-  if (!rawContent || !rawContent.trim()) {
-    throw new Error(`Dữ liệu đề thi trống trong file: "${normalizedPath}"`);
-  }
+  // 5. Parse JSON with in-memory sanitization if not already parsed
+  if (!parsed) {
+    if (!rawContent || !rawContent.trim()) {
+      throw new Error(`Dữ liệu đề thi trống trong file: "${normalizedPath}"`);
+    }
 
-  // 4. Parse JSON with in-memory sanitization (never writes back to disk)
-  let parsed: any;
-  try {
-    parsed = JSON.parse(rawContent);
-  } catch {
-    const sanitized = sanitizeExamJsonText(rawContent);
     try {
-      parsed = JSON.parse(sanitized);
-    } catch (parseErr) {
-      throw new Error(
-        formatJsonParseError(normalizedPath, sanitized, parseErr as Error)
-      );
+      parsed = JSON.parse(rawContent);
+    } catch {
+      const sanitized = sanitizeExamJsonText(rawContent);
+      try {
+        parsed = JSON.parse(sanitized);
+      } catch (parseErr) {
+        throw new Error(
+          formatJsonParseError(normalizedPath, sanitized, parseErr as Error)
+        );
+      }
     }
   }
 
@@ -311,16 +350,16 @@ export async function loadExamFile(
     );
   }
 
-  // 5. Normalize to unified schema in RAM
+  // 6. Normalize to unified schema in RAM
   const questions = normalizeExam(parsed);
   const stats: ExamStats = extractExamStats(questions);
 
-  // 6. Cache and return
+  // 7. Cache and return
   examCache.set(cacheKey, {
     questions,
     stats,
     mtime: diskMtime,
-    contentLength: rawContent.length,
+    contentLength: rawContent?.length || 0,
     loadedAt: Date.now(),
   });
 

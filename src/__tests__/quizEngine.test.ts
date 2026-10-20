@@ -22,6 +22,7 @@ import {
   invalidateExamCache,
   onExamCacheUpdated,
   extractExamStats,
+  loadExamFile,
 } from '../data/dataLoader';
 import {
   sampleAndPrepareQuestions,
@@ -41,7 +42,7 @@ export interface TestSuiteSummary {
   assertions: number;
 }
 
-export function runUnitTests(): TestSuiteSummary {
+export async function runUnitTests(): Promise<TestSuiteSummary> {
   let passed = 0;
   let assertions = 0;
 
@@ -380,6 +381,14 @@ export function runUnitTests(): TestSuiteSummary {
     // Test questionStatsService progress calculation
     const progress = questionStatsService.getSubjectProgress('test-user', 'IT-TEST', testQuestions);
     check(progress.totalQuestions === 4, 'Reports 4 total questions');
+    passed++;
+  }
+
+  // 8. Test loadExamFile loading from disk in Node / fallback
+  {
+    const questions = await loadExamFile('/2025.2/IT3080 - Mạng máy tính/Gemini/OldExam.json');
+    check(Array.isArray(questions) && questions.length > 0, 'loadExamFile loads questions from exam path');
+    check(questions[0].id !== undefined, 'Questions have defined ids');
     passed++;
   }
 
