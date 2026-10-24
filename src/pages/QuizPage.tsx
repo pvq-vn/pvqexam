@@ -186,32 +186,6 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Auto-scroll to target question if opened from notification (or direct review link)
-  useEffect(() => {
-    if (gameState === 'review' && questions.length > 0) {
-      const hash = window.location.hash;
-      const queryIdx = hash.indexOf('?');
-      if (queryIdx !== -1) {
-        const params = new URLSearchParams(hash.slice(queryIdx + 1));
-        const targetQId = params.get('q');
-        if (targetQId) {
-          const timer = setTimeout(() => {
-            const el =
-              document.getElementById(`question-${targetQId}`) ||
-              document.getElementById(`question-${targetQId.toLowerCase()}`);
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              el.classList.add('ring-4', 'ring-blue-500', 'shadow-lg');
-              setTimeout(() => {
-                el.classList.remove('ring-4', 'ring-blue-500', 'shadow-lg');
-              }, 4000);
-            }
-          }, 350);
-          return () => clearTimeout(timer);
-        }
-      }
-    }
-  }, [gameState, questions.length]);
 
   // 1. Initial Data Loading, Draft Restoration & Question Preparation
   useEffect(() => {
@@ -228,10 +202,18 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       setGameState('review');
 
       // Asynchronously refresh questions from current subject JSON files (Section 11.3)
-      const allSubjectPaths = subject.examFiles.map((f) => f.filePath);
-      loadMultipleExamFiles(allSubjectPaths)
-        .then((latestQuestions) => {
-          if (!isMounted || latestQuestions.length === 0) return;
+      const targetPaths =
+        initialAttempt.config?.examFilePaths && initialAttempt.config.examFilePaths.length > 0
+          ? initialAttempt.config.examFilePaths
+          : initialAttempt.config?.examFilePath
+          ? [initialAttempt.config.examFilePath]
+          : subject.examFiles.map((f) => f.filePath);
+
+      Promise.all(targetPaths.map((fp) => loadExamFile(fp).catch(() => [])))
+        .then((lists) => {
+          if (!isMounted) return;
+          const latestQuestions = lists.flat();
+          if (latestQuestions.length === 0) return;
           const qMap = new Map(latestQuestions.map((q) => [String(q.id), q]));
           const refreshed = initialAttempt.questions.map((oldQ) => {
             const latestQ = qMap.get(String(oldQ.id));
@@ -307,13 +289,41 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           existingExamDef.questionIds &&
           existingExamDef.questionIds.length > 0
         ) {
-          // Load all questions across the subject to restore exact questions
-          const allSubjectQuestions = await loadMultipleExamFiles(
-            subject.examFiles.map((f) => f.filePath)
+          // Identify source files for this exam definition
+          const targetPaths =
+            existingExamDef.config?.examFilePaths && existingExamDef.config.examFilePaths.length > 0
+              ? existingExamDef.config.examFilePaths
+              : existingExamDef.config?.examFilePath
+              ? [existingExamDef.config.examFilePath]
+              : subject.examFiles.map((f) => f.filePath);
+
+          // Load files directly with loadExamFile to preserve individual question IDs without text-deduplication dropping duplicate-text questions
+          const loadedLists = await Promise.all(
+            targetPaths.map((fp) => loadExamFile(fp).catch(() => []))
           );
+          const allTargetQuestions = loadedLists.flat();
           const qMap = new Map(
-            allSubjectQuestions.map((q) => [String(q.id), q])
+            allTargetQuestions.map((q) => [String(q.id), q])
           );
+
+          // If any question IDs are still missing, also load remaining subject files as fallback
+          const missingIds = existingExamDef.questionIds.filter((qid) => !qMap.has(String(qid)));
+          if (missingIds.length > 0) {
+            const remainingPaths = subject.examFiles
+              .map((f) => f.filePath)
+              .filter((fp) => !targetPaths.includes(fp));
+            if (remainingPaths.length > 0) {
+              const fallbackLists = await Promise.all(
+                remainingPaths.map((fp) => loadExamFile(fp).catch(() => []))
+              );
+              fallbackLists.flat().forEach((q) => {
+                if (!qMap.has(String(q.id))) {
+                  qMap.set(String(q.id), q);
+                }
+              });
+            }
+          }
+
           const restoredQuestions = existingExamDef.questionIds
             .map((qid) => qMap.get(String(qid)))
             .filter(Boolean) as Question[];
@@ -503,33 +513,60 @@ export const QuizPage: React.FC<QuizPageProps> = ({
   // Scroll smoothly to question (unfiltering if needed)
   const scrollToQuestion = useCallback((qId: string | number) => {
     setShowMobileNav(false);
-    const el = document.getElementById(`question-${qId}`);
+    const targetId = `question-${qId}`;
+    const findEl = () =>
+      document.getElementById(targetId) ||
+      document.getElementById(targetId.toLowerCase());
+
+    const highlightAndCenter = (target: HTMLElement) => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.add('ring-4', 'ring-blue-500', 'shadow-xl');
+      setTimeout(() => {
+        target.classList.remove('ring-4', 'ring-blue-500', 'shadow-xl');
+      }, 3500);
+
+      // Verify alignment after smooth scroll animation completes
+      setTimeout(() => {
+        const recheck = findEl();
+        if (recheck) {
+          const rect = recheck.getBoundingClientRect();
+          if (rect.top < 60 || rect.bottom > window.innerHeight - 40) {
+            recheck.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }, 300);
+    };
+
+    const el = findEl();
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      highlightAndCenter(el);
     } else {
       // Question was hidden by active filter — reset filter to 'all' then scroll
       setActiveFilter('all');
       setTimeout(() => {
-        const target = document.getElementById(`question-${qId}`);
-        target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const target = findEl();
+        if (target) {
+          highlightAndCenter(target);
+        }
       }, 60);
     }
   }, []);
 
   // Auto-scroll to target question if opened from notification link
   useEffect(() => {
-    if (gameState === 'review') {
+    if (gameState === 'review' && questions.length > 0) {
       const hash = window.location.hash || '';
       const queryPart = hash.includes('?') ? hash.split('?')[1] : '';
       const params = new URLSearchParams(queryPart || window.location.search);
       const targetQ = params.get('q');
       if (targetQ) {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           scrollToQuestion(targetQ);
-        }, 350);
+        }, 300);
+        return () => clearTimeout(timer);
       }
     }
-  }, [gameState, scrollToQuestion]);
+  }, [gameState, questions.length, scrollToQuestion]);
 
   // Final submission logic
   const handleFinalSubmit = useCallback(() => {

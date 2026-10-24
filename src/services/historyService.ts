@@ -218,10 +218,13 @@ export const historyService = {
           const updatedLocal = Array.from(existingMap.values()).slice(0, 100);
           localStorage.setItem(LOCAL_ATTEMPTS_KEY, JSON.stringify(updatedLocal));
 
-          // Auto-sync ExamDefinitions so seeds are immediately retakeable globally
+          // Ensure local cache has ExamDefinitions for completed attempts without hammering Supabase
+          const existingLocalSeeds = new Set(
+            examDefinitionService.getLocalExamDefinitions().map((d) => d.seed.toUpperCase())
+          );
           remoteAttempts.forEach((ra) => {
             const cleanSeed = (ra.seed || '').trim().toUpperCase();
-            if (cleanSeed && ra.questions && ra.questions.length > 0) {
+            if (cleanSeed && ra.questions && ra.questions.length > 0 && !existingLocalSeeds.has(cleanSeed)) {
               const def: ExamDefinition = {
                 id: ra.examDefinitionId || `exam-${cleanSeed}`,
                 seed: cleanSeed,
@@ -235,7 +238,7 @@ export const historyService = {
                 config: ra.config,
                 createdAt: ra.startedAt || ra.submittedAt || new Date().toISOString(),
               };
-              examDefinitionService.saveExamDefinition(def).catch(() => {});
+              examDefinitionService.cacheLocalDefinition(def);
             }
           });
         } catch {

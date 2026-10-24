@@ -107,11 +107,6 @@ dialog::backdrop {
   background: #475569;
 }
 
-/* Defer layout and paint ONLY for off-screen cards below the initial fold (modern-web-guidance: defer-rendering-heavy-content) */
-.question-card-deferred {
-  content-visibility: auto;
-  contain-intrinsic-size: auto none auto 380px;
-}
 
 /* KaTeX responsive styling to prevent horizontal overflow on mobile */
 .katex-display {

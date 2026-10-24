@@ -10,7 +10,7 @@ const env =
 
 const defaultSupabaseUrl = 'https://skyrdsrqmbvduwvukpsl.supabase.co';
 const defaultSupabaseAnonKey = 'sb_publishable_OY_xs8vhMl2qiCoDspa-FQ_SKkC6FvR';
-const defaultAdminEmails = 'pvq@example.com,admin@hust.edu.vn';
+const defaultAdminEmails = 'vanquyetp823@gmail.com,pvq@example.com,admin@hust.edu.vn';
 
 const supabaseUrl = env?.VITE_SUPABASE_URL || defaultSupabaseUrl;
 const supabaseAnonKey = env?.VITE_SUPABASE_ANON_KEY || defaultSupabaseAnonKey;

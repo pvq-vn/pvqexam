@@ -19,6 +19,8 @@ import {
   Globe,
   AlertCircle,
   FileText,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -47,6 +49,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [publicExams, setPublicExams] = useState<ExamDefinition[]>([]);
   const [loadingPublicExams, setLoadingPublicExams] = useState(false);
   const [adminExamTab, setAdminExamTab] = useState<'all' | 'public' | 'private'>('all');
+  const [isExamsShowcaseExpanded, setIsExamsShowcaseExpanded] = useState<boolean>(false);
 
   const semesters = ['all', '2026.2', '2026.1', '2025.2'];
 
@@ -255,66 +258,91 @@ export const HomePage: React.FC<HomePageProps> = ({
           return (
             <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3.5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-bold text-slate-700 dark:text-slate-300">
-                <div className="flex items-center gap-2">
-                  <Globe size={15} className="text-indigo-500" />
-                  <span>
+                <div
+                  onClick={() => setIsExamsShowcaseExpanded(!isExamsShowcaseExpanded)}
+                  className="flex items-center gap-2 cursor-pointer select-none group"
+                >
+                  <Globe size={15} className="text-indigo-500 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {currentUser?.isAdmin
                       ? 'Kho đề thi hệ thống & Admin tự tạo:'
                       : 'Đề thi công khai (Public) do hệ thống cung cấp:'}
                   </span>
+                  <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">
+                    {publicExams.length} đề
+                  </span>
                 </div>
 
-                {currentUser?.isAdmin && (
-                  <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-xl text-xs self-start sm:self-center">
-                    <button
-                      type="button"
-                      onClick={() => setAdminExamTab('all')}
-                      className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                        adminExamTab === 'all'
-                          ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs font-bold'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                      }`}
-                    >
-                      Tất cả ({publicExams.length})
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setAdminExamTab('public')}
-                      className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
-                        adminExamTab === 'public'
-                          ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 shadow-xs font-bold'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                      }`}
-                    >
-                      <Globe size={13} />
-                      Đề công khai ({publicCount})
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setAdminExamTab('private')}
-                      className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
-                        adminExamTab === 'private'
-                          ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-xs font-bold'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                      }`}
-                    >
-                      <Lock size={13} />
-                      Đề riêng tư ({privateCount})
-                    </button>
-                  </div>
-                )}
+                <div className="flex items-center gap-2 self-start sm:self-center flex-wrap">
+                  {currentUser?.isAdmin && isExamsShowcaseExpanded && (
+                    <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-xl text-xs">
+                      <button
+                        type="button"
+                        onClick={() => setAdminExamTab('all')}
+                        className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                          adminExamTab === 'all'
+                            ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs font-bold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                        }`}
+                      >
+                        Tất cả ({publicExams.length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAdminExamTab('public')}
+                        className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                          adminExamTab === 'public'
+                            ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 shadow-xs font-bold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                        }`}
+                      >
+                        <Globe size={13} />
+                        Công khai ({publicCount})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAdminExamTab('private')}
+                        className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                          adminExamTab === 'private'
+                            ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-xs font-bold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                        }`}
+                      >
+                        <Lock size={13} />
+                        Riêng tư ({privateCount})
+                      </button>
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => setIsExamsShowcaseExpanded(!isExamsShowcaseExpanded)}
+                    className="px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                  >
+                    {isExamsShowcaseExpanded ? (
+                      <>
+                        <ChevronUp size={14} /> Thu gọn
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown size={14} /> Chọn đề có sẵn ({displayedExams.length})
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
-              {displayedExams.length === 0 ? (
-                <div className="p-6 text-center text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
-                  {adminExamTab === 'public'
-                    ? 'Chưa có đề thi công khai nào.'
-                    : adminExamTab === 'private'
-                    ? 'Chưa có đề thi riêng tư nào của Admin.'
-                    : 'Không có đề thi nào trong danh mục này.'}
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {isExamsShowcaseExpanded && (
+                displayedExams.length === 0 ? (
+                  <div className="p-6 text-center text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-dashed border-slate-200 dark:border-slate-700 animate-in fade-in">
+                    {adminExamTab === 'public'
+                      ? 'Chưa có đề thi công khai nào.'
+                      : adminExamTab === 'private'
+                      ? 'Chưa có đề thi riêng tư nào của Admin.'
+                      : 'Không có đề thi nào trong danh mục này.'}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 animate-in fade-in duration-150">
                   {displayedExams.map((exam) => {
                     const isPrivate = !exam.isPublic;
                     return (
@@ -365,7 +393,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     );
                   })}
                 </div>
-              )}
+              ))}
             </div>
           );
         })()}

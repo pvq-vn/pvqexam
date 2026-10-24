@@ -21,6 +21,7 @@ import { SUBJECT_CATALOG } from '../data/subjectCatalog';
 import { canonicalizeExamPath, loadExamFile } from '../data/dataLoader';
 import {
   ShieldAlert,
+  Shield,
   CheckCircle,
   Clock,
   XCircle,
@@ -161,6 +162,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
   const [filterQuestionScope, setFilterQuestionScope] = useState<string>('all');
   const [copiedAdminSeed, setCopiedAdminSeed] = useState<string | null>(null);
   const [expandedQuestionId, setExpandedQuestionId] = useState<string | number | null>(null);
+  const [isAdminCustomExamsExpanded, setIsAdminCustomExamsExpanded] = useState<boolean>(false);
 
   // Custom exam creation modal state
   const [showCreateExamModal, setShowCreateExamModal] = useState(false);
@@ -591,12 +593,24 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
     setFilterQuestionScope('all');
   }, [selectedSubject, selectedSourceFilePath]);
 
-  // Extract available scopes for the currently loaded questions
+  // Helper to extract common scope prefix (e.g., '2021.1 - Trang 1' -> '2021.1')
+  const extractScopePrefix = (scope: string | undefined | null): string => {
+    if (!scope) return '';
+    const trimmed = scope.trim();
+    const cleaned = trimmed.replace(
+      /\s*[-—–:/]\s*(Trang|Câu|Page|Part|Phần|Ảnh|Slide|Bài)\s*[\d\w.-]+.*$/i,
+      ''
+    ).trim();
+    return cleaned || trimmed;
+  };
+
+  // Extract available scope prefixes for the currently loaded questions
   const availableScopes = useMemo(() => {
     const set = new Set<string>();
     questionsList.forEach((q) => {
-      if (q.scope && q.scope.trim()) {
-        set.add(q.scope.trim());
+      const prefix = extractScopePrefix(q.scope);
+      if (prefix) {
+        set.add(prefix);
       }
     });
     return Array.from(set).sort();
@@ -701,10 +715,10 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       if (filterQuestionStatus === 'correct' && !isCorrect) return false;
       if (filterQuestionStatus === 'wrong' && !isWrong) return false;
 
-      // Filter by Scope
+      // Filter by Scope Prefix
       if (filterQuestionScope !== 'all') {
-        const qScope = (q.scope || '').trim();
-        if (qScope !== filterQuestionScope) return false;
+        const qScopePrefix = extractScopePrefix(q.scope);
+        if (qScopePrefix !== filterQuestionScope) return false;
       }
 
       if (searchQuestionQuery.trim()) {
@@ -739,6 +753,23 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
     navigator.clipboard.writeText(seed);
     setCopiedAdminSeed(seed);
     setTimeout(() => setCopiedAdminSeed(null), 2000);
+  };
+
+  const handleToggleExamPublic = async (def: ExamDefinition) => {
+    const nextPublic = !def.isPublic;
+    try {
+      await examDefinitionService.saveExamDefinition({
+        ...def,
+        isPublic: nextPublic,
+        isExplicitAdminUpdate: true,
+      } as any);
+      setExamDefinitions((prev) =>
+        prev.map((d) => (d.seed === def.seed ? { ...d, isPublic: nextPublic } : d))
+      );
+    } catch (err) {
+      console.error('Lỗi khi chuyển đổi quyền công khai của đề:', err);
+      alert('Không thể cập nhật trạng thái đề thi. Vui lòng thử lại!');
+    }
   };
 
   // Open Custom Exam Modal
@@ -1464,16 +1495,13 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                           </td>
                           <td className="py-3.5 px-4">
                             {permEntries.length > 0 ? (
-                              <div className="flex flex-wrap gap-1 max-w-xs">
-                                {permEntries.map(([code, tier]) => (
-                                  <span
-                                    key={code}
-                                    className="px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 font-mono text-[10px] border border-blue-200/60 dark:border-blue-800"
-                                  >
-                                    {code}: {tier}%
-                                  </span>
-                                ))}
-                              </div>
+                              <span
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 font-medium text-xs border border-blue-200/60 dark:border-blue-800"
+                                title={permEntries.map(([code, tier]) => `${code}: ${tier}%`).join('\n')}
+                              >
+                                <Shield size={12} className="text-blue-600 dark:text-blue-400 shrink-0" />
+                                <span>Đã cấp cho 1 số môn ({permEntries.length})</span>
+                              </span>
                             ) : (
                               <span className="text-slate-400 text-[11px]">Mặc định (25%)</span>
                             )}
@@ -1531,26 +1559,47 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
           {/* DANH SÁCH ĐỀ THI DO ADMIN TẠO (CÔNG KHAI & RIÊNG TƯ) */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-2">
-                  <Database size={16} className="text-indigo-600 dark:text-indigo-400" />
+              <div
+                onClick={() => setIsAdminCustomExamsExpanded(!isAdminCustomExamsExpanded)}
+                className="cursor-pointer select-none group"
+              >
+                <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  <Database size={16} className="text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform" />
                   Danh sách đề thi do Admin tạo ({adminCustomExams.length} đề)
                 </h3>
                 <p className="text-xs text-slate-500">
                   Bao gồm cả đề thi <strong>Riêng tư (Chỉ Admin)</strong> và <strong>Công khai (Toàn hệ thống)</strong>.
                 </p>
               </div>
-              <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full self-start sm:self-auto">
-                {adminCustomExams.filter((d) => !d.isPublic).length} riêng tư · {adminCustomExams.filter((d) => d.isPublic).length} công khai
-              </span>
+              <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+                <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+                  {adminCustomExams.filter((d) => !d.isPublic).length} riêng tư · {adminCustomExams.filter((d) => d.isPublic).length} công khai
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsAdminCustomExamsExpanded(!isAdminCustomExamsExpanded)}
+                  className="px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                >
+                  {isAdminCustomExamsExpanded ? (
+                    <>
+                      <ChevronUp size={14} /> Thu gọn
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown size={14} /> Xem danh sách đề ({adminCustomExams.length})
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
-            {adminCustomExams.length === 0 ? (
-              <div className="text-center py-6 text-xs text-slate-400">
-                Chưa có đề thi tự tạo nào. Chọn câu hỏi ở bên dưới và nhấn &quot;Tạo đề thi từ các câu đã chọn&quot; để tạo đề.
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            {isAdminCustomExamsExpanded && (
+              adminCustomExams.length === 0 ? (
+                <div className="text-center py-6 text-xs text-slate-400 animate-in fade-in">
+                  Chưa có đề thi tự tạo nào. Chọn câu hỏi ở bên dưới và nhấn &quot;Tạo đề thi từ các câu đã chọn&quot; để tạo đề.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-in fade-in duration-150">
                 {adminCustomExams.map((def) => {
                   const isCopied = copiedAdminSeed === def.seed;
                   return (
@@ -1567,23 +1616,26 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                           <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-900 text-white dark:bg-blue-600">
                             {def.subjectCode}
                           </span>
-                          <span
-                            className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                          <button
+                            type="button"
+                            onClick={() => handleToggleExamPublic(def)}
+                            title="Bấm để chuyển đổi giữa Công khai và Riêng tư"
+                            className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full transition-all cursor-pointer hover:opacity-85 ${
                               !def.isPublic
-                                ? 'bg-indigo-100 dark:bg-indigo-900/80 text-indigo-700 dark:text-indigo-300'
-                                : 'bg-emerald-100 dark:bg-emerald-900/80 text-emerald-700 dark:text-emerald-300'
+                                ? 'bg-indigo-100 hover:bg-indigo-200 dark:bg-indigo-900/80 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-300'
+                                : 'bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900/80 dark:hover:bg-emerald-800 text-emerald-700 dark:text-emerald-300'
                             }`}
                           >
                             {!def.isPublic ? (
                               <>
-                                <Lock size={10} /> Riêng tư (Admin)
+                                <Lock size={10} /> Riêng tư ⇄
                               </>
                             ) : (
                               <>
-                                <Globe size={10} /> Công khai
+                                <Globe size={10} /> Công khai ⇄
                               </>
                             )}
-                          </span>
+                          </button>
                         </div>
 
                         <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 line-clamp-2">
@@ -1646,8 +1698,8 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                   );
                 })}
               </div>
-            )}
-          </div>
+            ))}
+        </div>
 
           {/* Controls Bar */}
           <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">

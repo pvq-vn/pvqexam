@@ -256,29 +256,40 @@ export const examDefinitionService = {
       try {
         const { data: existing } = await supabase
           .from('exam_definitions')
-          .select('id, created_by_user_id, creator_email, creator_name, created_at')
+          .select('*')
           .eq('seed', cleanDef.seed)
           .maybeSingle();
 
         if (existing) {
-          // PRESERVE ORIGINAL CREATOR: A test-taker or sync can never steal ownership of an exam!
+          // CANONICAL PRESERVATION: A quiz attempt, test-taker, or background sync must NEVER
+          // overwrite the canonical visibility (is_public), question list (question_ids),
+          // title, or configuration of an already-existing exam definition.
           cleanDef.id = existing.id || cleanDef.id;
           cleanDef.createdByUserId = existing.created_by_user_id || cleanDef.createdByUserId;
           cleanDef.creatorEmail = existing.creator_email || cleanDef.creatorEmail;
           cleanDef.creatorName = existing.creator_name || cleanDef.creatorName;
           cleanDef.createdAt = existing.created_at || cleanDef.createdAt;
 
-          // Update non-creator metadata if needed
-          const updatePayload: Record<string, any> = {
-            subject_id: cleanDef.subjectId,
-            subject_code: cleanDef.subjectCode,
-            title: cleanDef.title || null,
-            is_public: Boolean(cleanDef.isPublic),
-            question_ids: cleanDef.questionIds,
-            config: cleanDef.config,
-            bank_version: cleanDef.bankVersion || '1.0',
-          };
-          // If existing had no creator_name/creator_email but cleanDef has them, backfill it
+          // Only allow changing isPublic or title if caller explicitly specified isExplicitAdminUpdate
+          if ((def as any).isExplicitAdminUpdate) {
+            cleanDef.isPublic = Boolean(def.isPublic);
+            if (def.title) cleanDef.title = def.title;
+          } else {
+            cleanDef.isPublic = Boolean(existing.is_public);
+            cleanDef.title = existing.title || cleanDef.title;
+          }
+
+          cleanDef.questionIds = existing.question_ids || cleanDef.questionIds;
+          cleanDef.totalQuestions = cleanDef.questionIds.length;
+          cleanDef.config = existing.config || cleanDef.config;
+          cleanDef.bankVersion = existing.bank_version || cleanDef.bankVersion;
+
+          // Only update database fields if explicit admin update OR backfilling missing creator info
+          const updatePayload: Record<string, any> = {};
+          if ((def as any).isExplicitAdminUpdate) {
+            updatePayload.is_public = cleanDef.isPublic;
+            if (cleanDef.title) updatePayload.title = cleanDef.title;
+          }
           if (!existing.creator_name && cleanDef.creatorName) {
             updatePayload.creator_name = cleanDef.creatorName;
           }
@@ -286,7 +297,9 @@ export const examDefinitionService = {
             updatePayload.creator_email = cleanDef.creatorEmail;
           }
 
-          await supabase.from('exam_definitions').update(updatePayload).eq('seed', cleanDef.seed);
+          if (Object.keys(updatePayload).length > 0) {
+            await supabase.from('exam_definitions').update(updatePayload).eq('seed', cleanDef.seed);
+          }
         } else {
           // Brand-new exam definition: resolve creatorName from user_profiles if missing
           const isValidUuid =

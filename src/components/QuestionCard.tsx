@@ -61,8 +61,6 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   const isCorrect = evaluation?.isCorrect ?? false;
   const isUnanswered = evaluation?.isUnanswered ?? false;
 
-  // Apply content-visibility: auto ONLY to cards below the initial fold (index >= 3)
-  const deferredClass = index >= 3 ? 'question-card-deferred' : '';
 
   // Single choice selection
   const handleSingleSelect = (optId: string) => {
@@ -146,7 +144,7 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   return (
     <article
       id={`question-${qId}`}
-      className={`${deferredClass} rounded-2xl border ${cardBorder} ${cardBg} shadow-xs overflow-hidden scroll-mt-24 transition-colors`}
+      className={`rounded-2xl border ${cardBorder} ${cardBg} shadow-xs overflow-hidden scroll-mt-24 transition-colors`}
     >
       {/* Question Card Header */}
       <div
