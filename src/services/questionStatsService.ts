@@ -1,4 +1,4 @@
-import { Question, QuestionEvaluation, QuestionStat, SubjectProgress } from '../types/quiz';
+import { Question, QuestionEvaluation, QuestionStat, SubjectProgress, QuizAttempt } from '../types/quiz';
 import { supabase, isSupabaseConfigured } from './supabase';
 
 const LOCAL_QSTATS_PREFIX = 'hust_quiz_qstats_';
@@ -217,7 +217,107 @@ export const questionStatsService = {
   },
 
   /**
-   * Fetches remote question stats from Supabase and merges them into localStorage.
+   * Recalculates and synchronizes question stats for a user based strictly on their remaining active attempts.
+   * Ensures that deleting an attempt decrements attempt/correct count for questions answered correctly,
+   * leaves attempt count unchanged for questions answered wrongly, and cleans up subjects with 0 attempts.
+   */
+  async recalculateStatsFromAttempts(
+    userId: string | undefined,
+    attempts: QuizAttempt[]
+  ): Promise<void> {
+    const key = getStorageKey(userId);
+    const newAllSubjectsData: Record<string, Record<string, QuestionStat>> = {};
+    const updatedRows: Array<{
+      user_id: string;
+      subject_id: string;
+      question_id: string;
+      attempt_count: number;
+      correct_count: number;
+      wrong_count: number;
+      last_attempted_at: string;
+    }> = [];
+
+    // Filter attempts to strictly this user's attempts
+    const userAttempts = attempts.filter((a) => {
+      if (userId && !userId.startsWith('local-')) {
+        return a.userId === userId;
+      }
+      return !a.userId || a.userId.startsWith('local-');
+    });
+
+    for (const att of userAttempts) {
+      const subjectId = att.subjectId;
+      if (!subjectId || !att.questions) continue;
+
+      if (!newAllSubjectsData[subjectId]) {
+        newAllSubjectsData[subjectId] = {};
+      }
+
+      const evals = att.result?.evaluations || {};
+
+      for (const q of att.questions) {
+        const qIdStr = String(q.id);
+        const evalItem = evals[qIdStr] || evals[q.id];
+        const isCorrect = evalItem?.isCorrect ?? false;
+        const isUnanswered = evalItem?.isUnanswered ?? false;
+
+        const current = newAllSubjectsData[subjectId][qIdStr] || {
+          attempts: 0,
+          correctCount: 0,
+          wrongCount: 0,
+          lastAttemptedAt: att.submittedAt || new Date().toISOString(),
+        };
+
+        if (isCorrect) {
+          current.attempts += 1;
+          current.correctCount += 1;
+        } else if (!isUnanswered && q.type !== 'essay') {
+          current.wrongCount += 1;
+        }
+        current.lastAttemptedAt = att.submittedAt || current.lastAttemptedAt;
+        newAllSubjectsData[subjectId][qIdStr] = current;
+      }
+    }
+
+    // 1. Update localStorage immediately with exact recomputed stats
+    try {
+      storage.setItem(key, JSON.stringify(newAllSubjectsData));
+    } catch (err) {
+      console.warn('Failed saving recalculated question stats to storage:', err);
+    }
+
+    // 2. Synchronize to Supabase if authenticated
+    if (isSupabaseConfigured && supabase && userId && !userId.startsWith('local-')) {
+      try {
+        for (const [subjId, qMap] of Object.entries(newAllSubjectsData)) {
+          for (const [qIdStr, stat] of Object.entries(qMap)) {
+            if (stat.attempts > 0 || stat.wrongCount > 0) {
+              updatedRows.push({
+                user_id: userId,
+                subject_id: subjId,
+                question_id: qIdStr,
+                attempt_count: stat.attempts,
+                correct_count: stat.correctCount,
+                wrong_count: stat.wrongCount,
+                last_attempted_at: stat.lastAttemptedAt,
+              });
+            }
+          }
+        }
+
+        // Wipe obsolete stats and write fresh active stats
+        await supabase.from('user_question_stats').delete().eq('user_id', userId);
+        if (updatedRows.length > 0) {
+          await supabase.from('user_question_stats').insert(updatedRows);
+        }
+      } catch (err) {
+        console.warn('Failed syncing recalculated question stats to Supabase:', err);
+      }
+    }
+  },
+
+  /**
+   * Fetches remote question stats from Supabase and synchronizes them into localStorage.
    */
   async syncRemoteStats(
     userId: string,
@@ -234,36 +334,32 @@ export const questionStatsService = {
         .eq('user_id', userId)
         .eq('subject_id', subjectId);
 
-      if (!error && Array.isArray(data) && data.length > 0) {
-        const key = getStorageKey(userId);
-        let allSubjectsData: Record<string, Record<string, QuestionStat>> = {};
-        try {
-          const raw = storage.getItem(key);
-          if (raw) allSubjectsData = JSON.parse(raw);
-        } catch {
-          allSubjectsData = {};
-        }
+      const key = getStorageKey(userId);
+      let allSubjectsData: Record<string, Record<string, QuestionStat>> = {};
+      try {
+        const raw = storage.getItem(key);
+        if (raw) allSubjectsData = JSON.parse(raw);
+      } catch {
+        allSubjectsData = {};
+      }
 
-        if (!allSubjectsData[subjectId]) {
-          allSubjectsData[subjectId] = {};
-        }
-
-        for (const row of data) {
-          const qIdStr = String(row.question_id);
-          const current = allSubjectsData[subjectId][qIdStr];
-          const remoteAttempts = row.attempt_count || 0;
-
-          // Merge: preserve highest attempts
-          if (!current || remoteAttempts > current.attempts) {
-            allSubjectsData[subjectId][qIdStr] = {
-              attempts: remoteAttempts,
+      if (!error && Array.isArray(data)) {
+        if (data.length === 0) {
+          // If no questions on remote for this subject, clean it out of localStorage
+          delete allSubjectsData[subjectId];
+        } else {
+          const freshSubjectStats: Record<string, QuestionStat> = {};
+          for (const row of data) {
+            const qIdStr = String(row.question_id);
+            freshSubjectStats[qIdStr] = {
+              attempts: row.attempt_count || 0,
               correctCount: row.correct_count || 0,
               wrongCount: row.wrong_count || 0,
               lastAttemptedAt: row.last_attempted_at || new Date().toISOString(),
             };
           }
+          allSubjectsData[subjectId] = freshSubjectStats;
         }
-
         storage.setItem(key, JSON.stringify(allSubjectsData));
       }
     } catch (err) {

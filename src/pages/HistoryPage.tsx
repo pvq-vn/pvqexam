@@ -102,7 +102,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
     if (!confirmDelete) return;
 
     if (confirmDelete.type === 'clear') {
-      historyService.clearLocalHistory(user?.id);
+      await historyService.clearHistory(user?.id);
       setAttempts([]);
     } else if (confirmDelete.type === 'single') {
       await historyService.deleteAttempt(confirmDelete.attemptId, user?.id);

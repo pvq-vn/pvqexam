@@ -159,6 +159,15 @@ export const historyService = {
         throw err;
       }
     }
+
+    // 4. Recalculate and update question stats strictly based on remaining attempts
+    const targetUserId = userId || targetAttempt?.userId;
+    try {
+      const remainingAttempts = await historyService.getAttempts(targetUserId);
+      await questionStatsService.recalculateStatsFromAttempts(targetUserId, remainingAttempts);
+    } catch (err) {
+      console.warn('Failed recalculating question stats after delete:', err);
+    }
   },
 
   /**
@@ -369,5 +378,33 @@ export const historyService = {
     });
 
     localStorage.setItem(LOCAL_ATTEMPTS_KEY, JSON.stringify(remaining));
+
+    if (isGuest) {
+      localStorage.removeItem('hust_quiz_qstats_local_guest');
+    }
+  },
+
+  /**
+   * Clears all history for the user (locally and remotely if authenticated)
+   * and completely resets their question statistics.
+   */
+  async clearHistory(userId?: string): Promise<void> {
+    const isGuest = !userId || userId.startsWith('local-');
+
+    historyService.clearLocalHistory(userId);
+
+    if (!isGuest && isSupabaseConfigured && supabase && userId) {
+      try {
+        await supabase.from('quiz_attempts').delete().eq('user_id', userId);
+      } catch (err) {
+        console.warn('Failed deleting all user attempts from Supabase:', err);
+      }
+    }
+
+    try {
+      await questionStatsService.recalculateStatsFromAttempts(userId, []);
+    } catch (err) {
+      console.warn('Failed resetting question stats after clearing history:', err);
+    }
   },
 };

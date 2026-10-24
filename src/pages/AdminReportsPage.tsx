@@ -559,6 +559,16 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       setAllAttempts((prev) =>
         prev.filter((a) => (a.seed || '').toUpperCase() !== deletingExam.exam.seed.toUpperCase())
       );
+
+      // Recalculate stats for current user
+      const targetUserId = effectiveUser?.id;
+      const remaining = await historyService.getAttempts(targetUserId);
+      await questionStatsService.recalculateStatsFromAttempts(targetUserId, remaining);
+      if (selectedSubject) {
+        const updatedStats = questionStatsService.getSubjectQuestionStats(targetUserId, selectedSubject.id);
+        setAdminQuestionStats(updatedStats);
+      }
+
       setDeletingExam(null);
     } catch (err) {
       console.error('Lỗi khi xóa đề thi:', err);
@@ -640,67 +650,37 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       });
 
     if (selectedSubject) {
-      // 1. Get stored stats from service for current effective user and guest
-      const userStats = effectiveUser?.id
-        ? questionStatsService.getSubjectQuestionStats(effectiveUser.id, selectedSubject.id)
-        : {};
-      const guestStats = questionStatsService.getSubjectQuestionStats('local_guest', selectedSubject.id);
-      const mergedStats: Record<string, QuestionStat> = { ...guestStats, ...userStats };
+      const targetUserId = effectiveUser?.id;
 
-      // 2. Also backfill/aggregate from all attempts for this subject (both Supabase allAttempts & local attempts)
-      const localAttempts: QuizAttempt[] = historyService.getLocalAttempts();
-      const combinedAttempts = [...allAttempts];
-      localAttempts.forEach((la: QuizAttempt) => {
-        if (!combinedAttempts.some((ca) => ca.id === la.id)) {
-          combinedAttempts.push(la);
-        }
-      });
+      // 1. Immediately load local stats for current user/guest
+      const localStats = targetUserId
+        ? questionStatsService.getSubjectQuestionStats(targetUserId, selectedSubject.id)
+        : questionStatsService.getSubjectQuestionStats('local_guest', selectedSubject.id);
 
-      const matchingAttempts = combinedAttempts.filter(
-        (a) =>
-          a.subjectId === selectedSubject.id ||
-          a.subjectCode.toLowerCase() === selectedSubject.code.toLowerCase()
-      );
+      setAdminQuestionStats(localStats);
 
-      matchingAttempts.forEach((att) => {
-        if (!att.questions || !Array.isArray(att.questions)) return;
-        att.questions.forEach((q) => {
-          const qIdStr = String(q.id);
-          const evaluation = att.result?.evaluations?.[qIdStr];
-          const isCorrect = evaluation?.isCorrect ?? false;
-          const isUnanswered = evaluation?.isUnanswered ?? false;
-
-          const existing = mergedStats[qIdStr] || {
-            attempts: 0,
-            correctCount: 0,
-            wrongCount: 0,
-            lastAttemptedAt: att.submittedAt || new Date().toISOString(),
-          };
-
-          const attempts = existing.attempts + 1;
-          const correctCount = existing.correctCount + (isCorrect ? 1 : 0);
-          const wrongCount = existing.wrongCount + (!isCorrect && !isUnanswered ? 1 : 0);
-
-          mergedStats[qIdStr] = {
-            attempts,
-            correctCount,
-            wrongCount,
-            lastAttemptedAt: att.submittedAt || existing.lastAttemptedAt,
-          };
-
-          if (q.originalNum !== undefined) {
-            mergedStats[String(q.originalNum)] = mergedStats[qIdStr];
-          }
-        });
-      });
-
-      setAdminQuestionStats(mergedStats);
+      // 2. If authenticated, synchronize with remote Supabase in background
+      if (targetUserId) {
+        questionStatsService
+          .syncRemoteStats(targetUserId, selectedSubject.id)
+          .then(() => {
+            if (!isMounted) return;
+            const updated = questionStatsService.getSubjectQuestionStats(
+              targetUserId,
+              selectedSubject.id
+            );
+            setAdminQuestionStats(updated);
+          })
+          .catch((err) => {
+            console.warn('Failed syncing remote question stats in Admin explorer:', err);
+          });
+      }
     }
 
     return () => {
       isMounted = false;
     };
-  }, [selectedFile, selectedSubject, effectiveUser?.id, allAttempts]);
+  }, [selectedFile, selectedSubject, effectiveUser?.id]);
 
   // Filtered Questions in Tab 4
   const filteredQuestionsList = useMemo(() => {
@@ -1852,7 +1832,11 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                 {filteredQuestionsList.map((q) => {
                   const isSelected = selectedQuestionIds.has(q.id);
                   const isExpanded = expandedQuestionId === q.id;
-                  const stat = adminQuestionStats[String(q.id)];
+                  const stat =
+                    adminQuestionStats[String(q.id)] ||
+                    (q.originalNum !== undefined
+                      ? adminQuestionStats[String(q.originalNum)]
+                      : undefined);
                   const attempts = stat?.attempts || 0;
                   const corrects = stat?.correctCount || 0;
                   const wrongs = stat?.wrongCount || 0;
