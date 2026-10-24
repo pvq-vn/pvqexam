@@ -12,6 +12,7 @@ import {
   QuizConfig,
   QuizResult,
   QuizAttempt,
+  ExamDefinition,
 } from '../types/quiz';
 import { loadExamFile, loadMultipleExamFiles } from '../data/dataLoader';
 import { sampleAndPrepareQuestions } from '../engine/sampler';
@@ -27,6 +28,7 @@ import { draftService, QuizDraft } from '../services/draftService';
 import { historyService } from '../services/historyService';
 import { authService, UserProfile } from '../services/authService';
 import { questionStatsService } from '../services/questionStatsService';
+import { examDefinitionService } from '../services/examDefinitionService';
 import {
   Clock,
   Send,
@@ -184,9 +186,39 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Auto-scroll to target question if opened from notification (or direct review link)
+  useEffect(() => {
+    if (gameState === 'review' && questions.length > 0) {
+      const hash = window.location.hash;
+      const queryIdx = hash.indexOf('?');
+      if (queryIdx !== -1) {
+        const params = new URLSearchParams(hash.slice(queryIdx + 1));
+        const targetQId = params.get('q');
+        if (targetQId) {
+          const timer = setTimeout(() => {
+            const el =
+              document.getElementById(`question-${targetQId}`) ||
+              document.getElementById(`question-${targetQId.toLowerCase()}`);
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              el.classList.add('ring-4', 'ring-blue-500', 'shadow-lg');
+              setTimeout(() => {
+                el.classList.remove('ring-4', 'ring-blue-500', 'shadow-lg');
+              }, 4000);
+            }
+          }, 350);
+          return () => clearTimeout(timer);
+        }
+      }
+    }
+  }, [gameState, questions.length]);
+
   // 1. Initial Data Loading, Draft Restoration & Question Preparation
   useEffect(() => {
+    let isMounted = true;
+
     if (initialAttempt) {
+      // Initialize with snapshot data immediately
       setQuestions(initialAttempt.questions);
       setAnswers(initialAttempt.answers);
       setFlagged(initialAttempt.flagged);
@@ -194,7 +226,44 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       setStartedAt(initialAttempt.startedAt);
       setActiveFilter('all');
       setGameState('review');
-      return;
+
+      // Asynchronously refresh questions from current subject JSON files (Section 11.3)
+      const allSubjectPaths = subject.examFiles.map((f) => f.filePath);
+      loadMultipleExamFiles(allSubjectPaths)
+        .then((latestQuestions) => {
+          if (!isMounted || latestQuestions.length === 0) return;
+          const qMap = new Map(latestQuestions.map((q) => [String(q.id), q]));
+          const refreshed = initialAttempt.questions.map((oldQ) => {
+            const latestQ = qMap.get(String(oldQ.id));
+            if (!latestQ) return oldQ; // fallback snapshot
+            return {
+              ...oldQ,
+              text: latestQ.text || oldQ.text,
+              options: latestQ.options || oldQ.options,
+              correctAnswers: latestQ.correctAnswers || oldQ.correctAnswers,
+              explanation: latestQ.explanation || oldQ.explanation,
+              scope: latestQ.scope || oldQ.scope,
+              originalNum: latestQ.originalNum || oldQ.originalNum,
+              sourceFile: latestQ.sourceFile || oldQ.sourceFile,
+            };
+          });
+
+          setQuestions(refreshed);
+          // Re-evaluate result for review view with latest correct answers
+          const recomputed = calculateQuizResult(
+            refreshed,
+            initialAttempt.answers,
+            initialAttempt.timeSpentSeconds
+          );
+          setResult(recomputed);
+        })
+        .catch((err) => {
+          console.warn('Could not refresh review questions from latest JSON:', err);
+        });
+
+      return () => {
+        isMounted = false;
+      };
     }
 
     // Check if we have a matching saved draft (passed via prop or persisted in localStorage across F5 refresh)
@@ -218,24 +287,77 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       return;
     }
 
-    let isMounted = true;
     setGameState('loading');
     setLoadingError(null);
     setActiveFilter('all');
 
-    const targetPaths = (config.examFilePaths && config.examFilePaths.length > 0)
-      ? config.examFilePaths
-      : [config.examFilePath];
+    (async () => {
+      try {
+        const user = await authService.getCurrentUser();
+        const totalSecs = computeTotalSecondsFromConfig(config);
+        const nowIso = new Date().toISOString();
 
-    loadMultipleExamFiles(targetPaths)
-      .then(async (allQuestions) => {
+        // 1. Check if seed corresponds to an existing shared ExamDefinition (Section 6)
+        const existingExamDef = await examDefinitionService.getExamDefinitionBySeed(
+          config.seed
+        );
+
+        if (
+          existingExamDef &&
+          existingExamDef.questionIds &&
+          existingExamDef.questionIds.length > 0
+        ) {
+          // Load all questions across the subject to restore exact questions
+          const allSubjectQuestions = await loadMultipleExamFiles(
+            subject.examFiles.map((f) => f.filePath)
+          );
+          const qMap = new Map(
+            allSubjectQuestions.map((q) => [String(q.id), q])
+          );
+          const restoredQuestions = existingExamDef.questionIds
+            .map((qid) => qMap.get(String(qid)))
+            .filter(Boolean) as Question[];
+
+          if (restoredQuestions.length > 0 && isMounted) {
+            setQuestions(restoredQuestions);
+            setAnswers({});
+            setFlagged([]);
+            setResult(null);
+            setTotalDuration(totalSecs);
+            setInitialTimerSeconds(totalSecs);
+            timeRemainingRef.current = totalSecs;
+            setStartedAt(nowIso);
+            setGameState('playing');
+
+            draftService.saveDraft({
+              subjectId: subject.id,
+              subjectName: subject.name,
+              subjectCode: subject.code,
+              config,
+              questions: restoredQuestions,
+              answers: {},
+              flagged: [],
+              timeRemaining: totalSecs,
+              totalDuration: totalSecs,
+              startedAt: nowIso,
+            });
+            return;
+          }
+        }
+
+        // 2. Otherwise generate new exam from permitted pool / target paths
+        const targetPaths =
+          config.examFilePaths && config.examFilePaths.length > 0
+            ? config.examFilePaths
+            : [config.examFilePath];
+
+        const allQuestions = await loadMultipleExamFiles(targetPaths);
         if (!isMounted) return;
 
         if (allQuestions.length === 0) {
           throw new Error('Ngân hàng câu hỏi không có dữ liệu');
         }
 
-        const user = await authService.getCurrentUser();
         const attemptCounts = questionStatsService.getQuestionAttempts(
           user?.id,
           subject.id
@@ -245,8 +367,6 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           config,
           attemptCounts
         );
-        const totalSecs = computeTotalSecondsFromConfig(config);
-        const nowIso = new Date().toISOString();
 
         setQuestions(prepared);
         setAnswers({});
@@ -257,6 +377,24 @@ export const QuizPage: React.FC<QuizPageProps> = ({
         timeRemainingRef.current = totalSecs;
         setStartedAt(nowIso);
         setGameState('playing');
+
+        // Persist new shared ExamDefinition for future reproductions
+        const newExamDef: ExamDefinition = {
+          id: `exam-${config.seed.trim().toUpperCase()}`,
+          seed: config.seed.trim().toUpperCase(),
+          subjectId: subject.id,
+          subjectCode: subject.code,
+          isPublic: false,
+          createdByUserId: user?.id,
+          creatorEmail: user?.email,
+          questionIds: prepared.map((q) => q.id),
+          totalQuestions: prepared.length,
+          config: config,
+          createdAt: nowIso,
+        };
+        examDefinitionService.saveExamDefinition(newExamDef).catch((err) => {
+          console.warn('Failed to save exam definition:', err);
+        });
 
         // Initial draft save
         draftService.saveDraft({
@@ -271,13 +409,13 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           totalDuration: totalSecs,
           startedAt: nowIso,
         });
-      })
-      .catch((err) => {
+      } catch (err) {
         if (isMounted) {
           setLoadingError((err as Error).message || 'Không thể tải đề thi.');
           setGameState('loading');
         }
-      });
+      }
+    })();
 
     return () => {
       isMounted = false;
@@ -286,8 +424,8 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     subject.id,
     subject.name,
     subject.code,
-    config.examFilePath,
-    config.seed,
+    subject.examFiles,
+    config,
     initialAttempt,
     initialDraft,
   ]);
@@ -378,6 +516,21 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     }
   }, []);
 
+  // Auto-scroll to target question if opened from notification link
+  useEffect(() => {
+    if (gameState === 'review') {
+      const hash = window.location.hash || '';
+      const queryPart = hash.includes('?') ? hash.split('?')[1] : '';
+      const params = new URLSearchParams(queryPart || window.location.search);
+      const targetQ = params.get('q');
+      if (targetQ) {
+        setTimeout(() => {
+          scrollToQuestion(targetQ);
+        }, 350);
+      }
+    }
+  }, [gameState, scrollToQuestion]);
+
   // Final submission logic
   const handleFinalSubmit = useCallback(() => {
     setShowSubmitConfirm(false);
@@ -421,11 +574,12 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     // Save attempt to history
     const attempt: QuizAttempt = {
       id: `attempt-${Date.now()}`,
+      examId: `exam-${draft.config.seed.trim().toUpperCase()}`,
       userId: currentUser?.id,
       subjectId: draft.subject.id,
       subjectName: draft.subject.name,
       subjectCode: draft.subject.code,
-      seed: draft.config.seed,
+      seed: draft.config.seed.trim().toUpperCase(),
       score10: computedResult.score10,
       totalScoredQuestions: computedResult.totalScoredQuestions,
       correctCount: computedResult.correctCount,
@@ -804,6 +958,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
                 userAnswer={answers[q.id]}
                 isFlagged={flaggedSet.has(q.id)}
                 isReview={gameState === 'review'}
+                isAdmin={Boolean(currentUser?.isAdmin)}
                 evaluation={result?.evaluations[q.id]}
                 shuffleOptions={initialAttempt ? (initialAttempt.config?.shuffleOptions ?? false) : config.shuffleOptions}
                 onAnswerChange={handleAnswerChange}
@@ -983,6 +1138,13 @@ export const QuizPage: React.FC<QuizPageProps> = ({
           question={reportingQuestion}
           subjectId={subject.id}
           subjectCode={subject.code}
+          seed={config.seed}
+          attemptId={initialAttempt?.id}
+          questionIndex={
+            questions.findIndex((q) => q.id === reportingQuestion.id) >= 0
+              ? questions.findIndex((q) => q.id === reportingQuestion.id) + 1
+              : undefined
+          }
           onClose={() => setReportingQuestion(null)}
         />
       )}

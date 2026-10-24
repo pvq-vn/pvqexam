@@ -1,5 +1,5 @@
 import { supabase, isSupabaseConfigured, isAdminEmail } from './supabase';
-import { QuizAttempt } from '../types/quiz';
+import { QuizAttempt, SubjectPermissionTier } from '../types/quiz';
 
 export interface UserAccountProfile {
   id: string;
@@ -8,6 +8,7 @@ export interface UserAccountProfile {
   role: 'admin' | 'user';
   isApproved: boolean;
   allowedExamSources: string[];
+  subjectPermissions?: Record<string, SubjectPermissionTier>;
   createdAt: string;
   updatedAt: string;
 }
@@ -34,6 +35,10 @@ export const userService = {
             role: (d.role === 'admin' || isAdminEmail(d.email)) ? 'admin' : 'user',
             isApproved: (d.role === 'admin' || isAdminEmail(d.email)) ? true : Boolean(d.is_approved),
             allowedExamSources: Array.isArray(d.allowed_exam_sources) ? d.allowed_exam_sources : [],
+            subjectPermissions:
+              typeof d.subject_permissions === 'object' && d.subject_permissions !== null
+                ? d.subject_permissions
+                : {},
             createdAt: d.created_at,
             updatedAt: d.updated_at,
           }));
@@ -77,6 +82,53 @@ export const userService = {
     try {
       const users = await userService.getAllUsers();
       const updated = users.map((u) => (u.id === userId ? { ...u, isApproved } : u));
+      localStorage.setItem(LOCAL_USERS_KEY, JSON.stringify(updated));
+    } catch {
+      // ignore
+    }
+  },
+
+  /**
+   * Updates subject permission tiers (25%, 50%, 75%, 100%) and allowed sources for a user.
+   */
+  async updateUserSubjectPermissions(
+    userId: string,
+    subjectPermissions: Record<string, SubjectPermissionTier>,
+    allowedSources: string[] = []
+  ): Promise<void> {
+    const updatedAt = new Date().toISOString();
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { error } = await supabase
+          .from('user_profiles')
+          .update({
+            subject_permissions: subjectPermissions,
+            allowed_exam_sources: allowedSources,
+            updated_at: updatedAt,
+          })
+          .eq('id', userId);
+
+        if (error) throw error;
+      } catch (err) {
+        console.warn('Failed updating user subject permissions in Supabase:', err);
+        throw err;
+      }
+    }
+
+    // Local storage sync
+    try {
+      const users = await userService.getAllUsers();
+      const updated = users.map((u) =>
+        u.id === userId
+          ? {
+              ...u,
+              subjectPermissions,
+              allowedExamSources: allowedSources,
+              updatedAt,
+            }
+          : u
+      );
       localStorage.setItem(LOCAL_USERS_KEY, JSON.stringify(updated));
     } catch {
       // ignore
@@ -136,7 +188,8 @@ export const userService = {
             subjectCode: d.subject_code,
             subjectName: d.subject_name,
             seed: d.seed,
-            score10: d.score_10,
+            examDefinitionId: d.exam_id || d.config?.examDefinitionId,
+            score10: Number(d.score_10),
             totalScoredQuestions: d.total_scored_questions,
             correctCount: d.correct_count,
             unansweredCount: d.unanswered_count,

@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage';
 import { QuizSetupModal } from './components/QuizSetupModal';
 import { AuthModal } from './components/AuthModal';
 import { draftService, QuizDraft } from './services/draftService';
+import { historyService } from './services/historyService';
 import { authService, UserProfile } from './services/authService';
 import { AlertCircle, Play, Trash2 } from 'lucide-react';
 
@@ -27,6 +28,7 @@ export function App() {
     'home' | 'quiz' | 'history' | 'admin'
   >('home');
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   // Setup modal state
@@ -44,8 +46,14 @@ export function App() {
 
   // Initialize Auth & Draft check
   useEffect(() => {
-    authService.getCurrentUser().then(setCurrentUser);
-    const unsubscribe = authService.onAuthStateChange(setCurrentUser);
+    authService.getCurrentUser().then((u) => {
+      setCurrentUser(u);
+      setAuthLoading(false);
+    });
+    const unsubscribe = authService.onAuthStateChange((u) => {
+      setCurrentUser(u);
+      setAuthLoading(false);
+    });
 
     const draft = draftService.getDraft();
     if (draft) {
@@ -64,24 +72,39 @@ export function App() {
       if (hash.startsWith('#/history')) {
         setCurrentRoute('history');
       } else if (hash.startsWith('#/admin')) {
-        authService.getCurrentUser().then((user) => {
-          if (user?.isAdmin) {
-            setCurrentRoute('admin');
-          } else {
-            setCurrentRoute('home');
-            window.location.hash = '#/';
-          }
-        });
+        setCurrentRoute('admin');
       } else if (hash.startsWith('#/quiz/')) {
         const parts = hash.replace('#/quiz/', '').split('?');
         const subjectCode = parts[0];
         const params = new URLSearchParams(parts[1] || '');
+        const isReview = params.get('review') === 'true';
         const targetSubject = SUBJECT_CATALOG.find(
           (s) => s.code.toLowerCase() === subjectCode.toLowerCase()
         );
 
         if (targetSubject) {
           const seedParam = params.get('seed') || undefined;
+
+          // If in review mode, NEVER open the setup modal!
+          if (isReview) {
+            setSetupSubject(null);
+            if (!reopenAttempt) {
+              const allAttempts = historyService.getLocalAttempts();
+              const found = allAttempts.find(
+                (a) =>
+                  (a.subjectId === targetSubject.id || a.subjectCode.toLowerCase() === targetSubject.code.toLowerCase()) &&
+                  (!seedParam || seedParam === 'UNKNOWN' || a.seed.toUpperCase() === seedParam.toUpperCase())
+              );
+              if (found) {
+                setReopenAttempt(found);
+                setActiveSubject(targetSubject);
+                setActiveConfig(found.config);
+                setCurrentRoute('quiz');
+              }
+            }
+            return;
+          }
+
           // If the user refreshed the browser while playing an active draft with this subject & seed,
           // automatically resume the draft session instead of popping up the setup modal!
           const savedDraft = draftService.getDraft();
@@ -163,8 +186,10 @@ export function App() {
   };
 
   // Reopen previous attempt in review mode
-  const handleReopenAttempt = (attempt: QuizAttempt) => {
-    const subject = SUBJECT_CATALOG.find((s) => s.id === attempt.subjectId);
+  const handleReopenAttempt = (attempt: QuizAttempt, targetQuestionId?: string) => {
+    const subject = SUBJECT_CATALOG.find(
+      (s) => s.id === attempt.subjectId || s.code.toLowerCase() === attempt.subjectCode?.toLowerCase()
+    );
     if (!subject) return;
 
     setSetupSubject(null);
@@ -174,7 +199,9 @@ export function App() {
     setReopenAttempt(attempt);
     setCurrentRoute('quiz');
 
-    window.location.hash = `#/quiz/${subject.code}?seed=${attempt.seed}&review=true`;
+    window.location.hash = `#/quiz/${subject.code}?seed=${attempt.seed}&review=true${
+      targetQuestionId ? `&q=${targetQuestionId}` : ''
+    }`;
   };
 
   // Exit quiz and return home (refreshing activeDraft banner if still in progress)
@@ -263,10 +290,12 @@ export function App() {
       <div className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         {currentRoute === 'home' && (
           <HomePage
+            currentUser={currentUser}
             onSelectSubject={(subject) => {
               setSetupSubject(subject);
               setSetupSeed(undefined);
             }}
+            onStartQuiz={handleStartQuiz}
           />
         )}
 
@@ -290,14 +319,20 @@ export function App() {
 
           {currentRoute === 'history' && (
             <HistoryPage
+              currentUser={currentUser}
               onReopenAttempt={handleReopenAttempt}
               onNavigateHome={() => handleNavigate('home')}
             />
           )}
 
           {currentRoute === 'admin' && (
-            currentUser?.isAdmin ? (
-              <AdminReportsPage onNavigateHome={() => handleNavigate('home')} />
+            authLoading ? (
+              <div className="py-24 flex flex-col items-center justify-center space-y-3">
+                <div className="w-10 h-10 border-4 border-rose-600 border-t-transparent rounded-full animate-spin" />
+                <p className="text-xs text-slate-500 font-medium">Đang xác thực quyền Quản trị viên...</p>
+              </div>
+            ) : currentUser?.isAdmin ? (
+              <AdminReportsPage currentUser={currentUser} onNavigateHome={() => handleNavigate('home')} />
             ) : (
               <div className="text-center py-20 space-y-3">
                 <div className="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
@@ -336,6 +371,8 @@ export function App() {
           onClose={() => setShowAuthModal(false)}
           onSuccess={(user) => {
             setCurrentUser(user);
+            setShowAuthModal(false);
+            window.location.reload();
           }}
         />
       )}

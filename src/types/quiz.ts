@@ -33,7 +33,10 @@ export interface Question {
   chapter_name?: string;
   driveImageId?: string;
   imageUrl?: string;
+  sourceFile?: string;
 }
+
+export type SubjectPermissionTier = 25 | 50 | 75 | 100;
 
 export interface ChapterInfo {
   id: string; // e.g. "1", "2", "3" or name if no number
@@ -86,7 +89,9 @@ export interface QuizConfig {
   timeMode: TimeMode;
   customMinutes?: number;
   seed: string;
-  selectedChapter?: string; // 'all' or chapter identifier
+  selectedChapter?: string; // 'all' or chapter identifier (backwards compat)
+  selectedChapters?: string[]; // multiple selected chapters
+  examDefinitionId?: string; // stable shared exam ID if based on existing exam
   prioritizeLeastAttempted?: boolean; // Default true: prioritize questions with fewest attempts
 }
 
@@ -120,6 +125,8 @@ export interface QuizAttempt {
   subjectName: string;
   subjectCode: string;
   seed: string;
+  examId?: string;
+  examDefinitionId?: string;
   score10: number;
   totalScoredQuestions: number;
   correctCount: number;
@@ -152,10 +159,49 @@ export interface ErrorReport {
   subjectId: string;
   subjectCode: string;
   questionId: string | number;
+  originalQuestionId?: string | number;
   questionText: string;
+  scope?: string;
+  sourceFile?: string;
+  seed?: string;
+  attemptId?: string;
+  questionIndex?: number;
   type: ReportType;
-  description: string;
+  description?: string; // Optional as per Section 9.1
   status: ReportStatus;
   createdAt: string;
+  resolvedAt?: string;
   adminNote?: string;
+}
+
+export interface ExamDefinition {
+  id: string;
+  seed: string;
+  subjectId: string;
+  subjectCode: string;
+  title?: string;
+  isPublic?: boolean;
+  createdByUserId?: string;
+  creatorEmail?: string;
+  creatorName?: string;
+  questionIds: (string | number)[];
+  totalQuestions?: number;
+  config: QuizConfig;
+  bankVersion?: string;
+  createdAt: string;
+}
+
+export interface UserNotification {
+  id: string;
+  userId?: string;
+  userEmail?: string;
+  reportId?: string;
+  subjectCode: string;
+  seed: string;
+  questionIndex?: number;
+  attemptId?: string;
+  message: string;
+  adminNote?: string;
+  isRead: boolean;
+  createdAt: string;
 }

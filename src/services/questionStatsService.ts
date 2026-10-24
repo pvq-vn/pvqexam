@@ -55,6 +55,8 @@ function getStorageKey(userId?: string): string {
   return `${LOCAL_QSTATS_PREFIX}${safeId}`;
 }
 
+const processedAttemptIds = new Set<string>();
+
 export const questionStatsService = {
   /**
    * Retrieves stored question stats for a specific user and subject from localStorage.
@@ -93,15 +95,29 @@ export const questionStatsService = {
   /**
    * Records a completed quiz attempt for all questions in the quiz,
    * updating their attempt count and correctness in localStorage and Supabase.
+   * NOTE: As mandated in Section 12:
+   * - attempt_count ONLY increases if the answer was correct.
+   * - wrong answers keep attempt_count unchanged, and increase wrong_count.
+   * - unanswered / empty answers keep attempt_count, correct_count, wrong_count unchanged.
+   * - Idempotent across retries using attemptId.
    */
   async recordQuizAttempts(
     userId: string | undefined,
     subjectId: string,
     questions: Question[],
     _answers: Record<string | number, string | string[]>,
-    evaluations: Record<string | number, QuestionEvaluation> = {}
+    evaluations: Record<string | number, QuestionEvaluation> = {},
+    attemptId?: string
   ): Promise<void> {
     if (!questions || questions.length === 0) return;
+
+    if (attemptId) {
+      const dedupeKey = `${userId || 'guest'}:::${attemptId}`;
+      if (processedAttemptIds.has(dedupeKey)) {
+        return; // Idempotent: already processed this submission
+      }
+      processedAttemptIds.add(dedupeKey);
+    }
 
     const storageKey = getStorageKey(userId);
     let allSubjectsData: Record<string, Record<string, QuestionStat>> = {};
@@ -142,7 +158,8 @@ export const questionStatsService = {
       const isCorrect = evalItem?.isCorrect ?? false;
       const isUnanswered = evalItem?.isUnanswered ?? false;
 
-      const newAttempts = prev.attempts + 1;
+      // Section 12: Only increment attempts if the answer was correct
+      const newAttempts = prev.attempts + (isCorrect ? 1 : 0);
       const newCorrect = prev.correctCount + (isCorrect ? 1 : 0);
       const newWrong =
         prev.wrongCount + (!isCorrect && !isUnanswered && q.type !== 'essay' ? 1 : 0);

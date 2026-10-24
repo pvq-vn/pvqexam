@@ -29,7 +29,8 @@ import {
   filterQuestionsByChapter,
 } from '../engine/sampler';
 import { questionStatsService } from '../services/questionStatsService';
-import { QuizConfig } from '../types/quiz';
+import { getPermittedQuestions } from '../engine/permissionSampler';
+import { QuizConfig, Question, QuestionEvaluation } from '../types/quiz';
 
 function assert(condition: boolean, message: string): void {
   if (!condition) {
@@ -389,6 +390,166 @@ export async function runUnitTests(): Promise<TestSuiteSummary> {
     const questions = await loadExamFile('/2025.2/IT3080 - Mạng máy tính/Gemini/OldExam.json');
     check(Array.isArray(questions) && questions.length > 0, 'loadExamFile loads questions from exam path');
     check(questions[0].id !== undefined, 'Questions have defined ids');
+    passed++;
+  }
+
+  // 9. Permission Tiers (25%, 50%, 75%, 100%) Deterministic Nesting Tests (Section 4 & 15.1)
+  {
+    // Create synthetic bank across 4 chapters with 20 questions each (80 questions total)
+    const bank: Question[] = [];
+    for (let ch = 1; ch <= 4; ch++) {
+      for (let i = 1; i <= 20; i++) {
+        bank.push({
+          id: `ch${ch}_q${i}`,
+          chapter: ch,
+          chapter_name: `Chương ${ch}`,
+          type: 'single',
+          text: `Câu hỏi ${i} thuộc chương ${ch}`,
+          options: [{ id: 'a', text: 'A' }, { id: 'b', text: 'B' }],
+          correctAnswers: ['a'],
+        });
+      }
+    }
+
+    const t25 = getPermittedQuestions(bank, 25, 'IT-TEST');
+    const t50 = getPermittedQuestions(bank, 50, 'IT-TEST');
+    const t75 = getPermittedQuestions(bank, 75, 'IT-TEST');
+    const t100 = getPermittedQuestions(bank, 100, 'IT-TEST');
+
+    check(t25.length === 20, 'Tier 25% has 20 questions out of 80 (25%)');
+    check(t50.length === 40, 'Tier 50% has 40 questions out of 80 (50%)');
+    check(t75.length === 60, 'Tier 75% has 60 questions out of 80 (75%)');
+    check(t100.length === 80, 'Tier 100% has all 80 questions (100%)');
+
+    const s25 = new Set(t25.map((q) => q.id));
+    const s50 = new Set(t50.map((q) => q.id));
+    const s75 = new Set(t75.map((q) => q.id));
+    const s100 = new Set(t100.map((q) => q.id));
+
+    // Invariant: 25% ⊆ 50% ⊆ 75% ⊆ 100%
+    const is25SubsetOf50 = [...s25].every((id) => s50.has(id));
+    const is50SubsetOf75 = [...s50].every((id) => s75.has(id));
+    const is75SubsetOf100 = [...s75].every((id) => s100.has(id));
+
+    check(is25SubsetOf50, 'Strict subset nesting: 25% is a strict subset of 50%');
+    check(is50SubsetOf75, 'Strict subset nesting: 50% is a strict subset of 75%');
+    check(is75SubsetOf100, 'Strict subset nesting: 75% is a strict subset of 100%');
+
+    // Chapter balance in 25%: exactly 5 questions per chapter
+    for (let ch = 1; ch <= 4; ch++) {
+      const chCount = t25.filter((q) => q.chapter === ch).length;
+      check(chCount === 5, `Chapter ${ch} has exactly 5 questions in 25% tier`);
+    }
+
+    // Determinism test: independent run produces identical question IDs
+    const t25Repeat = getPermittedQuestions(bank, 25, 'IT-TEST');
+    const repeatMatches = t25.every((q, idx) => q.id === t25Repeat[idx].id);
+    check(repeatMatches, 'Deterministic: repeated runs return identical questions for same tier');
+    passed++;
+  }
+
+  // 10. Question Statistics Rule Tests (Section 12: Only Correct increases attempt_count)
+  {
+    const userId = `local-test-user-${Date.now()}`;
+    const subjectId = 'IT3080';
+    const testQs: Question[] = [
+      { id: 'q_stat_1', type: 'single', text: 'Q1', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+      { id: 'q_stat_2', type: 'single', text: 'Q2', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+      { id: 'q_stat_3', type: 'single', text: 'Q3', options: [{ id: 'a', text: 'A' }], correctAnswers: ['a'] },
+    ];
+
+    const answers = {
+      q_stat_1: 'a', // Correct
+      q_stat_2: 'b', // Wrong
+      q_stat_3: '',  // Blank
+    };
+
+    const evals: Record<string, QuestionEvaluation> = {
+      q_stat_1: { isCorrect: true, isUnanswered: false, earnedPoints: 1, maxPoints: 1, userAnswer: 'a', correctAnswers: ['a'] },
+      q_stat_2: { isCorrect: false, isUnanswered: false, earnedPoints: 0, maxPoints: 1, userAnswer: 'b', correctAnswers: ['a'] },
+      q_stat_3: { isCorrect: false, isUnanswered: true, earnedPoints: 0, maxPoints: 1, userAnswer: '', correctAnswers: ['a'] },
+    };
+
+    const attemptId = `attempt_test_${Date.now()}`;
+    await questionStatsService.recordQuizAttempts(userId, subjectId, testQs, answers, evals, attemptId);
+
+    const statsAfter = questionStatsService.getSubjectQuestionStats(userId, subjectId);
+
+    // Q1 (Correct): attempt_count = 1, correct_count = 1, wrong_count = 0
+    check(statsAfter['q_stat_1']?.attempts === 1, 'Correct answer increments attempt_count');
+    check(statsAfter['q_stat_1']?.correctCount === 1, 'Correct answer increments correct_count');
+    check(statsAfter['q_stat_1']?.wrongCount === 0, 'Correct answer has wrong_count = 0');
+
+    // Q2 (Wrong): attempt_count = 0 (NOT INCREMENTED), wrong_count = 1
+    check(!statsAfter['q_stat_2']?.attempts, 'Wrong answer DOES NOT increment attempt_count');
+    check(statsAfter['q_stat_2']?.wrongCount === 1, 'Wrong answer increments wrong_count');
+    check(!statsAfter['q_stat_2']?.correctCount, 'Wrong answer has correct_count = 0');
+
+    // Q3 (Blank): attempt_count = 0, wrong_count = 0
+    check(!statsAfter['q_stat_3']?.attempts, 'Blank question DOES NOT increment attempt_count');
+
+    // Idempotency: submitting same attemptId again must not increment counters
+    await questionStatsService.recordQuizAttempts(userId, subjectId, testQs, answers, evals, attemptId);
+    const statsAfterRetry = questionStatsService.getSubjectQuestionStats(userId, subjectId);
+    check(statsAfterRetry['q_stat_1']?.attempts === 1, 'Idempotent: retry with same attemptId does not double-increment');
+
+    passed++;
+  }
+
+  // 11. Multi-Chapter Filter Tests (Section 3.2)
+  {
+    const questions: Question[] = [
+      { id: 'c1_1', chapter: 1, chapter_name: 'Chương 1', type: 'single', text: 'Q1', options: [], correctAnswers: [] },
+      { id: 'c2_1', chapter: 2, chapter_name: 'Chương 2', type: 'single', text: 'Q2', options: [], correctAnswers: [] },
+      { id: 'c3_1', chapter: 3, chapter_name: 'Chương 3', type: 'single', text: 'Q3', options: [], correctAnswers: [] },
+    ];
+
+    // Filter by multiple chapters: ['1', 'Chương 3']
+    const multiFiltered = filterQuestionsByChapter(questions, ['1', 'Chương 3']);
+    check(multiFiltered.length === 2, 'Filters questions belonging to multiple selected chapters');
+    const multiIds = new Set(multiFiltered.map((q) => q.id));
+    check(multiIds.has('c1_1') && multiIds.has('c3_1') && !multiIds.has('c2_1'), 'Includes chapter 1 and 3, excludes chapter 2');
+    passed++;
+  }
+
+  // 12. Seed Determinism & Reproducibility Tests (Section 6 & 15.1)
+  {
+    const bank: Question[] = [];
+    for (let i = 1; i <= 30; i++) {
+      bank.push({
+        id: `q_seed_${i}`,
+        type: 'single',
+        text: `Question ${i}`,
+        options: [{ id: 'a', text: 'A' }, { id: 'b', text: 'B' }],
+        correctAnswers: ['a'],
+      });
+    }
+
+    const cfgA: QuizConfig = {
+      subjectId: 'IT3080',
+      examFilePath: '/test/exam.json',
+      mcqCount: 10,
+      essayCount: 0,
+      shuffleQuestions: true,
+      shuffleOptions: false,
+      timeMode: 'auto',
+      seed: 'SHARED_SEED_99',
+    };
+
+    const cfgB: QuizConfig = {
+      ...cfgA,
+      timeMode: 'custom',
+      customMinutes: 90, // Changed time only (Section 6.4)
+    };
+
+    const runA = sampleAndPrepareQuestions(bank, cfgA);
+    const runB = sampleAndPrepareQuestions(bank, cfgB);
+
+    check(runA.length === 10, 'Run A samples 10 questions');
+    check(runB.length === 10, 'Run B samples 10 questions');
+
+    const exactMatch = runA.every((q, idx) => q.id === runB[idx].id);
+    check(exactMatch, 'Same seed produces identical question list even when time mode is changed');
     passed++;
   }
 

@@ -23,6 +23,7 @@ interface QuestionCardProps {
   userAnswer?: string | string[];
   isFlagged: boolean;
   isReview: boolean;
+  isAdmin?: boolean;
   evaluation?: QuestionEvaluation;
   shuffleOptions?: boolean;
   onAnswerChange: (questionId: string | number, value: string | string[]) => void;
@@ -49,6 +50,7 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   userAnswer,
   isFlagged,
   isReview,
+  isAdmin = false,
   evaluation,
   shuffleOptions = false,
   onAnswerChange,
@@ -257,6 +259,24 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Admin Metadata Bar (Section 8.1) */}
+      {isReview && isAdmin && (
+        <div className="px-4 sm:px-5 py-2 bg-slate-100/90 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-700/80 text-[11px] text-slate-600 dark:text-slate-300 flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span className="font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider text-[10px]">
+            Admin Metadata:
+          </span>
+          <span>
+            Phạm vi: <strong className="text-slate-800 dark:text-slate-200">{question.scope || 'Chưa xác định'}</strong>
+          </span>
+          <span>
+            ID nguồn: <strong className="text-slate-800 dark:text-slate-200">{question.originalNum !== undefined ? question.originalNum : (typeof question.id === 'number' ? question.id : 'Chưa xác định')}</strong>
+          </span>
+          <span>
+            Nguồn: <strong className="text-slate-800 dark:text-slate-200">{question.sourceFile ? question.sourceFile.split('/').pop() : 'Chưa xác định'}</strong>
+          </span>
+        </div>
+      )}
 
       {/* Check layout adaptation: side-by-side for compact diagrams & short options */}
       {(() => {

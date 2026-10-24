@@ -20,10 +20,6 @@ export const SUBJECT_CATALOG: Subject[] = [
         label: 'Bộ câu hỏi chọn lọc (GeneratedQuiz.json)',
         filePath: '/2025.2/IT3080 - Mạng máy tính/Gemini/GeneratedQuiz.json',
       },
-      {
-        label: 'Bộ câu hỏi đã phân loại (SortedExam.json)',
-        filePath: '/2025.2/IT3080 - Mạng máy tính/Gemini/SortedExam.json',
-      },
     ],
   },
   {
@@ -102,11 +98,6 @@ export const SUBJECT_CATALOG: Subject[] = [
           '/2026.1/IT3120 - Phân tích và thiết kế hệ thống/Gemini/exam.json',
         isDefault: true,
       },
-      {
-        label: 'Ngân hàng đề gốc (raw_exam.json)',
-        filePath:
-          '/2026.1/IT3120 - Phân tích và thiết kế hệ thống/Gemini/raw_exam.json',
-      },
     ],
   },
   {
@@ -124,11 +115,6 @@ export const SUBJECT_CATALOG: Subject[] = [
           '/2026.1/IT3180 - Nhập môn công nghệ phần mềm/Gemini/exam.json',
         isDefault: true,
       },
-      {
-        label: 'Ngân hàng đề gốc (raw_exam.json)',
-        filePath:
-          '/2026.1/IT3180 - Nhập môn công nghệ phần mềm/Gemini/raw_exam.json',
-      },
     ],
   },
   {
@@ -144,11 +130,6 @@ export const SUBJECT_CATALOG: Subject[] = [
         filePath:
           '/2026.1/IT3190 - Học máy và khai phá dữ liệu/Gemini/exam.json',
         isDefault: true,
-      },
-      {
-        label: 'Ngân hàng đề gốc (raw_exam.json)',
-        filePath:
-          '/2026.1/IT3190 - Học máy và khai phá dữ liệu/Gemini/raw_exam.json',
       },
     ],
   },
@@ -181,11 +162,6 @@ export const SUBJECT_CATALOG: Subject[] = [
         filePath: '/2026.1/IT4930 - Nhập môn khoa học dữ liệu/Gemini/exam.json',
         isDefault: true,
       },
-      {
-        label: 'Ngân hàng đề gốc (raw_exam.json)',
-        filePath:
-          '/2026.1/IT4930 - Nhập môn khoa học dữ liệu/Gemini/raw_exam.json',
-      },
     ],
   },
   {
@@ -201,11 +177,6 @@ export const SUBJECT_CATALOG: Subject[] = [
         filePath:
           '/2026.1/IT4931 - Lưu trữ và xử lý dữ liệu lớn/Gemini/exam.json',
         isDefault: true,
-      },
-      {
-        label: 'Ngân hàng đề gốc (raw_exam.json)',
-        filePath:
-          '/2026.1/IT4931 - Lưu trữ và xử lý dữ liệu lớn/Gemini/raw_exam.json',
       },
     ],
   },

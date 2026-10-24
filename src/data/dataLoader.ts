@@ -351,7 +351,7 @@ export async function loadExamFile(
   }
 
   // 6. Normalize to unified schema in RAM
-  const questions = normalizeExam(parsed);
+  const questions = normalizeExam(parsed, normalizedPath);
   const stats: ExamStats = extractExamStats(questions);
 
   // 7. Cache and return

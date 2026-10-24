@@ -35,9 +35,15 @@ export const reportService = {
           subject_id: newReport.subjectId,
           subject_code: newReport.subjectCode,
           question_id: String(newReport.questionId),
+          original_question_id: newReport.originalQuestionId ? String(newReport.originalQuestionId) : null,
           question_text: newReport.questionText,
+          scope: newReport.scope || null,
+          source_file: newReport.sourceFile || null,
+          seed: newReport.seed || null,
+          attempt_id: newReport.attemptId || null,
+          question_index: newReport.questionIndex || null,
           type: newReport.type,
-          description: newReport.description,
+          description: newReport.description || '',
           status: newReport.status,
           created_at: newReport.createdAt,
         });
@@ -74,11 +80,18 @@ export const reportService = {
             subjectId: d.subject_id,
             subjectCode: d.subject_code,
             questionId: d.question_id,
+            originalQuestionId: d.original_question_id || undefined,
             questionText: d.question_text,
+            scope: d.scope || undefined,
+            sourceFile: d.source_file || undefined,
+            seed: d.seed || undefined,
+            attemptId: d.attempt_id || undefined,
+            questionIndex: d.question_index || undefined,
             type: d.type as ReportType,
-            description: d.description,
+            description: d.description || '',
             status: d.status as ReportStatus,
             createdAt: d.created_at,
+            resolvedAt: d.resolved_at || undefined,
             adminNote: d.admin_note,
           }));
 
@@ -90,25 +103,30 @@ export const reportService = {
               merged.push(r);
             }
           });
-          return merged;
+          return merged.sort(
+            (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
         }
       } catch (err) {
         console.warn('Supabase fetch reports warning:', err);
       }
     }
 
-    return local;
+    return local.sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   },
 
   /**
    * Updates status of a report (e.g. 'reviewing', 'resolved', 'rejected').
    */
   async updateReportStatus(reportId: string, status: ReportStatus, adminNote?: string): Promise<void> {
-    return reportService.updateReport(reportId, { status, adminNote });
+    const resolvedAt = status === 'resolved' ? new Date().toISOString() : undefined;
+    return reportService.updateReport(reportId, { status, adminNote, resolvedAt });
   },
 
   /**
-   * Updates any fields of a report and persists to Supabase and localStorage.
+   * Updates fields of a report and persists to Supabase and localStorage.
    */
   async updateReport(reportId: string, updates: Partial<ErrorReport>): Promise<void> {
     // 1. Update in local storage
@@ -120,6 +138,7 @@ export const reportService = {
           ...updates,
           adminNote: updates.adminNote !== undefined ? updates.adminNote : r.adminNote,
           status: updates.status || r.status,
+          resolvedAt: updates.resolvedAt !== undefined ? updates.resolvedAt : r.resolvedAt,
         };
       }
       return r;
@@ -135,8 +154,9 @@ export const reportService = {
         if (updates.status) payload.status = updates.status;
         if (updates.adminNote !== undefined) payload.admin_note = updates.adminNote;
         if (updates.type) payload.type = updates.type;
-        if (updates.description) payload.description = updates.description;
+        if (updates.description !== undefined) payload.description = updates.description;
         if (updates.questionText) payload.question_text = updates.questionText;
+        if (updates.resolvedAt !== undefined) payload.resolved_at = updates.resolvedAt;
 
         const { error } = await supabase
           .from('error_reports')
@@ -144,12 +164,10 @@ export const reportService = {
           .eq('id', reportId);
 
         if (error) {
-          console.warn('Failed updating error_reports in Supabase:', error);
-          throw error;
+          console.warn('Failed updating error_reports in Supabase (local update succeeded):', error);
         }
       } catch (err) {
-        console.warn('Supabase update report error:', err);
-        throw err;
+        console.warn('Supabase update report warning (local update succeeded):', err);
       }
     }
   },

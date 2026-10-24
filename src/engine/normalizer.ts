@@ -6,7 +6,11 @@ import { normalizeTableField } from '../utils/tableParser';
  * Normalizes raw question objects from any exam JSON in the repository
  * into the unified internal Question schema (strictly in-memory, read-only).
  */
-export function normalizeQuestion(raw: any, index: number): Question {
+export function normalizeQuestion(
+  raw: any,
+  index: number,
+  sourceFile?: string
+): Question {
   const id = raw.id !== undefined && raw.id !== null ? raw.id : index + 1;
   const rawText = String(raw.text || raw.question || raw['Nội dung'] || '');
 
@@ -307,6 +311,13 @@ export function normalizeQuestion(raw: any, index: number): Question {
     raw.category ||
     (chapter !== undefined ? `Chương ${chapter}` : undefined);
 
+  const originalNum =
+    raw.originalNum !== undefined
+      ? Number(raw.originalNum)
+      : typeof raw.id === 'number'
+      ? raw.id
+      : undefined;
+
   return {
     id,
     type,
@@ -324,16 +335,17 @@ export function normalizeQuestion(raw: any, index: number): Question {
         : undefined,
     scope: rawScope || undefined,
     points: typeof raw.points === 'number' ? raw.points : 1,
-    originalNum: raw.originalNum,
+    originalNum,
     topic: topic ? String(topic).trim() : undefined,
     chapter,
     chapter_name,
     driveImageId: driveImageId || undefined,
     imageUrl: raw.imageUrl ? String(raw.imageUrl).trim() : undefined,
+    sourceFile: sourceFile || raw.sourceFile || undefined,
   };
 }
 
-export function normalizeExam(rawList: any[]): Question[] {
+export function normalizeExam(rawList: any[], sourceFile?: string): Question[] {
   if (!Array.isArray(rawList)) return [];
-  return rawList.map((item, idx) => normalizeQuestion(item, idx));
+  return rawList.map((item, idx) => normalizeQuestion(item, idx, sourceFile));
 }

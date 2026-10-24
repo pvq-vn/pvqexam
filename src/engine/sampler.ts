@@ -2,37 +2,59 @@ import { Question, QuizConfig } from '../types/quiz';
 import { createRNG, fisherYatesShuffle } from './shuffle';
 
 /**
- * Filter questions belonging to a specific chapter/topic.
+ * Checks if a question belongs to a specific chapter/topic target string.
+ */
+function isQuestionInChapter(q: Question, target: string): boolean {
+  const norm = target.trim().toLowerCase();
+  if (norm === 'all' || norm === '') return true;
+
+  const qChapterStr = q.chapter !== undefined ? String(q.chapter).trim().toLowerCase() : '';
+  const qChapterName = q.chapter_name ? q.chapter_name.trim().toLowerCase() : '';
+  const qTopic = q.topic ? q.topic.trim().toLowerCase() : '';
+
+  if (qChapterStr === norm) return true;
+  if (qChapterName === norm) return true;
+  if (qTopic === norm) return true;
+  if (`chương ${qChapterStr}` === norm) return true;
+
+  // Check if target is composite id e.g. "1:::Tên chương"
+  if (norm.includes(':::')) {
+    const [chId, chName] = norm.split(':::');
+    if (chId && qChapterStr === chId) return true;
+    if (chName && qChapterName === chName) return true;
+  }
+
+  return false;
+}
+
+/**
+ * Filter questions belonging to one or more specific chapters/topics.
  */
 export function filterQuestionsByChapter(
   questions: Question[],
-  selectedChapter?: string
+  selectedChapter?: string | string[],
+  selectedChapters?: string[]
 ): Question[] {
-  if (!selectedChapter || selectedChapter === 'all' || selectedChapter.trim() === '') {
+  let targets: string[] = [];
+  if (Array.isArray(selectedChapter)) {
+    targets = selectedChapter;
+  } else if (selectedChapters && selectedChapters.length > 0) {
+    targets = selectedChapters;
+  } else if (
+    typeof selectedChapter === 'string' &&
+    selectedChapter.trim() !== '' &&
+    selectedChapter.trim() !== 'all'
+  ) {
+    targets = [selectedChapter.trim()];
+  }
+
+  if (targets.length === 0 || targets.includes('all')) {
     return questions;
   }
 
-  const target = selectedChapter.trim().toLowerCase();
-  const matched = questions.filter((q) => {
-    const qChapterStr = q.chapter !== undefined ? String(q.chapter).trim().toLowerCase() : '';
-    const qChapterName = q.chapter_name ? q.chapter_name.trim().toLowerCase() : '';
-    const qTopic = q.topic ? q.topic.trim().toLowerCase() : '';
-
-    if (qChapterStr === target) return true;
-    if (qChapterName === target) return true;
-    if (qTopic === target) return true;
-    if (`chương ${qChapterStr}` === target) return true;
-
-    // Check if target is composite id e.g. "1:::Tên chương"
-    if (target.includes(':::')) {
-      const [chId, chName] = target.split(':::');
-      if (chId && qChapterStr === chId) return true;
-      if (chName && qChapterName === chName) return true;
-    }
-
-    return false;
-  });
-
+  const matched = questions.filter((q) =>
+    targets.some((target) => isQuestionInChapter(q, target))
+  );
   return matched.length > 0 ? matched : questions;
 }
 
@@ -99,7 +121,11 @@ export function sampleAndPrepareQuestions(
   const rng = createRNG(config.seed);
 
   // 1. Filter by selected chapter / topic if requested
-  const chapterPool = filterQuestionsByChapter(allQuestions, config.selectedChapter);
+  const chapterPool = filterQuestionsByChapter(
+    allQuestions,
+    config.selectedChapter,
+    config.selectedChapters
+  );
 
   // 2. Separate MCQ (single, multiple, dropdown, fill) and Essay
   const mcqQuestions = chapterPool.filter((q) => q.type !== 'essay');

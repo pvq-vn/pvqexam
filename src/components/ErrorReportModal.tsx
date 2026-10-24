@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Question, ReportType } from '../types/quiz';
 import { reportService } from '../services/reportService';
 import { authService } from '../services/authService';
-import { AlertTriangle, X, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, X, CheckCircle2, FileText, Info } from 'lucide-react';
 import { RichTextRenderer } from './RichTextRenderer';
 
 interface ErrorReportModalProps {
   question: Question;
   subjectCode: string;
   subjectId: string;
+  seed?: string;
+  attemptId?: string;
+  questionIndex?: number;
   onClose: () => void;
 }
 
@@ -25,6 +28,9 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
   question,
   subjectCode,
   subjectId,
+  seed,
+  attemptId,
+  questionIndex,
   onClose,
 }) => {
   const [selectedType, setSelectedType] = useState<ReportType>('wrong_answer');
@@ -32,6 +38,9 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const originalId = question.originalNum !== undefined ? question.originalNum : question.id;
+  const fileName = question.sourceFile ? question.sourceFile.split('/').pop() : undefined;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,9 +55,15 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
         subjectId,
         subjectCode,
         questionId: question.id,
-        questionText: question.text.slice(0, 200),
+        originalQuestionId: originalId,
+        questionText: question.text.slice(0, 300),
+        scope: question.scope,
+        sourceFile: question.sourceFile,
+        seed,
+        attemptId,
+        questionIndex,
         type: selectedType,
-        description: description.trim(),
+        description: description.trim() || undefined,
       });
 
       setSubmitted(true);
@@ -68,12 +83,14 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-800/80">
           <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm">
             <AlertTriangle size={18} />
-            <span>Báo lỗi câu hỏi (#{question.id})</span>
+            <span>
+              Báo lỗi {questionIndex ? `Câu ${questionIndex}` : `Câu hỏi`} (#{originalId})
+            </span>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
           >
             <X size={18} />
           </button>
@@ -89,6 +106,35 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto">
+            {/* Metadata badges */}
+            {(question.scope || fileName || originalId) && (
+              <div className="p-2.5 bg-slate-100 dark:bg-slate-800/80 rounded-xl text-[11px] text-slate-600 dark:text-slate-300 space-y-1 border border-slate-200/80 dark:border-slate-700">
+                <div className="flex items-center gap-1 font-semibold text-slate-800 dark:text-slate-200">
+                  <Info size={13} className="text-blue-600 dark:text-blue-400" />
+                  <span>Metadata câu hỏi:</span>
+                </div>
+                {question.scope && (
+                  <div>
+                    Phạm vi: <strong className="text-slate-800 dark:text-slate-100">{question.scope}</strong>
+                  </div>
+                )}
+                <div>
+                  ID nguồn: <strong className="text-slate-800 dark:text-slate-100">{String(originalId)}</strong>
+                  {fileName && (
+                    <span className="ml-2">
+                      · Nguồn: <strong className="text-slate-800 dark:text-slate-100">{fileName}</strong>
+                    </span>
+                  )}
+                  {seed && (
+                    <span className="ml-2 font-mono">
+                      · Mã đề: <strong>{seed}</strong>
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Question snippet */}
             <div className="text-xs text-slate-700 dark:text-slate-200 p-3 bg-slate-50 dark:bg-slate-800/90 rounded-xl border border-slate-200 dark:border-slate-700 max-h-36 overflow-y-auto leading-relaxed break-words">
               <span className="font-bold text-slate-900 dark:text-slate-100 block mb-1">
                 Nội dung câu hỏi:
@@ -127,14 +173,13 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
               </div>
             </div>
 
-            {/* Description */}
+            {/* Description (Optional) */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                Mô tả chi tiết lỗi:
+                Mô tả chi tiết lỗi <span className="text-slate-400 font-normal lowercase">(tùy chọn)</span>:
               </label>
               <textarea
                 rows={3}
-                required
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="VD: Câu hỏi này đáp án đúng phải là C theo slide bài giảng chương 3..."
@@ -153,14 +198,14 @@ export const ErrorReportModal: React.FC<ErrorReportModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
               >
                 Hủy
               </button>
               <button
                 type="submit"
-                disabled={submitting || !description.trim()}
-                className="px-5 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 disabled:opacity-50 rounded-lg shadow-sm transition-colors"
+                disabled={submitting}
+                className="px-5 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 disabled:opacity-50 rounded-lg shadow-sm transition-colors cursor-pointer"
               >
                 {submitting ? 'Đang gửi...' : 'GỬI BÁO LỖI'}
               </button>
