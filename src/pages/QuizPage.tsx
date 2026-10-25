@@ -410,6 +410,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
         const newExamDef: ExamDefinition = {
           id: `exam-${config.seed.trim().toUpperCase()}`,
           seed: config.seed.trim().toUpperCase(),
+          title: config.title,
           subjectId: subject.id,
           subjectCode: subject.code,
           isPublic: false,

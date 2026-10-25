@@ -122,7 +122,7 @@
     "correctAnswers": [
       "Có ít nhất một lớp thực thể cho mỗi ca sử dụng."
     ],
-    "explanation": "Phát biểu D sai vì không phải kịch bản ca sử dụng (Use Case) nào cũng cần phải thao tác và lưu trữ dữ liệu bền vững, do đó không bắt buộc phải luôn tồn tại lớp thực thể (Entity class).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Phát biểu \"Có ít nhất một lớp thực thể cho mỗi ca sử dụng\" là KHÔNG ĐÚNG, vì có những ca sử dụng thuần túy chỉ thực hiện tính toán hay điều hướng mà không cần truy vấn/lưu trữ dữ liệu bền vững (do đó không bắt buộc phải có Lớp Thực thể - Entity Class).\n  - Phân tích phương án sai: Các quy tắc thiết kế lớp phân tích chuẩn (Robustness Analysis) khẳng định:\n    - Mỗi cặp (Tác nhân, Ca sử dụng) tương tác đòi hỏi ít nhất 1 Lớp Biên (Boundary Class).\n    - Mỗi Ca sử dụng đòi hỏi ít nhất 1 Lớp Điều khiển (Control Class) để quản lý luồng sự kiện.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 18 - Quy tắc phân tích Robustness BCE) & Slide 20222-ChuyenSangThietKe.pdf (Trang 12).",
     "scope": "2021.1 - Trang 6"
   },
   {
@@ -311,7 +311,7 @@
     "correctAnswers": [
       "D"
     ],
-    "explanation": "Một tác nhân (Actor) trong biểu đồ ca sử dụng có thể là người dùng, các thiết bị phần cứng đặc thù hoặc các hệ thống bên ngoài tương tác với hệ thống chính. Vì thế, nói 3 phương án A, B, C không thể làm tác nhân là sai.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Theo chuẩn UML, Tác nhân (Actor) là bất kỳ đối tượng bên ngoài nào tương tác trực tiếp với hệ thống. Tác nhân có thể là Con người (người dùng), Thiết bị phần cứng (máy quét mã vạch, cảm biến), hoặc Hệ thống phần mềm khác (cổng thanh toán). Do đó, phát biểu \"A, B, C không thể làm tác nhân\" là sai, chọn D.\n  - Phân tích phương án sai:\n    - A (Con người): Có thể làm tác nhân chính/phụ (ví dụ: Khách hàng, Nhân viên).\n    - B (Thiết bị): Có thể làm tác nhân (ví dụ: Cảm biến xe, Máy POS).\n    - C (Hệ thống khác): Có thể làm tác nhân ngoại (ví dụ: Cổng thanh toán VNPAY, CSDL Ngân hàng).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22 - Khái niệm Tác nhân) & Slide uml-2.5.1.pdf (Trang 647 - Actor Definition).",
     "scope": "2021.1 - Trang 17"
   },
   {
@@ -395,7 +395,7 @@
     "correctAnswers": [
       "mô tả các yêu cầu chức năng."
     ],
-    "explanation": "Đặc tả Use Case tập trung làm rõ kịch bản giao tiếp giữa hệ thống và tác nhân (những gì hệ thống phản hồi). Do đó, vai trò lớn nhất của nó là mô tả, chi tiết hóa các yêu cầu về mặt chức năng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Tài liệu Đặc tả ca sử dụng tập trung chi tiết hóa kịch bản chuỗi sự kiện giao tiếp giữa tác nhân và hệ thống, nhằm mô tả các yêu cầu chức năng (Functional Requirements) của hệ thống.\n  - Phân tích phương án sai:\n    - Góc nhìn tĩnh: Được cung cấp bởi Sơ đồ lớp (Class Diagram) hoặc Sơ đồ triển khai (Deployment Diagram).\n    - Mô tả cả phi chức năng: Các yêu cầu phi chức năng chủ yếu được ghi nhận trong Đặc tả bổ sung (Supplementary Specification / FURPS document).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 31 - Mục đích Đặc tả Use Case) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "2021.1 - Trang 21"
   },
   {
@@ -690,7 +690,7 @@
     "correctAnswers": [
       "Phân tích yêu cầu"
     ],
-    "explanation": "Pha phân tích yêu cầu đòi hỏi nhóm phát triển thu thập và chuyển hóa các nguyện vọng của khách hàng thành tài liệu mô hình hóa. Sẩn phẩm đầu ra trực tiếp của nó chính là biểu đồ Use Case và các đặc tả hành vi tương ứng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Giai đoạn Phân tích yêu cầu (Requirements Analysis) tập trung thu thập, phân tích và tài liệu hóa các chức năng mong muốn của người dùng thành các sản phẩm chính: Biểu đồ Ca sử dụng (Use Case Diagram) và Tài liệu Đặc tả Ca sử dụng (Use Case Specification).\n  - Phân tích phương án sai:\n    - Thiết kế hệ thống: Tập trung tạo Biểu đồ Lớp chi tiết, Biểu đồ Tương tác, CSDL và UI.\n    - Kiểm thử: Tạo kịch bản kiểm thử và báo cáo lỗi.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 13) & Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 21).",
     "scope": "2021.1 - Trang 39"
   },
   {
@@ -711,7 +711,7 @@
     "correctAnswers": [
       "liên kết đến 1 hay nhiều tác nhân"
     ],
-    "explanation": "Mỗi chức năng (Use Case) phải có mục đích phục vụ cho ai đó hoặc cái gì đó kích hoạt. Nó không thể tồn tại 'vô chủ', do vậy nó bắt buộc phải liên kết với ít nhất một hay nhiều Actor.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mỗi ca sử dụng biểu diễn một chức năng cung cấp giá trị cho người dùng, do đó bắt buộc phải liên kết với ít nhất 1 hoặc nhiều Tác nhân (Actors) (có thể trực tiếp khởi tạo hoặc tham gia tương tác/nhận kết quả).\n  - Phân tích phương án sai: Ca sử dụng không thể đứng trơ trọi (\"liên kết đến 0 tác nhân\") vì như vậy nó không phục vụ mục đích của bất kỳ bên liên quan nào.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22 - Định nghĩa Ca sử dụng) & Slide uml-2.5.1.pdf (Trang 641).",
     "scope": "2021.1 - Trang 40"
   },
   {
@@ -795,7 +795,7 @@
     "correctAnswers": [
       "Quy trình"
     ],
-    "explanation": "Biểu đồ ca sử dụng (Use Case Diagram) chỉ thể hiện hệ thống có những chức năng gì (Use Case), ai là người tương tác (Actor - Tác nhân) và các mối quan hệ (Include, Extend, Generalization). Nó KHÔNG mô tả quy trình thực hiện các chức năng đó theo từng bước như thế nào (quy trình/workflow là nhiệm vụ của Activity Diagram).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Biểu đồ Ca sử dụng chỉ tập trung trực quan hóa Chức năng (Use Cases), Tác nhân (Actors) và Mối quan hệ giữa chúng. Nó KHÔNG mô tả trình tự từng bước xử lý hay Quy trình / Luồng công việc (Workflow) (quy trình từng bước thuộc nhiệm vụ của Activity Diagram hoặc Sequence Diagram).\n  - Phân tích phương án sai: Tác nhân, Chức năng và Mối quan hệ phụ thuộc giữa các chức năng (Include/Extend) đều được thể hiện trực tiếp trên biểu đồ ca sử dụng.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22 - Khái niệm Biểu đồ Use Case) & Slide 2021.1 (Trang 45).",
     "scope": "2021.1 - Trang 45"
   },
   {
@@ -900,7 +900,7 @@
     "correctAnswers": [
       "A"
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ Hoạt động (Activity Diagram) của UML, một Nút đối tượng (Object Node) được biểu diễn chuẩn bằng một Hình chữ nhật góc vuông (Hình A), bên trong chứa tên đối tượng hoặc trạng thái đối tượng.\n  - Phân tích phương án sai:\n    - Hình B: Biểu diễn Nút hành động / hoạt động (Action/Activity Node - hình chữ nhật bo tròn góc).\n    - Hình C: Biểu diễn Nút quyết định / rẽ nhánh (Decision/Merge Node - hình thoi).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 15 - Các phần tử trong Sơ đồ hoạt động) & Slide uml-2.5.1.pdf (Trang 391).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20221.pdf — Trang 1"
   },
   {
@@ -1434,7 +1434,7 @@
     "correctAnswers": [
       "Quan hệ tương tác"
     ],
-    "explanation": "Trong biểu đồ ca sử dụng (Use Case Diagram), giữa các ca sử dụng chỉ có 3 loại quan hệ: bao gồm (<<include>>), mở rộng (<<extend>>), và kế thừa (generalization). Không tồn tại quan hệ tương tác giữa các ca sử dụng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ Ca sử dụng (Use Case Diagram), giữa các Ca sử dụng với nhau chỉ hỗ trợ 3 loại mối quan hệ chính: Bao gồm (<<include>>), Mở rộng (<<extend>>), và Khái quát hóa / Kế thừa (Generalization). \"Quan hệ tương tác\" (Association) chỉ nối giữa Tác nhân (Actor) và Ca sử dụng, tuyệt đối không dùng giữa các Ca sử dụng với nhau.\n  - Phân tích phương án sai:\n    - Quan hệ bao gồm (<<include>>): Dùng khi một Use Case bắt buộc luôn kéo theo Use Case khác.\n    - Quan hệ mở rộng (<<extend>>): Dùng khi một Use Case nới rộng phạm vi có điều kiện cho Use Case khác.\n    - Quan hệ kế thừa (Generalization): Dùng thể hiện sự tổng quát hóa/cụ thể hóa giữa các Use Case.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23-24 - Mối quan hệ giữa các Use Case) & Slide uml-2.5.1.pdf (Trang 641-644).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20221.pdf — Trang 5"
   },
   {
@@ -1623,7 +1623,7 @@
     "correctAnswers": [
       "C"
     ],
-    "explanation": "Trong UML, đối tượng (Object/Instance) được biểu diễn bằng hình chữ nhật với tên đối tượng và/hoặc tên lớp được gạch chân (ở đây là obj:A có gạch chân). Hình A là gói (Package), B là ca sử dụng (Use Case), D là nút phần cứng/thực thi (Node).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong UML, Đối tượng / Bản thực (Object / Instance) được biểu diễn bằng hình chữ nhật có chứa tên đối tượng và tên lớp được gạch chân (dạng tênĐốiTượng : TênLớp hoặc :TênLớp) - tương ứng với Hình C.\n  - Phân tích phương án sai:\n    - Hình A: Ký hiệu Gói (Package - hình thư mục).\n    - Hình B: Ký hiệu Ca sử dụng (Use Case - hình elip).\n    - Hình D: Ký hiệu Nút triển khai phần cứng (Node - hình khối 3D).\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 20) & Slide 20222-Ch04-MoHinhHoaHanhVi.pdf (Trang 16).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20221.pdf — Trang 6"
   },
   {
@@ -2111,7 +2111,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 4",
     "link": "https://drive.google.com/file/d/1efDdpEijRRHLVRvIofk7Pi0BUlr_3O_D/view?usp=sharing",
     "tables": [],
-    "explanation": "Trong biểu đồ lớp UML, lớp `Category` được nối với đường liên kết giữa `BlogEntry` và `BlogAccount` bằng một đường nét đứt. Đây là ký hiệu chuẩn của Lớp liên kết (Association Class), dùng để lưu trữ các thuộc tính hoặc hành vi thuộc về chính mối liên kết giữa hai lớp đó."
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ lớp UML, lớp Category được gắn bằng một đường nét đứt vào đường nối liên kết giữa lớp BlogEntry và BlogAccount. Đây là ký hiệu đặc trưng chuẩn mực của Lớp liên kết (Association Class), dùng để lưu trữ các thuộc tính/hành vi thuộc về chính mối liên kết giữa hai lớp kia.\n  - Phân tích phương án sai:\n    - Giao diện (Interface): Khai báo với nhãn <<interface>>.\n    - Trừu tượng (Abstract): Tên lớp in nghiêng hoặc có nhãn {abstract}.\n    - Kết nối (Link): Thuật ngữ chỉ bản thực của liên kết trong Object Diagram.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 20 - Lớp liên kết) & Slide uml-2.5.1.pdf (Trang 209 - Figure 11.35 Example AssociationClass)."
   },
   {
     "id": 103,
@@ -2644,7 +2644,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 16",
     "link": "",
     "tables": [],
-    "explanation": "Theo nguyên lý đóng gói hướng đối tượng: các lớp trên cùng cây kế thừa, các lớp phục vụ cùng khối chức năng và các lớp có cùng xu thế phát triển nên được đặt vào cùng một gói để đảm bảo tính gắn kết cao."
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Theo nguyên tắc đóng gói mô-đun trong UML Package Diagram:\n    1. Các lớp cùng phục vụ một khối chức năng nghiệp vụ có kết dính cao nên gom vào một gói.\n    2. Các lớp có cùng xu thế phát triển/thay đổi cùng nhau (Co-change) nên gom vào một gói để dễ bảo trì.\n  - Phân tích phương án sai:\n    - Các lớp trên cùng một cây kế thừa: Không bắt buộc gom chung một gói; nếu lớp con ở các subsystem khác nhau thì đặt ở gói khác nhau.\n    - Các lớp ít tương tác với nhau: Vi phạm nguyên tắc kết dính mô-đun.\nSlide đối chiếu: Slide 20222-KienTrucHeThong.pdf (Trang 41-42 - Nguyên tắc phân gói Package) & Slide 20222-ChuyenSangThietKe.pdf (Trang 16)."
   },
   {
     "id": 129,
@@ -2813,7 +2813,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 19",
     "link": "https://drive.google.com/file/d/1mntA8Es1uWH4qyLeaX34gAXlKzGmB_Bz/view?usp=sharing",
     "tables": [],
-    "explanation": "Mũi tên từ ca sử dụng U đến Actor A chỉ ra rằng A là tác nhân bị động (nhận kết quả từ ca sử dụng)."
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Đường liên kết nét liền (Association) nối giữa hình biểu diễn Tác nhân (Actor) và hình bầu dục Ca sử dụng (Use Case) thể hiện mối quan hệ giao tiếp tương tác trực tiếp giữa tác nhân và chức năng của hệ thống.\n  - Phân tích phương án sai:\n    - Ca sử dụng kế thừa tác nhân: Sai vì Kế thừa chỉ diễn ra giữa hai Actor hoặc hai Use Case, không giữa Actor và Use Case.\n    - Tác nhân nằm bên trong hệ thống: Sai vì Actor luôn luôn nằm bên ngoài System Boundary.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22 - Quan hệ tương tác) & Slide uml-2.5.1.pdf (Trang 644)."
   },
   {
     "id": 137,
@@ -2833,7 +2833,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 19",
     "link": "",
     "tables": [],
-    "explanation": "Lớp lĩnh vực (Domain classes) biểu diễn các khái niệm trừu tượng trong hệ thống nghiệp vụ và mối quan hệ giữa chúng."
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ tuần tự hệ thống (SSD) ở pha Phân tích, toàn bộ hệ thống được coi là một hộp đen duy nhất (:Hệ Thống / :System). Mọi thông điệp từ Tác nhân gửi tới đều trỏ thẳng vào đường sinh mệnh của :Hệ Thống.\n  - Phân tích phương án sai:\n    - Các lớp CSDL / Controller: Chỉ xuất hiện trong Sơ đồ tuần tự chi tiết (Design Sequence Diagram) ở pha Thiết kế.\n    - Tác nhân khác: Tác nhân gửi thông điệp cho tác nhân khác mô tả quy trình nghiệp vụ ngoài hệ thống, không phải tương tác SSD.\nSlide đối chiếu: Slide 20222-Ch04-MoHinhHoaHanhVi.pdf (Trang 22 - Sơ đồ tuần tự mức hệ thống) & Slide PattersonSuperstore_vi.pdf (Trang 30)."
   },
   {
     "id": 138,
@@ -3349,7 +3349,7 @@
     "correctAnswers": [
       "Thành phần trình diễn"
     ],
-    "explanation": "Trong mọi biến thể của kiến trúc máy khách-máy chủ (Client-Server 2-tier, 3-tier, n-tier), máy khách (Client) là nơi giao tiếp trực tiếp với người dùng cuối nên luôn đảm nhận việc thực thi thành phần trình diễn (Presentation logic - giao diện người dùng).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong các biến thể của kiến trúc Máy khách - Máy chủ (Client-Server), máy khách (Client) là thiết bị trực tiếp tương tác với người dùng cuối, do đó luôn đảm nhận việc thực thi Thành phần trình diễn (Presentation Layer / UI).\n  - Phân tích phương án sai:\n    - Thành phần lưu trữ dữ liệu: Nằm trên Máy chủ CSDL (Database Server) để đảm bảo bảo mật và nhất quán.\n    - Thành phần ứng dụng / nghiệp vụ: Nằm trên Máy chủ ứng dụng (Application Server).\n    - Thành phần truy cập dữ liệu: Nằm ở tầng DAO/DAM trên máy chủ.\nSlide đối chiếu: Slide 20222-KienTrucHeThong.pdf (Trang 23-25 - Kiến trúc 3-dãy) & Slide Tk1-KienTrucTongQuan.pdf (Trang 26).",
     "scope": "2023.2 - Câu 20"
   },
   {
@@ -3454,7 +3454,7 @@
     "correctAnswers": [
       "A"
     ],
-    "explanation": "Trong UML, một Lớp (Class) được biểu diễn bằng Hình chữ nhật (thường chia thành 3 ngăn: tên lớp, thuộc tính, thao tác) - tương ứng với Hình A.\n- Hình B (Hình chữ nhật bo tròn góc): Biểu diễn hoạt động (Action/Activity) hoặc trạng thái (State).\n- Hình C (Hình elip/oval): Biểu diễn ca sử dụng (Use Case).\n- Hình D (Hình thoi): Biểu diễn điểm quyết định / rẽ nhánh (Decision) hoặc ký hiệu kết tập.\nDo đó, đáp án đúng theo đáp án tham chiếu là A.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong UML Class Diagram, một Lớp (Class) luôn được biểu diễn bằng hình chữ nhật (thường chia làm 3 ngăn: Tên lớp, Thuộc tính, Thao tác) - tương ứng với Hình A.\n  - Phân tích phương án sai:\n    - Hình B: Biểu diễn Hành động/Hoạt động (Action/Activity) trong Activity Diagram hoặc Trạng thái (State) trong State Machine Diagram.\n    - Hình C: Biểu diễn Ca sử dụng (Use Case) trong Use Case Diagram.\n    - Hình D: Biểu diễn nút Quyết định/Rẽ nhánh (Decision node) hoặc ký hiệu Kết tập/Hợp thành.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 20 - Ký hiệu Lớp trong UML) & Slide Tk1-KienTrucTongQuan.pdf (Trang 15).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20241.pdf — Trang 1"
   },
   {
@@ -3811,7 +3811,7 @@
     "correctAnswers": [
       "c"
     ],
-    "explanation": "Đáp án chính thức trích xuất từ hệ thống thi cuối kỳ IT3120: c. \nChọn đặc điểm đúng với sơ đồ giao tiếp?\na. Các đối tượng phải được sắp xếp thẳng hàng theo hàng ngang\nb. Các thông điệp được sắp xếp theo thời gian gửi, thông điệp được gửi trước được vẽ ở vị trí cao hơn.\nc. Bắt buộc phải có tác nhân\nd. Thứ tự gửi thông điệp được xác định bằng biểu thức thứ tự\nYour answer is incorrect.\nThe correct answer is: d. Thứ tự gửi thông điệp được xác định bằng biểu thức thứ tự\nĐề thi kíp 3: Attempt review | BLEARNING HUST\n2/18. ",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Theo quy chuẩn UML Class Diagram, biểu diễn lớp chuẩn bao gồm hình chữ nhật chia làm 3 ngăn (Tên lớp, Thuộc tính, Thao tác). Phương án c khai báo đầy đủ tầm vực (+ public, - private), tên thuộc tính, kiểu dữ liệu và cú pháp phương thức tương thích 100% với quy chuẩn.\n  - Phân tích phương án sai:\n    - Phương án a & b: Khai báo sai cú pháp tầm vực hoặc thiếu dấu hai chấm : phân tách kiểu dữ liệu.\n    - Phương án d: Sử dụng ký hiệu không thuộc chuẩn UML.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 20 - Cú pháp khai báo Lớp trong UML) & Slide uml-2.5.1.pdf (Trang 97).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 2"
   },
   {
@@ -4370,7 +4370,7 @@
       "Khách hàng gửi phản hồi về trải nghiệm dịch vụ.",
       "Hệ thống trả về cho khách hàng danh sách sản phẩm."
     ],
-    "explanation": "Đáp án chính thức trích xuất từ hệ thống thi cuối kỳ IT3120: b. Khách hàng gửi phản hồi về trải nghiệm dịch vụ., d. Hệ thống trả về cho khách hàng danh sách sản phẩm.\nTrong bối cảnh hệ thống quản lý bán hàng ở siêu thị, nếu ràng buộc phạm vi ca sử dụng phải đem lại giá trị cụ thể cho các bên liên quan,\ndữ liệu đầu ra phải hoàn thiện và được lưu trữ trong hệ thống thì hoạt động nào trong các hoạt động sau thỏa mãn ràng buộc là ca sử\ndụng?\na. Nhập sản phẩm - ghi nhận đã đưa sản phẩm vào kho.\nb. Điền tên sản phẩm trong biểu mẫu thêm sản phẩm mới.\nc. Điền mô tả sản phẩm trong biểu mẫu thêm sản phẩm mới.\nd. Nhấn nút tạo trên biểu mẫu thêm sản phẩm mới.\nYour answer is incorrect.\nThe correct answer is: a. Nhập sản phẩm - ghi nhận đã đưa sản phẩm vào kho.\nĐề thi Kíp 4: Attempt review | BLEARNING HUST\n4/18. ",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Cả hai hoạt động 'Gửi phản hồi trải nghiệm' và 'Trả về danh sách sản phẩm tìm kiếm' đều biểu diễn một luồng tương tác hoàn chỉnh giữa tác nhân và hệ thống nhằm đáp ứng một mục tiêu nghiệp vụ cụ thể -> Đủ tiêu chuẩn làm Ca sử dụng.\n  - Phân tích phương án sai:\n    - Nhập ký tự tìm kiếm: Thao tác nhập liệu nguyên tử đơn lẻ (atomic step), quá vụn vỡ.\n    - Lưu dữ liệu vào CSDL: Xử lý kỹ thuật nội bộ của máy chủ backend, không phải tương tác giữa tác nhân và hệ thống.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 4 & 22) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 22"
   },
   {
@@ -4391,7 +4391,7 @@
     "correctAnswers": [
       "Nhập sản phẩm - ghi nhận đã đưa sản phẩm vào kho."
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Một ca sử dụng phải biểu diễn một quy trình nghiệp vụ cơ bản (EBP - Elementary Business Process) đem lại giá trị nghiệp vụ đo đếm được. \"Quét mã vạch sản phẩm\" chỉ là một thao tác đơn lẻ (atomic step) nằm trong Use Case Thanh toán đơn hàng, quá vụn vỡ để đứng thành một Use Case độc lập.\n  - Phân tích phương án sai:\n    - Thanh toán đơn hàng: Là ca sử dụng hoàn chỉnh (EBP), tạo ra giá trị nghiệp vụ trực tiếp (hoàn tất giao dịch mua bán).\n    - Đăng ký hội viên: Ca sử dụng hoàn chỉnh, giúp khách hàng tham gia chương trình ưu đãi.\n    - Đặt hàng từ nhà cung cấp: Ca sử dụng hoàn chỉnh của quản lý kho.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 4 - Khái niệm EBP) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 22"
   },
   {
@@ -4522,7 +4522,7 @@
       "Máy khách gửi thông điệp xác thực người dùng đến máy chủ ứng dụng.",
       "Máy chủ ứng dụng gửi thông điệp xác nhận tài khoản đăng nhập đến máy chủ dữ liệu."
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong kiến trúc 3 dãy (3-tier Architecture) tiêu chuẩn:\n    1. Dãy giao diện (Máy khách) chỉ giao tiếp với Dãy ứng dụng (Máy chủ ứng dụng).\n    2. Dãy ứng dụng (Máy chủ ứng dụng) giao tiếp với Dãy dữ liệu (Máy chủ CSDL).\n  - Phân tích phương án sai:\n    - Máy khách gửi thông điệp trực tiếp đến máy chủ dữ liệu: Sai vì vi phạm nguyên tắc phân tầng (máy khách không được vượt tầng truy cập thẳng CSDL).\n    - Máy chủ dữ liệu gửi thông điệp nhập dữ liệu đến máy khách: Sai chiều luồng gọi dữ liệu.\nSlide đối chiếu: Slide 20222-KienTrucHeThong.pdf (Trang 23-25 - Luồng giao tiếp Kiến trúc 3-dãy) & Slide Tk1-KienTrucTongQuan.pdf (Trang 27).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 26"
   },
   {
@@ -4565,7 +4565,7 @@
     "correctAnswers": [
       "4"
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Chiến lược Làm phẳng cây kế thừa (Flat Extension / Single Table Inheritance) gộp tất cả các thuộc tính của lớp cha và các lớp con vào duy nhất một lớp gốc/bảng C. Trong tình huống đề bài, số lượng thuộc tính tối thiểu bao gồm: (1) Khóa chính id, (2) Thuộc tính lớp cha, (3) Thuộc tính riêng của lớp con, và (4) Thuộc tính phân loại type (discriminator column). Tổng cộng tối thiểu là 4 thuộc tính.\n  - Phân tích phương án sai:\n    - 2 hoặc 3: Thiếu thuộc tính của các lớp con hoặc thiếu cột phân loại type.\n    - 5: Dư thừa thuộc tính không cần thiết.\nSlide đối chiếu: Slide 20222-ThietKeLuuTruCoDinh.pdf (Trang 15 - Chiến lược R9c Làm phẳng cây kế thừa) & Slide Tk4-CoSoDuLieu.pdf (Trang 12).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 27"
   },
   {
@@ -4866,7 +4866,7 @@
       "Vẽ đường liên kết nét liền nối tác nhân và Thanh toán giỏ hàng",
       "Vị trí Y - <<include>>"
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng:\n    1. Tác nhân Nhân viên Thu ngân trực tiếp khởi tạo ca sử dụng Thanh toán Giỏ hàng, do đó cần vẽ đường liên kết nét liền (Association) nối giữa tác nhân và Use Case này.\n    2. Vì ca sử dụng Thanh toán Giỏ hàng khi thực hiện luôn luôn kéo theo việc Tính tiền đơn hàng, mối quan hệ giữa chúng bắt buộc là quan hệ bao gồm <<include>> tại vị trí Y (mũi tên nét đứt <<include>> chỉ từ Thanh toán Giỏ hàng sang Tính tiền đơn hàng).\n  - Phân tích phương án sai:\n    - Vẽ đường liên kết nét liền nối tác nhân và Tính tiền đơn hàng: Sai vì ca sử dụng Tính tiền đơn hàng được hệ thống tự động bao gồm thực hiện, tác nhân không cần tương tác trực tiếp.\n    - Vị trí Y - <<extend>>: Sai vì quan hệ <<extend>> chỉ áp dụng cho mở rộng tùy chọn/có điều kiện, không dùng cho trường hợp \"luôn luôn kéo theo\".\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23-24 - Mối quan hệ Include và Extend) & Slide uml-2.5.1.pdf (Trang 643 - Figure 18.4 Example Include).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 40"
   },
   {
@@ -4931,7 +4931,7 @@
       "Vị trí X - 1: tạo khóa học ()",
       "Vị Trí Y - 2: khóa học"
     ],
-    "explanation": "Đáp án chính thức trích xuất từ hệ thống thi cuối kỳ IT3120: b. Vị trí X - 1: tạo khóa học (), d. Vị Trí Y - 2: khóa học\nĐề thi Kíp 5: Attempt review | BLEARNING HUST\n6/17. ",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Dựa trên quy chuẩn vẽ Sơ đồ tuần tự UML:\n    1. Vị trí X là thông điệp gọi hàm tạo đối tượng khởi đầu từ Actor/Controller, có nhãn 1: tạo khóa học ().\n    2. Vị trí Y là tên thông điệp trả về (hoặc đối tượng khóa học được khởi tạo) có nhãn 2: khóa học.\n  - Phân tích phương án sai:\n    - Đảo ngược vị trí X và Y: Sai trình tự thời gian của thông điệp gọi hàm và thông điệp trả về.\nSlide đối chiếu: Slide 20222-Ch04-MoHinhHoaHanhVi.pdf (Trang 17 - Cú pháp thông điệp sơ đồ tuần tự) & Slide uml-2.5.1.pdf (Trang 636).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 42"
   },
   {
@@ -5291,7 +5291,7 @@
     "correctAnswers": [
       "Phân rã hệ thống thành các mô-đun và cứ tiếp tục phân rã các mô-đun thành các mô-đun nhỏ hơn cho tới khi thu được các chức năng đủ nhỏ và cụ thể."
     ],
-    "explanation": "Phương pháp phân rã chức năng từ trên xuống (Functional Decomposition) là đặc trưng của phương pháp phân tích thiết kế hướng cấu trúc (Structured Analysis and Design - SAD), hoàn toàn trái ngược với phương pháp tiếp cận hướng đối tượng (OOAD) dựa trên các đối tượng tương tác.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Việc \"Phân rã chức năng từ trên xuống (Functional Decomposition)\" thành các mô-đun nhỏ dần là đặc trưng cốt lõi của Phương pháp Phân tích & Thiết kế Hướng cấu trúc (Structured Analysis & Design - SAD), hoàn toàn trái ngược với tư tưởng của Phương pháp Hướng đối tượng (OOAD).\n  - Phân tích phương án sai: OOAD có 3 đặc trưng nổi bật: (1) Phát triển lặp và tăng dần (Iterative & Incremental), (2) Dẫn dắt bởi ca sử dụng (Use Case Driven), và (3) Xem hệ thống như tập hợp các đối tượng tương tác qua thông điệp.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 28 - Đặc trưng của OOAD) & Slide oosad-pp1.pdf (Trang 5).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20251.pdf — Trang 5"
   },
   {
@@ -5480,7 +5480,7 @@
     "correctAnswers": [
       "Hiểu bài toán và yêu cầu nghiệp vụ"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Hiểu bài toán và yêu cầu nghiệp vụ.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Giai đoạn Phân tích hệ thống (System Analysis) tập trung hoàn toàn vào việc thấu hiểu bài toán và yêu cầu nghiệp vụ của khách hàng (xác định hệ thống phải làm CÁI GÌ - WHAT) mà chưa đi sâu vào giải pháp cài đặt công nghệ cụ thể.\n  - Phân tích phương án sai:\n    - Lập trình: Hoạt động của pha Thực thi (Implementation).\n    - Kiểm thử hệ thống: Hoạt động của pha Kiểm thử (Testing).\n    - Tạo tài liệu hướng dẫn: Hoạt động ở pha Chuyển giao (Transition).\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 13 - Mục tiêu pha Phân tích) & Slide SDLC.pdf (Trang 4).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 1"
   },
   {
@@ -5606,7 +5606,7 @@
     "correctAnswers": [
       "Các đối tượng nghiệp vụ và mối quan hệ giữa chúng"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Các đối tượng nghiệp vụ và mối quan hệ giữa chúng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mô hình đối tượng nghiệp vụ (Business Object Model - BOM) mô tả cấu trúc nội bộ của doanh nghiệp dưới góc nhìn đối tượng: bao gồm các đối tượng nghiệp vụ (Business Entities) và nhân viên nghiệp vụ (Business Workers) cùng các mối quan hệ tương tác giữa chúng để thực thi quy trình.\n  - Phân tích phương án sai:\n    - Các quy trình nghiệp vụ: Mô tả bởi Business Use Case Model hoặc Activity Diagram.\n    - Các yêu cầu kỹ thuật: Thuộc về pha Thiết kế kiến trúc phần mềm.\n    - Các thiết bị phần cứng: Mô tả bởi Deployment Diagram.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 4 - Khái niệm BOM) & Slide PattersonSuperstore_vi.pdf (Trang 13).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 1"
   },
   {
@@ -5753,7 +5753,7 @@
     "correctAnswers": [
       "Để định hướng phát triển thống nhất và kiểm soát chất lượng"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Để định hướng phát triển thống nhất và kiểm soát chất lượng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Kiến trúc tổng thể (System Architecture) đóng vai trò làm khung sườn chỉ dẫn cho toàn bộ dự án, giúp định hướng phát triển thống nhất giữa các đội ngũ, quản lý độ phức tạp và kiểm soát chất lượng phần mềm (hiệu năng, bảo mật, tính mở rộng).\n  - Phân tích phương án sai:\n    - Để dễ viết hướng dẫn sử dụng: Hướng dẫn sử dụng viết dựa trên giao diện UI và kịch bản Use Case, không phụ thuộc sơ đồ kiến trúc.\n    - Để lập trình viên tự do sáng tạo: Trái ngược vì kiến trúc đặt ra các quy chuẩn và khung ràng buộc mà lập trình viên phải tuân thủ.\nSlide đối chiếu: Slide 20222-KienTrucHeThong.pdf (Trang 7 - Vai trò của kiến trúc hệ thống) & Slide Tk1-KienTrucTongQuan.pdf (Trang 5).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 2"
   },
   {
@@ -5816,7 +5816,7 @@
     "correctAnswers": [
       "Extend"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Extend.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ tuần tự UML, đường kẻ đứt nét thẳng đứng kéo dài xuống từ mỗi đối tượng được gọi là Đường sinh mệnh (Lifeline), biểu diễn sự tồn tại của đối tượng theo trục thời gian từ trên xuống dưới.\n  - Phân tích phương án sai:\n    - Trục phân rã (Decomposition axis): Không phải thuật ngữ chuẩn trong UML.\n    - Thanh kích hoạt (Execution Specification): Là hình chữ nhật mỏng nằm đè lên đường sinh mệnh thể hiện khoảng thời gian đối tượng thực thi phương thức.\n    - Đường ranh giới (Boundary line): Thuộc biểu đồ kiến trúc/giao diện.\nSlide đối chiếu: Slide 20222-Ch04-MoHinhHoaHanhVi.pdf (Trang 16 - Các thành phần trong Sơ đồ tuần tự) & Slide uml-2.5.1.pdf (Trang 635).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 2"
   },
   {
@@ -6026,7 +6026,7 @@
     "correctAnswers": [
       "Gắn với quy trình nghiệp vụ thay vì giao diện cụ thể"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Gắn với quy trình nghiệp vụ thay vì giao diện cụ thể.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Để dễ bảo trì và nâng cao khả năng tái sử dụng, Use Case cần được mô tả ở mức Thiết yếu (Essential), tức gắn liền với bản chất quy trình nghiệp vụ. Nhờ đó, khi thay đổi thiết kế giao diện (UI) hay công nghệ, logic Use Case vẫn giữ nguyên mà không phải sửa đổi lại.\n  - Phân tích phương án sai:\n    - Gắn liền chặt chẽ với giao diện đồ họa: Làm Use Case bị phụ thuộc cứng vào UI, hễ đổi giao diện là phải đặc tả lại Use Case.\n    - Liệt kê tất cả các thông báo lỗi: Làm tài liệu bị quá tải chi tiết rườm rà không cần thiết.\n    - Tập trung vào yêu cầu phần cứng: Sai định hướng vì Use Case tập trung vào chức năng nghiệp vụ, không mô tả hạ tầng phần cứng.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 31 & 34) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 3"
   },
   {
@@ -6131,7 +6131,7 @@
     "correctAnswers": [
       "Một khuôn mẫu định nghĩa thuộc tính và hành vi của đối tượng"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Một khuôn mẫu định nghĩa thuộc tính và hành vi của đối tượng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong lập trình và thiết kế hướng đối tượng (OOP/OOD), một Lớp (Class) là một khuôn mẫu / bản thiết kế trừu tượng (blueprint) định nghĩa các thuộc tính (dữ liệu) và hành vi (phương thức) chung cho tập hợp các đối tượng cùng kiểu.\n  - Phân tích phương án sai:\n    - Một bảng cơ sở dữ liệu: Khái niệm của CSDL quan hệ (RDBMS Table).\n    - Một đoạn mã nguồn: Lớp được thể hiện bằng mã nguồn nhưng định nghĩa của lớp không chỉ là một đoạn mã.\n    - Một giao diện người dùng: Là khái niệm màn hình UI.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 5 - Khái niệm Lớp) & Slide 20222-Ch01-TongQuan.pdf (Trang 27).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 3"
   },
   {
@@ -6509,7 +6509,7 @@
     "correctAnswers": [
       "Người trực tiếp nhận giá trị từ hệ thống"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Người trực tiếp nhận giá trị từ hệ thống.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Tác nhân chính (Primary Actor) là tác nhân khởi tạo ca sử dụng để yêu cầu hệ thống cung cấp một dịch vụ trọn vẹn và là người trực tiếp nhận giá trị nghiệp vụ có thể đo lường được từ ca sử dụng đó.\n  - Phân tích phương án sai:\n    - Người đứng ngoài hệ thống: Mọi Actor đều nằm ngoài biên hệ thống, nhưng đây không phải định nghĩa cốt lõi của Primary Actor.\n    - Hệ thống máy chủ / CSDL backend: Là hạ tầng bên trong hoặc tác nhân phụ (Secondary Actor), không phải Primary Actor.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 33 - Thành phần trong Đặc tả Use Case) & Slide uml-2.5.1.pdf (Trang 639).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 5"
   },
   {
@@ -6615,7 +6615,7 @@
     "correctAnswers": [
       "Thay đổi một thành phần không ảnh hưởng lớn đến thành phần khác"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Thay đổi một thành phần không ảnh hưởng lớn đến thành phần khác.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Aggregation (Kết tập - ◇) biểu diễn mối quan hệ sở hữu yếu (Shared Aggregation), trong đó đối tượng bộ phận có thể tồn tại độc lập khi đối tượng tổng thể bị hủy. Ngược lại, Composition (Hợp thành - ◆) là sở hữu mạnh (Composite Aggregation), đối tượng bộ phận bị hủy cùng lúc với đối tượng tổng thể.\n  - Phân tích phương án sai:\n    - Aggregation có quan hệ mạnh hơn: Sai vì Composition mới là quan hệ sở hữu mạnh hơn.\n    - Cả hai giống hệt nhau: Sai vì khác nhau về ràng buộc vòng đời (Lifetime dependence).\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 21-22 - Phân biệt Aggregation và Composition) & Slide uml-2.5.1.pdf (Trang 129).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 6"
   },
   {
@@ -6657,7 +6657,7 @@
     "correctAnswers": [
       "Một Use Case chính bao gồm một Use Case phụ"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Một Use Case chính bao gồm một Use Case phụ.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mối quan hệ <<include>> (Bao gồm) biểu diễn việc một Use Case chính (cơ sở) bắt buộc phải chứa/bao gồm hành vi của một Use Case phụ (được bao gồm) trong quá trình thực thi của mình.\n  - Phân tích phương án sai: <<include>> không phải là thực hiện song song, Use Case độc lập, hay Use Case thay thế (<<extend>> mới chứa hành vi mở rộng/thay thế có điều kiện).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23 - Mối quan hệ Include) & Slide uml-2.5.1.pdf (Trang 643).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 6"
   },
   {
@@ -6868,7 +6868,7 @@
     "correctAnswers": [
       "Bất kỳ số lượng nào"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Bất kỳ số lượng nào.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong UML, một Tác nhân (Actor) đại diện cho một vai trò của người dùng hoặc hệ thống ngoại tương tác với hệ thống. Một Actor có thể liên kết (Association) và tương tác với bất kỳ số lượng Use Case nào (từ 1 đến nhiều), tùy thuộc vào phạm vi công việc và quyền hạn nghiệp vụ của vai trò đó.\n  - Phân tích phương án sai: Các giới hạn cứng như \"Chỉ 1\", \"Tối đa 3\", \"Tối đa 5\" đều không tồn tại trong quy chuẩn UML.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22 - Khái niệm Tác nhân và Ca sử dụng) & Slide uml-2.5.1.pdf (Trang 647).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 7"
   },
   {
@@ -7233,7 +7233,7 @@
     "correctAnswers": [
       "Tất cả các đáp án khác đều sai"
     ],
-    "explanation": "Trong biểu đồ Use Case, quan hệ tổng quát hóa (generalization) mô tả quan hệ kế thừa giữa các Actor hoặc giữa các Use Case, không phải giữa lớp cha và lớp con.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ Ca sử dụng (Use Case Diagram), quan hệ Generalization mô tả quan hệ kế thừa giữa các Actor với nhau hoặc giữa các Use Case với nhau. Phương án \"kế thừa giữa lớp cha và lớp con\" là áp dụng cho Sơ đồ lớp (Class Diagram), không phải trong ngữ cảnh Use Case Diagram. Do đó chọn \"Tất cả các đáp án khác đều sai\".\n  - Phân tích phương án sai:\n    - Quan hệ kế thừa giữa lớp cha và lớp con: Áp dụng trong Sơ đồ lớp (Class Diagram), không phải Use Case Diagram.\n    - Quan hệ cộng tác giữa đối tượng: Mô tả trong Sequence Diagram hoặc Communication Diagram.\n    - Quan hệ chia sẻ thuộc tính: Thuộc về thuộc tính trong Class Diagram.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23 - Quan hệ Khái quát hóa trong Use Case) & Slide uml-2.5.1.pdf (Trang 641).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 9"
   },
   {
@@ -7360,7 +7360,7 @@
     "correctAnswers": [
       "Use Case Diagram"
     ],
-    "explanation": "Use Case Diagram được sử dụng trong giai đoạn phân tích để mô tả các chức năng mà hệ thống cung cấp dưới góc nhìn của người dùng (Actor).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mỗi Đặc tả Use Case chứa Luồng sự kiện chính (Basic Flow) cùng các Luồng phụ / Ngoại lệ (Alternative / Exception Flows). Đây chính là các kịch bản sử dụng thực tế đóng vai trò là đầu vào trực tiếp để đội ngũ QA/Tester xây dựng các ca kiểm thử (Test cases).\n  - Phân tích phương án sai: Use Case không cung cấp cấu trúc CSDL (đó là Sơ đồ lớp/ERD) cũng như không mô tả thuật toán chi tiết.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 31 - Ứng dụng của Use Case) & Slide SDLC.pdf (Trang 28).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 9"
   },
   {
@@ -7897,7 +7897,7 @@
     "correctAnswers": [
       "Một lớp con có thể thay thế lớp cha mà không làm thay đổi hành vi mong đợi của chương trình"
     ],
-    "explanation": "Nguyên lý thay thế Liskov (LSP) yêu cầu các đối tượng của lớp con có thể thay thế cho các đối tượng của lớp cha mà không làm sai lệch tính đúng đắn hay hành vi mong đợi của chương trình.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Nguyên lý thế chỗ Liskov (LSP) trong SOLID quy định rằng: Các đối tượng thuộc lớp con phải có khả năng thế chỗ các đối tượng thuộc lớp cha mà không làm ảnh hưởng đến tính đúng đắn hay hành vi mong đợi của chương trình.\n  - Phân tích phương án sai:\n    - Một lớp cha phải kế thừa lớp con: Sai chiều quan hệ kế thừa (lớp con mới kế thừa lớp cha).\n    - Lớp con có thể thay đổi hành vi lớp cha tự do: Vi phạm LSP nếu làm hỏng hợp đồng hành vi của lớp cha.\n    - Lớp con không cần thực hiện đầy đủ hành vi: Vi phạm tính nhất quán giao diện.\nSlide đối chiếu: Slide 20222-Ch05-ThietKeLop.pdf (Trang 45 - Các nguyên lý SOLID) & Slide Tk5.1-MauThietKe.pdf (Trang 12).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 12"
   },
   {
@@ -7940,7 +7940,7 @@
     "correctAnswers": [
       "Các bảng dữ liệu và mối quan hệ giữa chúng"
     ],
-    "explanation": "Khi thiết kế cơ sở dữ liệu, bước quan trọng đầu tiên là xác định các thực thể/bảng dữ liệu cùng các thuộc tính và mối quan hệ giữa chúng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Nguyên lý Phân tách Giao diện (ISP) phát biểu rằng: Không nên ép buộc một lớp phải phụ thuộc vào các phương thức mà nó không sử dụng. Do đó, nên chia các interface lớn thành nhiều interface nhỏ, chuyên biệt theo từng vai trò của khách hàng.\n  - Phân tích phương án sai:\n    - Gộp tất cả phương thức vào 1 interface lớn: Tạo ra interface phình to (\"Fat Interface\"), vi phạm ISP.\n    - Không dùng interface trong thiết kế: Vi phạm nguyên lý \"Program to an Interface, not an Implementation\".\nSlide đối chiếu: Slide 20222-Ch05-ThietKeLop.pdf (Trang 45 - Nguyên lý ISP) & Slide 20222-ThietKeLuuTruCoDinh.pdf (Trang 43).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 12"
   },
   {
@@ -8012,7 +8012,7 @@
   },
   {
     "id": 387,
-    "type": "single",
+    "type": "multiple",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
     "text": "Khác biệt chính giữa phân tích hệ thống và thiết kế hệ thống là gì?",
@@ -8022,9 +8022,7 @@
     "options": [
       "Phân tích lập trình hệ thống, thiết kế kiểm thử",
       "Phân tích xác định yêu cầu, thiết kế xác định giải pháp",
-      "A và B đúng",
       "Phân tích cài đặt phần mềm, thiết kế bảo trì hệ thống",
-      "D và F đúng",
       "Phân tích tạo giao diện người dùng, thiết kế viết tài liệu hướng dẫn",
       "Tất cả đều sai"
     ],
@@ -9033,7 +9031,7 @@
     "correctAnswers": [
       "Văn bản"
     ],
-    "explanation": "Câu hỏi từ Đề thi thử PTTKHT kỳ 20221. Đáp án đúng: Văn bản.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Tài liệu Đặc tả Ca sử dụng (Use Case Specification) được trình bày hoàn toàn dưới dạng Văn bản (Textual model) (bao gồm tên, tiền/hậu điều kiện, luồng sự kiện chính, luồng ngoại lệ...). Biểu đồ Ca sử dụng mới là mô hình hình vẽ (Graphical model).\n  - Phân tích phương án sai:\n    - Hình vẽ: Sơ đồ Use Case, Activity Diagram.\n    - Toán học: Các mô hình hình thức (Formal methods / Z-notation).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 31-33 - Đặc tả Ca sử dụng dạng văn bản).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20221.pdf — Trang 1"
   },
   {
@@ -9096,7 +9094,7 @@
     "correctAnswers": [
       "A"
     ],
-    "explanation": "Quan hệ mở rộng (<<extend>>) cho phép chèn thêm hành vi tùy chọn vào ca sử dụng cơ sở tại điểm mở rộng xác định.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Khi ca sử dụng cơ sở (Đặt vé) bắt buộc luôn luôn đòi hỏi thực hiện ca sử dụng phụ (Xác thực tài khoản), mối quan hệ giữa chúng là Quan hệ bao gồm <<include>>. Mũi tên nét đứt có nhãn <<include>> phải xuất phát từ ca sử dụng cơ sở (Đặt vé) trỏ tới ca sử dụng được bao gồm (Xác thực tài khoản).\n  - Phân tích phương án sai:\n    - Dùng <<extend>>: Sai vì <<extend>> chỉ dành cho hành vi mở rộng tùy chọn/có điều kiện.\n    - Đảo chiều mũi tên <<include>>: Mũi tên trỏ ngược từ Xác thực tài khoản sang Đặt vé là sai quy chuẩn UML.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23-24 - Quan hệ Include) & Slide uml-2.5.1.pdf (Trang 643 - Figure 18.4).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20221.pdf — Trang 1"
   },
   {
@@ -9138,7 +9136,7 @@
     "correctAnswers": [
       "Thực tế, Chi tiết"
     ],
-    "explanation": "Câu hỏi từ Đề thi thử PTTKHT kỳ 20221. Đáp án đúng: Thực tế, Chi tiết.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Ca sử dụng Thực tế (Real Use Case) quy định rõ ràng các phương tiện, công nghệ và thành phần giao diện vật lý cụ thể (như màn hình, nút bấm, lệnh SQL); kết hợp với mức độ Chi tiết (Detailed/Expanded) đặc tả rành mạch từng bước của luồng sự kiện.\n  - Phân tích phương án sai:\n    - Thiết yếu, Khái quát: Chỉ mô tả tổng quan mục đích nghiệp vụ, hoàn toàn trừu tượng hóa khỏi phương tiện công nghệ.\n    - Thiết yếu, Chi tiết: Mô tả chi tiết từng bước nghiệp vụ nhưng không gắn với các phương tiện/giao diện công nghệ cụ thể.\n    - Thực tế, Khái quát: Mô tả tổng quan ngắn gọn có nhắc tới công nghệ nhưng chưa liệt kê luồng sự kiện chi tiết.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 34 - Phân loại ca sử dụng) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20221.pdf — Trang 1"
   },
   {
@@ -9579,7 +9577,7 @@
     "correctAnswers": [
       "Phân tích"
     ],
-    "explanation": "Mô hình hóa chức năng (Functional Modeling - thông qua sơ đồ ca sử dụng, đặc tả ca sử dụng, sơ đồ hoạt động) là hoạt động trọng tâm của pha Phân tích (Analysis) trong vòng đời phát triển hệ thống (SDLC) nhằm làm rõ hệ thống cần thực hiện những chức năng gì cho người dùng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mô hình hóa chức năng (Functional Modeling) — thực hiện thông qua Sơ đồ Use Case, Đặc tả Use Case và Sơ đồ hoạt động — là hoạt động trọng tâm của pha Phân tích (Analysis) nhằm làm rõ hệ thống phải cung cấp những chức năng nghiệp vụ gì cho người dùng (WHAT).\n  - Phân tích phương án sai:\n    - Lập kế hoạch (Planning): Tập trung xác định nhu cầu, phân tích tính khả thi và lập kế hoạch dự án.\n    - Thiết kế (Design): Tập trung thiết kế giải pháp kỹ thuật (Kiến trúc, CSDL, UI, Chi tiết lớp).\n    - Thực thi (Implementation): Tập trung lập trình, kiểm thử và cài đặt.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 13 - Các hoạt động của Pha Phân tích) & Slide SDLC.pdf (Trang 4).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20241.pdf — Trang 1"
   },
   {
@@ -9601,7 +9599,7 @@
       "Các bên liên quan và mối quan tâm",
       "Sự kiện kích hoạt ca sử dụng"
     ],
-    "explanation": "Mô hình hóa chức năng ở pha phân tích tập trung vào yêu cầu nghiệp vụ (What): xác định các bên liên quan (Stakeholders/Actors) cùng mối quan tâm của họ và các sự kiện kích hoạt ca sử dụng (Triggers). Công nghệ lưu trữ dữ liệu và công nghệ tương tác người-máy là các quyết định kỹ thuật thuộc pha Thiết kế (How).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mô hình hóa chức năng ở pha Phân tích tập trung vào yêu cầu nghiệp vụ (WHAT): xác định Các bên liên quan cùng mối quan tâm (Stakeholders & Actors) và Sự kiện kích hoạt ca sử dụng (Triggers).\n  - Phân tích phương án sai: Công nghệ lưu trữ dữ liệu (DBMS/RDBMS) và Công nghệ tương tác người-máy (UI Framework, Web/Mobile) là các quyết định kỹ thuật thuộc pha Thiết kế (HOW).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 33 - Thành phần trong Đặc tả Use Case) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20241.pdf — Trang 1"
   },
   {
@@ -9643,7 +9641,7 @@
     "correctAnswers": [
       "Tương tác"
     ],
-    "explanation": "Trong sơ đồ ca sử dụng (Use Case Diagram), mối quan hệ kết nối giữa Tác nhân (Actor) và Ca sử dụng (Use Case) là quan hệ Tương tác / Liên kết (Association), thể hiện sự tham gia giao tiếp giữa tác nhân với chức năng của hệ thống.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Đường nối trực tiếp giữa Tác nhân (Actor) và Ca sử dụng (Use Case) biểu diễn mối quan hệ Tương tác / Liên kết (Association), thể hiện sự giao tiếp qua lại giữa người dùng/hệ thống ngoại với chức năng của hệ thống.\n  - Phân tích phương án sai:\n    - Bao gồm (<<include>>): Chỉ nối giữa Use Case với Use Case.\n    - Triển khai (Realization/Deployment): Nối giữa Interface và Class, hoặc giữa phần mềm và nút phần cứng.\n    - Kế thừa: Giữa các Actor với nhau có thể kế thừa, nhưng giữa Actor và Use Case KHÔNG dùng quan hệ kế thừa.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22 - Quan hệ Tương tác) & Slide uml-2.5.1.pdf (Trang 644).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20241.pdf — Trang 1"
   },
   {
@@ -9855,7 +9853,7 @@
       "B",
       "C"
     ],
-    "explanation": "Theo nguyên tắc phân bổ trách nhiệm trong UML, khi một thông điệp được gửi tới một đối tượng nhận (ngọn mũi tên trỏ vào đối tượng đó), lớp của đối tượng nhận phải định nghĩa phương thức tương ứng. Vì lớp A có phương thức +service1() và lớp B có phương thức +service2(), nên chỉ các sơ đồ có thông điệp service2() trỏ vào b:B và thông điệp service1() trỏ vào a:A là tương thích.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Tính năng \"cho phép tùy chỉnh màu nền giao diện\" nhằm nâng cao sự thoải mái và trải nghiệm tương tác của người dùng, thuộc nhóm Yêu cầu vận hành / Khả năng sử dụng (Usability Requirement) trong khung FURPS.\n  - Phân tích phương án sai:\n    - Yêu cầu chức năng: Mô tả các xử lý nghiệp vụ cốt lõi (như Đặt hàng, Tính tiền).\n    - Yêu cầu bảo mật: Quy định về xác thực, phân quyền, mã hóa.\n    - Yêu cầu về độ tin cậy: Quy định về thời gian hoạt động liên tục (Uptime), khôi phục sự cố.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 57-58 - Khung FURPS) & Slide 20222-ThietKeGiaoDien.pdf (Trang 5).",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20241.pdf — Trang 2"
   },
   {
@@ -9939,7 +9937,7 @@
     "correctAnswers": [
       "Hình thứ nhất"
     ],
-    "explanation": "Khi ca sử dụng A luôn kéo theo việc thực hiện ca sử dụng B (quan hệ bắt buộc), ta dùng quan hệ <<include>>. Trong UML, mũi tên <<include>> luôn vẽ bằng nét đứt và hướng từ ca sử dụng cơ sở (Base Use Case - Do A) sang ca sử dụng được bao hàm (Included Use Case - Do B).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Quan hệ Hợp thành (Composition) là dạng kết tập mạnh nhất (Strong Aggregation), biểu diễn quan hệ bộ phận-tổng thể trong đó đối tượng bộ phận A có vòng đời phụ thuộc chặt chẽ vào đối tượng chỉnh thể B (khi B bị hủy thì A bị hủy theo). Ký hiệu UML là hình thoi đặc (◆) ở phía B.\n  - Phân tích phương án sai:\n    - Quan hệ Kết tập (Aggregation): Quan hệ sở hữu yếu (Shared Aggregation), đối tượng A có thể tồn tại độc lập khi B bị hủy (hình thoi rỗng ◇).\n    - Quan hệ Kế thừa (Generalization): Quan hệ phân cấp \"is-a\" (lớp con - lớp cha).\n    - Quan hệ Phụ thuộc (Dependency): Quan hệ sử dụng tạm thời (< - - -).\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 21-22 - Quan hệ Hợp thành) & Slide uml-2.5.1.pdf (Trang 129).",
     "scope": "Biểu đồ Ca sử dụng (Use Case Diagram)"
   },
   {
@@ -10198,7 +10196,7 @@
       "Thiết yếu, Chi tiết",
       "Thiết yếu, Khái quát"
     ],
-    "explanation": "Trong giai đoạn Phân tích (Analysis), chúng ta tập trung vào bản chất nghiệp vụ (Làm cái gì - What) mà chưa gắn với công nghệ hay giao diện cụ thể, do đó các ca sử dụng được xác định là Ca sử dụng Thiết yếu (Essential Use Case) ở cả mức Khái quát (High-level/Overview) và Chi tiết (Expanded/Detailed). Ca sử dụng Thực tế (Real Use Case) gắn liền với thiết kế giao diện cụ thể nên thuộc về giai đoạn Thiết kế.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong giai đoạn Phân tích (Analysis), ca sử dụng luôn được mô tả theo góc nhìn Thiết yếu (Essential) — tức trừu tượng hóa khỏi công nghệ/giao diện cụ thể — bao gồm ở cả mức Khái quát (Overview/High-level) và mức Chi tiết (Expanded/Detailed).\n  - Phân tích phương án sai: Ca sử dụng Thực tế (Real Use Case) quy định giao diện, công nghệ và phần cứng cụ thể nên chỉ thuộc về giai đoạn Thiết kế (Design).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 34 - Khái niệm Ca sử dụng Thiết yếu và Ca sử dụng Thực tế) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Phân tích yêu cầu & Mô hình hóa Ca sử dụng"
   },
   {
@@ -10473,7 +10471,7 @@
     "correctAnswers": [
       "Ở 1 thời điểm chỉ có 1 khung nhìn View1 hoặc View2 được hiển thị."
     ],
-    "explanation": "Trong sơ đồ bố cục giao diện (theo chuẩn IFML / UML Profile cho thiết kế giao diện), ký hiệu [XOR] gắn trên khung chứa TopView chỉ ra rằng các khung nhìn con bên trong (View1 và View2) có quan hệ loại trừ lẫn nhau: tại một thời điểm trên màn hình, chỉ duy nhất một trong hai khung nhìn View1 hoặc View2 được kích hoạt và hiển thị cho người dùng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong mô hình hóa bố cục giao diện (chuẩn IFML / UML UI Modeling), ràng buộc [XOR] (Tuyển loại - Exclusive OR) quy định rằng các khung nhìn con bên trong (View1, View2) loại trừ lẫn nhau: tại một thời điểm nhất định trên màn hình, chỉ duy nhất một khung nhìn được kích hoạt và hiển thị cho người dùng.\n  - Phân tích phương án sai:\n    - Các khung nhìn View1 và View2 được hiển thị đồng thời: Sai vì [XOR] không cho phép hiển thị song song.\n    - Người lập trình tự lựa chọn triển khai View1 hoặc View2: Sai vì đây là quy định hành vi giao diện người dùng lúc runtime, không phải quyết định bỏ qua mã nguồn.\nSlide đối chiếu: Slide 20222-ThietKeGiaoDien.pdf (Trang 53 - Ràng buộc phân vùng giao diện IFML).",
     "scope": "Tổng ôn 1 - Câu 5"
   },
   {
@@ -10599,7 +10597,7 @@
     "correctAnswers": [
       "Khái quát hóa"
     ],
-    "explanation": "Trong sơ đồ ca sử dụng (CSD - Use Case Diagram), các loại liên kết được sử dụng bao gồm: Liên kết giao tiếp (Association giữa tác nhân và ca sử dụng), Quan hệ <<include>>, Quan hệ <<extend>>, và Quan hệ Khái quát hóa (Generalization giữa các tác nhân hoặc giữa các ca sử dụng). Kết tập (Aggregation) và Hợp thành (Composition) chỉ xuất hiện trong sơ đồ lớp.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong Sơ đồ Ca sử dụng (CSD - Use Case Diagram), các liên kết hợp lệ bao gồm: Liên kết giao tiếp (Association), Quan hệ Bao gồm (<<include>>), Quan hệ Mở rộng (<<extend>>), và Quan hệ Khái quát hóa (Generalization) giữa các Actor hoặc giữa các Use Case.\n  - Phân tích phương án sai:\n    - Kết tập (Aggregation) & Hợp thành (Composition): Chỉ xuất hiện trong Sơ đồ lớp (Class Diagram).\n    - Phụ thuộc (Dependency): Mặc dù <<include>> và <<extend>> là dạng đặc biệt của Dependency, tên loại liên kết cơ bản chuẩn mực giữa 4 lựa chọn trên là Khái quát hóa.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22-23 - Mối quan hệ trong Sơ đồ Use Case) & Slide uml-2.5.1.pdf (Trang 641).",
     "scope": "Tổng ôn 1 - Câu 11"
   },
   {
@@ -10685,7 +10683,7 @@
       "Biểu diễn hộp đen của hệ thống",
       "Phong cách thiết yếu"
     ],
-    "explanation": "Câu mô tả 'Người dùng nhập các thông tin chi tiết về sản phẩm sau đó yêu cầu lưu dữ liệu' chỉ nêu mục đích và dữ liệu nghiệp vụ cần tương tác mà không gắn với công nghệ hay phần tử giao diện cụ thể (như bấm nút Save, gõ vào Textbox, hay câu lệnh SQL bên trong). Vì vậy, mô tả này mang 'Phong cách thiết yếu' (Essential style - trừu tượng hóa khỏi công nghệ cụ thể) và 'Biểu diễn hộp đen của hệ thống' (Black-box view - chỉ nhìn tương tác từ bên ngoài mà không đi vào cấu trúc xử lý nội bộ).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng:\n    1. Phong cách thiết yếu (Essential style): Mô tả tập trung vào ý định và dữ liệu nghiệp vụ trừu tượng, không bị phụ thuộc vào các phần tử UI hay công nghệ cụ thể.\n    2. Biểu diễn hộp đen (Black-box view): Coi hệ thống như một hộp đen, chỉ mô tả luồng giao tiếp tương tác giữa người dùng và hệ thống từ góc nhìn bên ngoài.\n  - Phân tích phương án sai:\n    - Biểu diễn hộp trắng (White-box view): Phải đi sâu vào cấu trúc mã nguồn, bảng CSDL và luồng xử lý nội bộ.\n    - Phong cách thực tế (Real style): Phải ghi rõ tên nút bấm, ô nhập liệu cụ thể trên màn hình.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 33-34) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "Tổng ôn 1 - Câu 15"
   },
   {
@@ -10706,7 +10704,7 @@
     "correctAnswers": [
       "Lựa chọn thứ ba"
     ],
-    "explanation": "Khi ca sử dụng Do B dùng để nới rộng phạm vi cho ca sử dụng cơ sở Do A và chỉ được kích hoạt có điều kiện, mối quan hệ giữa chúng là <<Extend>>. Theo quy chuẩn UML, quan hệ <<Extend>> được vẽ bằng mũi tên nét đứt có hướng đi từ ca sử dụng mở rộng (Do B) trỏ về ca sử dụng cơ sở (Do A). Trong 4 hình vẽ, Lựa chọn thứ ba biểu diễn mũi tên nét đứt <<Extend>> hướng từ Do B sang Do A là hoàn toàn chính xác.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mối quan hệ <<extend>> (nới rộng) được sử dụng để bổ sung các hành vi tùy chọn/có điều kiện vào ca sử dụng cơ sở. Ký hiệu UML chuẩn mực cho quan hệ này là một đường nét đứt có nhãn <<extend>> với đầu mũi tên hướng từ ca sử dụng mở rộng (Do B) trỏ về ca sử dụng cơ sở (Do A). Lựa chọn thứ ba biểu diễn chính xác chiều mũi tên nét đứt <<extend>> từ Do B trỏ về Do A.\n  - Phân tích phương án sai:\n    - Lựa chọn thứ nhất: Biểu diễn quan hệ bao gồm <<include>> từ Do A sang Do B (dùng cho hành vi bắt buộc phải thực hiện, không phải mở rộng có điều kiện).\n    - Lựa chọn thứ hai: Mũi tên nét đứt <<extend>> trỏ ngược từ Do A sang Do B (sai chiều mũi tên chuẩn quy định trong UML).\n    - Lựa chọn thứ tư: Biểu diễn đường liên kết nét liền (chỉ dùng cho tương tác giữa Tác nhân và Ca sử dụng).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23-24 - Quan hệ Nới rộng <<extend>>) & Slide uml-2.5.1.pdf (Trang 643 - Figure 18.3).",
     "scope": "Tổng ôn 1 - Câu 16"
   },
   {
@@ -10917,7 +10915,7 @@
     "correctAnswers": [
       "Mở rộng"
     ],
-    "explanation": "Trong sơ đồ ca sử dụng (CSD - Use Case Diagram), các loại liên kết hợp lệ bao gồm: Liên kết giao tiếp (Association giữa tác nhân và ca sử dụng), Quan hệ Bao gồm (<<include>>), Quan hệ Mở rộng (<<extend>>), và Quan hệ Khái quát hóa (Generalization). Kết tập (Aggregation) và Hợp thành (Composition) chỉ xuất hiện trong sơ đồ lớp.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mối quan hệ Mở rộng (<<extend>>) là một trong các loại liên kết chuẩn chính thức trong Sơ đồ Ca sử dụng (Use Case Diagram), biểu diễn hành vi tùy chọn bổ sung cho ca sử dụng cơ sở.\n  - Phân tích phương án sai: Hợp thành (Composition) và Kết tập (Aggregation) chỉ xuất hiện trong Sơ đồ lớp (Class Diagram).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23-24 - Quan hệ <<extend>>) & Slide uml-2.5.1.pdf (Trang 643).",
     "scope": "Tổng ôn 2 - Câu 6"
   },
   {
@@ -10960,7 +10958,7 @@
       "Thông tin thiết yếu",
       "Biểu diễn hộp đen của hệ thống"
     ],
-    "explanation": "Câu mô tả 'Người dùng nhập các thông tin chi tiết về sản phẩm sau đó gửi yêu cầu lưu dữ liệu' chỉ nêu ý định và dữ liệu nghiệp vụ cần tương tác mà không gắn với công nghệ hay phần tử giao diện cụ thể (như bấm nút Save, gõ vào Textbox, hay xử lý SQL nội bộ). Vì vậy, mô tả này mang tính 'Thông tin thiết yếu' (Essential - trừu tượng hóa khỏi công nghệ cụ thể) và 'Biểu diễn hộp đen của hệ thống' (Black-box view - chỉ nhìn tương tác từ bên ngoài mà không đi vào cấu trúc bên trong).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng:\n    - Thông tin thiết yếu: Mô tả tập trung vào ý định và dữ liệu nghiệp vụ trừu tượng, không nhắc đến phần tử UI cụ thể (như ô Textbox, nút Save).\n    - Biểu diễn hộp đen của hệ thống: Mô tả xem hệ thống như một hộp đen (Black-box), chỉ ghi nhận tương tác từ bên ngoài mà không can thiệp vào cấu trúc hay xử lý nội bộ.\n  - Phân tích phương án sai:\n    - Biểu diễn hộp trắng của hệ thống: Cần phải mô tả cấu trúc xử lý nội bộ, bảng CSDL và các lớp bên trong (White-box view).\n    - Thông tin thực tế: Phải chứa các phương tiện công nghệ cụ thể (ví dụ: gõ vào ô txtName, nhấn nút btnSave).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 33-34) & Slide 20222-Ch04-MoHinhHoaHanhVi.pdf (Trang 22 - SSD Black-box view).",
     "scope": "Tổng ôn 2 - Câu 8"
   },
   {
@@ -11263,7 +11261,7 @@
       "Kế thừa",
       "Hợp thành"
     ],
-    "explanation": "Theo thứ tự từ trên xuống dưới trong hình vẽ: (1) Đường nét đứt có đầu mũi tên tam giác rỗng là quan hệ Triển khai / Hiện thực hóa (Realization); (2) Đường nét liền có hình thoi rỗng ở đầu là quan hệ Kết tập (Aggregation); (3) Đường nét liền có đầu mũi tên tam giác rỗng là quan hệ Kế thừa / Khái quát hóa (Generalization); (4) Đường nét liền có hình thoi đặc ở đầu là quan hệ Hợp thành (Composition).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Theo thứ tự từ trên xuống dưới trong hình ảnh:\n    1. Đường nét đứt có đầu mũi tên tam giác rỗng: Quan hệ Triển khai / Hiện thực hóa (Realization / Implementation).\n    2. Đường nét liền có hình thoi rỗng ở đầu: Quan hệ Kết tập (Aggregation).\n    3. Đường nét liền có đầu mũi tên tam giác rỗng: Quan hệ Kế thừa / Khái quát hóa (Inheritance / Generalization).\n    4. Đường nét liền có hình thoi đặc ở đầu: Quan hệ Hợp thành (Composition).\n  - Phân tích phương án sai: Tráo đổi tên gọi giữa các hình thoi (Kết tập vs Hợp thành) hoặc giữa các mũi tên (Kế thừa vs Triển khai) là sai quy chuẩn UML.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 20-21 - Ký hiệu các liên kết) & Slide uml-2.5.1.pdf (Trang 129).",
     "scope": "NBN 12/10 - Câu 3"
   },
   {
@@ -11618,7 +11616,7 @@
       "Thường gặp trong giai đoạn thiết kế",
       "Có sử dụng biểu diễn bên trong của hệ thống"
     ],
-    "explanation": "Mô tả đề cập trực tiếp đến các thành phần và vị trí giao diện cụ thể ('trang mô tả sản phẩm', 'nhấn nút Gửi yêu cầu ở góc phải bên dưới màn hình') nên thuộc phong cách Thực tế (Real/Concrete style), thường gặp trong giai đoạn Thiết kế. Đồng thời, câu mô tả chỉ đứng từ góc nhìn tương tác bên ngoài của người dùng với hệ thống chứ không mô tả cấu trúc xử lý bên trong, nên vẫn là biểu diễn hộp đen của hệ thống.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng:\n    1. Thường gặp trong giai đoạn thiết kế: Mô tả đề cập trực tiếp đến phần tử UI vật lý và vị trí cụ thể ('trang mô tả sản phẩm', 'nhấn nút Gửi yêu cầu ở góc phải bên dưới màn hình') -> Đặc tả ca sử dụng thực tế (Real Use Case) ở pha Thiết kế.\n    2. Có sử dụng biểu diễn bên trong của hệ thống: Việc quy định chi tiết vị trí màn hình và nút bấm thể hiện các quyết định thiết kế cấu trúc bên trong ứng dụng.\n  - Phân tích phương án sai:\n    - Thường gặp trong giai đoạn phân tích: Pha phân tích sử dụng ca sử dụng thiết yếu (Essential), trừu tượng hóa khỏi UI.\n    - Biểu diễn hộp đen thuần túy: Đã can thiệp sâu vào giao diện vật lý cụ thể.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 34 - Ca sử dụng Thực tế) & Slide PattersonSuperstore_vi.pdf (Trang 22).",
     "scope": "NBN 12/10 - Câu 20"
   },
   {
@@ -11681,7 +11679,7 @@
     "correctAnswers": [
       "d"
     ],
-    "explanation": "Theo quy chuẩn UML, Ca sử dụng (CSD - Use Case) luôn được biểu diễn bằng hình elip (hình bầu dục nằm ngang) có ghi tên ca sử dụng ở bên trong.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong UML Use Case Diagram, một Ca sử dụng (Use Case) luôn được chuẩn hóa biểu diễn bằng một hình elip nằm ngang (Hình d).\n  - Phân tích phương án sai:\n    - Hình chữ nhật: Ký hiệu Lớp hoặc Đối tượng.\n    - Hình chữ nhật bo góc: Ký hiệu Hoạt động hoặc Trạng thái.\n    - Hình thoi: Ký hiệu nút Rẽ nhánh hoặc Kết tập.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22) & Slide uml-2.5.1.pdf (Trang 641).",
     "scope": "NBN 12/10 - Câu 23"
   },
   {
@@ -11702,7 +11700,7 @@
     "correctAnswers": [
       "a"
     ],
-    "explanation": "Theo quy chuẩn UML, Ca sử dụng (CSD - Use Case) luôn được biểu diễn bằng hình elip (hình bầu dục nằm ngang) có ghi tên ca sử dụng ở bên trong.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong UML Use Case Diagram, một Ca sử dụng (Use Case) luôn được biểu diễn bằng một Hình elip nằm ngang (Hình a) có chứa tên ca sử dụng bên trong.\n  - Phân tích phương án sai:\n    - Hình chữ nhật: Ký hiệu Lớp (Class) hoặc Đối tượng (Object).\n    - Hình chữ nhật bo tròn góc: Ký hiệu Hoạt động (Activity) hoặc Trạng thái (State).\n    - Hình thoi: Ký hiệu nút Quyết định (Decision) hoặc Kết tập (Aggregation).\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 22) & Slide uml-2.5.1.pdf (Trang 641).",
     "scope": "NBN 12/10 - Câu 24"
   },
   {
@@ -11766,7 +11764,7 @@
     "correctAnswers": [
       "a"
     ],
-    "explanation": "Khi thực hiện ca sử dụng Do A luôn bắt buộc kéo theo việc thực hiện ca sử dụng Do B, mối quan hệ giữa chúng là Bao gồm (<<include>>). Trong UML, quan hệ <<include>> được biểu diễn bằng mũi tên nét đứt hướng từ ca sử dụng cơ sở (Do A) trỏ sang ca sử dụng được bao gồm (Do B) như ở phương án a.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Khi thực hiện ca sử dụng Do A bắt buộc luôn kéo theo việc thực hiện ca sử dụng Do B, mối quan hệ giữa chúng là Quan hệ bao gồm (<<include>>). Theo quy chuẩn UML, quan hệ <<include>> được vẽ bằng đường nét đứt có nhãn <<include>> với đầu mũi tên hướng từ ca sử dụng cơ sở (Do A) trỏ sang ca sử dụng được bao gồm (Do B) — tương ứng với Hình a.\n  - Phân tích phương án sai:\n    - Mũi tên <<extend>>: Dùng cho nới rộng có điều kiện.\n    - Mũi tên <<include>> trỏ ngược từ B sang A: Sai quy chuẩn chiều mũi tên.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 23 - Quan hệ Include) & Slide uml-2.5.1.pdf (Trang 643 - Figure 18.4).",
     "scope": "NBN 12/10 - Câu 27"
   },
   {

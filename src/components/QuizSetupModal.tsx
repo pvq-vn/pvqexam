@@ -84,6 +84,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
   const [seed, setSeed] = useState<string>(
     initialSeed || examDefinitionService.generateUniqueSeed()
   );
+  const [examTitle, setExamTitle] = useState<string>('');
 
   // Shared exam definition recognition state (Section 6)
   const [matchedExamDef, setMatchedExamDef] = useState<ExamDefinition | null>(null);
@@ -210,6 +211,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
         setCheckingSeed(false);
         if (def && def.subjectId === subject.id) {
           setMatchedExamDef(def);
+          if (def.title) setExamTitle(def.title);
           // Restore configuration from shared definition
           if (def.config.mcqCount !== undefined) setMcqCount(def.config.mcqCount);
           if (def.config.essayCount !== undefined) setEssayCount(def.config.essayCount);
@@ -342,6 +344,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
       subjectId: subject.id,
       examFilePath: sources[0] || '',
       examFilePaths: sources,
+      title: examTitle.trim() || undefined,
       mcqCount,
       essayCount,
       shuffleQuestions,
@@ -528,11 +531,11 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
 
           {/* Multi-Chapter / Topic Selection (Section 3.2) */}
           {stats && stats.chapters && stats.chapters.length > 0 && (
-            <div className="p-4 bg-gradient-to-r from-blue-50/70 via-indigo-50/40 to-slate-50 dark:from-slate-800/70 dark:via-slate-800/50 dark:to-slate-800/30 border border-blue-200/80 dark:border-slate-700 rounded-2xl space-y-3">
+            <div className="p-3 sm:p-3.5 bg-gradient-to-r from-blue-50/70 via-indigo-50/40 to-slate-50 dark:from-slate-800/70 dark:via-slate-800/50 dark:to-slate-800/30 border border-blue-200/80 dark:border-slate-700 rounded-xl space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold uppercase tracking-wider text-blue-950 dark:text-blue-200 flex items-center gap-1.5">
-                  <BookOpen size={15} className="text-blue-600 dark:text-blue-400" />
-                  Chủ đề / Chương ôn tập (Chọn nhiều chủ đề):
+                  <BookOpen size={14} className="text-blue-600 dark:text-blue-400" />
+                  Chủ đề / Chương ôn tập:
                 </label>
                 {!matchedExamDef && (
                   <button
@@ -545,9 +548,9 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                 )}
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1 max-h-[148px] overflow-y-auto pr-1 custom-scrollbar">
                 <label
-                  className={`flex items-center justify-between p-2 rounded-xl border text-xs cursor-pointer transition-colors ${
+                  className={`flex items-center justify-between py-1.5 px-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
                     selectedChapters.includes('all')
                       ? 'bg-blue-600 text-white border-blue-600 font-bold shadow-xs'
                       : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700'
@@ -571,7 +574,7 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
                   return (
                     <label
                       key={ch.id}
-                      className={`flex items-center justify-between p-2 rounded-xl border text-xs cursor-pointer transition-colors ${
+                      className={`flex items-center justify-between py-1.5 px-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
                         isChecked && !selectedChapters.includes('all')
                           ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-400 dark:border-blue-700 text-blue-900 dark:text-blue-200 font-semibold'
                           : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
@@ -774,31 +777,28 @@ export const QuizSetupModal: React.FC<QuizSetupModalProps> = ({
             </div>
           </div>
 
-          {/* Seed Input (Section 6) */}
-          <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-            <div className="flex items-center justify-between mb-1.5">
+          {/* Tên đề thi (Exam Title) & Mã đề tự sinh */}
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-1.5">
+            <div className="flex items-center justify-between">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                Mã đề / Seed
+                Tên đề thi:
               </label>
-              <button
-                type="button"
-                onClick={() => setSeed(examDefinitionService.generateUniqueSeed())}
-                className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold cursor-pointer"
-              >
-                <RotateCw size={12} /> Tạo mã mới
-              </button>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 font-medium">
+                <span>Mã đề:</span>
+                <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-1.5 py-0.5 rounded border border-indigo-200 dark:border-indigo-800">
+                  {seed}
+                </span>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                readOnly
-                value={seed}
-                placeholder="VD: A7F3K2"
-                className="w-full p-2.5 bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-mono font-bold tracking-widest text-slate-800 dark:text-slate-100 uppercase outline-none select-all cursor-default"
-              />
-            </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-              Mã đề được hệ thống tự động sinh ngẫu nhiên để tránh trùng lặp. Nhấn &quot;Tạo mã mới&quot; để đổi mã khác. Để làm lại đề thi cũ, vui lòng nhập mã tại Trang chủ.
+            <input
+              type="text"
+              value={examTitle}
+              onChange={(e) => setExamTitle(e.target.value)}
+              placeholder={`VD: Đề luyện tập ${subject.code} (Để trống dùng tên mặc định)`}
+              className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30"
+            />
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              Bạn có thể tự đặt tên cho đề thi để dễ nhớ và quản lý trong lịch sử. Mã đề được hệ thống tự động sinh ngẫu nhiên để tránh trùng lặp.
             </p>
           </div>
         </div>

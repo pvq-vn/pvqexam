@@ -82,6 +82,7 @@ export interface QuizConfig {
   subjectId: string;
   examFilePath: string;
   examFilePaths?: string[];
+  title?: string;
   mcqCount: number;
   essayCount: number;
   shuffleQuestions: boolean;

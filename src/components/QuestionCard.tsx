@@ -698,11 +698,12 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
 
             {/* Side-by-Side arrangement for small image and short options / dropdowns */}
             {canUseSideBySide ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start pt-1">
-                <div className="flex items-center justify-center p-3 rounded-2xl bg-slate-50/70 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-2xs md:sticky md:top-20">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center pt-1">
+                <div className="flex items-center justify-center p-3 rounded-2xl bg-slate-50/70 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-2xs self-center w-full">
                   <RichTextRenderer
                     link={question.link}
                     driveImageId={question.driveImageId}
+                    className="w-full flex justify-center"
                   />
                 </div>
                 <div className="space-y-4">

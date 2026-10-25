@@ -212,9 +212,12 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
     'all' | 'unattempted' | 'attempted' | 'correct' | 'wrong'
   >('all');
   const [filterQuestionScope, setFilterQuestionScope] = useState<string>('all');
+  const [filterQuestionChapter, setFilterQuestionChapter] = useState<string>('all');
   const [copiedAdminSeed, setCopiedAdminSeed] = useState<string | null>(null);
   const [expandedQuestionId, setExpandedQuestionId] = useState<string | number | null>(null);
   const [isAdminCustomExamsExpanded, setIsAdminCustomExamsExpanded] = useState<boolean>(false);
+  const [previewingExam, setPreviewingExam] = useState<{ exam: ExamDefinition; questions: Question[] } | null>(null);
+  const [loadingPreview, setLoadingPreview] = useState(false);
 
   // Custom exam creation modal state
   const [showCreateExamModal, setShowCreateExamModal] = useState(false);
@@ -683,6 +686,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
       setSelectedSourceFilePath(selectedSubject.examFiles[0]?.filePath || '');
     }
     setFilterQuestionScope('all');
+    setFilterQuestionChapter('all');
   }, [selectedSubject, selectedSourceFilePath]);
 
   // Helper to extract common scope prefix (e.g., '2021.1 - Trang 1' -> '2021.1')
@@ -706,6 +710,44 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
       }
     });
     return Array.from(set).sort();
+  }, [questionsList]);
+
+  // Extract available chapters for the currently loaded questions (if source file has chapter classification)
+  const availableChapters = useMemo(() => {
+    const chapterMap = new Map<string, { id: string; name: string; count: number }>();
+    questionsList.forEach((q) => {
+      if (q.chapter !== undefined || q.chapter_name) {
+        const rawKey =
+          q.chapter !== undefined
+            ? String(q.chapter).trim()
+            : (q.chapter_name || '').trim();
+        if (!rawKey) return;
+
+        if (!chapterMap.has(rawKey)) {
+          let name = q.chapter_name ? q.chapter_name.trim() : `Chương ${q.chapter}`;
+          if (
+            q.chapter !== undefined &&
+            q.chapter_name &&
+            !/^chương\s+/i.test(q.chapter_name.trim())
+          ) {
+            name = `Chương ${q.chapter}: ${q.chapter_name.trim()}`;
+          }
+          chapterMap.set(rawKey, { id: rawKey, name, count: 0 });
+        }
+        chapterMap.get(rawKey)!.count++;
+      }
+    });
+
+    if (chapterMap.size === 0) return [];
+
+    return Array.from(chapterMap.values()).sort((a, b) => {
+      const aNum = Number(a.id);
+      const bNum = Number(b.id);
+      if (!Number.isNaN(aNum) && !Number.isNaN(bNum)) {
+        return aNum - bNum;
+      }
+      return a.name.localeCompare(b.name, 'vi', { numeric: true });
+    });
   }, [questionsList]);
 
   // Load questions for selected exam source file & aggregate stats
@@ -783,6 +825,15 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
         if (qScopePrefix !== filterQuestionScope) return false;
       }
 
+      // Filter by Chapter
+      if (filterQuestionChapter !== 'all') {
+        const qChapterKey =
+          q.chapter !== undefined
+            ? String(q.chapter).trim()
+            : (q.chapter_name || '').trim();
+        if (qChapterKey !== filterQuestionChapter) return false;
+      }
+
       if (searchQuestionQuery.trim()) {
         const query = searchQuestionQuery.trim().toLowerCase();
         const matchText = (q.text || '').toLowerCase().includes(query);
@@ -793,7 +844,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
       }
       return true;
     });
-  }, [questionsList, adminQuestionStats, filterQuestionStatus, filterQuestionScope, searchQuestionQuery]);
+  }, [questionsList, adminQuestionStats, filterQuestionStatus, filterQuestionScope, filterQuestionChapter, searchQuestionQuery]);
 
   // Admin Custom Exams (both Private & Public)
   const adminCustomExams = useMemo(() => {
@@ -809,6 +860,61 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
 
   const handleLaunchAdminExam = (def: ExamDefinition) => {
     window.location.hash = `#/quiz/${def.subjectCode}?seed=${def.seed}&from=admin`;
+  };
+
+  const handlePreviewExam = async (exam: ExamDefinition) => {
+    setLoadingPreview(true);
+    try {
+      const targetSub = SUBJECT_CATALOG.find(
+        (s) => s.id === exam.subjectId || s.code.toLowerCase() === exam.subjectCode?.toLowerCase()
+      );
+      const targetPaths =
+        exam.config?.examFilePaths && exam.config.examFilePaths.length > 0
+          ? exam.config.examFilePaths
+          : exam.config?.examFilePath
+          ? [exam.config.examFilePath]
+          : targetSub?.examFiles.map((f) => f.filePath) || [];
+
+      const loadedLists = await Promise.all(
+        targetPaths.map((fp) => loadExamFile(fp).catch(() => []))
+      );
+      let allTarget = loadedLists.flat();
+      const qMap = new Map<string, Question>();
+      allTarget.forEach((q) => {
+        qMap.set(String(q.id), q);
+        if (q.originalNum !== undefined) qMap.set(String(q.originalNum), q);
+      });
+
+      const missing = exam.questionIds.filter((qid) => !qMap.has(String(qid)));
+      if (missing.length > 0 && targetSub) {
+        const remainingPaths = targetSub.examFiles
+          .map((f) => f.filePath)
+          .filter((fp) => !targetPaths.includes(fp));
+        if (remainingPaths.length > 0) {
+          const fallbackLists = await Promise.all(
+            remainingPaths.map((fp) => loadExamFile(fp).catch(() => []))
+          );
+          fallbackLists.flat().forEach((q) => {
+            qMap.set(String(q.id), q);
+            if (q.originalNum !== undefined) qMap.set(String(q.originalNum), q);
+          });
+        }
+      }
+
+      const restored = exam.questionIds
+        .map((qid) => qMap.get(String(qid)))
+        .filter(Boolean) as Question[];
+
+      setPreviewingExam({
+        exam,
+        questions: restored.length > 0 ? restored : allTarget.slice(0, exam.totalQuestions || 40),
+      });
+    } catch (err) {
+      console.error('Lỗi xem trước đề thi:', err);
+      alert('Không thể tải dữ liệu câu hỏi xem trước!');
+    } finally {
+      setLoadingPreview(false);
+    }
   };
 
   const handleCopyAdminSeed = (seed: string) => {
@@ -1787,6 +1893,27 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
                 </select>
               </div>
 
+              {/* Chapter Filter (Only appears when source file has chapter classification) */}
+              {availableChapters.length > 0 && (
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                    Lọc theo chương ({availableChapters.length} chương)
+                  </label>
+                  <select
+                    value={filterQuestionChapter}
+                    onChange={(e) => setFilterQuestionChapter(e.target.value)}
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-semibold outline-none focus:border-blue-500"
+                  >
+                    <option value="all">Tất cả các chương</option>
+                    {availableChapters.map((ch) => (
+                      <option key={ch.id} value={ch.id}>
+                        {ch.name} ({ch.count} câu)
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
               {/* Search Question */}
               <div>
                 <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
@@ -2342,6 +2469,14 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
                   </button>
                   <button
                     type="button"
+                    disabled={loadingPreview}
+                    onClick={() => handlePreviewExam(detailExamRow.exam)}
+                    className="px-3 py-2 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    <Eye size={13} /> {loadingPreview ? 'Đang mở...' : 'Xem trước đề'}
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => handleLaunchAdminExam(detailExamRow.exam)}
                     className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md transition-colors cursor-pointer"
                   >
@@ -2361,7 +2496,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
         typeof document !== 'undefined' &&
         createPortal(
           <div
-            className="fixed inset-0 z-[9999] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
+            className="fixed inset-0 z-[9990] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
             onClick={() => setSelectedExamRow(null)}
           >
           <div
@@ -2957,136 +3092,280 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
       {/* ========================================================================= */}
       {/* MODAL: XEM BÀI LÀM CHI TIẾT CỦA THÍ SINH (Section 10) */}
       {/* ========================================================================= */}
-      {inspectingAttempt && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
-          onClick={() => setInspectingAttempt(null)}
-        >
+      {inspectingAttempt &&
+        typeof document !== 'undefined' &&
+        createPortal(
           <div
-            className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-3xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 text-slate-900 dark:text-slate-100"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[10000] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
+            onClick={() => setInspectingAttempt(null)}
           >
-            {/* Header */}
-            <div className="bg-slate-900 text-white p-5 flex items-center justify-between">
-              <div>
-                <h3 className="font-bold text-lg flex items-center gap-2">
-                  <FileText size={18} className="text-blue-400" />
-                  Chi tiết bài làm: {inspectingAttempt.subjectCode} - {inspectingAttempt.subjectName}
-                </h3>
-                <p className="text-xs text-slate-300 mt-0.5">
-                  Mã đề: <code className="font-mono font-bold text-yellow-300">{inspectingAttempt.seed}</code> · Điểm số:{' '}
-                  <strong className="text-emerald-400 font-bold text-sm">
-                    {inspectingAttempt.score10.toFixed(2)}/10
-                  </strong>{' '}
-                  ({inspectingAttempt.correctCount}/{inspectingAttempt.totalScoredQuestions} câu đúng)
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setInspectingAttempt(null)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            {/* Questions breakdown */}
-            <div className="p-6 space-y-3 max-h-[70vh] overflow-y-auto custom-scrollbar">
-              <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs">
-                <span>
-                  Thời gian làm: <strong>{Math.round(inspectingAttempt.timeSpentSeconds / 60)} phút</strong>
-                </span>
-                <span>
-                  Nộp lúc: <strong>{new Date(inspectingAttempt.submittedAt).toLocaleString('vi-VN')}</strong>
-                </span>
-                <span>
-                  Thí sinh:{' '}
-                  <strong>
-                    {users.find((u) => u.id === inspectingAttempt.userId)?.email || inspectingAttempt.userId || 'Ẩn danh'}
-                  </strong>
-                </span>
+            <div
+              className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-3xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 duration-75 text-slate-900 dark:text-slate-100 will-change-transform"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-slate-900 text-white p-5 flex items-center justify-between">
+                <div>
+                  <h3 className="font-bold text-lg flex items-center gap-2">
+                    <FileText size={18} className="text-blue-400" />
+                    Chi tiết bài làm: {inspectingAttempt.subjectCode} - {inspectingAttempt.subjectName}
+                  </h3>
+                  <p className="text-xs text-slate-300 mt-0.5">
+                    Mã đề: <code className="font-mono font-bold text-yellow-300">{inspectingAttempt.seed}</code> · Điểm số:{' '}
+                    <strong className="text-emerald-400 font-bold text-sm">
+                      {inspectingAttempt.score10.toFixed(2)}/10
+                    </strong>{' '}
+                    ({inspectingAttempt.correctCount}/{inspectingAttempt.totalScoredQuestions} câu đúng)
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setInspectingAttempt(null)}
+                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+                >
+                  <X size={18} />
+                </button>
               </div>
 
-              <div className="space-y-3 pt-2">
-                {inspectingAttempt.questions.map((q, qIdx) => {
-                  const userAns = inspectingAttempt.answers[q.id];
-                  const correctAnswersStr = (q.correctAnswers || []).join(', ');
-                  const isCorrect =
-                    q.type !== 'essay' &&
-                    (q.correctAnswers || []).some(
-                      (ans) =>
-                        String(userAns || '').trim().toLowerCase() ===
-                        String(ans || '').trim().toLowerCase()
-                    );
+              {/* Questions breakdown */}
+              <div className="p-6 space-y-3 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs">
+                  <span>
+                    Thời gian làm: <strong>{Math.round(inspectingAttempt.timeSpentSeconds / 60)} phút</strong>
+                  </span>
+                  <span>
+                    Nộp lúc: <strong>{new Date(inspectingAttempt.submittedAt).toLocaleString('vi-VN')}</strong>
+                  </span>
+                  <span>
+                    Thí sinh:{' '}
+                    <strong>
+                      {users.find((u) => u.id === inspectingAttempt.userId)?.email || inspectingAttempt.userId || 'Ẩn danh'}
+                    </strong>
+                  </span>
+                </div>
 
-                  return (
-                    <div
-                      key={q.id || qIdx}
-                      className={`p-3.5 rounded-xl border text-xs space-y-2 ${
-                        q.type === 'essay'
-                          ? 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700'
-                          : isCorrect
-                          ? 'bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800'
-                          : 'bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-800'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="font-bold text-slate-900 dark:text-slate-100">
-                          Câu {qIdx + 1} (ID #{q.id}):
-                        </span>
-                        <span
-                          className={`px-2 py-0.5 rounded font-bold text-[10px] ${
-                            q.type === 'essay'
-                              ? 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
-                              : isCorrect
-                              ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200'
-                              : 'bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-200'
-                          }`}
-                        >
-                          {q.type === 'essay' ? 'Tự luận' : isCorrect ? 'Đúng' : 'Sai'}
-                        </span>
-                      </div>
+                <div className="space-y-3 pt-2">
+                  {inspectingAttempt.questions.map((q, qIdx) => {
+                    const userAns = inspectingAttempt.answers[q.id];
+                    const correctAnswersStr = (q.correctAnswers || []).join(', ');
+                    const isCorrect =
+                      q.type !== 'essay' &&
+                      (q.correctAnswers || []).some(
+                        (ans) =>
+                          String(userAns || '').trim().toLowerCase() ===
+                          String(ans || '').trim().toLowerCase()
+                      );
 
-                      <p className="font-medium text-slate-800 dark:text-slate-200">{q.text}</p>
-
-                      <div className="flex flex-wrap items-center gap-4 text-[11px] pt-1 border-t border-slate-200/50 dark:border-slate-700/50">
-                        <span>
-                          Thí sinh chọn:{' '}
-                          <strong className="font-bold text-slate-900 dark:text-white">
-                            {userAns ? String(userAns) : '(Bỏ trống)'}
-                          </strong>
-                        </span>
-                        {q.type !== 'essay' && (
-                          <span className="text-emerald-700 dark:text-emerald-400">
-                            Đáp án đúng: <strong>{correctAnswersStr}</strong>
+                    return (
+                      <div
+                        key={q.id || qIdx}
+                        className={`p-3.5 rounded-xl border text-xs space-y-2 ${
+                          q.type === 'essay'
+                            ? 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700'
+                            : isCorrect
+                            ? 'bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800'
+                            : 'bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-800'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-bold text-slate-900 dark:text-slate-100">
+                            Câu {qIdx + 1} (ID #{q.id}):
                           </span>
+                          <span
+                            className={`px-2 py-0.5 rounded font-bold text-[10px] ${
+                              q.type === 'essay'
+                                ? 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+                                : isCorrect
+                                ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200'
+                                : 'bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-200'
+                            }`}
+                          >
+                            {q.type === 'essay' ? 'Tự luận' : isCorrect ? 'Đúng' : 'Sai'}
+                          </span>
+                        </div>
+
+                        <p className="font-medium text-slate-800 dark:text-slate-200">{q.text}</p>
+
+                        <div className="flex flex-wrap items-center gap-4 text-[11px] pt-1 border-t border-slate-200/50 dark:border-slate-700/50">
+                          <span>
+                            Thí sinh chọn:{' '}
+                            <strong className="font-bold text-slate-900 dark:text-white">
+                              {userAns ? String(userAns) : '(Bỏ trống)'}
+                            </strong>
+                          </span>
+                          {q.type !== 'essay' && (
+                            <span className="text-emerald-700 dark:text-emerald-400">
+                              Đáp án đúng: <strong>{correctAnswersStr}</strong>
+                            </span>
+                          )}
+                        </div>
+
+                        {q.explanation && (
+                          <div className="p-2 bg-amber-50 dark:bg-amber-950/40 rounded border border-amber-200/60 dark:border-amber-900/40 text-[11px] text-amber-900 dark:text-amber-200">
+                            <strong>Giải thích:</strong> {q.explanation}
+                          </div>
                         )}
                       </div>
+                    );
+                  })}
+                </div>
+              </div>
 
-                      {q.explanation && (
-                        <div className="p-2 bg-amber-50 dark:bg-amber-950/40 rounded border border-amber-200/60 dark:border-amber-900/40 text-[11px] text-amber-900 dark:text-amber-200">
-                          <strong>Giải thích:</strong> {q.explanation}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+              {/* Footer */}
+              <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setInspectingAttempt(null)}
+                  className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs cursor-pointer"
+                >
+                  Đóng
+                </button>
               </div>
             </div>
+          </div>,
+          document.body
+        )}
 
-            {/* Footer */}
-            <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
-              <button
-                type="button"
-                onClick={() => setInspectingAttempt(null)}
-                className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs cursor-pointer"
-              >
-                Đóng
-              </button>
+      {/* ========================================================================= */}
+      {/* MODAL: XEM TRƯỚC ĐỀ THI DẠNG RÚT GỌN */}
+      {/* ========================================================================= */}
+      {previewingExam &&
+        typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[10000] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
+            onClick={() => setPreviewingExam(null)}
+          >
+            <div
+              className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-3xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 duration-75 text-slate-900 dark:text-slate-100 will-change-transform"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-gradient-to-r from-slate-900 to-indigo-950 text-white p-5 flex items-center justify-between">
+                <div>
+                  <h3 className="font-bold text-lg flex items-center gap-2">
+                    <Eye size={18} className="text-indigo-400" />
+                    Xem trước đề thi: {previewingExam.exam.title || previewingExam.exam.seed}
+                  </h3>
+                  <p className="text-xs text-indigo-200 mt-0.5">
+                    Mã đề: <code className="font-mono font-bold text-yellow-300">{previewingExam.exam.seed}</code> · Môn: {previewingExam.exam.subjectCode} · Tổng số {previewingExam.questions.length} câu hỏi
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPreviewingExam(null)}
+                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Questions list */}
+              <div className="p-6 space-y-3 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                {previewingExam.questions.length === 0 ? (
+                  <div className="text-center py-12 text-slate-500 text-xs">
+                    Không tìm thấy câu hỏi nào trong đề thi này.
+                  </div>
+                ) : (
+                  previewingExam.questions.map((q, qIdx) => {
+                    const correctAnswersStr = (q.correctAnswers || []).join(', ');
+                    return (
+                      <div
+                        key={q.id || qIdx}
+                        className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 text-xs space-y-2"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
+                            <span>Câu {qIdx + 1}</span>
+                            <span className="font-mono text-[10px] text-slate-400 font-normal">
+                              (ID #{q.id})
+                            </span>
+                            {q.chapter !== undefined && (
+                              <span className="px-1.5 py-0.2 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 text-[10px] font-semibold">
+                                Chương {q.chapter}
+                              </span>
+                            )}
+                          </span>
+                          <span className="px-2 py-0.5 rounded font-bold text-[10px] bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 uppercase">
+                            {q.type === 'essay' ? 'Tự luận' : q.type === 'dropdown' ? 'Dropdown' : 'Trắc nghiệm'}
+                          </span>
+                        </div>
+
+                        <p className="font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                          {q.text}
+                        </p>
+
+                        {/* Options */}
+                        {q.options && q.options.length > 0 && (
+                          <div className="space-y-1 pt-1">
+                            {q.options.map((opt) => {
+                              const isCorrect = (q.correctAnswers || []).some(
+                                (ans) => String(ans).trim().toLowerCase() === String(opt.id).trim().toLowerCase()
+                              );
+                              return (
+                                <div
+                                  key={opt.id}
+                                  className={`flex items-start gap-2 p-1.5 rounded-lg border ${
+                                    isCorrect
+                                      ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-medium'
+                                      : 'border-transparent text-slate-600 dark:text-slate-400'
+                                  }`}
+                                >
+                                  <span className={`w-5 h-5 rounded flex items-center justify-center shrink-0 font-bold text-[10px] ${
+                                    isCorrect ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
+                                  }`}>
+                                    {opt.id.toUpperCase()}
+                                  </span>
+                                  <span className="flex-1">{opt.text}</span>
+                                  {isCorrect && <Check size={13} className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {q.type !== 'essay' && (
+                          <div className="text-[11px] pt-1 border-t border-slate-200/50 dark:border-slate-700/50 text-emerald-700 dark:text-emerald-400">
+                            Đáp án đúng: <strong>{correctAnswersStr || '(Chưa có)'}</strong>
+                          </div>
+                        )}
+
+                        {q.explanation && (
+                          <div className="p-2 bg-amber-50 dark:bg-amber-950/40 rounded border border-amber-200/60 dark:border-amber-900/40 text-[11px] text-amber-900 dark:text-amber-200">
+                            <strong>Giải thích:</strong> {q.explanation}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={() => setPreviewingExam(null)}
+                  className="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                >
+                  Đóng xem trước
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const ex = previewingExam.exam;
+                    setPreviewingExam(null);
+                    handleLaunchAdminExam(ex);
+                  }}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md cursor-pointer transition-colors"
+                >
+                  <Play size={13} fill="currentColor" /> Vào làm đề này
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
 
       {/* ========================================================================= */}
       {/* MODAL: TẠO ĐỀ THI TỰ CHỌN (Custom Exam Creator) */}

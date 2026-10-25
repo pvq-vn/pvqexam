@@ -85,7 +85,9 @@ export const RichTextRenderer: React.FC<RichTextProps> = React.memo(
 
         {/* 4. Standalone Image / Google Drive Media (if not already inlined in text) */}
         {primaryMedia && !isMediaInlinedInText && (
-          <SmartMediaRenderer source={primaryMedia} compact={compact} />
+          <div className="flex justify-center w-full">
+            <SmartMediaRenderer source={primaryMedia} compact={compact} />
+          </div>
         )}
       </div>
     );
