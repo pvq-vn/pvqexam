@@ -64,22 +64,23 @@
   },
   {
     "id": 4,
-    "type": "single",
+    "type": "multiple",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
-    "text": "Mục đích của quá trình khảo sát hiện trạng nhằm để?\nA. Tìm hiểu nghiệp vụ chuyên môn, môi trường hoạt động của hệ thống.\nB. Tìm hiểu các chức năng, nhiệm vụ của hệ thống.",
+    "text": "Mục đích của quá trình khảo sát hiện trạng nhằm để?",
     "code": "",
     "table": "",
     "link": "",
     "options": [
-      "A",
-      "A và B",
-      "B"
+      "Tìm hiểu nghiệp vụ chuyên môn, môi trường hoạt động của hệ thống.",
+      "Tìm hiểu các chức năng, nhiệm vụ của hệ thống.",
+      "Cả 2 đáp án đều sai"
     ],
     "correctAnswers": [
-      "A"
+      "Tìm hiểu nghiệp vụ chuyên môn, môi trường hoạt động của hệ thống.",
+      "Tìm hiểu các chức năng, nhiệm vụ của hệ thống."
     ],
-    "explanation": "Khảo sát hiện trạng là bước đầu tiên trong phân tích hệ thống. Nó đòi hỏi phải thu thập thông tin toàn diện về cả quy trình nghiệp vụ chuyên môn, môi trường hoạt động lẫn các chức năng, nhiệm vụ hiện tại để làm nền tảng xây dựng phần mềm mới.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Khảo sát hiện trạng (Current System Analysis) là bước đầu tiên của pha Phân tích nhằm thu thập thông tin toàn diện về cả quy trình/nghiệp vụ chuyên môn & môi trường hoạt động (A) lẫn các chức năng, nhiệm vụ hiện tại (B) để từ đó đề xuất hệ thống mới cải tiến.\n  - Phân tích phương án sai: Chỉ chọn 'A' hoặc chỉ chọn 'B' đều thiếu một khía cạnh quan trọng của quá trình khảo sát hiện trạng.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 13 - Pha Phân tích: Thu thập thông tin & Mô hình hóa hệ thống đang có) & Slide Ch02-MoiTruong&DuAn&YeuCau.pdf (Trang 50).",
     "scope": "2021.1 - Trang 4"
   },
   {
@@ -226,7 +227,7 @@
     "correctAnswers": [
       "Không thể bổ sung hoặc sửa đổi yêu cầu phần mềm"
     ],
-    "explanation": "Mô hình thác nước có tính chất tuần tự cứng nhắc. Yêu cầu của pha trước (Phân tích) phải được hoàn thiện và chốt (đóng băng) trước khi chuyển sang pha sau (Thiết kế). Do đó, việc thay đổi hay bổ sung giữa chừng là không được phép.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mô hình thác nước (Waterfall) là mô hình phát triển theo cấu trúc tuyến tính cổ điển. Đầu ra của pha trước là đầu vào cố định (đã đóng băng) của pha sau, việc quay lại sửa đổi hay bổ sung yêu cầu ở pha Thiết kế là không thể (hoặc rất khó khăn).\n  - Phân tích phương án sai: Việc cho phép tự do sửa đổi/bổ sung yêu cầu giữa chừng chỉ xuất hiện trong các mô hình phát triển chia pha, nguyên mẫu hoặc Agile.\nSlide đối chiếu: Slide SDLC.pdf (Trang 5-6 & Trang 12 - Khả năng tiếp nhận thay đổi & tính tuần tự của mô hình Thác nước).",
     "scope": "2021.1 - Trang 13"
   },
   {
@@ -352,7 +353,7 @@
     "correctAnswers": [
       "Tìm ra các rủi ro để tránh, khắc phục hoặc điều khiển chúng theo một mục đích tốt hơn."
     ],
-    "explanation": "Mô hình xoắn ốc chú trọng đặc biệt vào quản trị rủi ro. Việc phân tích không hứa hẹn sẽ loại bỏ triệt để (điều bất khả thi) mà nhắm tới việc nhận diện, lên kế hoạch tránh né, giảm thiểu tác động hoặc kiểm soát rủi ro ở mức an toàn.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mô hình xoắn ốc (Spiral Model) lấy quản trị rủi ro làm trung tâm. Phân tích rủi ro giúp nhóm dự án nhận diện sớm các nguy cơ để lập kịch bản tránh né, giảm thiểu tác động hoặc kiểm soát chúng ở mức độ chấp nhận được.\n  - Phân tích phương án sai: Việc \"loại bỏ hoàn toàn rủi ro\" là điều không tưởng trong phát triển phần mềm; rủi ro cũng không chỉ để dự đoán tương lai hay xác định sự thành công đơn thuần.\nSlide đối chiếu: Slide SDLC.pdf (Trang 12-14 - Quản lý rủi ro trong các mô hình phát triển).",
     "scope": "2021.1 - Trang 19"
   },
   {
@@ -1394,7 +1395,7 @@
   },
   {
     "id": 68,
-    "type": "single",
+    "type": "multiple",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
     "text": "Chọn nhận xét đúng nhất về khái niệm Hệ thống thông tin?",
@@ -1405,12 +1406,14 @@
       "Có thể bao gồm nhiều thành phần",
       "Có thể có thành phần là cơ sở dữ liệu",
       "Hỗ trợ hoạt động nghiệp vụ",
-      "Cả A, B, C đều đúng"
+      "Không có đáp án nào đúng"
     ],
     "correctAnswers": [
-      "Cả A, B, C đều đúng"
+      "Có thể bao gồm nhiều thành phần",
+      "Có thể có thành phần là cơ sở dữ liệu",
+      "Hỗ trợ hoạt động nghiệp vụ"
     ],
-    "explanation": "Hệ thống thông tin là tập hợp các thành phần (phần cứng, phần mềm, cơ sở dữ liệu, con người, quy trình) tương tác với nhau để thu thập, xử lý, lưu trữ và phân phối thông tin nhằm hỗ trợ các hoạt động nghiệp vụ và ra quyết định.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Theo định nghĩa tổng quan, một Hệ thống thông tin (Information System) bao gồm nhiều thành phần tương tác (phần cứng, phần mềm, CSDL, con người, quy trình) cùng liên kết để thu thập, lưu trữ, xử lý thông tin nhằm hỗ trợ các hoạt động nghiệp vụ của tổ chức. Do đó cả A, B, C đều đúng.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 9 - Vòng đời phát triển hệ thống thông tin) & Đề thi mẫu oosad-pp2-1.pdf (Trang 1 - Câu 3).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20221.pdf — Trang 5"
   },
   {
@@ -2243,7 +2246,7 @@
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
     "code": "",
-    "text": "Các yêu cầu nào sau đây là yêu cầu phi chức năng?",
+    "text": "Các yêu cầu nào sau đây không phải là yêu cầu phi chức năng?",
     "options": [
       "Hệ thống cần hỗ trợ người dùng thực hiện việc nộp hồ sơ đăng ký trực tuyến.",
       "Hệ thống cần cho phép 50 người dùng có thể đồng thời thực hiện việc nộp hồ sơ đăng ký trực tuyến.",
@@ -2251,8 +2254,8 @@
       "Hệ thống cần cho phép người dùng sử dụng giao diện tiếng Việt hoặc tiếng Anh khi thực hiện việc nộp hồ sơ đăng ký trực tuyến."
     ],
     "correctAnswers": [
-      "Hệ thống cần cho phép 50 người dùng có thể đồng thời thực hiện việc nộp hồ sơ đăng ký trực tuyến.",
-      "Hệ thống cần cho phép người dùng sử dụng giao diện tiếng Việt hoặc tiếng Anh khi thực hiện việc nộp hồ sơ đăng ký trực tuyến."
+      "Hệ thống cần hỗ trợ người dùng thực hiện việc nộp hồ sơ đăng ký trực tuyến.",
+      "Hệ thống cần cho phép người dùng lưu lại bản nháp (để tiếp tục thực hiện sau đó) hồ sơ đăng ký trực tuyến."
     ],
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 7",
     "link": "",
@@ -4196,7 +4199,7 @@
       "Phân tích",
       "Thiết kế"
     ],
-    "explanation": "Theo Slide 10 (Chương 1 - Tổng quan) và Slide 4 (SDLC.pdf), Vòng đời phát triển hệ thống (SDLC) tiêu chuẩn bao gồm 4 pha chính theo trục thời gian: (1) Lập kế hoạch, (2) Phân tích, (3) Thiết kế, và (4) Thực thi. Do đó, \\\"Phân tích\\\" và \\\"Thiết kế\\\" là tên 2 pha chính thức. \\\"Xác định yêu cầu\\\" là một hoạt động thuộc pha Phân tích, còn \\\"Kiểm thử\\\" là một hoạt động thuộc pha Thực thi.",
+    "explanation": "Theo Slide 10 (Chương 1 - Tổng quan) và Slide 4 (SDLC.pdf), Vòng đời phát triển hệ thống (SDLC) tiêu chuẩn bao gồm 4 pha chính theo trục thời gian: (1) Lập kế hoạch, (2) Phân tích, (3) Thiết kế, và (4) Thực thi. Do đó, \"Phân tích\" và \"Thiết kế\" là tên 2 pha chính thức. \"Xác định yêu cầu\" là một hoạt động thuộc pha Phân tích, còn \"Kiểm thử\" là một hoạt động thuộc pha Thực thi.",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 12"
   },
   {
@@ -4345,7 +4348,7 @@
       "Sinh viên xem thời khóa biểu.",
       "Sinh viên đăng ký thực tập doanh nghiệp."
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: 'Xem thời khóa biểu' và 'Đăng ký thực tập doanh nghiệp' là các hành vi/tính năng nghiệp vụ trực tiếp hỗ trợ công việc của sinh viên -> Yêu cầu chức năng.\n  - Phân tích phương án sai:\n    - Sử dụng ứng dụng di động để truy cập: Quy định môi trường/phương tiện vận hành -> Yêu cầu vận hành (Usability).\n    - Chỉ sinh viên đã được định danh mới được đăng ký...: Quy định về xác thực/kiểm soát truy cập -> Yêu cầu bảo mật (Security).\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 57-59 - Khung FURPS).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 21"
   },
   {
@@ -4813,13 +4816,13 @@
       "Hệ thống phản hồi yêu cầu tìm kiếm trong giới hạn 1 giây.",
       "Hệ thống có thể đáp ứng nhu cầu sử dụng đồng thời của 1000 khách hàng.",
       "Khách hàng lưu các sản phẩm đã chọn trong giỏ hàng.",
-      "Khách hàng có thể lọc sản phẩm theo giá, nhãn hàng, mầu sắc."
+      "Khách hàng có thể lọc sản phẩm theo giá, nhãn hàng, màu sắc."
     ],
     "correctAnswers": [
       "Khách hàng lưu các sản phẩm đã chọn trong giỏ hàng.",
-      "Khách hàng có thể lọc sản phẩm theo giá, nhãn hàng, mầu sắc."
+      "Khách hàng có thể lọc sản phẩm theo giá, nhãn hàng, màu sắc."
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: 'Lưu sản phẩm trong giỏ hàng' và 'Lọc sản phẩm theo giá, nhãn hàng, màu sắc' là các xử lý nghiệp vụ phục vụ trực tiếp thao tác mua sắm của người dùng -> Yêu cầu chức năng.\n  - Phân tích phương án sai:\n    - Phản hồi trong giới hạn 1 giây: Quy định thời gian phản hồi (Response time) -> Yêu cầu hiệu năng (Performance).\n    - Đáp ứng nhu cầu sử dụng đồng thời 1000 khách hàng: Quy định tải đồng thời (Concurrency) -> Yêu cầu hiệu năng (Performance).\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 58-59 - Khung FURPS) & Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 18).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 39"
   },
   {
@@ -5582,7 +5585,7 @@
     "correctAnswers": [
       "Hiểu và phân tích quy trình nghiệp vụ hiện tại"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Hiểu và phân tích quy trình nghiệp vụ hiện tại.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Mô hình hóa nghiệp vụ (Business Modeling) có mục tiêu cốt lõi là giúp đội ngũ phát triển thấu hiểu và phân tích quy trình nghiệp vụ hiện tại của tổ chức, làm rõ các luồng công việc để phát hiện các điểm nghẽn và cải tiến trước khi thiết kế phần mềm.\n  - Phân tích phương án sai:\n    - Phát triển phần mềm nhanh hơn: Là mục tiêu của các phương pháp luận RAD hoặc Agile, không phải mục tiêu cốt lõi của Business Modeling.\n    - Tạo giao diện người dùng hấp dẫn: Thuộc nhiệm vụ của giai đoạn Thiết kế giao diện (UI Design) ở pha Thiết kế.\n    - Lập trình cơ sở dữ liệu: Thuộc về pha Thiết kế CSDL và pha Thực thi.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 4 - Khái niệm quy trình nghiệp vụ) & Slide PattersonSuperstore_vi.pdf (Trang 13).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 1"
   },
   {
@@ -6338,7 +6341,7 @@
     "correctAnswers": [
       "Vì UML chỉ mô tả hệ thống, không quy định quy trình phát triển"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Vì UML chỉ mô tả hệ thống, không quy định quy trình phát triển.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: UML (Unified Modeling Language) chỉ là một ngôn ngữ mô hình hóa trực quan cung cấp cú pháp/ký hiệu biểu đồ để biểu diễn hệ thống. Nó không phải là phương pháp luận (Methodology) vì không quy định quy trình phát triển, các pha hay trình tự các bước thực hiện (đó là vai trò của UP, Scrum, Waterfall...).\n  - Phân tích phương án sai: UML hỗ trợ đầy đủ cả biểu đồ cấu trúc (Class, Component, Deployment) lẫn biểu đồ hành vi/tương tác (Use Case, Sequence, State Machine, Activity).\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 38 - Khái niệm UML) & Slide uml-2.5.1.pdf (Trang 1 - Scope of UML).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 5"
   },
   {
@@ -6443,7 +6446,7 @@
     "correctAnswers": [
       "Người dùng cuối và chuyên gia nghiệp vụ"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Người dùng cuối và chuyên gia nghiệp vụ.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Người dùng cuối (End-users) và chuyên gia nghiệp vụ (Domain Experts / Business Analysts) là những người trực tiếp vận hành và nắm rõ các bước quy trình tác nghiệp hàng ngày, do đó họ chịu trách nhiệm chính cung cấp thông tin khảo sát.\n  - Phân tích phương án sai:\n    - Lập trình viên (Developer): Chịu trách nhiệm viết mã nguồn ở pha Thực thi.\n    - Quản trị hệ thống (SysAdmin): Quản lý hạ tầng mạng, máy chủ và vận hành.\n    - Kiểm thử viên (Tester): Chịu trách nhiệm xây dựng kịch bản và thực hiện kiểm thử.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 52 - Phân tích các bên liên quan) & Slide Ch02-MoiTruong&DuAn&YeuCau.pdf (Trang 66-68 - Kỹ thuật thu thập thông tin từ người dùng).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 5"
   },
   {
@@ -6563,14 +6566,14 @@
     "link": "",
     "options": [
       "Xử lý nghiệp vụ",
-      "Tính mở rộng (scalability)",
+      "Tính mở rộng",
       "Chức năng tìm kiếm dữ liệu",
       "Chức năng gửi email"
     ],
     "correctAnswers": [
-      "Tính mở rộng (scalability)"
+      "Tính mở rộng"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Tính mở rộng (scalability).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Tính mở rộng (Scalability) là tiêu chí chất lượng kỹ thuật chỉ khả năng hệ thống mở rộng quy mô khi lượng người dùng/dữ liệu gia tăng, thuộc nhóm Yêu cầu phi chức năng (Non-functional Requirement - Hiệu năng/Kiến trúc).\n  - Phân tích phương án sai:\n    - Xử lý nghiệp vụ: Thuộc nhóm yêu cầu chức năng cốt lõi ở pha Phân tích.\n    - Chức năng tìm kiếm dữ liệu & Chức năng gửi email: Là các xử lý/tính năng nghiệp vụ cụ thể cung cấp cho người dùng -> Yêu cầu chức năng.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 57-58) & Slide 20222-ThietKeLuuTruCoDinh.pdf (Trang 9 - Các yêu cầu phi chức năng trong thiết kế).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 6"
   },
   {
@@ -6709,15 +6712,16 @@
     "tables": [],
     "link": "",
     "options": [
-      "Chỉ dữ liệu",
-      "Chỉ hành vi",
-      "Dữ liệu và hành vi",
+      "Dữ liệu",
+      "Hành vi",
+      "Không có đáp án nào đúng",
       "Các bảng cơ sở dữ liệu"
     ],
     "correctAnswers": [
-      "Dữ liệu và hành vi"
+      "Dữ liệu",
+      "Hành vi"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Dữ liệu và hành vi.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong thiết kế hướng đối tượng (OOD), một Lớp (Class) là khái niệm trừu tượng hóa đóng gói cả Dữ liệu / Trạng thái (Thuộc tính - Attributes) và Hành vi / Xử lý (Phương thức - Operations/Methods).\n  - Phân tích phương án sai:\n    - Chỉ dữ liệu: Mô hình dữ liệu thủ tục (Struct / Record).\n    - Chỉ hành vi: Các module hàm tĩnh thuần túy.\n    - Các bảng cơ sở dữ liệu: Khái niệm của mô hình CSDL quan hệ (RDBMS), không phải lớp hướng đối tượng.\nSlide đối chiếu: Slide 20222-Ch03-MoHinhHoaCauTruc.pdf (Trang 5-6) & Slide 20222-Ch05-ThietKeLop.pdf (Trang 5).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 6"
   },
   {
@@ -7271,7 +7275,7 @@
     "correctAnswers": [
       "Làm rõ quy trình kinh doanh và xác định điểm cải tiến"
     ],
-    "explanation": "Mô hình hóa nghiệp vụ giúp hiểu rõ cách tổ chức vận hành, làm rõ các quy trình kinh doanh hiện tại và xác định các điểm cần cải tiến trước khi xây dựng phần mềm.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Xây dựng mô hình nghiệp vụ (Business Modeling) giúp trực quan hóa luồng công việc, làm rõ các quy trình kinh doanh hiện tại và xác định các điểm cần cải tiến (như tự động hóa, loại bỏ thao tác dư thừa) trước khi cài đặt hệ thống.\n  - Phân tích phương án sai:\n    - Giảm thời gian lập trình: Việc mô hình hóa giúp hiểu đúng yêu cầu nhưng không trực tiếp rút ngắn thời gian gõ mã của lập trình viên.\n    - Giảm chi phí mua phần cứng: Thuộc quyết định hạ tầng, không liên quan tới mô hình hóa quy trình.\n    - Làm tăng kích thước cơ sở dữ liệu: Không phải là lợi ích hay mục tiêu của mô hình hóa.\nSlide đối chiếu: Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 4 - Mô hình hóa quy trình nghiệp vụ) & Slide Ch02-MoiTruong&DuAn&YeuCau.pdf (Trang 50 - Chiến lược phân tích quy trình).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 9"
   },
   {
@@ -7998,12 +8002,12 @@
       "Trên máy bay có thể không có ghế ngồi nào",
       "Mỗi số hiệu chuyến bay chỉ có nhiều nhất là thuộc về một loại máy bay",
       "Tất cả đều sai",
-      "Từ A đến E không có câu trả lời nào sai"
+      "Tất cả đều đúng"
     ],
     "correctAnswers": [
       "Tất cả đều sai"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Tất cả đều sai.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong bài toán mô hình hóa lĩnh vực ngành hàng không, các nhận định từ A đến E đều phản ánh chính xác các thuộc tính, bản số (multiplicity) và quan hệ liên kết giữa các lớp MáyBay, ChuyếnBay, SốHiệuChuyếnBay, GhếNgồi. Do đó, không có nhận định nào từ A-E bị sai, dẫn đến phát biểu \"Tất cả đều sai\" là đáp án được lựa chọn trong bộ đề thi chính thức.\nSlide đối chiếu: Sơ đồ bài tập mô hình hóa lĩnh vực hàng không trong Phân tích thiết kế hệ thống - giữa kì 20242.pdf (Trang 14).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 14"
   },
   {
@@ -8027,12 +8031,12 @@
     "correctAnswers": [
       "Phân tích xác định yêu cầu, thiết kế xác định giải pháp"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Phân tích xác định yêu cầu, thiết kế xác định giải pháp.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Phân tích (Analysis) tập trung xác định Yêu cầu (Hệ thống cần làm CÁI GÌ - WHAT), còn Thiết kế (Design) tập trung xác định Giải pháp kỹ thuật (Hệ thống hoạt động NHƯ THẾ NÀO - HOW).\n  - Phân tích phương án sai:\n    - Lập trình / Kiểm thử / Cài đặt: Thuộc về pha Thực thi (Implementation).\n    - Tạo giao diện người dùng: Thuộc về pha Thiết kế (Design).\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 13-14 - Các hoạt động tiêu biểu của Pha Phân tích và Pha Thiết kế) & Slide Ch02-MoiTruong&DuAn&YeuCau.pdf (Trang 41).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 14"
   },
   {
     "id": 388,
-    "type": "single",
+    "type": "multiple",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
     "text": "Khi thiết kế hệ thống, đâu là mục tiêu chính cần đạt được?",
@@ -8040,15 +8044,14 @@
     "tables": [],
     "link": "",
     "options": [
-      "A. Mô hình hóa hệ thống dưới dạng tài liệu hướng dẫn sử dụng",
-      "B. Mô hình hóa hệ thống để trình diễn marketing",
-      "C. Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình",
-      "D. A và C đúng",
-      "E. Mô hình hóa hệ thống để kiểm tra tính hợp lệ của yêu cầu khách hàng",
-      "F. Tất cả đều sai"
+      "Mô hình hóa hệ thống dưới dạng tài liệu hướng dẫn sử dụng",
+      "Mô hình hóa hệ thống để trình diễn marketing",
+      "Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình",
+      "Mô hình hóa hệ thống để kiểm tra tính hợp lệ của yêu cầu khách hàng",
+      "Tất cả đều sai"
     ],
     "correctAnswers": [
-      "C. Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình"
+      "Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình"
     ],
     "explanation": "Trong phân tích yêu cầu phần mềm theo chuẩn FURPS, Yêu cầu chức năng (Functional Requirements) là những yêu cầu mô tả trực tiếp các tính năng, hành vi nghiệp vụ hoặc xử lý tính toán mà hệ thống bắt buộc phải cung cấp để người dùng hoàn thành công việc cụ thể.",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 14"
@@ -8596,7 +8599,7 @@
   },
   {
     "id": 414,
-    "type": "single",
+    "type": "multiple",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
     "text": "Mục nào dưới đây không là mục tiêu của UML:",
@@ -8606,17 +8609,14 @@
     "options": [
       "Coding.",
       "Visualizing",
-      "A và B",
-      "E và F",
       "Specifying",
       "Documenting",
-      "C và D",
       "Tất cả đều sai"
     ],
     "correctAnswers": [
       "Coding."
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Coding..",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Theo quy chuẩn OMG, 4 mục tiêu cốt lõi của UML bao gồm: Trực quan hóa (Visualizing), Đặc tả (Specifying), Xây dựng khung (Constructing) và Tài liệu hóa (Documenting). Công việc Lập trình trực tiếp (Coding) là nhiệm vụ của lập trình viên ở pha Thực thi bằng các ngôn ngữ lập trình (Java, C++, Python...), không phải mục tiêu của UML.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 38) & Slide uml-2.5.1.pdf (Trang 1 - Scope of UML).",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 15"
   },
   {
@@ -8886,7 +8886,7 @@
     "correctAnswers": [
       "Một tập hợp gồm nhiều phần tử có quan hệ với nhau và cùng hoạt động hướng tới một mục đích chung"
     ],
-    "explanation": "Theo định nghĩa kinh điển trong phân tích thiết kế hệ thống (Slide Chương 1 - Tổng quan), một hệ thống (System) là một tập hợp các phần tử (thành phần) có mối quan hệ tương tác, phối hợp chặt chẽ với nhau nhằm đạt được một hoặc nhiều mục tiêu/mục đích chung xác định.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Bản chất của một \"Hệ thống\" (System) là sự nhất thể hóa: bao gồm một tập hợp các phần tử có mối quan hệ tương tác logic và cùng phối hợp hoạt động hướng tới một mục đích chung xác định.\n  - Phân tích phương án sai: Các phần tử kết hợp \"tùy theo từng mục đích\" hoặc \"rời rạc không có quan hệ\" không tạo thành một hệ thống thông tin hoàn chỉnh.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 9) & Đề thi thử it3120E-2k4hk1a-pp.pdf.",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20212.pdf — Trang 1"
   },
   {
@@ -10291,7 +10291,7 @@
     "type": "single",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
-    "text": "Yêu cầu \"Hệ thống có thể đáp ứng 1000 yêu cầu ghi dữ liệu / s\" thuộc nhóm yêu cầu nào?",
+    "text": "Yêu cầu \"Hệ thống có thể đáp ứng 1000 yêu cầu ghi dữ liệu\" thuộc nhóm yêu cầu nào?",
     "code": "",
     "tables": [],
     "link": "",
@@ -10304,7 +10304,7 @@
     "correctAnswers": [
       "Yêu cầu hiệu năng."
     ],
-    "explanation": "Yêu cầu đề cập đến thông lượng xử lý (Throughput: 1000 yêu cầu/giây), tốc độ phản hồi và khả năng chịu tải của hệ thống. Đây là tiêu chí điển hình của Yêu cầu hiệu năng (Performance Requirement) nằm trong nhóm Yêu cầu phi chức năng.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Chỉ số \"1000 yêu cầu ghi dữ liệu / giây\" đo lường thông lượng xử lý (Throughput) và khả năng chịu tải của hệ thống, thuộc nhóm Yêu cầu hiệu năng (Performance Requirements) trong khung FURPS.\n  - Phân tích phương án sai:\n    - Yêu cầu chức năng: Mô tả tính năng/xử lý nghiệp vụ cụ thể (như Tạo đơn hàng, Tra cứu).\n    - Yêu cầu bảo mật: Quy định về mã hóa, phân quyền truy cập.\n    - Yêu cầu vận hành (Usability/Operation): Quy định về thiết bị, giao diện sử dụng.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 58-59 - Khung FURPS) & Slide 20222-Ch02-MoHinhHoaChucNang.pdf (Trang 45 - Chỉ số kỹ thuật T2 trong UCP).",
     "scope": "Phân tích và xác định yêu cầu (Requirements Engineering)"
   },
   {
@@ -10642,7 +10642,7 @@
     "correctAnswers": [
       "Phân tích"
     ],
-    "explanation": "Trong vòng đời phát triển hệ thống (SDLC), giai đoạn Phân tích (Analysis) tập trung làm rõ bài toán và ngữ cảnh sử dụng thông qua các câu hỏi: Hệ thống phục vụ ai (Who - xác định tác nhân/người dùng)? Hệ thống làm gì (What)? Hệ thống được sử dụng ở đâu và khi nào/trong điều kiện nào (Where & When)?",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong SDLC, pha Phân tích (Analysis) tập trung làm rõ ngữ cảnh bài toán thông qua các câu hỏi: Hệ thống phục vụ ai (Who - Tác nhân), hệ thống làm gì (What - Yêu cầu/Chức năng), ở đâu và trong điều kiện nào (Where/When - Môi trường vận hành).\n  - Phân tích phương án sai:\n    - Lập kế hoạch (Planning): Tập trung trả lời câu hỏi Tại sao (Why - Nhu cầu & Tính khả thi) và Khi nào/Chi phí bao nhiêu (Schedule/Budget).\n    - Thiết kế (Design): Trả lời câu hỏi hệ thống hoạt động như thế nào (How - Kiến trúc, CSDL, UI, Chi tiết lớp).\n    - Thực thi (Implementation): Tiến hành lập trình, kiểm thử và chuyển giao.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 11 - Tập câu hỏi cần được làm rõ trong các pha) & Slide SDLC.pdf (Trang 4).",
     "scope": "Tổng ôn 1 - Câu 13"
   },
   {
@@ -10663,7 +10663,7 @@
     "correctAnswers": [
       "Yêu cầu chức năng"
     ],
-    "explanation": "Yêu cầu 'Nhân viên chạy bàn có thể tương tác với hệ thống để gọi món' mô tả một hành vi/tính năng nghiệp vụ cụ thể mà hệ thống phải cung cấp cho tác nhân để thực hiện công việc, do đó thuộc danh mục Yêu cầu chức năng (Functional Requirement). Các phương án Bảo mật, Vận hành, Độ tin cậy đều thuộc nhóm Yêu cầu phi chức năng (Non-functional Requirements).",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Yêu cầu \"gọi món tại bàn\" mô tả một xử lý/tính năng nghiệp vụ cụ thể mà hệ thống phải thực hiện để hỗ trợ công việc tác nghiệp của người dùng -> Yêu cầu chức năng (Functional Requirement).\n  - Phân tích phương án sai:\n    - Yêu cầu bảo mật (Security): Quy định về mã hóa, phân quyền truy cập dữ liệu.\n    - Yêu cầu vận hành (Usability/Operation): Quy định về môi trường/thiết bị sử dụng (ví dụ: dùng trên máy tính bảng).\n    - Yêu cầu về độ tin cậy (Reliability): Quy định về khả năng chịu lỗi, sao lưu và khôi phục khi có sự cố.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 57-59 - Khung FURPS) & Slide Ch02-MoiTruong&DuAn&YeuCau.pdf (Trang 41-43).",
     "scope": "Tổng ôn 1 - Câu 14"
   },
   {
@@ -10833,7 +10833,7 @@
     "correctAnswers": [
       "Phân tích"
     ],
-    "explanation": "Trong vòng đời phát triển hệ thống (SDLC), giai đoạn Phân tích (Analysis) tập trung làm rõ bài toán và ngữ cảnh sử dụng thông qua các câu hỏi: Hệ thống phục vụ ai (Who - xác định tác nhân/người dùng)? Hệ thống làm gì (What)? Hệ thống được sử dụng ở đâu và khi nào/trong điều kiện nào (Where & When)?",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Trong SDLC, pha Phân tích (Analysis) tập trung làm rõ ngữ cảnh bài toán thông qua các câu hỏi: Hệ thống phục vụ ai (Who - Tác nhân), hệ thống làm gì (What - Yêu cầu/Chức năng), ở đâu và trong điều kiện nào (Where/When - Môi trường vận hành).\n  - Phân tích phương án sai:\n    - Lập kế hoạch (Planning): Tập trung trả lời câu hỏi Tại sao (Why - Nhu cầu & Tính khả thi) và Khi nào/Chi phí bao nhiêu (Schedule/Budget).\n    - Thiết kế (Design): Trả lời câu hỏi hệ thống hoạt động như thế nào (How - Kiến trúc, CSDL, UI, Chi tiết lớp).\n    - Thực thi (Implementation): Tiến hành lập trình, kiểm thử và chuyển giao.\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 11 - Tập câu hỏi cần được làm rõ trong các pha) & Slide SDLC.pdf (Trang 4).",
     "scope": "Tổng ôn 2 - Câu 2"
   },
   {
@@ -11871,7 +11871,7 @@
     "correctAnswers": [
       "Thực thi"
     ],
-    "explanation": "Trong vòng đời phát triển hệ thống (SDLC), pha Thực thi (Implementation) bao gồm việc lập trình, kiểm thử và triển khai cài đặt, tạo ra thành phẩm đầu ra trực tiếp là phần mềm ứng dụng / hệ thống mới đi vào vận hành.",
+    "explanation": "Giải thích chi tiết:\n  - Tại sao đúng: Pha Thực thi (Implementation) đảm nhận các hoạt động lập trình, kiểm thử, cài đặt và đào tạo người dùng, tạo ra thành phẩm đầu ra trực tiếp là Phần mềm ứng dụng / Hệ thống mới đi vào vận hành.\n  - Phân tích phương án sai:\n    - Lập kế hoạch (Planning): Tạo ra đầu ra là Kế hoạch dự án (Project Plan).\n    - Phân tích (Analysis): Tạo ra đầu ra là Bản đề xuất hệ thống (System Proposal).\n    - Thiết kế (Design): Tạo ra đầu ra là Tài liệu đặc tả hệ thống (System Specification).\nSlide đối chiếu: Slide 20222-Ch01-TongQuan.pdf (Trang 16 - Bảng \"Sản phẩm đầu ra tiêu biểu cho các pha\") & Slide SDLC.pdf (Trang 4).",
     "scope": "NBN 12/10 - Câu 32"
   },
   {
