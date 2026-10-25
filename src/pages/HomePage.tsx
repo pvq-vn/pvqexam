@@ -27,14 +27,30 @@ interface HomePageProps {
   currentUser?: UserProfile | null;
   onSelectSubject: (subject: Subject) => void;
   onStartQuiz?: (config: QuizConfig) => void;
+  onNavigateToAdminExams?: () => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
   currentUser,
   onSelectSubject,
   onStartQuiz,
+  onNavigateToAdminExams,
 }) => {
-  const [selectedSemester, setSelectedSemester] = useState<string>('all');
+  const [selectedSemester, setSelectedSemester] = useState<string>(() => {
+    try {
+      return localStorage.getItem('hust_quiz_selected_semester') || 'all';
+    } catch {
+      return 'all';
+    }
+  });
+
+  const handleSelectSemester = (sem: string) => {
+    setSelectedSemester(sem);
+    try {
+      localStorage.setItem('hust_quiz_selected_semester', sem);
+    } catch {}
+  };
+
   const [searchQuery, setSearchQuery] = useState<string>('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -48,18 +64,18 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   const [publicExams, setPublicExams] = useState<ExamDefinition[]>([]);
   const [loadingPublicExams, setLoadingPublicExams] = useState(false);
-  const [adminExamTab, setAdminExamTab] = useState<'all' | 'public' | 'private'>('all');
+  const [adminExamTab, setAdminExamTab] = useState<'public' | 'private'>('public');
   const [isExamsShowcaseExpanded, setIsExamsShowcaseExpanded] = useState<boolean>(false);
 
   const semesters = ['all', '2026.2', '2026.1', '2025.2'];
 
-  // Load public exams (and admin's private exams if logged in as admin)
+  // Load public exams (and admin's private exams or creator's private exams)
   useEffect(() => {
     let isMounted = true;
     setLoadingPublicExams(true);
     const fetchExams = currentUser?.isAdmin
       ? examDefinitionService.getAllExamDefinitions()
-      : examDefinitionService.getPublicExamDefinitions();
+      : examDefinitionService.getVisibleExamDefinitions(currentUser);
 
     fetchExams.then((exams) => {
       if (isMounted) {
@@ -70,7 +86,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [currentUser?.isAdmin]);
+  }, [currentUser?.isAdmin, currentUser?.id, currentUser?.email]);
 
   // Keyboard shortcut '/' to focus search
   useEffect(() => {
@@ -252,15 +268,26 @@ export const HomePage: React.FC<HomePageProps> = ({
             if (!currentUser?.isAdmin) return exam.isPublic;
             if (adminExamTab === 'public') return exam.isPublic;
             if (adminExamTab === 'private') return !exam.isPublic;
-            return true;
+            return exam.isPublic;
           });
 
           return (
             <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3.5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-bold text-slate-700 dark:text-slate-300">
                 <div
-                  onClick={() => setIsExamsShowcaseExpanded(!isExamsShowcaseExpanded)}
+                  onClick={() => {
+                    if (currentUser?.isAdmin) {
+                      if (onNavigateToAdminExams) {
+                        onNavigateToAdminExams();
+                      } else {
+                        window.location.hash = '#/admin?tab=exams';
+                      }
+                    } else {
+                      setIsExamsShowcaseExpanded(!isExamsShowcaseExpanded);
+                    }
+                  }}
                   className="flex items-center gap-2 cursor-pointer select-none group"
+                  title={currentUser?.isAdmin ? 'Bấm để đến trang Quản lý đề thi' : 'Bấm để xem danh sách đề thi'}
                 >
                   <Globe size={15} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                   <span className="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -276,17 +303,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="flex items-center gap-2 self-start sm:self-center flex-wrap">
                   {currentUser?.isAdmin && isExamsShowcaseExpanded && (
                     <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-xl text-xs">
-                      <button
-                        type="button"
-                        onClick={() => setAdminExamTab('all')}
-                        className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                          adminExamTab === 'all'
-                            ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-xs font-bold'
-                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                        }`}
-                      >
-                        Tất cả ({publicExams.length})
-                      </button>
                       <button
                         type="button"
                         onClick={() => setAdminExamTab('public')}
@@ -407,7 +423,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <button
               key={sem}
               type="button"
-              onClick={() => setSelectedSemester(sem)}
+              onClick={() => handleSelectSemester(sem)}
               className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${
                 selectedSemester === sem
                   ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-2xs'
@@ -460,7 +476,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <button
               type="button"
               onClick={() => {
-                setSelectedSemester('all');
+                handleSelectSemester('all');
                 setSearchQuery('');
               }}
               className="px-4 py-2 bg-slate-900 dark:bg-blue-600 text-white rounded-xl text-xs font-bold cursor-pointer"

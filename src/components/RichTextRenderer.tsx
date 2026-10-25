@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   ExternalLink,
   AlertCircle,
@@ -516,6 +517,7 @@ const SmartMediaRenderer: React.FC<{
   // Always display immediately on load
   const [showIframePreview, setShowIframePreview] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   // Reset state if source changes
   useEffect(() => {
@@ -527,6 +529,13 @@ const SmartMediaRenderer: React.FC<{
   }, [source.cleanUrl, source.driveFileId]);
 
   const currentImgUrl = source.imageCandidates[candidateIndex];
+
+  // Immediately check if image is already cached in browser memory (e.g. during "Làm lại đề")
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [currentImgUrl]);
 
   const handleImageError = () => {
     if (candidateIndex + 1 < source.imageCandidates.length) {
@@ -653,15 +662,20 @@ const SmartMediaRenderer: React.FC<{
         {/* Responsive Image Container — Natural Aspect Ratio, Zero Black Bars */}
         <div
           onClick={() => setLightboxOpen(true)}
-          className={`relative flex items-center justify-center bg-slate-50/50 dark:bg-slate-950/40 cursor-zoom-in p-1 sm:p-2 ${
-            !isLoaded ? 'sr-only' : ''
+          className={`relative flex items-center justify-center bg-slate-50/50 dark:bg-slate-950/40 cursor-zoom-in p-1 sm:p-2 transition-opacity duration-200 ${
+            !isLoaded ? 'invisible absolute pointer-events-none' : 'visible opacity-100'
           }`}
         >
           <img
+            ref={(el) => {
+              (imgRef as React.MutableRefObject<HTMLImageElement | null>).current = el;
+              if (el && el.complete && el.naturalWidth > 0 && !isLoaded) {
+                setIsLoaded(true);
+              }
+            }}
             src={currentImgUrl}
             alt="Hình minh họa câu hỏi"
-            loading="lazy"
-            decoding="async"
+            loading="eager"
             referrerPolicy="no-referrer"
             onLoad={() => setIsLoaded(true)}
             onError={handleImageError}
@@ -709,9 +723,11 @@ const ImageLightboxModal: React.FC<{
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-xs flex flex-col overscroll-contain animate-in fade-in duration-150"
+      className="fixed inset-0 z-[9999] bg-slate-950/90 backdrop-blur-sm flex flex-col overscroll-contain animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -792,6 +808,7 @@ const ImageLightboxModal: React.FC<{
           className="max-w-full max-h-[82vh] object-contain rounded-lg bg-white p-2 shadow-2xl transition-transform duration-150"
         />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

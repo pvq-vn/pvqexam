@@ -40,6 +40,7 @@ export function App() {
   const [activeConfig, setActiveConfig] = useState<QuizConfig | null>(null);
   const [resumedDraft, setResumedDraft] = useState<QuizDraft | null>(null);
   const [reopenAttempt, setReopenAttempt] = useState<QuizAttempt | null>(null);
+  const [quizReturnRoute, setQuizReturnRoute] = useState<'home' | 'history' | 'admin'>('home');
 
   // Draft banner state on home/other pages
   const [activeDraft, setActiveDraft] = useState<QuizDraft | null>(null);
@@ -78,6 +79,10 @@ export function App() {
         const subjectCode = parts[0];
         const params = new URLSearchParams(parts[1] || '');
         const isReview = params.get('review') === 'true';
+        const fromRoute = params.get('from');
+        if (fromRoute === 'history' || fromRoute === 'admin' || fromRoute === 'home') {
+          setQuizReturnRoute(fromRoute);
+        }
         const targetSubject = SUBJECT_CATALOG.find(
           (s) => s.code.toLowerCase() === subjectCode.toLowerCase()
         );
@@ -197,22 +202,31 @@ export function App() {
     setActiveSubject(subject);
     setActiveConfig(attempt.config);
     setReopenAttempt(attempt);
+    setQuizReturnRoute('history');
     setCurrentRoute('quiz');
 
     window.location.hash = `#/quiz/${subject.code}?seed=${attempt.seed}&review=true${
       targetQuestionId ? `&q=${targetQuestionId}` : ''
-    }`;
+    }&from=history`;
   };
 
-  // Exit quiz and return home (refreshing activeDraft banner if still in progress)
+  // Exit quiz and return to original route (history, admin, or home)
   const handleExitQuiz = () => {
-    setCurrentRoute('home');
+    const returnTarget = quizReturnRoute || 'home';
+    setCurrentRoute(returnTarget);
     setActiveSubject(null);
     setActiveConfig(null);
     setResumedDraft(null);
     setReopenAttempt(null);
     setActiveDraft(draftService.getDraft());
-    window.location.hash = '#/';
+
+    if (returnTarget === 'history') {
+      window.location.hash = '#/history';
+    } else if (returnTarget === 'admin') {
+      window.location.hash = '#/admin';
+    } else {
+      window.location.hash = '#/';
+    }
   };
 
   // Retry with same seed
@@ -224,7 +238,10 @@ export function App() {
     handleStartQuiz({ ...activeConfig });
   };
 
-  const handleNavigate = (route: 'home' | 'history' | 'admin') => {
+  const handleNavigate = (
+    route: 'home' | 'history' | 'admin',
+    adminTab?: 'reports' | 'exams' | 'users' | 'questions'
+  ) => {
     if (route === 'admin' && !currentUser?.isAdmin) {
       setCurrentRoute('home');
       window.location.hash = '#/';
@@ -234,7 +251,9 @@ export function App() {
     setActiveDraft(draftService.getDraft());
     if (route === 'home') window.location.hash = '#/';
     if (route === 'history') window.location.hash = '#/history';
-    if (route === 'admin') window.location.hash = '#/admin';
+    if (route === 'admin') {
+      window.location.hash = adminTab ? `#/admin?tab=${adminTab}` : '#/admin';
+    }
   };
 
   return (
@@ -296,6 +315,7 @@ export function App() {
               setSetupSeed(undefined);
             }}
             onStartQuiz={handleStartQuiz}
+            onNavigateToAdminExams={() => handleNavigate('admin', 'exams')}
           />
         )}
 
@@ -332,7 +352,11 @@ export function App() {
                 <p className="text-xs text-slate-500 font-medium">Đang xác thực quyền Quản trị viên...</p>
               </div>
             ) : currentUser?.isAdmin ? (
-              <AdminReportsPage currentUser={currentUser} onNavigateHome={() => handleNavigate('home')} />
+              <AdminReportsPage
+                currentUser={currentUser}
+                onNavigateHome={() => handleNavigate('home')}
+                initialTab={window.location.hash.includes('tab=exams') ? 'exams' : undefined}
+              />
             ) : (
               <div className="text-center py-20 space-y-3">
                 <div className="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">

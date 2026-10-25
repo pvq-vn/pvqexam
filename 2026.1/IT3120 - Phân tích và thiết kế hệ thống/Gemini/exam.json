@@ -4196,7 +4196,7 @@
       "Phân tích",
       "Thiết kế"
     ],
-    "explanation": "Theo Slide 10 (Chương 1 - Tổng quan) và Slide 4 (SDLC.pdf), Vòng đời phát triển hệ thống (SDLC) tiêu chuẩn bao gồm 4 pha chính theo trục thời gian: (1) Lập kế hoạch, (2) Phân tích, (3) Thiết kế, và (4) Thực thi. Do đó, "Phân tích" và "Thiết kế" là tên 2 pha chính thức. "Xác định yêu cầu" là một hoạt động thuộc pha Phân tích, còn "Kiểm thử" là một hoạt động thuộc pha Thực thi.",
+    "explanation": "Theo Slide 10 (Chương 1 - Tổng quan) và Slide 4 (SDLC.pdf), Vòng đời phát triển hệ thống (SDLC) tiêu chuẩn bao gồm 4 pha chính theo trục thời gian: (1) Lập kế hoạch, (2) Phân tích, (3) Thiết kế, và (4) Thực thi. Do đó, \\\"Phân tích\\\" và \\\"Thiết kế\\\" là tên 2 pha chính thức. \\\"Xác định yêu cầu\\\" là một hoạt động thuộc pha Phân tích, còn \\\"Kiểm thử\\\" là một hoạt động thuộc pha Thực thi.",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 12"
   },
   {

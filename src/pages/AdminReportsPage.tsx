@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { reportService } from '../services/reportService';
 import { userService, UserAccountProfile } from '../services/userService';
 import { examDefinitionService } from '../services/examDefinitionService';
@@ -64,6 +65,7 @@ import {
 interface AdminReportsPageProps {
   currentUser?: UserProfile | UserAccountProfile | null;
   onNavigateHome?: () => void;
+  initialTab?: 'reports' | 'exams' | 'users' | 'questions';
 }
 
 interface ExamAggregatedRow {
@@ -76,9 +78,53 @@ interface ExamAggregatedRow {
   attempts: QuizAttempt[];
 }
 
-export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser: propCurrentUser }) => {
-  const [activeTab, setActiveTab] = useState<'reports' | 'exams' | 'users' | 'questions'>('reports');
+const formatDateBeforeTime = (isoString?: string | null): string => {
+  if (!isoString) return '—';
+  try {
+    const d = new Date(isoString);
+    if (isNaN(d.getTime())) return String(isoString);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    const seconds = String(d.getSeconds()).padStart(2, '0');
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  } catch {
+    return String(isoString);
+  }
+};
+
+export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
+  currentUser: propCurrentUser,
+  initialTab,
+}) => {
+  const parseHashTab = (): 'reports' | 'exams' | 'users' | 'questions' => {
+    try {
+      const hash = typeof window !== 'undefined' ? window.location.hash : '';
+      if (hash.includes('tab=exams') || hash.includes('/admin/exams')) return 'exams';
+      if (hash.includes('tab=users') || hash.includes('/admin/users')) return 'users';
+      if (hash.includes('tab=questions') || hash.includes('/admin/questions')) return 'questions';
+      if (hash.includes('tab=reports') || hash.includes('/admin/reports')) return 'reports';
+    } catch {}
+    return initialTab || 'reports';
+  };
+
+  const [activeTab, setActiveTab] = useState<'reports' | 'exams' | 'users' | 'questions'>(parseHashTab);
   const [internalUser, setInternalUser] = useState<UserProfile | null>(null);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActiveTab(parseHashTab());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleSwitchTab = (tab: 'reports' | 'exams' | 'users' | 'questions') => {
+    setActiveTab(tab);
+    window.location.hash = `#/admin?tab=${tab}`;
+  };
 
   useEffect(() => {
     if (!propCurrentUser) {
@@ -116,11 +162,17 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
   const [searchCreatorQuery, setSearchCreatorQuery] = useState<string>('');
   const [filterMinScore, setFilterMinScore] = useState<string>('');
   const [filterMaxScore, setFilterMaxScore] = useState<string>('');
+  const [filterVisibility, setFilterVisibility] = useState<'all' | 'public' | 'private'>('all');
 
-  // Selected Exam Drilldown Modal
+  // Selected Exam Drilldown & Detail Modals
   const [selectedExamRow, setSelectedExamRow] = useState<ExamAggregatedRow | null>(null);
+  const [detailExamRow, setDetailExamRow] = useState<ExamAggregatedRow | null>(null);
+  const [editingExamTitle, setEditingExamTitle] = useState<string>('');
+  const [savingExamTitle, setSavingExamTitle] = useState(false);
   const [deletingExam, setDeletingExam] = useState<ExamAggregatedRow | null>(null);
   const [inspectingAttempt, setInspectingAttempt] = useState<QuizAttempt | null>(null);
+  const [syncingCloud, setSyncingCloud] = useState(false);
+  const [syncSuccessMsg, setSyncSuccessMsg] = useState<string | null>(null);
 
   // =========================================================================
   // TAB 3: USERS & PERMISSIONS STATE (Section 5)
@@ -444,6 +496,24 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
     return exam.creatorName || exam.creatorEmail || exam.createdByUserId || 'Ẩn danh';
   };
 
+  // Helper to format date with date before time (DD/MM/YYYY HH:mm:ss)
+  const formatDateBeforeTime = (isoString?: string | null): string => {
+    if (!isoString) return '—';
+    try {
+      const d = new Date(isoString);
+      if (isNaN(d.getTime())) return isoString;
+      const day = String(d.getDate()).padStart(2, '0');
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const year = d.getFullYear();
+      const hours = String(d.getHours()).padStart(2, '0');
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      const seconds = String(d.getSeconds()).padStart(2, '0');
+      return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    } catch {
+      return isoString;
+    }
+  };
+
   // Aggregate Exam Rows (Section 10)
   const aggregatedExamRows: ExamAggregatedRow[] = useMemo(() => {
     // Map of attempts by normalized seed
@@ -533,6 +603,12 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
           return false;
         }
       }
+      if (filterVisibility === 'public' && !row.exam.isPublic) {
+        return false;
+      }
+      if (filterVisibility === 'private' && row.exam.isPublic) {
+        return false;
+      }
       return true;
     });
   }, [
@@ -542,22 +618,30 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
     searchCreatorQuery,
     filterMinScore,
     filterMaxScore,
+    filterVisibility,
     users,
   ]);
 
   // Handle Admin Delete Exam
   const handleDeleteExam = async () => {
     if (!deletingExam) return;
+    const toDelete = deletingExam;
+    // Dismiss modal immediately without 1-2s delay
+    setDeletingExam(null);
+
+    // Optimistically remove exam and attempts from local view immediately
+    const targetSeed = toDelete.exam.seed.toUpperCase();
+    setExamDefinitions((prev) =>
+      prev.filter((d) => d.seed.toUpperCase() !== targetSeed)
+    );
+    setAllAttempts((prev) =>
+      prev.filter((a) => (a.seed || '').toUpperCase() !== targetSeed)
+    );
+
     try {
       await examDefinitionService.deleteExamDefinition(
-        deletingExam.exam.id,
-        deletingExam.exam.seed
-      );
-      setExamDefinitions((prev) =>
-        prev.filter((d) => d.seed.toUpperCase() !== deletingExam.exam.seed.toUpperCase())
-      );
-      setAllAttempts((prev) =>
-        prev.filter((a) => (a.seed || '').toUpperCase() !== deletingExam.exam.seed.toUpperCase())
+        toDelete.exam.id,
+        toDelete.exam.seed
       );
 
       // Recalculate stats for current user
@@ -568,11 +652,9 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
         const updatedStats = questionStatsService.getSubjectQuestionStats(targetUserId, selectedSubject.id);
         setAdminQuestionStats(updatedStats);
       }
-
-      setDeletingExam(null);
     } catch (err) {
       console.error('Lỗi khi xóa đề thi:', err);
-      alert('Không thể xóa đề thi. Vui lòng thử lại!');
+      alert('Không thể xóa đề thi. Vui lòng tải lại trang!');
     }
   };
 
@@ -726,7 +808,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
   }, [examDefinitions, effectiveUser?.email]);
 
   const handleLaunchAdminExam = (def: ExamDefinition) => {
-    window.location.hash = `#/quiz/${def.subjectCode}?seed=${def.seed}`;
+    window.location.hash = `#/quiz/${def.subjectCode}?seed=${def.seed}&from=admin`;
   };
 
   const handleCopyAdminSeed = (seed: string) => {
@@ -746,9 +828,53 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       setExamDefinitions((prev) =>
         prev.map((d) => (d.seed === def.seed ? { ...d, isPublic: nextPublic } : d))
       );
+      setDetailExamRow((prev) =>
+        prev && prev.exam.seed === def.seed
+          ? { ...prev, exam: { ...prev.exam, isPublic: nextPublic } }
+          : prev
+      );
     } catch (err) {
       console.error('Lỗi khi chuyển đổi quyền công khai của đề:', err);
       alert('Không thể cập nhật trạng thái đề thi. Vui lòng thử lại!');
+    }
+  };
+
+  const handleSaveExamTitle = async () => {
+    if (!detailExamRow) return;
+    const cleanTitle = editingExamTitle.trim();
+    setSavingExamTitle(true);
+    try {
+      const updatedExam = {
+        ...detailExamRow.exam,
+        title: cleanTitle,
+        isExplicitAdminUpdate: true,
+      };
+      await examDefinitionService.saveExamDefinition(updatedExam as any);
+      setExamDefinitions((prev) =>
+        prev.map((d) => (d.seed === detailExamRow.exam.seed ? { ...d, title: cleanTitle } : d))
+      );
+      setDetailExamRow((prev) => (prev ? { ...prev, exam: { ...prev.exam, title: cleanTitle } } : null));
+    } catch (err) {
+      console.error('Lỗi khi lưu tên đề thi:', err);
+      alert('Không thể lưu tên đề thi. Vui lòng thử lại!');
+    } finally {
+      setSavingExamTitle(false);
+    }
+  };
+
+  const handleSyncLocalDataToCloud = async () => {
+    setSyncingCloud(true);
+    setSyncSuccessMsg(null);
+    try {
+      const res = await examDefinitionService.syncAllLocalDataToSupabase();
+      setSyncSuccessMsg(`Đã đồng bộ thành công ${res.syncedDefs} đề thi và ${res.syncedAttempts} bài thi lên Supabase!`);
+      loadExamsAndStats();
+      setTimeout(() => setSyncSuccessMsg(null), 5000);
+    } catch (err: any) {
+      console.error('Lỗi khi đồng bộ lên Supabase:', err);
+      alert('Không thể đồng bộ dữ liệu: ' + (err?.message || err));
+    } finally {
+      setSyncingCloud(false);
     }
   };
 
@@ -910,7 +1036,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
         <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl self-start md:self-center text-xs font-bold">
           <button
             type="button"
-            onClick={() => setActiveTab('reports')}
+            onClick={() => handleSwitchTab('reports')}
             className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
               activeTab === 'reports'
                 ? 'bg-white dark:bg-slate-700 text-rose-600 dark:text-rose-300 shadow-sm'
@@ -928,7 +1054,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
 
           <button
             type="button"
-            onClick={() => setActiveTab('exams')}
+            onClick={() => handleSwitchTab('exams')}
             className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
               activeTab === 'exams'
                 ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm'
@@ -944,7 +1070,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
 
           <button
             type="button"
-            onClick={() => setActiveTab('users')}
+            onClick={() => handleSwitchTab('users')}
             className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
               activeTab === 'users'
                 ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-300 shadow-sm'
@@ -960,7 +1086,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
 
           <button
             type="button"
-            onClick={() => setActiveTab('questions')}
+            onClick={() => handleSwitchTab('questions')}
             className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
               activeTab === 'questions'
                 ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-300 shadow-sm'
@@ -1178,10 +1304,39 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
         <div className="space-y-5 animate-in fade-in duration-200">
           {/* Multi-Criteria Filters Toolbar */}
           <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
-              <Filter size={15} /> Bộ lọc đề thi đồng thời:
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
+                <Filter size={15} /> Bộ lọc đề thi đồng thời:
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleSyncLocalDataToCloud}
+                  disabled={syncingCloud}
+                  className="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer disabled:opacity-50"
+                  title="Đẩy toàn bộ đề thi và bài thi từ máy này lên Supabase để đồng bộ với Vercel"
+                >
+                  <RefreshCw size={13} className={syncingCloud ? 'animate-spin' : ''} />
+                  {syncingCloud ? 'Đang đồng bộ...' : 'Đồng bộ lên Cloud (Supabase)'}
+                </button>
+                <button
+                  type="button"
+                  onClick={loadExamsAndStats}
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <RefreshCw size={13} /> Làm mới
+                </button>
+              </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+
+            {syncSuccessMsg && (
+              <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl text-xs text-emerald-700 dark:text-emerald-300 font-medium flex items-center gap-2 animate-in fade-in">
+                <CheckCircle size={15} className="shrink-0" />
+                <span>{syncSuccessMsg}</span>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5">
               {/* Subject Filter */}
               <div>
                 <label className="block text-[11px] font-semibold text-slate-500 mb-1">Môn học</label>
@@ -1221,6 +1376,20 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                   placeholder="Email hoặc ID..."
                   className="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs outline-none"
                 />
+              </div>
+
+              {/* Visibility Filter (Private / Public) */}
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Quyền riêng tư</label>
+                <select
+                  value={filterVisibility}
+                  onChange={(e) => setFilterVisibility(e.target.value as 'all' | 'public' | 'private')}
+                  className="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs outline-none"
+                >
+                  <option value="all">Tất cả</option>
+                  <option value="public">Công khai</option>
+                  <option value="private">Riêng tư</option>
+                </select>
               </div>
 
               {/* Min Score */}
@@ -1264,10 +1433,11 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                   setFilterSubjectCode('all');
                   setSearchSeedQuery('');
                   setSearchCreatorQuery('');
+                  setFilterVisibility('all');
                   setFilterMinScore('');
                   setFilterMaxScore('');
                 }}
-                className="text-rose-600 dark:text-rose-400 font-semibold hover:underline"
+                className="text-rose-600 dark:text-rose-400 font-semibold hover:underline cursor-pointer"
               >
                 Xóa bộ lọc
               </button>
@@ -1303,7 +1473,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                       <th className="py-3 px-4">Thí sinh</th>
                       <th className="py-3 px-4">Điểm TB</th>
                       <th className="py-3 px-4">Cao / Thấp</th>
-                      <th className="py-3 px-4 text-right">Chi tiết</th>
+                      <th className="py-3 px-4 text-right">Hành động</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -1313,7 +1483,18 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                         className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors"
                       >
                         <td className="py-3.5 px-4 font-mono font-bold text-indigo-700 dark:text-indigo-400">
-                          {row.exam.seed}
+                          <div className="flex items-center gap-1.5">
+                            <span>{row.exam.seed}</span>
+                            <span
+                              className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                                row.exam.isPublic
+                                  ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300'
+                                  : 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300'
+                              }`}
+                            >
+                              {row.exam.isPublic ? 'Public' : 'Private'}
+                            </span>
+                          </div>
                         </td>
                         <td className="py-3.5 px-4">
                           <span className="px-2 py-0.5 rounded font-mono font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-[11px]">
@@ -1336,8 +1517,16 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                             {row.attemptsCount} lượt
                           </span>
                         </td>
-                        <td className="py-3.5 px-4 font-semibold text-slate-700 dark:text-slate-300">
-                          {row.uniqueUsersCount} người
+                        <td className="py-3.5 px-4 font-semibold">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedExamRow(row)}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 transition-colors font-bold cursor-pointer group"
+                            title="Bấm để xem danh sách thí sinh làm đề này"
+                          >
+                            <Users size={13} className="text-indigo-500 group-hover:scale-110 transition-transform" />
+                            <span>{row.uniqueUsersCount} người</span>
+                          </button>
                         </td>
                         <td className="py-3.5 px-4 font-bold text-emerald-600 dark:text-emerald-400">
                           {row.avgScore !== null ? `${row.avgScore.toFixed(2)}/10` : '—'}
@@ -1355,15 +1544,19 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
                           <div className="flex items-center justify-end gap-1.5">
                             <button
                               type="button"
-                              onClick={() => setSelectedExamRow(row)}
-                              className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 border border-indigo-200 dark:border-indigo-800 rounded-lg font-bold flex items-center gap-1 cursor-pointer"
+                              onClick={() => {
+                                setDetailExamRow(row);
+                                setEditingExamTitle(row.exam.title || `Đề ${row.exam.subjectCode} (${row.exam.seed})`);
+                              }}
+                              className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 border border-indigo-200 dark:border-indigo-800 rounded-lg font-bold flex items-center gap-1 cursor-pointer transition-colors"
+                              title="Chi tiết đề thi, sửa tên đề, phân quyền private/public, vào làm bài..."
                             >
-                              <Eye size={12} /> Xem thí sinh
+                              <Sliders size={12} /> Chi tiết
                             </button>
                             <button
                               type="button"
                               onClick={() => setDeletingExam(row)}
-                              className="px-2 py-1 bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900 border border-rose-200 dark:border-rose-800 rounded-lg font-bold flex items-center gap-1 cursor-pointer"
+                              className="px-2 py-1 bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900 border border-rose-200 dark:border-rose-800 rounded-lg font-bold flex items-center gap-1 cursor-pointer transition-colors"
                               title="Xóa đề thi này"
                             >
                               <Trash2 size={12} /> Xóa
@@ -1536,151 +1729,6 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       {/* ========================================================================= */}
       {activeTab === 'questions' && (
         <div className="space-y-5 animate-in fade-in duration-200">
-          {/* DANH SÁCH ĐỀ THI DO ADMIN TẠO (CÔNG KHAI & RIÊNG TƯ) */}
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
-              <div
-                onClick={() => setIsAdminCustomExamsExpanded(!isAdminCustomExamsExpanded)}
-                className="cursor-pointer select-none group"
-              >
-                <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                  <Database size={16} className="text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform" />
-                  Danh sách đề thi do Admin tạo ({adminCustomExams.length} đề)
-                </h3>
-                <p className="text-xs text-slate-500">
-                  Bao gồm cả đề thi <strong>Riêng tư (Chỉ Admin)</strong> và <strong>Công khai (Toàn hệ thống)</strong>.
-                </p>
-              </div>
-              <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
-                <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
-                  {adminCustomExams.filter((d) => !d.isPublic).length} riêng tư · {adminCustomExams.filter((d) => d.isPublic).length} công khai
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsAdminCustomExamsExpanded(!isAdminCustomExamsExpanded)}
-                  className="px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                >
-                  {isAdminCustomExamsExpanded ? (
-                    <>
-                      <ChevronUp size={14} /> Thu gọn
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown size={14} /> Xem danh sách đề ({adminCustomExams.length})
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {isAdminCustomExamsExpanded && (
-              adminCustomExams.length === 0 ? (
-                <div className="text-center py-6 text-xs text-slate-400 animate-in fade-in">
-                  Chưa có đề thi tự tạo nào. Chọn câu hỏi ở bên dưới và nhấn &quot;Tạo đề thi từ các câu đã chọn&quot; để tạo đề.
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-in fade-in duration-150">
-                {adminCustomExams.map((def) => {
-                  const isCopied = copiedAdminSeed === def.seed;
-                  return (
-                    <div
-                      key={def.id}
-                      className={`p-4 rounded-xl border flex flex-col justify-between transition-all space-y-3 ${
-                        !def.isPublic
-                          ? 'bg-indigo-50/40 dark:bg-indigo-950/20 border-indigo-200 dark:border-indigo-900/60'
-                          : 'bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900/60'
-                      }`}
-                    >
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-900 text-white dark:bg-blue-600">
-                            {def.subjectCode}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => handleToggleExamPublic(def)}
-                            title="Bấm để chuyển đổi giữa Công khai và Riêng tư"
-                            className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full transition-all cursor-pointer hover:opacity-85 ${
-                              !def.isPublic
-                                ? 'bg-indigo-100 hover:bg-indigo-200 dark:bg-indigo-900/80 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-300'
-                                : 'bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900/80 dark:hover:bg-emerald-800 text-emerald-700 dark:text-emerald-300'
-                            }`}
-                          >
-                            {!def.isPublic ? (
-                              <>
-                                <Lock size={10} /> Riêng tư ⇄
-                              </>
-                            ) : (
-                              <>
-                                <Globe size={10} /> Công khai ⇄
-                              </>
-                            )}
-                          </button>
-                        </div>
-
-                        <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 line-clamp-2">
-                          {def.title || `Đề ${def.subjectCode} (${def.seed})`}
-                        </h4>
-
-                        <div className="flex items-center justify-between text-xs text-slate-500">
-                          <span>Số câu: <strong>{def.totalQuestions || def.questionIds?.length || 0} câu</strong></span>
-                          <span className="text-[11px] font-mono">
-                            {def.createdAt ? new Date(def.createdAt).toLocaleDateString('vi-VN') : ''}
-                          </span>
-                        </div>
-
-                        {/* Seed Box with Copy */}
-                        <div className="flex items-center justify-between bg-white dark:bg-slate-900/80 p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-mono">
-                          <span className="text-slate-500">Mã đề:</span>
-                          <div className="flex items-center gap-1.5 font-bold text-blue-600 dark:text-blue-400">
-                            <span>{def.seed}</span>
-                            <button
-                              type="button"
-                              onClick={() => handleCopyAdminSeed(def.seed)}
-                              className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded transition-colors cursor-pointer"
-                              title="Sao chép mã đề"
-                            >
-                              {isCopied ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-200/60 dark:border-slate-800 text-xs">
-                        <button
-                          type="button"
-                          onClick={() => handleLaunchAdminExam(def)}
-                          className="flex-1 py-1.5 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer"
-                        >
-                          <Play size={12} fill="currentColor" /> Vào làm bài
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setDeletingExam({
-                              exam: def,
-                              attemptsCount: 0,
-                              uniqueUsersCount: 0,
-                              avgScore: null,
-                              maxScore: null,
-                              minScore: null,
-                              attempts: [],
-                            })
-                          }
-                          className="p-1.5 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer"
-                          title="Xóa đề thi này"
-                        >
-                          <Trash2 size={14} />
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-        </div>
-
           {/* Controls Bar */}
           <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -2110,15 +2158,214 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       )}
 
       {/* ========================================================================= */}
+      {/* MODAL: CHI TIẾT ĐỀ THI (Sửa tên đề, Toggle Private/Public, Vào làm, ...) */}
+      {/* ========================================================================= */}
+      {detailExamRow &&
+        typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
+            onClick={() => setDetailExamRow(null)}
+          >
+            <div
+              className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 space-y-5 animate-in zoom-in-95 duration-75 text-slate-900 dark:text-slate-100 max-h-[90vh] overflow-y-auto will-change-transform"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
+                    <Sliders size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                      Chi tiết đề thi
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold">
+                        {detailExamRow.exam.seed}
+                      </span>
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Cập nhật thông tin, quyền riêng tư và điều khiển đề thi
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setDetailExamRow(null)}
+                  className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Edit Title Section */}
+              <div className="space-y-2 p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  Tên đề thi:
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={editingExamTitle}
+                    onChange={(e) => setEditingExamTitle(e.target.value)}
+                    placeholder="Nhập tên đề thi hiển thị..."
+                    className="flex-1 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-800 dark:text-slate-100 outline-none focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleSaveExamTitle}
+                    disabled={savingExamTitle}
+                    className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer disabled:opacity-50 shadow-sm"
+                  >
+                    <Save size={13} />
+                    {savingExamTitle ? 'Đang lưu...' : 'Lưu tên'}
+                  </button>
+                </div>
+              </div>
+
+              {/* Quick Info Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/60 dark:border-slate-800">
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Môn học</div>
+                  <div className="font-mono font-bold text-sm text-blue-600 dark:text-blue-400 mt-0.5">
+                    {detailExamRow.exam.subjectCode}
+                  </div>
+                </div>
+                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/60 dark:border-slate-800">
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Số câu</div>
+                  <div className="font-bold text-sm text-slate-800 dark:text-slate-200 mt-0.5">
+                    {detailExamRow.exam.totalQuestions || detailExamRow.exam.questionIds.length} câu
+                  </div>
+                </div>
+                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/60 dark:border-slate-800">
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Lượt làm</div>
+                  <div className="font-bold text-sm text-slate-800 dark:text-slate-200 mt-0.5">
+                    {detailExamRow.attemptsCount} lượt
+                  </div>
+                </div>
+                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200/60 dark:border-slate-800">
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Điểm TB</div>
+                  <div className="font-bold text-sm text-emerald-600 dark:text-emerald-400 mt-0.5">
+                    {detailExamRow.avgScore !== null ? `${detailExamRow.avgScore.toFixed(2)}/10` : '—'}
+                  </div>
+                </div>
+              </div>
+
+              {/* Creator & Date Info */}
+              <div className="text-xs space-y-1.5 p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl text-slate-600 dark:text-slate-400">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Người tạo:</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200 font-mono">
+                    {getDisplayCreatorEmail(detailExamRow.exam)}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Ngày tạo:</span>
+                  <span className="font-mono text-slate-800 dark:text-slate-200 font-medium">
+                    {formatDateBeforeTime(detailExamRow.exam.createdAt)}
+                  </span>
+                </div>
+              </div>
+
+              {/* Privacy Toggle Section */}
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 flex items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                    {detailExamRow.exam.isPublic ? (
+                      <>
+                        <Globe size={14} className="text-emerald-500" />
+                        <span className="text-emerald-700 dark:text-emerald-400">Đang ở chế độ Công khai (Public)</span>
+                      </>
+                    ) : (
+                      <>
+                        <Lock size={14} className="text-indigo-500" />
+                        <span className="text-indigo-700 dark:text-indigo-400">Đang ở chế độ Riêng tư (Private)</span>
+                      </>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                    {detailExamRow.exam.isPublic
+                      ? 'Mọi sinh viên đều có thể nhìn thấy và làm đề thi này trên trang chủ.'
+                      : 'Chỉ Admin và người tạo đề mới có thể nhìn thấy đề thi này.'}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleToggleExamPublic(detailExamRow.exam)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 shadow-xs ${
+                    detailExamRow.exam.isPublic
+                      ? 'bg-amber-100 hover:bg-amber-200 text-amber-800 dark:bg-amber-950/80 dark:hover:bg-amber-900 dark:text-amber-300'
+                      : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                  }`}
+                >
+                  {detailExamRow.exam.isPublic ? 'Chuyển sang Riêng tư' : 'Bật Công khai đề'}
+                </button>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center justify-between gap-2.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const row = detailExamRow;
+                      setDetailExamRow(null);
+                      setSelectedExamRow(row);
+                    }}
+                    className="px-3 py-2 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <Users size={14} /> Xem thí sinh ({detailExamRow.uniqueUsersCount})
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(detailExamRow.exam.seed);
+                      alert(`Đã sao chép mã đề: ${detailExamRow.exam.seed}`);
+                    }}
+                    className="px-3 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <Copy size={14} /> Sao chép mã
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const row = detailExamRow;
+                      setDetailExamRow(null);
+                      setDeletingExam(row);
+                    }}
+                    className="px-3 py-2 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleLaunchAdminExam(detailExamRow.exam)}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md transition-colors cursor-pointer"
+                  >
+                    <Play size={13} fill="currentColor" /> Vào làm bài
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+
+      {/* ========================================================================= */}
       {/* MODAL 2: CHI TIẾT NGƯỜI LÀM ĐỀ THI (Section 10.2) */}
       {/* ========================================================================= */}
-      {selectedExamRow && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
-          onClick={() => setSelectedExamRow(null)}
-        >
+      {selectedExamRow &&
+        typeof document !== 'undefined' &&
+        createPortal(
           <div
-            className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-3xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 text-slate-900 dark:text-slate-100"
+            className="fixed inset-0 z-[9999] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
+            onClick={() => setSelectedExamRow(null)}
+          >
+          <div
+            className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-3xl w-full my-6 overflow-hidden animate-in fade-in zoom-in-95 duration-75 text-slate-900 dark:text-slate-100 will-change-transform"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -2239,7 +2486,8 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* ========================================================================= */}
@@ -2659,47 +2907,52 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({ currentUser:
       {/* ========================================================================= */}
       {/* MODAL: XÁC NHẬN XÓA ĐỀ THI (Admin Delete Exam) */}
       {/* ========================================================================= */}
-      {deletingExam && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
-          onClick={() => setDeletingExam(null)}
-        >
+      {deletingExam &&
+        typeof document !== 'undefined' &&
+        createPortal(
           <div
-            className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-md w-full p-6 space-y-4 animate-in fade-in zoom-in-95 text-slate-900 dark:text-slate-100"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[9999] bg-slate-950/70 flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-75 will-change-transform"
+            onClick={() => setDeletingExam(null)}
+            role="dialog"
+            aria-modal="true"
           >
-            <div className="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
-              <Trash2 size={24} />
-            </div>
-            <div className="text-center space-y-1">
-              <h3 className="font-bold text-base">Xác nhận xóa đề thi?</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Mã đề: <strong className="font-mono text-slate-900 dark:text-white">{deletingExam.exam.seed}</strong> · Môn: {deletingExam.exam.subjectCode}
-              </p>
-              <p className="text-xs text-rose-600 dark:text-rose-400 font-medium pt-1">
-                Khi xóa, đề thi sẽ bị hủy mã và tự động biến mất khỏi lịch sử làm bài của người dùng. Người dùng sẽ không thể truy cập lại đề thi này.
-              </p>
-            </div>
+            <div
+              className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-md w-full p-6 space-y-4 animate-in fade-in zoom-in-95 duration-75 text-slate-900 dark:text-slate-100 will-change-transform"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto shadow-sm">
+                <Trash2 size={24} />
+              </div>
+              <div className="text-center space-y-1">
+                <h3 className="font-bold text-base">Xác nhận xóa đề thi?</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Mã đề: <strong className="font-mono text-slate-900 dark:text-white">{deletingExam.exam.seed}</strong> · Môn: {deletingExam.exam.subjectCode}
+                </p>
+                <p className="text-xs text-rose-600 dark:text-rose-400 font-medium pt-1">
+                  Khi xóa, đề thi sẽ bị hủy mã và tự động biến mất khỏi lịch sử làm bài của người dùng. Người dùng sẽ không thể truy cập lại đề thi này.
+                </p>
+              </div>
 
-            <div className="flex items-center gap-2 pt-2">
-              <button
-                type="button"
-                onClick={() => setDeletingExam(null)}
-                className="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
-              >
-                Hủy bỏ
-              </button>
-              <button
-                type="button"
-                onClick={handleDeleteExam}
-                className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md cursor-pointer"
-              >
-                Xác nhận xóa
-              </button>
+              <div className="flex items-center gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setDeletingExam(null)}
+                  className="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+                >
+                  Hủy bỏ
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDeleteExam}
+                  className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md cursor-pointer transition-colors"
+                >
+                  Xác nhận xóa
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
 
       {/* ========================================================================= */}
       {/* MODAL: XEM BÀI LÀM CHI TIẾT CỦA THÍ SINH (Section 10) */}

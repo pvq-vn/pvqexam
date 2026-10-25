@@ -202,31 +202,42 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       setGameState('review');
 
       // Asynchronously refresh questions from current subject JSON files (Section 11.3)
-      const targetPaths =
+      // Always load all exam files of the subject to ensure every question in the attempt is found
+      const subjectPaths = subject.examFiles.map((f) => f.filePath);
+      const configPaths =
         initialAttempt.config?.examFilePaths && initialAttempt.config.examFilePaths.length > 0
           ? initialAttempt.config.examFilePaths
           : initialAttempt.config?.examFilePath
           ? [initialAttempt.config.examFilePath]
-          : subject.examFiles.map((f) => f.filePath);
+          : [];
+      const targetPaths = Array.from(new Set([...subjectPaths, ...configPaths]));
 
-      Promise.all(targetPaths.map((fp) => loadExamFile(fp).catch(() => [])))
+      Promise.all(targetPaths.map((fp) => loadExamFile(fp).catch((err) => {
+        console.warn(`Could not load exam file "${fp}" during review refresh:`, err);
+        return [];
+      })))
         .then((lists) => {
           if (!isMounted) return;
           const latestQuestions = lists.flat();
           if (latestQuestions.length === 0) return;
-          const qMap = new Map(latestQuestions.map((q) => [String(q.id), q]));
+
+          // Index by both question id and originalNum to ensure robust matching
+          const qMap = new Map<string, Question>();
+          latestQuestions.forEach((q) => {
+            qMap.set(String(q.id), q);
+            if (q.originalNum !== undefined) {
+              qMap.set(String(q.originalNum), q);
+            }
+          });
+
           const refreshed = initialAttempt.questions.map((oldQ) => {
-            const latestQ = qMap.get(String(oldQ.id));
+            const latestQ =
+              qMap.get(String(oldQ.id)) ||
+              (oldQ.originalNum !== undefined ? qMap.get(String(oldQ.originalNum)) : undefined);
             if (!latestQ) return oldQ; // fallback snapshot
             return {
               ...oldQ,
-              text: latestQ.text || oldQ.text,
-              options: latestQ.options || oldQ.options,
-              correctAnswers: latestQ.correctAnswers || oldQ.correctAnswers,
-              explanation: latestQ.explanation || oldQ.explanation,
-              scope: latestQ.scope || oldQ.scope,
-              originalNum: latestQ.originalNum || oldQ.originalNum,
-              sourceFile: latestQ.sourceFile || oldQ.sourceFile,
+              ...latestQ,
             };
           });
 
@@ -238,6 +249,13 @@ export const QuizPage: React.FC<QuizPageProps> = ({
             initialAttempt.timeSpentSeconds
           );
           setResult(recomputed);
+
+          // Persist refreshed questions and updated score to history
+          historyService.updateAttemptQuestions(
+            initialAttempt.id,
+            refreshed,
+            recomputed.score10
+          );
         })
         .catch((err) => {
           console.warn('Could not refresh review questions from latest JSON:', err);

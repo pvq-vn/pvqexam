@@ -1,4 +1,4 @@
-import { QuizAttempt, ExamDefinition } from '../types/quiz';
+import { QuizAttempt, ExamDefinition, Question } from '../types/quiz';
 import { supabase, isSupabaseConfigured } from './supabase';
 import { questionStatsService } from './questionStatsService';
 import { examDefinitionService } from './examDefinitionService';
@@ -405,6 +405,36 @@ export const historyService = {
       await questionStatsService.recalculateStatsFromAttempts(userId, []);
     } catch (err) {
       console.warn('Failed resetting question stats after clearing history:', err);
+    }
+  },
+
+  /**
+   * Updates an attempt's questions and score in localStorage and Supabase (e.g. after exam.json edits).
+   */
+  async updateAttemptQuestions(attemptId: string, questions: Question[], score10?: number): Promise<void> {
+    try {
+      const existing = historyService.getLocalAttempts();
+      const updated = existing.map((a) => {
+        if (a.id === attemptId) {
+          return {
+            ...a,
+            questions,
+            score10: score10 !== undefined ? score10 : a.score10,
+          };
+        }
+        return a;
+      });
+      localStorage.setItem(LOCAL_ATTEMPTS_KEY, JSON.stringify(updated));
+
+      if (isSupabaseConfigured && supabase) {
+        const updatePayload: Record<string, any> = { questions };
+        if (score10 !== undefined) {
+          updatePayload.score_10 = score10;
+        }
+        await supabase.from('quiz_attempts').update(updatePayload).eq('id', attemptId);
+      }
+    } catch (err) {
+      console.warn('Could not update attempt questions in storage:', err);
     }
   },
 };

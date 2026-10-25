@@ -420,6 +420,38 @@ export const examDefinitionService = {
   },
 
   /**
+   * Retrieves exam definitions visible to the specified user:
+   * - Admin: all exams (public & private)
+   * - Normal user: all public exams PLUS private exams created by that user
+   * - Guest: only public exams
+   */
+  async getVisibleExamDefinitions(
+    user?: { id?: string; email?: string; isAdmin?: boolean } | null
+  ): Promise<ExamDefinition[]> {
+    const all = await examDefinitionService.getAllExamDefinitions();
+    const deleted = new Set(examDefinitionService.getDeletedSeeds());
+    const valid = all.filter((d) => !deleted.has(d.seed.toUpperCase()));
+
+    if (user?.isAdmin) {
+      return valid;
+    }
+
+    const currentUserId = user?.id;
+    const currentUserEmail = user?.email?.toLowerCase();
+
+    return valid.filter((d) => {
+      // Public exams are visible to everyone
+      if (d.isPublic) return true;
+      // Private exams created by the user are visible to the user
+      if (currentUserId && d.createdByUserId === currentUserId) return true;
+      if (currentUserEmail && d.creatorEmail && d.creatorEmail.toLowerCase() === currentUserEmail) {
+        return true;
+      }
+      return false;
+    });
+  },
+
+  /**
    * Retrieves all exam definitions for Admin Management.
    */
   async getAllExamDefinitions(): Promise<ExamDefinition[]> {
@@ -563,5 +595,73 @@ export const examDefinitionService = {
     } catch {
       // ignore
     }
+  },
+
+  /**
+   * Pushes all local exam definitions and local quiz attempts to Supabase.
+   * Useful to unify statistics across localhost and deployed Vercel domains.
+   */
+  async syncAllLocalDataToSupabase(): Promise<{ syncedDefs: number; syncedAttempts: number }> {
+    if (!isSupabaseConfigured || !supabase) {
+      throw new Error('Supabase chưa được cấu hình.');
+    }
+
+    let syncedDefs = 0;
+    let syncedAttempts = 0;
+
+    // 1. Sync exam definitions
+    const localDefs = examDefinitionService.getLocalExamDefinitions();
+    for (const def of localDefs) {
+      try {
+        await examDefinitionService.saveExamDefinition(def);
+        syncedDefs++;
+      } catch (err) {
+        console.warn('Failed syncing definition to Supabase:', def.seed, err);
+      }
+    }
+
+    // 2. Sync quiz attempts
+    let localAttempts: QuizAttempt[] = [];
+    try {
+      const raw = localStorage.getItem('hust_quiz_local_attempts');
+      localAttempts = raw ? JSON.parse(raw) : [];
+    } catch {
+      localAttempts = [];
+    }
+
+    for (const att of localAttempts) {
+      const cleanSeed = (att.seed || '').trim().toUpperCase();
+      try {
+        const { error } = await supabase.from('quiz_attempts').upsert({
+          id: att.id,
+          user_id: att.userId && !att.userId.startsWith('local-') ? att.userId : null,
+          subject_id: att.subjectId,
+          subject_code: att.subjectCode,
+          subject_name: att.subjectName,
+          seed: cleanSeed,
+          exam_id: att.examDefinitionId || att.config?.examDefinitionId || null,
+          score_10: att.score10,
+          total_scored_questions: att.totalScoredQuestions,
+          correct_count: att.correctCount,
+          unanswered_count: att.unansweredCount,
+          essay_count: att.essayCount,
+          time_spent_seconds: att.timeSpentSeconds,
+          started_at: att.startedAt,
+          submitted_at: att.submittedAt,
+          config: att.config,
+          questions_snapshot: att.questions,
+          answers: att.answers,
+          flagged: att.flagged,
+          result: att.result,
+        });
+        if (!error) {
+          syncedAttempts++;
+        }
+      } catch (err) {
+        console.warn('Failed syncing attempt to Supabase:', att.id, err);
+      }
+    }
+
+    return { syncedDefs, syncedAttempts };
   },
 };

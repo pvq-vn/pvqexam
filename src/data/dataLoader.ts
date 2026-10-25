@@ -105,6 +105,15 @@ export function sanitizeExamJsonText(raw: string): string {
     (_, prefix, val, suffix) => `${prefix}${JSON.stringify(val.trim())}${suffix}`
   );
 
+  // 3. Auto-escape inner unescaped double quotes in single-line string properties e.g. "explanation": "text "quote" text",
+  text = text.replace(
+    /^([ \t]*"[a-zA-Z0-9_]+"[ \t]*:[ \t]*")([\s\S]*?)("[, \t]*\r?$)/gm,
+    (_, prefix, content, suffix) => {
+      const repaired = content.replace(/(?<!\\)"/g, '\\"');
+      return `${prefix}${repaired}${suffix}`;
+    }
+  );
+
   // 3. Remove trailing commas before } or ] strictly outside of JSON string literals
   let out = '';
   let inString = false;

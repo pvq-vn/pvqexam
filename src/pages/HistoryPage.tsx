@@ -98,17 +98,27 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
     });
   };
 
-  const handleExecuteDelete = async () => {
+  const handleExecuteDelete = () => {
     if (!confirmDelete) return;
 
-    if (confirmDelete.type === 'clear') {
-      await historyService.clearHistory(user?.id);
-      setAttempts([]);
-    } else if (confirmDelete.type === 'single') {
-      await historyService.deleteAttempt(confirmDelete.attemptId, user?.id);
-      setAttempts((prev) => prev.filter((a) => a.id !== confirmDelete.attemptId));
-    }
+    const target = confirmDelete;
+    // Dismiss popup immediately (0ms latency for smooth UX)
     setConfirmDelete(null);
+
+    if (target.type === 'clear') {
+      // Optimistically clear attempts
+      setAttempts([]);
+      historyService.clearHistory(user?.id).catch((err) => {
+        console.error('Failed to clear history:', err);
+      });
+    } else if (target.type === 'single') {
+      const targetId = target.attemptId;
+      // Optimistically remove from state
+      setAttempts((prev) => prev.filter((a) => a.id !== targetId));
+      historyService.deleteAttempt(targetId, user?.id).catch((err) => {
+        console.error('Failed to delete attempt:', err);
+      });
+    }
   };
 
   const handleOpenNotificationAttempt = async (n: UserNotification) => {
@@ -438,7 +448,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
         typeof document !== 'undefined' &&
         createPortal(
           <div
-            className="fixed inset-0 z-[100] bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overscroll-contain animate-in fade-in duration-150"
+            className="fixed inset-0 z-[9999] bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overscroll-contain animate-in fade-in duration-150"
             onClick={() => setConfirmDelete(null)}
           >
           <div

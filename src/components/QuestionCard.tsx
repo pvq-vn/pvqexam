@@ -8,6 +8,7 @@ import {
   BookOpen,
   Sparkles,
   Tag,
+  ChevronDown,
 } from 'lucide-react';
 import { Question, QuestionEvaluation } from '../types/quiz';
 import {
@@ -276,7 +277,7 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
         </div>
       )}
 
-      {/* Check layout adaptation: side-by-side for compact diagrams & short options */}
+      {/* Check layout adaptation: side-by-side for compact diagrams & short options / dropdowns */}
       {(() => {
         const hasDedicatedImage = Boolean(
           question.driveImageId ||
@@ -285,7 +286,9 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
         );
         const isMcq = (question.type === 'single' || question.type === 'multiple') && Boolean(question.options && question.options.length > 0);
         const areOptionsConcise = isMcq && (question.options?.every((opt) => (opt.text || '').trim().length <= 80) ?? false);
-        const canUseSideBySide = hasDedicatedImage && isMcq && areOptionsConcise;
+        const isDropdown = question.type === 'dropdown';
+        const canDropdownSideBySide = hasDedicatedImage && isDropdown;
+        const canUseSideBySide = (hasDedicatedImage && isMcq && areOptionsConcise) || canDropdownSideBySide;
 
         const renderSingleOptions = () => (
           <div className="space-y-2.5">
@@ -512,6 +515,174 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
           </div>
         );
 
+        const renderDropdownSlots = () => {
+          const slotsToRender =
+            question.dropdownSlots && question.dropdownSlots.length > 0
+              ? question.dropdownSlots
+              : (question.correctAnswers.length > 0
+                  ? question.correctAnswers
+                  : ['']
+                ).map((_, sIdx) => ({
+                  label: `Vị trí [${sIdx + 1}]`,
+                  choices: question.options || [],
+                }));
+
+          return (
+            <div className="pt-1 space-y-3">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles size={13} className="text-teal-600 dark:text-teal-400 shrink-0" />
+                <span>Chọn đáp án tương ứng cho từng vị trí:</span>
+              </p>
+
+              <div className="space-y-2.5">
+                {slotsToRender.map((slot, slotIdx) => {
+                  const rawUserVal = Array.isArray(userAnswer)
+                    ? userAnswer[slotIdx] || ''
+                    : '';
+                  const slotChoices =
+                    slot.choices && slot.choices.length > 0
+                      ? slot.choices
+                      : question.options || [];
+
+                  // Normalize userVal to option ID if it was saved as numeric index or text
+                  const resolvedUserIdx = resolveOptionIndex(
+                    slotChoices,
+                    rawUserVal
+                  );
+                  const selectValue =
+                    resolvedUserIdx !== -1 && slotChoices[resolvedUserIdx]
+                      ? slotChoices[resolvedUserIdx].id
+                      : rawUserVal;
+
+                  const correctTarget = question.correctAnswers[slotIdx];
+                  const isSlotCorrect =
+                    isReview &&
+                    areOptionValuesEquivalent(
+                      slotChoices,
+                      rawUserVal,
+                      correctTarget
+                    );
+
+                  const correctOptIdx = resolveOptionIndex(
+                    slotChoices,
+                    correctTarget
+                  );
+                  const correctOptLabel =
+                    correctOptIdx !== -1 && slotChoices[correctOptIdx]
+                      ? `${correctOptIdx + 1}. ${slotChoices[correctOptIdx].text}`
+                      : String(correctTarget || '');
+
+                  const isSimpleBadge = /^(\[\d+\]|Vị trí \[\d+\]|\(\d+\))$/i.test(
+                    (slot.label || '').trim()
+                  );
+
+                  const isImageLabel =
+                    Boolean(slot.label) &&
+                    Boolean(
+                      resolveImageSource(slot.label)?.kind !== 'external-link' &&
+                        resolveImageSource(slot.label)
+                    );
+
+                  return (
+                    <div
+                      key={slotIdx}
+                      className={`p-3 sm:p-4 rounded-xl border transition-all ${
+                        isReview
+                          ? isSlotCorrect
+                            ? 'bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800/80'
+                            : 'bg-rose-50/50 dark:bg-rose-950/30 border-rose-300 dark:border-rose-800/80'
+                          : 'bg-white dark:bg-slate-900/80 border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs'
+                      }`}
+                    >
+                      <div
+                        className={`flex ${
+                          isImageLabel
+                            ? 'flex-col gap-3'
+                            : 'flex-col sm:flex-row sm:items-center justify-between gap-3'
+                        }`}
+                      >
+                        {/* Slot label (Badge, text, or Drive Image) */}
+                        <div
+                          className={
+                            isImageLabel
+                              ? 'w-full'
+                              : 'sm:max-w-[48%] flex-1 min-w-0'
+                          }
+                        >
+                          {isSimpleBadge ? (
+                            <span className="inline-flex items-center justify-center px-2.5 py-1 bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-lg font-mono font-bold text-xs">
+                              {slot.label || `Vị trí [${slotIdx + 1}]`}
+                            </span>
+                          ) : (
+                            <div className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 leading-snug">
+                              <RichTextRenderer
+                                text={slot.label || `Vị trí [${slotIdx + 1}]`}
+                                compact
+                              />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Custom Styled Select with Dropdown Arrow */}
+                        <div
+                          className={`relative ${
+                            isImageLabel ? 'w-full' : 'flex-1 sm:max-w-[50%]'
+                          }`}
+                        >
+                          <select
+                            disabled={isReview}
+                            value={selectValue}
+                            onChange={(e) =>
+                              handleDropdownChange(slotIdx, e.target.value)
+                            }
+                            className={`w-full appearance-none pl-3.5 pr-9 py-2.5 rounded-xl border text-xs sm:text-sm font-medium outline-none transition-all cursor-pointer disabled:cursor-default ${
+                              isReview
+                                ? isSlotCorrect
+                                  ? 'bg-emerald-100/70 dark:bg-emerald-900/40 border-emerald-500 text-emerald-950 dark:text-emerald-100 font-semibold'
+                                  : 'bg-rose-100/70 dark:bg-rose-900/40 border-rose-400 text-rose-950 dark:text-rose-100 font-semibold'
+                                : 'bg-slate-50 dark:bg-slate-800/90 hover:bg-slate-100/80 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 shadow-2xs'
+                            }`}
+                          >
+                            <option value="">-- Chọn đáp án --</option>
+                            {slotChoices.map((opt, oIdx) => (
+                              <option
+                                key={opt.id}
+                                value={opt.id}
+                                className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 py-1.5"
+                              >
+                                {oIdx + 1}. {opt.text}
+                              </option>
+                            ))}
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 dark:text-slate-500">
+                            <ChevronDown size={15} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Review mode: Display correct answer if wrong */}
+                      {isReview && !isSlotCorrect && (
+                        <div className="mt-2.5 text-xs text-emerald-900 dark:text-emerald-200 bg-emerald-50/90 dark:bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-300 dark:border-emerald-800/80 flex items-start gap-2 font-medium">
+                          <CheckCircle2
+                            size={15}
+                            className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
+                          />
+                          <div className="min-w-0 flex-1">
+                            <span className="font-semibold block sm:inline">
+                              Đáp án đúng:{' '}
+                            </span>
+                            <RichTextRenderer text={correctOptLabel} compact />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        };
+
         return (
           <div className="p-4 sm:p-6 space-y-4">
             {/* Top: Question text, formulas, code, tables */}
@@ -525,24 +696,26 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               />
             </div>
 
-            {/* Side-by-Side arrangement for small image and short options */}
+            {/* Side-by-Side arrangement for small image and short options / dropdowns */}
             {canUseSideBySide ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start pt-1">
-                <div className="flex items-center justify-center p-2 rounded-xl bg-slate-50/60 dark:bg-slate-950/40 border border-slate-200/80 dark:border-slate-800 overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start pt-1">
+                <div className="flex items-center justify-center p-3 rounded-2xl bg-slate-50/70 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-2xs md:sticky md:top-20">
                   <RichTextRenderer
                     link={question.link}
                     driveImageId={question.driveImageId}
                   />
                 </div>
-                <div>
+                <div className="space-y-4">
                   {question.type === 'single' && renderSingleOptions()}
                   {question.type === 'multiple' && renderMultipleOptions()}
+                  {question.type === 'dropdown' && renderDropdownSlots()}
                 </div>
               </div>
             ) : (
               <>
                 {question.type === 'single' && renderSingleOptions()}
                 {question.type === 'multiple' && renderMultipleOptions()}
+                {question.type === 'dropdown' && renderDropdownSlots()}
               </>
             )}
 
@@ -564,134 +737,22 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
               }`}
             />
             {isReview && !isCorrect && (
-              <div className="mt-2 text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/40 p-3 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center gap-2">
+              <div className="mt-2 text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/40 p-3 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-start gap-2">
                 <CheckCircle2
                   size={16}
-                  className="text-emerald-600 dark:text-emerald-400 shrink-0"
+                  className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
                 />
-                <span>
-                  Đáp án chuẩn:{' '}
-                  <strong className="font-mono">
-                    {question.correctAnswers.join(' hoặc ')}
-                  </strong>
-                </span>
+                <div className="min-w-0 flex-1">
+                  <span className="font-semibold block sm:inline">
+                    Đáp án chuẩn:{' '}
+                  </span>
+                  <RichTextRenderer
+                    text={question.correctAnswers.join(' hoặc ')}
+                    compact
+                  />
+                </div>
               </div>
             )}
-          </div>
-        )}
-
-        {/* INPUT AREA: DROPDOWN */}
-        {question.type === 'dropdown' && (
-          <div className="pt-1 space-y-3">
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
-              Chọn đáp án tương ứng cho từng vị trí:
-            </p>
-            {(() => {
-              const slotsToRender =
-                question.dropdownSlots && question.dropdownSlots.length > 0
-                  ? question.dropdownSlots
-                  : (question.correctAnswers.length > 0
-                      ? question.correctAnswers
-                      : ['']
-                    ).map((_, sIdx) => ({
-                      label: `Vị trí [${sIdx + 1}]`,
-                      choices: question.options || [],
-                    }));
-
-              return slotsToRender.map((slot, slotIdx) => {
-                const rawUserVal = Array.isArray(userAnswer)
-                  ? userAnswer[slotIdx] || ''
-                  : '';
-                const slotChoices =
-                  slot.choices && slot.choices.length > 0
-                    ? slot.choices
-                    : question.options || [];
-
-                // Normalize userVal to option ID if it was saved as numeric index or text
-                const resolvedUserIdx = resolveOptionIndex(
-                  slotChoices,
-                  rawUserVal
-                );
-                const selectValue =
-                  resolvedUserIdx !== -1 && slotChoices[resolvedUserIdx]
-                    ? slotChoices[resolvedUserIdx].id
-                    : rawUserVal;
-
-                const correctTarget = question.correctAnswers[slotIdx];
-                const isSlotCorrect =
-                  isReview &&
-                  areOptionValuesEquivalent(
-                    slotChoices,
-                    rawUserVal,
-                    correctTarget
-                  );
-
-                const correctOptIdx = resolveOptionIndex(
-                  slotChoices,
-                  correctTarget
-                );
-                const correctOptLabel =
-                  correctOptIdx !== -1 && slotChoices[correctOptIdx]
-                    ? `${correctOptIdx + 1}. ${slotChoices[correctOptIdx].text}`
-                    : String(correctTarget || '');
-
-                const isSimpleBadge = /^(\[\d+\]|Vị trí \[\d+\]|\(\d+\))$/i.test(
-                  (slot.label || '').trim()
-                );
-
-                return (
-                  <div
-                    key={slotIdx}
-                    className="p-3 sm:p-3.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 space-y-2"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 text-sm">
-                      {isSimpleBadge ? (
-                        <span className="inline-flex items-center justify-center px-2.5 py-1 bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 rounded-lg font-mono font-bold text-xs w-fit shrink-0">
-                          {slot.label || `Vị trí [${slotIdx + 1}]`}
-                        </span>
-                      ) : (
-                        <span className="font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-200 sm:max-w-[48%] break-words">
-                          {slot.label || `Vị trí [${slotIdx + 1}]`}
-                        </span>
-                      )}
-                      <select
-                        disabled={isReview}
-                        value={selectValue}
-                        onChange={(e) =>
-                          handleDropdownChange(slotIdx, e.target.value)
-                        }
-                        className={`flex-1 p-2.5 rounded-lg border text-xs sm:text-sm outline-none transition-colors ${
-                          isReview
-                            ? isSlotCorrect
-                              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-900 dark:text-emerald-100 font-semibold'
-                              : 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 text-rose-900 dark:text-rose-100'
-                            : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20'
-                        }`}
-                      >
-                        <option value="">-- Chọn đáp án --</option>
-                        {slotChoices.map((opt, oIdx) => (
-                          <option key={opt.id} value={opt.id}>
-                            {oIdx + 1}. {opt.text}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {isReview && !isSlotCorrect && (
-                      <div className="text-xs text-emerald-800 dark:text-emerald-200 bg-emerald-50/90 dark:bg-emerald-950/50 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5 font-medium">
-                        <CheckCircle2
-                          size={14}
-                          className="text-emerald-600 dark:text-emerald-400 shrink-0"
-                        />
-                        <span>
-                          Đáp án đúng: <strong>{correctOptLabel}</strong>
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                );
-              });
-            })()}
           </div>
         )}
 
