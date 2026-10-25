@@ -435,7 +435,7 @@
     "correctAnswers": [
       "Một tập hợp gồm nhiều phần tử có quan hệ với nhau và cùng hoạt động hướng tới một mục đích chung"
     ],
-    "explanation": "Bản chất của một 'hệ thống' là tính nhất thể hóa. Dù bao gồm nhiều cấu phần (phần mềm, con người, quy trình, hạ tầng), chúng phải liên kết với nhau một cách logic để giải quyết chung một mục tiêu cốt lõi.",
+    "explanation": "Theo định nghĩa tiêu chuẩn trong học phần (Slide 4 - Chương 1 Tổng quan), một Hệ thống thông tin là một tập hợp gồm nhiều thành phần (con người, quy trình, dữ liệu, hạ tầng, phần mềm) có mối quan hệ tương tác logic và cùng hoạt động hướng tới một mục đích nghiệp vụ chung.",
     "scope": "2021.1 - Trang 23"
   },
   {
@@ -668,7 +668,7 @@
     "correctAnswers": [
       "Giải quyết vấn đề của người dùng"
     ],
-    "explanation": "Mục tiêu nguyên thủy và tối thượng nhất để khởi tạo và phân tích mọi hệ thống là nhằm cung cấp các chức năng hỗ trợ giải quyết được khó khăn, đáp ứng nhu cầu hoặc các bài toán nghiệp vụ của người dùng cuối.",
+    "explanation": "Theo Slide 47 & 52 (Chương 1 - Tổng quan & Chương 2 - Môi trường & Nhu cầu), mục đích tối thượng và nguyên thủy nhất để khởi tạo và phát triển một hệ thống thông tin là hỗ trợ giải quyết vấn đề nghiệp vụ và đáp ứng nhu cầu của người dùng. Các yếu tố như tăng lợi nhuận hay giảm chi phí là hệ quả phái sinh về mặt kinh doanh.",
     "scope": "2021.1 - Trang 38"
   },
   {
@@ -857,7 +857,7 @@
     "correctAnswers": [
       "Thực thi"
     ],
-    "explanation": "Kiến thức chuẩn trong học phần Phân tích và Thiết kế hệ thống (IT3120 - HUST).",
+    "explanation": "Theo Slide 10 (Chương 1 - Tổng quan) và Slide 4 (SDLC.pdf), pha Thực thi (Implementation) trong SDLC là giai đoạn biến các mô hình thiết kế thành phần mềm chạy được, trong đó hai hoạt động trọng tâm và tiêu biểu nhất là lập trình (coding) và kiểm thử (testing).",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20221.pdf — Trang 1"
   },
   {
@@ -1901,7 +1901,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 1",
     "link": "",
     "tables": [],
-    "explanation": "Quy trình thác nước (Waterfall model) là mô hình phát triển phần mềm tuần tự tuyến tính (linear-sequential), trong đó các giai đoạn (thu thập yêu cầu, phân tích, thiết kế, cài đặt, kiểm thử, triển khai, bảo trì) được thực hiện lần lượt nối tiếp nhau; giai đoạn sau chỉ bắt đầu khi giai đoạn trước đã hoàn thành đầy đủ. Nhược điểm của mô hình thác nước là kém linh hoạt, khó thích ứng khi yêu cầu thay đổi và rủi ro thường chỉ được phát hiện muộn ở giai đoạn kiểm thử/tích hợp."
+    "explanation": "Theo Slide 5 &amp; 6 (SDLC.pdf) và Slide 10 (Chương 1 - Tổng quan), Quy trình thác nước (Waterfall model) là mô hình phát triển phần mềm theo cấu trúc cổ điển, thực hiện tuần tự và tuyến tính từng bước qua các pha (Lập kế hoạch -&gt; Phân tích -&gt; Thiết kế -&gt; Xây dựng). Đầu ra của pha trước là đầu vào của pha sau và rất khó quay lại điều chỉnh pha trước."
   },
   {
     "id": 93,
@@ -2066,7 +2066,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 4",
     "link": "",
     "tables": [],
-    "explanation": "Quy trình nghiệp vụ (Business Process) được định nghĩa là một chuỗi các hoạt động/bước nghiệp vụ có thứ tự logic, do con người hoặc hệ thống thực hiện, nhằm tạo ra một giá trị hoặc đạt được một mục tiêu/kết quả nghiệp vụ cụ thể cho khách hàng hoặc tổ chức."
+    "explanation": "Theo Slide 4 (Chương 2 - Mô hình hóa chức năng), Quy trình nghiệp vụ (Business Process) được định nghĩa là một chuỗi các hoạt động nghiệp vụ có thứ tự logic, kết hợp các sự kiện và quyết định nhằm tạo ra kết quả đầu ra có giá trị cho người dùng hoặc tổ chức."
   },
   {
     "id": 101,
@@ -2252,13 +2252,12 @@
     ],
     "correctAnswers": [
       "Hệ thống cần cho phép 50 người dùng có thể đồng thời thực hiện việc nộp hồ sơ đăng ký trực tuyến.",
-      "Hệ thống cần cho phép người dùng lưu lại bản nháp (để tiếp tục thực hiện sau đó) hồ sơ đăng ký trực tuyến.",
       "Hệ thống cần cho phép người dùng sử dụng giao diện tiếng Việt hoặc tiếng Anh khi thực hiện việc nộp hồ sơ đăng ký trực tuyến."
     ],
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 7",
     "link": "",
     "tables": [],
-    "explanation": "Yêu cầu phi chức năng (Non-Functional Requirements) xác định các ràng buộc, tiêu chuẩn chất lượng của hệ thống: (1) đáp ứng 50 người dùng đồng thời là yêu cầu về hiệu năng/tải (Performance/Concurrency), và (2) hỗ trợ giao diện tiếng Việt/Anh là yêu cầu về tính khả dụng và quốc tế hóa (Usability/Localization). Các yêu cầu nộp hồ sơ trực tuyến và lưu bản nháp là các yêu cầu chức năng (Functional Requirements)."
+    "explanation": "Yêu cầu phi chức năng (Non-Functional Requirements) xác định các tiêu chuẩn chất lượng và ràng buộc vận hành: (1) đáp ứng 50 người dùng đồng thời thuộc nhóm Hiệu năng/Tải (Performance), và (2) hỗ trợ giao diện tiếng Việt/Anh thuộc nhóm Khả năng sử dụng/Quốc tế hóa (Usability/Localization). Ngược lại, việc nộp hồ sơ trực tuyến và lưu bản nháp là các tính năng nghiệp vụ trực tiếp cung cấp cho người dùng nên thuộc nhóm Yêu cầu chức năng (Functional Requirements)."
   },
   {
     "id": 110,
@@ -2434,7 +2433,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 12",
     "link": "",
     "tables": [],
-    "explanation": "Quy trình nghiệp vụ (Business Process) là một chuỗi các hoạt động có thứ tự logic nhằm đạt được một kết quả hay mục tiêu cụ thể nào đó trong hoạt động của tổ chức/doanh nghiệp."
+    "explanation": "Theo Slide 4 (Chương 2 - Mô hình hóa chức năng), Quy trình nghiệp vụ (Business Process) được định nghĩa là một chuỗi các hoạt động nghiệp vụ có thứ tự logic, kết hợp các sự kiện và quyết định nhằm tạo ra kết quả đầu ra có giá trị cho người dùng hoặc tổ chức."
   },
   {
     "id": 119,
@@ -2685,7 +2684,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 16",
     "link": "",
     "tables": [],
-    "explanation": "Yêu cầu 50 người dùng đồng thời (hiệu năng/năng lực tải) và hỗ trợ giao diện tiếng Việt/Anh (tính khả dụng, quốc tế hóa) là các yêu cầu phi chức năng."
+    "explanation": "Yêu cầu 50 người dùng đồng thời xác định chỉ số năng lực chịu tải thuộc nhóm Yêu cầu hiệu năng (Performance). Yêu cầu hỗ trợ giao diện tiếng Việt/Anh xác định khả năng tương tác ngôn ngữ thuộc nhóm Yêu cầu vận hành/khả năng sử dụng (Usability). Cả hai đều thuộc nhóm Yêu cầu phi chức năng (Non-Functional Requirements)."
   },
   {
     "id": 131,
@@ -2852,7 +2851,7 @@
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20222.pdf — Trang 20",
     "link": "",
     "tables": [],
-    "explanation": "Quy trình thác nước thực hiện tuần tự và tuyến tính các giai đoạn phát triển phần mềm."
+    "explanation": "Theo Slide 5 & 6 (SDLC.pdf) và Slide 10 (Chương 1 - Tổng quan), Quy trình thác nước (Waterfall model) là mô hình phát triển phần mềm theo cấu trúc cổ điển, thực hiện tuần tự và tuyến tính từng bước qua các pha. Đầu ra của một pha là đầu vào xác định cho pha tiếp theo và chỉ chuyển pha khi pha trước đã hoàn tất."
   },
   {
     "id": 139,
@@ -3200,7 +3199,7 @@
     "correctAnswers": [
       "Yêu cầu"
     ],
-    "explanation": "Tiến trình hợp nhất (Unified Process - UP) được chia thành 4 pha (Phases) theo trục thời gian gồm: Khởi đầu (Inception), Đặc tả/Tinh chế (Elaboration), Thực thi/Xây dựng (Construction) và Chuyển giao (Transition). 'Yêu cầu' (Requirements) là tên một quy trình công việc kỹ thuật (Engineering Workflow / Discipline) chứ không phải là một pha.",
+    "explanation": "Theo Slide 33 & 34 (SDLC.pdf), Tiến trình Hợp nhất (UP) được chia thành 4 pha theo chiều thời gian: Khởi đầu (Inception), Đặc tả (Elaboration), Xây dựng (Construction) và Chuyển giao (Transition). \"Yêu cầu\" (Requirements) là tên một luồng công việc kỹ thuật (Engineering Workflow) diễn ra trong các bước lặp chứ không phải tên một pha.",
     "scope": "2023.2 - Câu 13"
   },
   {
@@ -3221,7 +3220,7 @@
     "correctAnswers": [
       "Chuyển giao"
     ],
-    "explanation": "Trong 4 phương án, chỉ có 'Chuyển giao' (Transition) là tên một pha trong 4 pha của Tiến trình hợp nhất (Khởi đầu, Đặc tả, Thực thi, Chuyển giao). Các mục 'Yêu cầu', 'Thiết kế' và 'Kiểm thử' là tên các quy trình công việc (Workflows) diễn ra xuyên suốt các pha.",
+    "explanation": "Theo Slide 33 & 34 (SDLC.pdf) và Slide 10 (Chương 1), Quy trình Thống nhất (Unified Process - UP) chia SDLC theo chiều thời gian thành 4 pha (Phases) chính: Khởi đầu (Inception), Đặc tả/Tinh chế (Elaboration), Xây dựng/Thực thi (Construction), và Chuyển giao (Transition). Trong khi đó, Yêu cầu, Thiết kế và Kiểm thử là các luồng công việc kỹ thuật (Workflows/Disciplines) diễn ra xuyên suốt qua các pha.",
     "scope": "2023.2 - Câu 14"
   },
   {
@@ -3242,7 +3241,7 @@
     "correctAnswers": [
       "Tất cả các công việc đã được liệt kê"
     ],
-    "explanation": "Đặc trưng cốt lõi của Tiến trình hợp nhất (UP) là phát triển lặp và tăng trưởng (Iterative and Incremental). Trong mỗi vòng lặp (iteration) thuộc bất kỳ pha nào (kể cả pha Đặc tả - Elaboration), nhóm dự án đều có thể thực hiện tất cả các quy trình công việc từ Mô hình hóa nghiệp vụ, Yêu cầu, Thiết kế, Cài đặt, Kiểm thử cho đến Triển khai với mức độ phân bổ nguồn lực phù hợp.",
+    "explanation": "Theo Slide 37 (SDLC.pdf), đặc trưng cốt lõi của Tiến trình Hợp nhất (UP) là phát triển lặp và tăng trưởng (Iterative & Incremental). Mỗi bước lặp (iteration) trong bất kỳ pha nào (kể cả pha Đặc tả - Elaboration) đều thực hiện tất cả các luồng công việc từ Mô hình hóa nghiệp vụ, Yêu cầu, Thiết kế, Lập trình, Kiểm thử cho đến Quản lý dự án với mức độ phân bổ nguồn lực phù hợp.",
     "scope": "2023.2 - Câu 15"
   },
   {
@@ -3263,7 +3262,7 @@
     "correctAnswers": [
       "Tất cả các công việc đã được liệt kê"
     ],
-    "explanation": "Tương tự các pha khác trong Tiến trình hợp nhất (UP), một vòng lặp ở pha Thực thi (Construction) bao gồm cả các quy trình công việc kỹ thuật (như Thiết kế, Cài đặt, Kiểm thử) lẫn các quy trình công việc hỗ trợ (như Quản lý dự án, Quản lý cấu hình).",
+    "explanation": "Theo Slide 37 (SDLC.pdf), trong Tiến trình Hợp nhất (UP), một bước lặp (iteration) ở pha Thực thi/Xây dựng (Construction) không chỉ tập trung vào lập trình và kiểm thử mà vẫn triển khai đầy đủ các công việc thuộc các luồng khác như Thiết kế, Quản lý cấu hình, Môi trường và Quản lý dự án.",
     "scope": "2023.2 - Câu 16"
   },
   {
@@ -3920,7 +3919,7 @@
   },
   {
     "id": 192,
-    "type": "single",
+    "type": "multiple",
     "chapter": 2,
     "chapter_name": "Mô hình hóa chức năng",
     "text": "Trong bối cảnh hệ thống quản lý thư viện hãy chọn các tên lớp lĩnh vực?",
@@ -3963,7 +3962,7 @@
   },
   {
     "id": 194,
-    "type": "single",
+    "type": "multiple",
     "chapter": 4,
     "chapter_name": "Mô hình hóa hành vi",
     "text": "Các đặc điểm nào đúng với sơ đồ tuần tự mức hệ thống?",
@@ -4006,7 +4005,7 @@
   },
   {
     "id": 196,
-    "type": "single",
+    "type": "multiple",
     "chapter": 7,
     "chapter_name": "Thiết kế kiến trúc hệ thống",
     "text": "Trong các mô hình kiến trúc Máy Khách-Máy Chủ, xử lý nào thường được thực hiện bởi máy khách?",
@@ -4071,7 +4070,7 @@
   },
   {
     "id": 199,
-    "type": "single",
+    "type": "multiple",
     "chapter": 8,
     "chapter_name": "Thiết kế lưu trữ cố định",
     "text": "Các lớp trong tầng truy cập và quản lý dữ liệu (tầng DAM) có ảnh hưởng như thế nào?",
@@ -4115,7 +4114,7 @@
   },
   {
     "id": 201,
-    "type": "single",
+    "type": "multiple",
     "chapter": 9,
     "chapter_name": "Thiết kế giao diện người dùng",
     "text": "Những điều gì giúp cho giao diện dễ dùng?",
@@ -4137,7 +4136,7 @@
   },
   {
     "id": 202,
-    "type": "single",
+    "type": "multiple",
     "chapter": 6,
     "chapter_name": "Mẫu thiết kế",
     "text": "Dựa trên các tương tác được biểu diễn trong sơ đồ tuần tự như trong hình vẽ có thể suy ra những quan hệ phụ thuộc nào trong số các quan hệ được liệt kê?",
@@ -4180,7 +4179,7 @@
   },
   {
     "id": 204,
-    "type": "single",
+    "type": "multiple",
     "chapter": 1,
     "chapter_name": "Tổng quan về Phân tích và Thiết kế Hệ thống",
     "text": "Hãy chọn các mục là tên các pha của vòng đời phát triển hệ thống (SDLC)?",
@@ -4197,7 +4196,7 @@
       "Phân tích",
       "Thiết kế"
     ],
-    "explanation": "Đáp án chính thức trích xuất từ hệ thống thi cuối kỳ IT3120: b. Phân tích, c. Thiết kế\nĐề thi kíp 3: Attempt review | BLEARNING HUST\n12/18. ",
+    "explanation": "Theo Slide 10 (Chương 1 - Tổng quan) và Slide 4 (SDLC.pdf), Vòng đời phát triển hệ thống (SDLC) tiêu chuẩn bao gồm 4 pha chính theo trục thời gian: (1) Lập kế hoạch, (2) Phân tích, (3) Thiết kế, và (4) Thực thi. Do đó, "Phân tích" và "Thiết kế" là tên 2 pha chính thức. "Xác định yêu cầu" là một hoạt động thuộc pha Phân tích, còn "Kiểm thử" là một hoạt động thuộc pha Thực thi.",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 12"
   },
   {
@@ -4351,7 +4350,7 @@
   },
   {
     "id": 213,
-    "type": "single",
+    "type": "multiple",
     "chapter": 2,
     "chapter_name": "Mô hình hóa chức năng",
     "text": "Trong ngữ cảnh mô hình hóa chức năng hãy chọn các mô tả công việc tương thích với quy tắc sử dụng biểu diễn hộp đen của hệ thống?",
@@ -4459,7 +4458,7 @@
   },
   {
     "id": 218,
-    "type": "single",
+    "type": "multiple",
     "chapter": 4,
     "chapter_name": "Mô hình hóa hành vi",
     "text": "Trong ngữ cảnh hệ thống quản lý bán hàng, bản thực của những lớp nào được sử dụng trên sơ đồ tuần tự mức hệ thống?",
@@ -4481,7 +4480,7 @@
   },
   {
     "id": 219,
-    "type": "single",
+    "type": "multiple",
     "chapter": 6,
     "chapter_name": "Mẫu thiết kế",
     "text": "Trong ngữ cảnh kiến trúc Máy Khách-Máy Chủ, hãy chọn các phương tiện cho phép gửi thông điệp từ đối tượng giao diện trên máy khách đến đối tượng xử lý nghiệp vụ trên máy chủ qua đường truyền mạng?",
@@ -4671,7 +4670,7 @@
       "Khoảng thời gian từ lúc bắt đầu dự án cho đến lúc thử nghiệm hệ thống thường dài hơn so với các mô hình linh hoạt.",
       "Có tính tuần tự cao, kết quả đầu ra của 1 pha được sử dụng làm đầu vào cho pha tiếp theo."
     ],
-    "explanation": "Đáp án chính thức trích xuất từ hệ thống thi cuối kỳ IT3120: a. Khoảng thời gian từ lúc bắt đầu dự án cho đến lúc thử nghiệm hệ thống thường dài hơn so với các mô hình linh\nhoạt., c. Có tính tuần tự cao, kết quả đầu ra của 1 pha được sử dụng làm đầu vào cho pha tiếp theo.\nĐề thi Kíp 4: Attempt review | BLEARNING HUST\n12/18. ",
+    "explanation": "Theo Slide 6, 12 & 33 (SDLC.pdf), mô hình thác nước có tính tuần tự mạnh, kết quả đầu ra của pha trước được dùng làm đầu vào cho pha tiếp theo. Do tính chất chuyển pha cứng nhắc và kiểm thử diễn ra ở pha muộn, khoảng thời gian từ lúc bắt đầu dự án cho đến khi thử nghiệm hệ thống thường dài hơn đáng kể so với các mô hình phát triển nhanh/linh hoạt.",
     "scope": "Phân tích thiết kế hệ thống - cuối kì 20242.pdf — Trang 30"
   },
   {
@@ -5175,7 +5174,7 @@
   },
   {
     "id": 253,
-    "type": "single",
+    "type": "essay",
     "chapter": 8,
     "chapter_name": "Thiết kế lưu trữ cố định",
     "text": "Tiếp tục vấn đề phát triển hệ thống quản lý nhà chung cư đã được đề cập trong câu Phân tích. Trong tình huống được đặt ra trong câu hỏi\nnày nhóm thực hiện dự án đã xây dựng mô hình lĩnh vực, một phần kết quả được cung cấp trong sơ đồ lớp như trong hình vẽ và nhóm đã\nquyết định sử dụng cơ sở dữ liệu quan hệ để lưu trữ dữ liệu.\nBài toán được đặt ra là em hãy thực hiện chuyển đổi sơ đồ lớp đã cho sang 1 sơ đồ thực thể - liên kết, trong đó làm phẳng cây kế thừa thành 1\nlớp.\n!Lưu ý: Bổ xung các khóa chính và khóa ngoại, chưa cần định kiểu các thuộc tính.",
@@ -5625,7 +5624,7 @@
     "correctAnswers": [
       "System Actor tương tác với hệ thống máy tính; Business Actor tương tác với nghiệp vụ"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: System Actor tương tác với hệ thống máy tính; Business Actor tương tác với nghiệp vụ.",
+    "explanation": "Theo Slide 24 (Chương 1 - Tổng quan), Business Actor (Tác nhân nghiệp vụ) là vai trò bên ngoài tương tác trực tiếp với quy trình nghiệp vụ của tổ chức (có thể không dùng máy tính), trong khi System Actor (Tác nhân hệ thống) tương tác trực tiếp với hệ thống máy tính/phần mềm thông qua giao diện.",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 1"
   },
   {
@@ -5646,7 +5645,7 @@
     "correctAnswers": [
       "Hiểu yêu cầu và mô hình hóa hệ thống"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Hiểu yêu cầu và mô hình hóa hệ thống.",
+    "explanation": "Mục tiêu cốt lõi của pha Phân tích (Analysis) là trả lời câu hỏi hệ thống cần làm gì (WHAT), tập trung vào việc tìm hiểu, làm rõ các yêu cầu của người dùng và xây dựng các mô hình phân tích (chức năng, cấu trúc, hành vi) để mô tả hệ thống mà chưa cần quan tâm đến cách cài đặt công nghệ cụ thể.",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 1"
   },
   {
@@ -5728,9 +5727,9 @@
       "Lớp Inspector là lớp thuộc nhóm dữ liệu"
     ],
     "correctAnswers": [
-      "SalaryAssignment là lớp thuộc nhóm dữ liệu"
+      "Lớp Inspector là lớp thuộc nhóm dữ liệu"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: SalaryAssignment là lớp thuộc nhóm dữ liệu.",
+    "explanation": "Theo mô hình phân tích BCE (Boundary - Control - Entity) trong PTTKHT: Lớp Inspector (Thanh tra) đại diện cho đối tượng thực thể chứa thông tin dữ liệu kiểm soát nên thuộc nhóm dữ liệu (Entity class). Ngược lại, SalaryAssignment (nghiệp vụ xét lương) và GuideSupporter (nghiệp vụ phân công) đảm nhận các quy trình xử lý nghiệp vụ nên thuộc nhóm điều khiển (Control class), không phải nhóm dữ liệu.",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 2"
   },
   {
@@ -8041,17 +8040,17 @@
     "tables": [],
     "link": "",
     "options": [
-      "Mô hình hóa hệ thống dưới dạng tài liệu hướng dẫn sử dụng",
-      "Mô hình hóa hệ thống để trình diễn marketing",
-      "Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình",
-      "A và C đúng",
-      "Mô hình hóa hệ thống để kiểm tra tính hợp lệ của yêu cầu khách hàng",
-      "Tất cả đều sai"
+      "A. Mô hình hóa hệ thống dưới dạng tài liệu hướng dẫn sử dụng",
+      "B. Mô hình hóa hệ thống để trình diễn marketing",
+      "C. Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình",
+      "D. A và C đúng",
+      "E. Mô hình hóa hệ thống để kiểm tra tính hợp lệ của yêu cầu khách hàng",
+      "F. Tất cả đều sai"
     ],
     "correctAnswers": [
-      "Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình"
+      "C. Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Mô hình hóa hệ thống đủ chi tiết để chuyển sang lập trình.",
+    "explanation": "Trong phân tích yêu cầu phần mềm theo chuẩn FURPS, Yêu cầu chức năng (Functional Requirements) là những yêu cầu mô tả trực tiếp các tính năng, hành vi nghiệp vụ hoặc xử lý tính toán mà hệ thống bắt buộc phải cung cấp để người dùng hoàn thành công việc cụ thể.",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 14"
   },
   {
@@ -8205,7 +8204,7 @@
     "correctAnswers": [
       "Một vai trò chịu trách nhiệm thực hiện một phần quy trình nghiệp vụ"
     ],
-    "explanation": "Câu hỏi từ Đề thi giữa kỳ PTTKHT kỳ 20242. Đáp án đúng: Một vai trò chịu trách nhiệm thực hiện một phần quy trình nghiệp vụ.",
+    "explanation": "Theo Slide 24 (Chương 1 - Tổng quan), Business Worker là một vai trò, nhân sự bên trong tổ chức chịu trách nhiệm thực hiện, điều phối hoặc tham gia vào một phần của quy trình nghiệp vụ để tạo ra kết quả đầu ra.",
     "scope": "Phân tích thiết kế hệ thống - giữa kì 20242.pdf — Trang 14"
   },
   {
@@ -8929,7 +8928,7 @@
     "correctAnswers": [
       "Giải quyết vấn đề của người dùng"
     ],
-    "explanation": "Mục đích cốt lõi hàng đầu của việc phát triển một hệ thống thông tin là giải quyết bài toán và thỏa mãn nhu cầu nghiệp vụ của người dùng (Problem Solving & User Needs). Lợi nhuận hay tiết kiệm chi phí chỉ là các mục tiêu kinh doanh phái sinh của doanh nghiệp.",
+    "explanation": "Theo Slide 47 & 52 (Chương 1 - Tổng quan & Chương 2 - Môi trường & Nhu cầu), mục đích tối thượng và nguyên thủy nhất để khởi tạo và phát triển một hệ thống thông tin là hỗ trợ giải quyết vấn đề nghiệp vụ và đáp ứng nhu cầu của người dùng. Các yếu tố như tăng lợi nhuận hay giảm chi phí là hệ quả phái sinh về mặt kinh doanh.",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20212.pdf — Trang 1"
   },
   {
@@ -9328,7 +9327,7 @@
     "correctAnswers": [
       "Phát triển riêng"
     ],
-    "explanation": "Câu hỏi từ Đề thi thử PTTKHT kỳ 20221. Đáp án đúng: Phát triển riêng.",
+    "explanation": "Theo Slide 15 (Chương 2 - Môi trường & Nhu cầu & Chuyển sang thiết kế), chiến lược Phát triển riêng (In-house Development) là lựa chọn mà đội ngũ dự án tự phân tích, thiết kế và lập trình hoàn toàn hệ thống mới từ đầu để đáp ứng chính xác nhu cầu nghiệp vụ nội bộ và bảo mật công nghệ.",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20221.pdf — Trang 3"
   },
   {
@@ -9452,9 +9451,9 @@
       "Hệ thống mới"
     ],
     "correctAnswers": [
-      "Tài liệu đặc tả hệ thống"
+      "Bản đề xuất hệ thống"
     ],
-    "explanation": "Đầu ra cốt lõi của pha Phân tích (Analysis Phase) là Tài liệu đặc tả hệ thống (System Specification / SRS), mô tả chi tiết hệ thống phải làm gì (các yêu cầu chức năng và phi chức năng) từ góc nhìn nghiệp vụ.",
+    "explanation": "Theo bảng tổng kết sản phẩm đầu ra các pha SDLC (Slide 16 - Chương 1 Tổng quan & Slide 4 - SDLC), kết quả tiêu biểu của pha Phân tích là Bản đề xuất hệ thống (System Proposal). Trong khi đó, Kế hoạch dự án là đầu ra của pha Lập kế hoạch, Tài liệu đặc tả hệ thống là đầu ra của pha Thiết kế, và Hệ thống mới là đầu ra của pha Thực thi.",
     "scope": "Phân tích thiết kế hệ thống - thi thử kì 20232.pdf — Trang 1"
   },
   {
@@ -10453,7 +10452,7 @@
     "correctAnswers": [
       "Phân tích"
     ],
-    "explanation": "Trong vòng đời phát triển hệ thống (SDLC), giai đoạn Phân tích (Analysis) trả lời câu hỏi hệ thống cần làm gì (WHAT), tập trung vào việc thu thập, xác định và đặc tả các chức năng mà hệ thống phải cung cấp cho người dùng. Giai đoạn Lập kế hoạch trả lời câu hỏi tại sao (WHY), giai đoạn Thiết kế trả lời câu hỏi làm như thế nào (HOW), và giai đoạn Thực thi tiến hành lập trình, kiểm thử và triển khai hệ thống.",
+    "explanation": "Trong vòng đời phát triển hệ thống (SDLC), giai đoạn Phân tích (Analysis) trả lời câu hỏi hệ thống cần làm gì (WHAT), tập trung vào việc thu thập, làm rõ và mô hình hóa các chức năng mà hệ thống phải cung cấp cho người dùng. Giai đoạn Lập kế hoạch trả lời câu hỏi tại sao (WHY), giai đoạn Thiết kế trả lời câu hỏi làm như thế nào (HOW), và giai đoạn Thực thi tiến hành lập trình, kiểm thử.",
     "scope": "Tổng ôn 1 - Câu 4"
   },
   {
@@ -10770,7 +10769,7 @@
     "correctAnswers": [
       "Chuyển giao"
     ],
-    "explanation": "Tiến trình hợp nhất (UP/RUP - Unified Process) được chia theo chiều thời gian thành 4 pha (Phases): Khởi tạo (Inception), Tinh chế (Elaboration), Xây dựng (Construction) và Chuyển giao (Transition). Trong khi đó, Yêu cầu (Requirements), Thiết kế (Design) và Kiểm thử (Testing) là tên các quy trình công việc / luồng hoạt động kỹ thuật (Workflows/Disciplines) diễn ra xuyên suốt qua các pha.",
+    "explanation": "Theo Slide 33 & 34 (SDLC.pdf) và Slide 10 (Chương 1), Quy trình Thống nhất (Unified Process - UP) chia SDLC theo chiều thời gian thành 4 pha (Phases) chính: Khởi đầu (Inception), Đặc tả/Tinh chế (Elaboration), Xây dựng/Thực thi (Construction), và Chuyển giao (Transition). Trong khi đó, Yêu cầu, Thiết kế và Kiểm thử là các luồng công việc kỹ thuật (Workflows/Disciplines) diễn ra xuyên suốt qua các pha.",
     "scope": "Tổng ôn 1 - Câu 19"
   },
   {
@@ -10813,7 +10812,7 @@
     "correctAnswers": [
       "Chuyển giao"
     ],
-    "explanation": "Tiến trình hợp nhất (UP/RUP - Unified Process) được chia theo chiều thời gian thành 4 pha (Phases): Khởi tạo (Inception), Tinh chế (Elaboration), Xây dựng (Construction) và Chuyển giao (Transition). Trong khi đó, Yêu cầu (Requirements), Thiết kế (Design) và Kiểm thử (Testing) là tên các quy trình công việc kỹ thuật (Workflows/Disciplines) diễn ra xuyên suốt qua các pha.",
+    "explanation": "Theo Slide 33 & 34 (SDLC.pdf) và Slide 10 (Chương 1), Quy trình Thống nhất (Unified Process - UP) chia SDLC theo chiều thời gian thành 4 pha (Phases) chính: Khởi đầu (Inception), Đặc tả/Tinh chế (Elaboration), Xây dựng/Thực thi (Construction), và Chuyển giao (Transition). Trong khi đó, Yêu cầu, Thiết kế và Kiểm thử là các luồng công việc kỹ thuật (Workflows/Disciplines) diễn ra xuyên suốt qua các pha.",
     "scope": "Tổng ôn 2 - Câu 1"
   },
   {
@@ -10876,7 +10875,7 @@
     "correctAnswers": [
       "Yêu cầu chức năng"
     ],
-    "explanation": "Yêu cầu 'Nhân viên chạy bàn có thể tương tác với hệ thống để gọi món' mô tả một hành vi/tính năng nghiệp vụ cụ thể mà hệ thống phải cung cấp cho tác nhân để thực hiện công việc, do đó thuộc danh mục Yêu cầu chức năng (Functional Requirement). Các phương án Độ tin cậy, Vận hành, Bảo mật đều thuộc nhóm Yêu cầu phi chức năng (Non-functional Requirements).",
+    "explanation": "Theo Slide 56 (Chương 1 - Tổng quan), Yêu cầu chức năng (Functional Requirements) mô tả những xử lý, hành vi hoặc tính năng nghiệp vụ cụ thể mà hệ thống phải cung cấp cho người dùng (ví dụ: Nhân viên chạy bàn tương tác với hệ thống để gọi món). Các yêu cầu về Bảo mật, Độ tin cậy, Vận hành thuộc nhóm Yêu cầu phi chức năng.",
     "scope": "Tổng ôn 2 - Câu 4"
   },
   {
@@ -11534,7 +11533,7 @@
     "correctAnswers": [
       "Yêu cầu chức năng"
     ],
-    "explanation": "Các tính năng và dịch vụ nghiệp vụ mà hệ thống phải cung cấp để hỗ trợ trực tiếp cho công việc tác nghiệp của người dùng thuộc nhóm Yêu cầu chức năng (Functional Requirements). Các yêu cầu về sao lưu dữ liệu, phong cách giao diện và bảo mật đều thuộc nhóm Yêu cầu phi chức năng.",
+    "explanation": "Theo bảng tổng kết các pha của SDLC (Slide 10 Chương 1 và Slide 4 SDLC.pdf), pha Phân tích (Analysis) tập trung vào việc xác định ai sẽ dùng hệ thống, hệ thống sẽ làm cái gì (WHAT), ở đâu và khi nào. Pha Lập kế hoạch xác định lý do xây dựng hệ thống (WHY), và pha Thiết kế xác định cách hệ thống vận hành về mặt công nghệ (HOW).",
     "scope": "NBN 12/10 - Câu 16"
   },
   {
@@ -11830,7 +11829,7 @@
     "correctAnswers": [
       "Bản đề xuất hệ thống"
     ],
-    "explanation": "Trong vòng đời phát triển hệ thống (SDLC), kết quả đầu ra chính của pha Phân tích là Tài liệu đặc tả hệ thống (System Specification / Bản đề xuất hệ thống chứa đặc tả yêu cầu và các mô hình phân tích). Kế hoạch dự án là đầu ra của pha Lập kế hoạch, còn Hệ thống mới là đầu ra của pha Thực thi.",
+    "explanation": "Theo bảng tổng kết sản phẩm đầu ra các pha SDLC (Slide 16 - Chương 1 Tổng quan &amp; Slide 4 - SDLC), kết quả tiêu biểu của pha Phân tích là Bản đề xuất hệ thống (System Proposal - tổng hợp yêu cầu hệ thống, kế hoạch làm việc, tính khả thi và các mô hình phân tích). Kế hoạch dự án là đầu ra của pha Lập kế hoạch, Tài liệu đặc tả hệ thống thuộc pha Thiết kế, và Hệ thống mới thuộc pha Thực thi.",
     "scope": "NBN 12/10 - Câu 30"
   },
   {
