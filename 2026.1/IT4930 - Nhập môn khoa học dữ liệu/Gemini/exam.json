@@ -594,22 +594,23 @@
   },
   {
     "id": 30,
-    "type": "single",
+    "type": "multiple",
     "text": "Bước nào trong phương pháp làm sạch dữ liệu sau đây không theo thứ tự thích hợp?",
     "code": "",
     "table": "",
     "link": "",
     "options": [
-      "Trích xuất các trường dữ liệu có liên quan.",
-      "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
-      "Chuẩn hóa giá trị dữ liệu.",
-      "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
-      "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
-      "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
-      "Lấy phản hồi của người dùng"
+      "Bước 1: Trích xuất các trường dữ liệu có liên quan.",
+      "Bước 2: Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+      "Bước 3: Chuẩn hóa giá trị dữ liệu.",
+      "Bước 4: Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+      "Bước 5: Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+      "Bước 6: Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+      "Bước 7: Lấy phản hồi của người dùng"
     ],
     "correctAnswers": [
-      "Chuẩn hóa giá trị dữ liệu."
+      "Bước 2: Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+      "Bước 3: Chuẩn hóa giá trị dữ liệu."
     ],
     "explanation": "Lời giải (Sol): chọn C.chuẩn hoá",
     "scope": "Khoa học dữ liệu - ôn tập.pdf — Trang 24",
@@ -5018,22 +5019,105 @@
   },
   {
     "id": 232,
-    "type": "single",
-    "text": "Bước nào trong phương pháp làm sạch dữ liệu sau đây không theo thứ tự thích hợp?",
+    "type": "dropdown",
+    "text": "Các bước trong phương pháp làm sạch dữ liệu là:",
     "code": "",
     "tables": [],
     "link": "",
     "options": [
+      {
+        "label": "Bước 1:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      },
+      {
+        "label": "Bước 2:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      },
+      {
+        "label": "Bước 3:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      },
+      {
+        "label": "Bước 4:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      },
+      {
+        "label": "Bước 5:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      },
+      {
+        "label": "Bước 6:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      },
+      {
+        "label": "Bước 7:",
+        "choices": [
+          "Trích xuất các trường dữ liệu có liên quan.",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
+          "Chuẩn hóa giá trị dữ liệu.",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
+          "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
+          "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
+          "Lấy phản hồi của người dùng"
+        ]
+      }
+    ],
+    "correctAnswers": [
       "Trích xuất các trường dữ liệu có liên quan.",
-      "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
       "Chuẩn hóa giá trị dữ liệu.",
+      "Sửa chữa các vấn đề về chất lượng dữ liệu ở mức giá trị (value level).",
       "Khắc phục các vấn đề về chất lượng dữ liệu ở mức tập giá trị (value set level).",
       "Khắc phục các vấn đề về chất lượng dữ liệu ở cấp độ quan hệ",
       "Sửa chữa các vấn đề về chất lượng dữ liệu ở cấp độ đa quan hệ.",
       "Lấy phản hồi của người dùng"
-    ],
-    "correctAnswers": [
-      "Chuẩn hóa giá trị dữ liệu."
     ],
     "explanation": "Lời giải (Sol): chọn C.chuẩn hoá",
     "scope": "Khoa học dữ liệu - ngân hàng câu hỏi trắc nghiệm.pdf — Trang 24",
