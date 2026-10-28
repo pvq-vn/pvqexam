@@ -3273,5 +3273,320 @@
     ],
     "explanation": "Đáp án chính xác là: 'Tab'. Các phương án này đúng vì nó mô tả chính xác đặc tính kỹ thuật của Spark. Các phương án còn lại mô tả sai kiến trúc, tính năng hoặc cấu trúc logic của hệ thống. Phạm vi kiến thức cần ôn tập: Các khái niệm cơ bản, đặc điểm, và kiến trúc của Spark trong môn học Lưu trữ và xử lý dữ liệu lớn.",
     "scope": "Bigdata - ôn tập.pdf - Trang 9"
+  },
+  {
+    "id": 175,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Lựa chọn nào phù hợp nhất với việc tra cứu phiên làm việc nhiều lần theo mã phiên, với độ trễ thấp?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "MapReduce và các tệp xử lý theo lô hằng ngày.",
+      "Mô hình khóa-giá trị và Redis.",
+      "Mô hình đồ thị và phép duyệt qua nhiều bước liên kết.",
+      "Không gian tên tệp và siêu dữ liệu của NameNode."
+    ],
+    "correctAnswers": [
+      "Mô hình khóa-giá trị và Redis."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Mô hình cơ sở dữ liệu khóa-giá trị (Key-Value store) kết hợp với Redis (lưu trữ dữ liệu chủ yếu trên bộ nhớ RAM - in-memory) cung cấp độ phức tạp tra cứu theo khóa (mã phiên - session ID) là $O(1)$ với độ trễ cực thấp (micro-giây đến mili-giây), rất lý tưởng cho bài toán quản lý phiên làm việc (session management).\n - Phân tích phương án sai:\n   + MapReduce và các tệp xử lý theo lô hằng ngày: Có độ trễ rất cao (hàng phút đến hàng giờ), chỉ phù hợp cho phân tích dữ liệu lịch sử khối lượng lớn, không thể dùng cho tra cứu trực tuyến độ trễ thấp.\n   + Mô hình đồ thị và phép duyệt qua nhiều bước liên kết: Tối ưu cho việc khám phá mối quan hệ phức tạp giữa các thực thể (như mạng xã hội), gây lãng phí chi phí tính toán nếu chỉ tra cứu đơn giản theo khóa.\n   + Không gian tên tệp và siêu dữ liệu của NameNode: Dùng để quản lý các khối dữ liệu (blocks) của tệp tin lớn trong HDFS, không phải là hệ quản trị cơ sở dữ liệu phục vụ tra cứu phiên làm việc của ứng dụng.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Phần Cơ sở dữ liệu NoSQL (Key-Value Store & Redis).",
+    "scope": "Quiz02 - Câu 10"
+  },
+  {
+    "id": 176,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một nền tảng IoT cần cảnh báo tức thời, lưu dữ liệu thô lâu dài và tra cứu trạng thái thiết bị theo khóa. Cách phân công nào phù hợp nhất?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "HDFS xử lý mọi sự kiện trực tiếp; NameNode lưu trạng thái thiết bị; Redis là kho tệp lịch sử chính.",
+      "Kafka tiếp nhận và lưu nhật ký sự kiện; Flink xử lý luồng; HDFS lưu lịch sử thô; Cassandra phục vụ trạng thái thiết bị.",
+      "Cassandra quản lý không gian tên HDFS; Kafka thay thế mọi phép tính; Flink chỉ sao chép tệp.",
+      "NameNode tính cảnh báo; DataNode lập kế hoạch nghiệp vụ; HDFS tự động duy trì mọi khung nhìn NoSQL."
+    ],
+    "correctAnswers": [
+      "Kafka tiếp nhận và lưu nhật ký sự kiện; Flink xử lý luồng; HDFS lưu lịch sử thô; Cassandra phục vụ trạng thái thiết bị."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Đây là sự phân công chuẩn xác trong kiến trúc dữ liệu lớn hiện đại: Apache Kafka đóng vai trò message broker tiếp nhận luồng sự kiện IoT thông lượng cao; Apache Flink xử lý luồng thời gian thực (stream processing) để phát cảnh báo tức thời; HDFS làm hồ dữ liệu (data lake) lưu trữ dữ liệu lịch sử thô lâu dài với chi phí thấp; và Apache Cassandra (NoSQL wide-column) phục vụ đọc/ghi nhanh trạng thái hiện tại của thiết bị theo khóa.\n - Phân tích phương án sai:\n   + HDFS xử lý mọi sự kiện trực tiếp; NameNode lưu trạng thái thiết bị; Redis là kho tệp lịch sử chính: HDFS không phải là bộ xử lý sự kiện trực tiếp, NameNode chỉ lưu metadata của hệ thống tệp, và Redis lưu trên RAM nên không dùng làm kho lưu trữ tệp lịch sử dung lượng lớn lâu dài.\n   + Cassandra quản lý không gian tên HDFS; Kafka thay thế mọi phép tính; Flink chỉ sao chép tệp: Sai hoàn toàn vai trò kiến trúc của từng công cụ.\n   + NameNode tính cảnh báo; DataNode lập kế hoạch nghiệp vụ; HDFS tự động duy trì mọi khung nhìn NoSQL: NameNode và DataNode chỉ là các thành phần lưu trữ của HDFS, không thực hiện tính toán nghiệp vụ hay tự động duy trì các khung nhìn NoSQL.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Kiến trúc hệ thống Big Data / Lambda & Kappa Architecture.",
+    "scope": "Quiz02 - Câu 29"
+  },
+  {
+    "id": 177,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Phương án nào phân biệt đúng mẫu kiến trúc, khung xử lý và hệ thống lưu trữ?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Kiến trúc: HDFS; xử lý: Lambda; lưu trữ: MapReduce.",
+      "Kiến trúc: Lambda; xử lý: MapReduce; lưu trữ: HDFS.",
+      "Kiến trúc: MapReduce; xử lý: HDFS; lưu trữ: Lambda.",
+      "Kiến trúc: HBase; xử lý: Lambda; lưu trữ: MongoDB."
+    ],
+    "correctAnswers": [
+      "Kiến trúc: Lambda; xử lý: MapReduce; lưu trữ: HDFS."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Lambda là một mẫu kiến trúc (architectural pattern) kết hợp xử lý theo lô và theo luồng; MapReduce là khung xử lý/mô hình lập trình tính toán phân tán (processing framework); HDFS là hệ thống tệp phân tán dùng để lưu trữ dữ liệu (storage system).\n - Phân tích phương án sai:\n   + Kiến trúc: HDFS; xử lý: Lambda; lưu trữ: MapReduce: Đảo lộn vai trò của cả 3 khái niệm.\n   + Kiến trúc: MapReduce; xử lý: HDFS; lưu trữ: Lambda: Đảo lộn vai trò của cả 3 khái niệm.\n   + Kiến trúc: HBase; xử lý: Lambda; lưu trữ: MongoDB: HBase là hệ quản trị CSDL NoSQL (lưu trữ), còn Lambda là mẫu kiến trúc chứ không phải khung xử lý đơn lẻ.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Tổng quan hệ sinh thái Hadoop và Kiến trúc Lambda.",
+    "scope": "Quiz02 - Câu 1"
+  },
+  {
+    "id": 178,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Thành phần nào của HDFS quản lý tên tệp, ánh xạ các khối dữ liệu và siêu dữ liệu của không gian tên?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "DataNode.",
+      "NameNode.",
+      "Worker của MongoDB.",
+      "Consumer của Kafka."
+    ],
+    "correctAnswers": [
+      "NameNode."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Trong kiến trúc Master/Slave của HDFS, NameNode đóng vai trò là nút Master quản lý không gian tên hệ thống tệp (filesystem namespace), cây thư mục, siêu dữ liệu (metadata) và bảng ánh xạ (mapping) từ các tệp tin sang các khối dữ liệu (blocks) nằm trên các DataNode.\n - Phân tích phương án sai:\n   + DataNode: Là nút Slave có nhiệm vụ trực tiếp lưu trữ và truy xuất các khối dữ liệu vật lý trên ổ đĩa cục bộ theo lệnh của NameNode hoặc Client.\n   + Worker của MongoDB: Thuộc hệ quản trị CSDL NoSQL MongoDB, không liên quan đến HDFS.\n   + Consumer của Kafka: Là tiến trình đọc dữ liệu từ các topic của Apache Kafka, không liên quan đến HDFS.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Kiến trúc hệ thống tệp phân tán HDFS.",
+    "scope": "Quiz02 - Câu 5"
+  },
+  {
+    "id": 179,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Khối lượng công việc nào phù hợp nhất với thiết kế HDFS?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Lưu giữ các tệp lịch sử lớn để quét dữ liệu nhiều lần phục vụ phân tích.",
+      "Cập nhật số dư của từng khách hàng bằng các thao tác ghi đè ngẫu nhiên thường xuyên.",
+      "Duy trì bộ nhớ đệm phiên làm việc trong RAM, với thời hạn hết hiệu lực cho từng khóa.",
+      "Duyệt quan hệ bạn bè qua nhiều bước liên kết trong đồ thị."
+    ],
+    "correctAnswers": [
+      "Lưu giữ các tệp lịch sử lớn để quét dữ liệu nhiều lần phục vụ phân tích."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: HDFS được thiết kế theo mô hình \"Ghi một lần, đọc nhiều lần\" (Write-Once-Read-Many - WORM), tối ưu hóa cho thông lượng đọc tuần tự (sequential throughput) rất cao trên các tệp tin có kích thước lớn (hàng trăm MB đến hàng TB) phục vụ cho các tác vụ quét và phân tích dữ liệu lịch sử.\n - Phân tích phương án sai:\n   + Cập nhật số dư của từng khách hàng bằng các thao tác ghi đè ngẫu nhiên thường xuyên: HDFS không hỗ trợ ghi đè ngẫu nhiên tại vị trí bất kỳ trong tệp tin; bài toán này phù hợp với RDBMS (OLTP) hoặc HBase.\n   + Duy trì bộ nhớ đệm phiên làm việc trong RAM, với thời hạn hết hiệu lực cho từng khóa: Phù hợp với Key-Value in-memory store như Redis hoặc Memcached.\n   + Duyệt quan hệ bạn bè qua nhiều bước liên kết trong đồ thị: Phù hợp với CSDL đồ thị (Graph Database) như Neo4j.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Đặc trưng và mục tiêu thiết kế của HDFS.",
+    "scope": "Quiz02 - Câu 6"
+  },
+  {
+    "id": 180,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một hệ thống Lambda sử dụng HDFS để lưu dữ liệu lịch sử thô, Cassandra để lưu các kết quả tổng hợp có thể truy vấn và Redis để lưu kết quả trong bộ nhớ đệm. Nguyên tắc nào liên kết các lựa chọn này?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Mọi khối lượng công việc phải dùng chung một hệ quản trị lưu trữ vật lý.",
+      "Sử dụng nhiều hệ thống lưu trữ tự động bảo đảm tính nhất quán.",
+      "Sử dụng đa dạng công nghệ lưu trữ theo khối lượng công việc và mẫu truy cập.",
+      "Cơ sở dữ liệu phục vụ truy vấn loại bỏ nhu cầu xử lý dữ liệu."
+    ],
+    "correctAnswers": [
+      "Sử dụng đa dạng công nghệ lưu trữ theo khối lượng công việc và mẫu truy cập."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Đây là nguyên tắc Lưu trữ đa mô hình (Polyglot Persistence) trong thiết kế hệ thống dữ liệu lớn: không có một hệ lưu trữ duy nhất nào tối ưu cho mọi tác vụ, do đó cần kết hợp nhiều công nghệ lưu trữ khác nhau tùy thuộc vào đặc thù khối lượng công việc (workload) và mẫu truy cập dữ liệu (access pattern) của từng tầng (HDFS cho lưu trữ tuần tự dung lượng lớn, Cassandra cho truy vấn phân tán độ sẵn sàng cao, Redis cho bộ nhớ đệm độ trễ cực thấp).\n - Phân tích phương án sai:\n   + Mọi khối lượng công việc phải dùng chung một hệ quản trị lưu trữ vật lý: Trái ngược hoàn toàn với mô hình đang sử dụng 3 hệ thống lưu trữ khác nhau.\n   + Sử dụng nhiều hệ thống lưu trữ tự động bảo đảm tính nhất quán: Việc dùng nhiều hệ thống lưu trữ thực chất làm tăng độ phức tạp trong việc đồng bộ và duy trì tính nhất quán dữ liệu, chứ không tự động đảm bảo nhất quán.\n   + Cơ sở dữ liệu phục vụ truy vấn loại bỏ nhu cầu xử lý dữ liệu: Các cơ sở dữ liệu ở tầng phục vụ (Serving Layer) chỉ lưu kết quả đã được tính toán từ tầng xử lý theo lô (Batch Layer) hoặc xử lý luồng (Speed Layer).\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Polyglot Persistence & Kiến trúc Lambda.",
+    "scope": "Quiz02 - Câu 15"
+  },
+  {
+    "id": 181,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Vì sao HBase hoặc Cassandra có thể được sử dụng trong tầng phục vụ của kiến trúc Lambda?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Để thay thế logic nghiệp vụ của bộ xử lý luồng.",
+      "Để quản lý không gian tên của HDFS.",
+      "Để xác định toàn bộ mẫu kiến trúc của hệ thống.",
+      "Để hỗ trợ đọc nhanh các khung nhìn đã được xử lý."
+    ],
+    "correctAnswers": [
+      "Để hỗ trợ đọc nhanh các khung nhìn đã được xử lý."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Trong kiến trúc Lambda, tầng phục vụ (Serving Layer) có nhiệm vụ lưu trữ và đánh chỉ mục các khung nhìn dữ liệu (batch views / real-time views) đã được tính toán trước để ứng dụng phía người dùng có thể truy vấn ngẫu nhiên với độ trễ thấp (fast random reads). HBase và Cassandra là các CSDL NoSQL phân tán hỗ trợ rất tốt việc đọc/ghi ngẫu nhiên tốc độ cao trên tập dữ liệu lớn.\n - Phân tích phương án sai:\n   + Để thay thế logic nghiệp vụ của bộ xử lý luồng: HBase và Cassandra là hệ thống lưu trữ, không thể thay thế các bộ xử lý luồng (như Spark Streaming, Flink, Storm).\n   + Để quản lý không gian tên của HDFS: Việc quản lý không gian tên của HDFS là nhiệm vụ của NameNode.\n   + Để xác định toàn bộ mẫu kiến trúc của hệ thống: Chúng chỉ là các công cụ cụ thể được chọn cho tầng phục vụ, không quyết định toàn bộ mẫu kiến trúc hệ thống.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Tầng phục vụ (Serving Layer) trong kiến trúc Lambda.",
+    "scope": "Quiz02 - Câu 7"
+  },
+  {
+    "id": 182,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một hệ thống MongoDB cần phân phối tập dữ liệu và duy trì các bản sao dự phòng của từng phân mảnh. Sự kết hợp nào đáp ứng cả hai yêu cầu?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Chỉ sử dụng sao chép, với mỗi nút lưu toàn bộ tập dữ liệu.",
+      "Sử dụng sharding, trong đó mỗi shard là một replica set.",
+      "Sử dụng một nút primary, không có shard hoặc nút secondary.",
+      "Sử dụng bộ định tuyến truy vấn nhưng không có các nút lưu trữ dữ liệu."
+    ],
+    "correctAnswers": [
+      "Sử dụng sharding, trong đó mỗi shard là một replica set."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Trong MongoDB, Sharding giúp chia nhỏ và phân phối tập dữ liệu lớn ra nhiều phân mảnh (shards) trên nhiều máy chủ để mở rộng theo chiều ngang. Khi triển khai mỗi shard dưới dạng một tập bản sao (replica set), từng phân mảnh sẽ có nhiều bản sao dự phòng (1 Primary và các Secondary), đáp ứng đồng thời cả yêu cầu phân phối dữ liệu lẫn tính sẵn sàng cao / chịu lỗi.\n - Phân tích phương án sai:\n   + Chỉ sử dụng sao chép, với mỗi nút lưu toàn bộ tập dữ liệu: Chỉ giải quyết được việc tạo bản sao dự phòng, không phân phối (chia nhỏ) được tập dữ liệu khi dung lượng vượt quá khả năng lưu trữ của một nút.\n   + Sử dụng một nút primary, không có shard hoặc nút secondary: Không đáp ứng được cả hai yêu cầu phân phối dữ liệu và dự phòng.\n   + Sử dụng bộ định tuyến truy vấn nhưng không có các nút lưu trữ dữ liệu: Bộ định tuyến (mongos) chỉ điều hướng truy vấn, không thể hoạt động nếu không có các nút lưu trữ dữ liệu phía sau.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Cơ sở dữ liệu hướng tài liệu MongoDB (Sharding & Replication).",
+    "scope": "Quiz02 - Câu 14"
+  },
+  {
+    "id": 183,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một DataNode bị lỗi trong khi các bản sao khác của các khối dữ liệu trên nút đó vẫn hoạt động bình thường. Đặc điểm nào của HDFS hỗ trợ việc tiếp tục xử lý theo lô?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Client có thể đọc các bản sao còn hoạt động và HDFS có thể tạo các bản sao thay thế.",
+      "NameNode bắt đầu lưu mọi khối bị thiếu trong bộ nhớ của chính nó.",
+      "Mọi phép tính trên dữ liệu lịch sử phải dừng vĩnh viễn.",
+      "Secondary NameNode trở thành bản sao của mọi DataNode."
+    ],
+    "correctAnswers": [
+      "Client có thể đọc các bản sao còn hoạt động và HDFS có thể tạo các bản sao thay thế."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: HDFS đảm bảo khả năng chịu lỗi (fault tolerance) thông qua cơ chế nhân bản khối dữ liệu (block replication, mặc định là 3 bản sao trên các DataNode khác nhau). Khi một DataNode bị lỗi, các tác vụ tính toán (Client) được điều hướng sang đọc dữ liệu từ các DataNode khác vẫn đang giữ bản sao khỏe mạnh. Đồng thời, NameNode phát hiện các khối bị thiếu số lượng bản sao (under-replicated blocks) qua việc mất tín hiệu heartbeat và sẽ chỉ đạo các DataNode khác sao chép bổ sung để khôi phục đủ hệ số nhân bản.\n - Phân tích phương án sai:\n   + NameNode bắt đầu lưu mọi khối bị thiếu trong bộ nhớ của chính nó: NameNode chỉ lưu metadata trong RAM, tuyệt đối không lưu dữ liệu nội dung của các block.\n   + Mọi phép tính trên dữ liệu lịch sử phải dừng vĩnh viễn: Sai vì HDFS và MapReduce/Spark có cơ chế chịu lỗi tự động chuyển sang đọc bản sao khác mà không làm dừng hệ thống.\n   + Secondary NameNode trở thành bản sao của mọi DataNode: Secondary NameNode chỉ hỗ trợ trộn (checkpoint) FsImage và EditLog của NameNode, không lưu trữ dữ liệu của DataNode.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Cơ chế nhân bản và chịu lỗi trong HDFS.",
+    "scope": "Quiz02 - Câu 17"
+  },
+  {
+    "id": 184,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Trong một hệ thống triển khai kiến trúc Lambda, cặp thành phần nào phù hợp nhất với tầng xử lý theo lô?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Kafka để trực quan hóa và Redis để lưu trữ tệp.",
+      "HBase để truyền sự kiện và HDFS để lập kế hoạch truy vấn.",
+      "MongoDB để sao chép dữ liệu và Storm để lưu trữ tệp.",
+      "HDFS để lưu trữ dữ liệu lịch sử và MapReduce để tính toán."
+    ],
+    "correctAnswers": [
+      "HDFS để lưu trữ dữ liệu lịch sử và MapReduce để tính toán."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Tầng xử lý theo lô (Batch Layer) trong kiến trúc Lambda có hai nhiệm vụ cốt lõi: (1) quản lý tập dữ liệu gốc bất biến, chỉ ghi nối thêm (master dataset) thường được lưu trữ trên hệ thống tệp phân tán như HDFS; và (2) tính toán trước các khung nhìn theo lô (batch views) trên toàn bộ tập dữ liệu đó bằng các khung xử lý phân tán theo lô như Hadoop MapReduce (hoặc Apache Spark).\n - Phân tích phương án sai:\n   + Kafka để trực quan hóa và Redis để lưu trữ tệp: Kafka là hệ thống truyền thông điệp (message broker), không dùng để trực quan hóa; Redis là kho lưu trữ khóa-giá trị trên RAM, không phải hệ thống lưu trữ tệp lịch sử.\n   + HBase để truyền sự kiện và HDFS để lập kế hoạch truy vấn: HBase là CSDL NoSQL hướng cột (không phải truyền sự kiện), HDFS là hệ thống lưu trữ (không lập kế hoạch truy vấn).\n   + MongoDB để sao chép dữ liệu và Storm để lưu trữ tệp: Apache Storm là công cụ xử lý luồng thời gian thực (thuộc Speed Layer), không phải hệ thống lưu trữ tệp.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Kiến trúc xử lý dữ liệu Lambda (Batch Layer).",
+    "scope": "Quiz02 - Câu 2"
+  },
+  {
+    "id": 185,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Điểm khác biệt cốt lõi giữa kiến trúc Lambda và Kappa là gì?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Lambda chỉ lưu dữ liệu trong RAM, còn Kappa chỉ lưu dữ liệu trên đĩa.",
+      "Lambda không hỗ trợ dữ liệu lịch sử, còn Kappa không hỗ trợ dữ liệu mới.",
+      "Lambda có đường xử lý theo lô và đường xử lý luồng riêng; Kappa sử dụng một đường xử lý cho sự kiện trực tiếp và phát lại.",
+      "Lambda là cơ sở dữ liệu quan hệ, còn Kappa là cơ sở dữ liệu NoSQL."
+    ],
+    "correctAnswers": [
+      "Lambda có đường xử lý theo lô và đường xử lý luồng riêng; Kappa sử dụng một đường xử lý cho sự kiện trực tiếp và phát lại."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Kiến trúc Lambda duy trì song song hai nhánh xử lý độc lập là Tầng xử lý theo lô (Batch Layer) và Tầng xử lý tốc độ/luồng (Speed Layer), dẫn đến việc phải duy trì hai bộ mã nguồn logic khác nhau. Kiến trúc Kappa (do Jay Kreps đề xuất) đơn giản hóa bằng cách loại bỏ Batch Layer riêng biệt, coi mọi dữ liệu đều là luồng sự kiện (lưu dài hạn trong Kafka) và chỉ sử dụng một đường xử lý luồng duy nhất cho cả dữ liệu thời gian thực lẫn việc phát lại (replay) dữ liệu lịch sử khi cần tính toán lại.\n - Phân tích phương án sai:\n   + Lambda chỉ lưu dữ liệu trong RAM, còn Kappa chỉ lưu dữ liệu trên đĩa: Cả hai kiến trúc đều kết hợp lưu trữ trên đĩa và xử lý trong bộ nhớ tùy theo công cụ thành phần.\n   + Lambda không hỗ trợ dữ liệu lịch sử, còn Kappa không hỗ trợ dữ liệu mới: Cả hai kiến trúc đều hỗ trợ xử lý dữ liệu lịch sử và dữ liệu mới thời gian thực.\n   + Lambda là cơ sở dữ liệu quan hệ, còn Kappa là cơ sở dữ liệu NoSQL: Cả Lambda và Kappa đều là các mẫu kiến trúc hệ thống xử lý dữ liệu lớn, không phải là hệ quản trị cơ sở dữ liệu.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - So sánh kiến trúc Lambda và Kappa.",
+    "scope": "Quiz02 - Câu 4"
+  },
+  {
+    "id": 186,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một bộ xử lý Kappa cập nhật các bộ đếm không có tính lũy đẳng trong kho NoSQL phục vụ. Sau khi sửa logic, nhóm phát triển dự định phát lại mọi sự kiện vào các bộ đếm hiện có. Thiết kế lại nào ngăn tốt nhất việc trộn lẫn kết quả cũ với kết quả tính toán lại? <i>(Tính lũy đẳng: thực hiện cùng một thao tác nhiều lần vẫn tạo ra kết quả như thực hiện một lần.)</i>",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Phát lại vào một khung nhìn mới có phiên bản riêng, kiểm tra kết quả, rồi chuyển các truy vấn sang khung nhìn mới sau khi xử lý bắt kịp dữ liệu hiện tại.",
+      "Tăng hệ số sao chép của cơ sở dữ liệu phục vụ trước khi phát lại.",
+      "Sử dụng Parquet thay cho Avro nhưng giữ nguyên logic cập nhật bộ đếm.",
+      "Tăng số nút của kho NoSQL trong khi phát lại các phép tăng vào cùng bộ đếm hiện có."
+    ],
+    "correctAnswers": [
+      "Phát lại vào một khung nhìn mới có phiên bản riêng, kiểm tra kết quả, rồi chuyển các truy vấn sang khung nhìn mới sau khi xử lý bắt kịp dữ liệu hiện tại."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Vì thao tác tăng bộ đếm (increment counter) không có tính lũy đẳng (non-idempotent), nếu phát lại (replay) các sự kiện trực tiếp vào bảng/bộ đếm hiện có thì giá trị mới sẽ bị cộng dồn chồng lên các giá trị cũ (làm sai lệch số liệu). Quy trình chuẩn trong kiến trúc Kappa khi tính toán lại (reprocessing) là khởi chạy một job xử lý mới đọc lại nhật ký sự kiện từ đầu và ghi kết quả ra một bảng/khung nhìn mới có đánh phiên bản (versioned view/table) tách biệt; sau khi job mới xử lý bắt kịp luồng sự kiện hiện tại và được kiểm증, ứng dụng sẽ chuyển hướng truy vấn sang khung nhìn mới và xóa khung nhìn cũ.\n - Phân tích phương án sai:\n   + Tăng hệ số sao chép của cơ sở dữ liệu phục vụ trước khi phát lại: Hệ số sao chép (replication factor) chỉ giúp tăng khả năng chịu lỗi vật lý, các bản sao vẫn sẽ sao chép kết quả bị cộng dồn sai.\n   + Sử dụng Parquet thay cho Avro nhưng giữ nguyên logic cập nhật bộ đếm: Thay đổi định dạng tuần tự hóa/lưu trữ dữ liệu không giải quyết được lỗi cộng trùng lặp vào cùng một bộ đếm không lũy đẳng.\n   + Tăng số nút của kho NoSQL trong khi phát lại các phép tăng vào cùng bộ đếm hiện có: Mở rộng số nút chỉ tăng năng lực chịu tải (scalability), nhưng việc ghi đè/cộng dồn vào cùng bộ đếm hiện có vẫn làm hỏng kết quả tính toán.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Cơ chế Reprocessing và Quản lý phiên bản khung nhìn trong kiến trúc Kappa.",
+    "scope": "Quiz02 - Câu 30"
+  },
+  {
+    "id": 187,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Trong một cơ sở dữ liệu NoSQL, phát biểu nào phân biệt đúng phân mảnh và sao chép?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Phân mảnh tạo các bản sao giống nhau; sao chép chia dữ liệu thành các phần khác nhau.",
+      "Phân mảnh và sao chép đều chỉ thay đổi tên các bảng.",
+      "Phân mảnh phân phối các phần dữ liệu; sao chép duy trì nhiều bản của dữ liệu.",
+      "Sao chép luôn loại bỏ nhu cầu xử lý tính nhất quán."
+    ],
+    "correctAnswers": [
+      "Phân mảnh phân phối các phần dữ liệu; sao chép duy trì nhiều bản của dữ liệu."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Phân mảnh (Sharding / Partitioning) là kỹ thuật chia một tập dữ liệu lớn thành các phần nhỏ hơn (shards/partitions) và phân phối chúng trên nhiều nút máy chủ khác nhau để mở rộng dung lượng lưu trữ và băng thông xử lý. Sao chép (Replication) là kỹ thuật tạo và duy trì nhiều bản sao giống hệt nhau của cùng một phần dữ liệu trên nhiều nút khác nhau nhằm đảm bảo tính sẵn sàng cao (High Availability) và khả năng chịu lỗi (Fault Tolerance).\n - Phân tích phương án sai:\n   + Phân mảnh tạo các bản sao giống nhau; sao chép chia dữ liệu thành các phần khác nhau: Đảo ngược hoàn toàn định nghĩa của hai khái niệm.\n   + Phân mảnh và sao chép đều chỉ thay đổi tên các bảng: Sai, đây là các cơ chế tổ chức và phân phối dữ liệu vật lý trên cụm máy chủ phân tán.\n   + Sao chép luôn loại bỏ nhu cầu xử lý tính nhất quán: Ngược lại, chính vì có nhiều bản sao dữ liệu trên các nút khác nhau nên hệ thống mới phát sinh bài toán phức tạp về duy trì tính nhất quán (Consistency) giữa các bản sao khi có thao tác cập nhật.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Các kỹ thuật phân tán trong NoSQL (Sharding & Replication).",
+    "scope": "Quiz02 - Câu 19"
+  },
+  {
+    "id": 188,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một pipeline IoT cần tra cứu lịch sử đo của một thiết bị trong khoảng thời gian. Với kho wide-column, thiết kế khóa nào phù hợp nhất trong các lựa chọn sau?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "Dùng cùng một khóa phân vùng cố định cho toàn bộ thiết bị và mọi thời điểm.",
+      "Dùng giá trị đo làm khóa duy nhất, bỏ mã thiết bị và thời gian.",
+      "Dùng khóa ngẫu nhiên cho từng bản ghi, không có chỉ mục hoặc đường truy cập theo thiết bị.",
+      "Phân vùng theo mã thiết bị và khoảng thời gian; sắp xếp bản ghi trong phân vùng theo dấu thời gian."
+    ],
+    "correctAnswers": [
+      "Phân vùng theo mã thiết bị và khoảng thời gian; sắp xếp bản ghi trong phân vùng theo dấu thời gian."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Trong các cơ sở dữ liệu NoSQL hướng cột rộng (wide-column stores như Apache Cassandra hoặc HBase), việc thiết kế khóa chính kết hợp gồm Khóa phân vùng (Partition Key) là `(mã thiết bị, khoảng thời gian/time bucket)` giúp gom dữ liệu của cùng một thiết bị vào cùng phân vùng để truy xuất nhanh đồng thời ngăn chặn phân vùng phình quá lớn (wide partition) theo thời gian. Việc dùng dấu thời gian (timestamp) làm Khóa cụm/sắp xếp (Clustering Key) giúp các bản ghi trong phân vùng được lưu trữ có thứ tự theo thời gian, cho phép thực hiện các truy vấn quét theo khoảng thời gian (range scan) cực kỳ hiệu quả.\n - Phân tích phương án sai:\n   + Dùng cùng một khóa phân vùng cố định cho toàn bộ thiết bị và mọi thời điểm: Gây ra hiện tượng điểm nóng (hotspot) và nghẽn cổ chai vì toàn bộ dữ liệu đổ dồn vào một nút vật lý duy nhất.\n   + Dùng giá trị đo làm khóa duy nhất, bỏ mã thiết bị và thời gian: Không thể truy vấn theo mã thiết bị hay khoảng thời gian, đồng thời các bản ghi có cùng giá trị đo sẽ ghi đè lên nhau.\n   + Dùng khóa ngẫu nhiên cho từng bản ghi, không có chỉ mục hoặc đường truy cập theo thiết bị: Khiến các bản ghi của cùng một thiết bị bị rải ngẫu nhiên khắp cụm, buộc phải quét toàn bộ bảng (full table scan) mỗi khi muốn lấy lịch sử của một thiết bị.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Thiết kế mô hình dữ liệu trong Cassandra / HBase (Time-series data modeling).",
+    "scope": "Quiz02 - Câu 27"
+  },
+  {
+    "id": 189,
+    "type": "single",
+    "chapter": 1,
+    "chapter_name": "Lưu trữ và xử lý dữ liệu lớn",
+    "text": "Một khung nhìn theo lô trong kiến trúc Lambda cần được tính toán lại sau khi phát hiện lỗi lập trình. Việc giữ lại dữ liệu thô trong HDFS hỗ trợ như thế nào?",
+    "code": "",
+    "tables": [],
+    "link": "",
+    "options": [
+      "HDFS tự động sửa mã chương trình của ứng dụng.",
+      "HDFS biến mọi truy vấn lịch sử thành phép tra cứu theo khóa.",
+      "Khung xử lý theo lô có thể đọc dữ liệu đầu vào gốc và xây dựng lại khung nhìn.",
+      "Các bản sao dữ liệu bảo đảm mọi kết quả tính toán đều đúng về mặt logic."
+    ],
+    "correctAnswers": [
+      "Khung xử lý theo lô có thể đọc dữ liệu đầu vào gốc và xây dựng lại khung nhìn."
+    ],
+    "explanation": "Giải thích chi tiết:\n - Tại sao đúng: Một nguyên lý nền tảng của kiến trúc Lambda là tính chịu lỗi con người (human-fault tolerance) nhờ việc lưu giữ tập dữ liệu gốc thô và bất biến (immutable master dataset) trong HDFS. Khi phát hiện lỗi lập trình (bug) làm sai lệch dữ liệu ở các khung nhìn phục vụ (serving views), lập trình viên chỉ cần sửa lại mã nguồn xử lý và chạy lại khung xử lý theo lô (Batch Layer như MapReduce/Spark) đọc lại từ dữ liệu đầu vào gốc không bị hỏng trên HDFS để tính toán và xây dựng lại các khung nhìn đúng đắn.\n - Phân tích phương án sai:\n   + HDFS tự động sửa mã chương trình của ứng dụng: HDFS chỉ là hệ thống lưu trữ tệp phân tán, không có khả năng tự sửa mã nguồn.\n   + HDFS biến mọi truy vấn lịch sử thành phép tra cứu theo khóa: HDFS phục vụ đọc tuần tự các tệp lớn, không phải là hệ thống chỉ mục tra cứu theo khóa.\n   + Các bản sao dữ liệu bảo đảm mọi kết quả tính toán đều đúng về mặt logic: Cơ chế nhân bản (replication) chỉ bảo vệ dữ liệu khỏi lỗi phần cứng vật lý, không thể ngăn chặn lỗi logic do con người lập trình sai.\nSlide đối chiếu / Tài liệu: Bài giảng Lưu trữ và xử lý dữ liệu lớn - Kiến trúc Lambda (Master Dataset & Recomputation).",
+    "scope": "Quiz02 - Câu 11"
   }
 ]

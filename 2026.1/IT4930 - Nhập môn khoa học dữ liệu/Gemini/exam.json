@@ -1096,7 +1096,7 @@
   },
   {
     "id": 53,
-    "type": "single",
+    "type": "multiple",
     "text": "Trọng tâm của phân tích thăm dò dữ liệu EDA là gì?",
     "code": "",
     "table": "",
@@ -1122,7 +1122,7 @@
     "text": "Với biểu đồ dưới đây thì phát biểu nào SAI?",
     "code": "",
     "table": "",
-    "link": "",
+    "link": "https://drive.google.com/file/d/12vxSlMszsNYgKzcfIVs2w8E23r3tBtN9/view?usp=sharing",
     "options": [
       "Số lượng các cây có chiều cao từ 250 tới 300 là nhiều nhất.",
       "Số lượng các cây có chiều cao từ 100 tới 150 là nhỏ nhất.",
@@ -2369,7 +2369,7 @@
     "text": "Cho ảnh đa mức xám 256 mức không nén, cần bao nhiêu bytes để lưu trữ mỗi điểm ảnh?",
     "code": "",
     "table": "",
-    "link": "",
+    "link": "https://drive.google.com/file/d/12vxSlMszsNYgKzcfIVs2w8E23r3tBtN9/view?usp=sharing",
     "options": [
       "1",
       "3",
@@ -4063,7 +4063,6 @@
     ],
     "correctAnswers": [
       "SciPy và NumPy",
-      "NLTK, Spacy",
       "Pandas",
       "Matplotlib"
     ],
@@ -4128,7 +4127,7 @@
       "Đồ thị cột (Column Graph)"
     ],
     "correctAnswers": [
-      "Đồ thị thanh (Bar Graph)"
+      "Không có phương án nào đúng"
     ],
     "explanation": "Trong Pandas, phương thức `plot(kind='barh')` tạo ra biểu đồ thanh nằm ngang (horizontal bar plot). Biểu đồ cột thẳng đứng (column graph) tương ứng với `kind='bar'`, và biểu đồ đường tương ứng với `kind='line'`. Vì thuật ngữ đồ thị thanh/cột chuẩn được phân biệt rõ giữa dạng nằm ngang (horizontal bar chart) và dạng đứng, nên phương án đúng là 'Không có phương án nào đúng trong các phương án trên'.",
     "scope": "Khoa học dữ liệu - cuối kì 20221.pdf — Trang 15",
@@ -7600,7 +7599,7 @@
   {
     "id": 343,
     "type": "single",
-    "text": "(Bạn sẽ làm gì khi muốn phân tích và khám phá dữ liệu?",
+    "text": "Bạn sẽ làm gì khi muốn phân tích và khám phá dữ liệu?",
     "code": "",
     "tables": [],
     "link": "",
