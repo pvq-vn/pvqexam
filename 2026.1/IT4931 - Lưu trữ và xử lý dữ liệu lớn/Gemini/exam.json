@@ -1,6 +1,8 @@
 [
   {
     "id": 1,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "NoSQL có đặc điểm nào dưới đây?",
     "code": "",
@@ -20,6 +22,8 @@
   },
   {
     "id": 2,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế nhân bản dữ liệu trong HDFS?",
     "code": "",
@@ -38,6 +42,8 @@
   },
   {
     "id": 3,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Các mục tiêu chính của Apache Hadoop?",
     "code": "",
@@ -58,6 +64,8 @@
   },
   {
     "id": 4,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Thành phần nào không thuộc thành phần lõi của Hadoop?",
     "code": "",
@@ -79,6 +87,8 @@
   },
   {
     "id": 5,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Các đặc điểm của virtual node trên AmazonDB. Chọn phương án sai:",
     "code": "",
@@ -98,6 +108,8 @@
   },
   {
     "id": 6,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Phát biểu nào đúng về Amazon DynamoDB",
     "code": "",
@@ -116,6 +128,8 @@
   },
   {
     "id": 7,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "Phát biểu nào sai về Presto",
     "code": "",
@@ -134,6 +148,8 @@
   },
   {
     "id": 8,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Thao tác nào không được hỗ trợ bởi Hbase",
     "code": "",
@@ -154,6 +170,8 @@
   },
   {
     "id": 9,
+    "chapter": 8,
+    "chapter_name": "Kiến trúc Dữ liệu lớn (Lambda & Kappa Architecture)",
     "type": "multiple",
     "text": "Ưu điểm của kiến trúc NAS (Network attached Storage)?",
     "code": "",
@@ -173,6 +191,8 @@
   },
   {
     "id": 10,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Đâu là một dạng của NoSQL",
     "code": "",
@@ -192,6 +212,8 @@
   },
   {
     "id": 11,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Đâu là vấn đề khi xử lý dữ liệu lớn với MapReduce?",
     "code": "",
@@ -211,6 +233,8 @@
   },
   {
     "id": 12,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Phát biểu nào sai về Kafka?",
     "code": "",
@@ -229,6 +253,8 @@
   },
   {
     "id": 13,
+    "chapter": 8,
+    "chapter_name": "Kiến trúc Dữ liệu lớn (Lambda & Kappa Architecture)",
     "type": "multiple",
     "text": "Kiến trúc xử lý dữ liệu Lambda có đặc điểm gì?",
     "code": "",
@@ -250,6 +276,8 @@
   },
   {
     "id": 14,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Phát biểu nào sau sai về Kafka?",
     "code": "",
@@ -269,6 +297,8 @@
   },
   {
     "id": 15,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "Phát biểu nào đúng về Presto?",
     "code": "",
@@ -287,6 +317,8 @@
   },
   {
     "id": 16,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Phát biểu nào sau đây không đúng về Apache Hadoop?",
     "code": "",
@@ -306,6 +338,8 @@
   },
   {
     "id": 17,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai:",
     "code": "",
@@ -325,6 +359,8 @@
   },
   {
     "id": 18,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Phát biểu nào sai về Hfile trong Hbase?",
     "code": "",
@@ -344,6 +380,8 @@
   },
   {
     "id": 19,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Các biến đổi (transformation) trên Spark có đặc điểm gì?",
     "code": "",
@@ -362,6 +400,8 @@
   },
   {
     "id": 20,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là ưu điểm của Spark so với MapReduce?",
     "code": "",
@@ -384,6 +424,8 @@
   },
   {
     "id": 21,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Đâu không phải là tính năng mà NoSQL nào cũng đáp ứng",
     "code": "",
@@ -402,6 +444,8 @@
   },
   {
     "id": 22,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Các đặc trưng của HDFS. Chọn đáp án sai.",
     "code": "",
@@ -421,6 +465,8 @@
   },
   {
     "id": 23,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gần với ANSI SQL hơn?",
     "code": "",
@@ -439,6 +485,8 @@
   },
   {
     "id": 24,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "Phát biểu nào sai về cơ chế scheduling của Presto?",
     "code": "",
@@ -458,6 +506,8 @@
   },
   {
     "id": 25,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Ưu điểm của hệ thống tệp tin phân tán là gì?",
     "code": "",
@@ -477,6 +527,8 @@
   },
   {
     "id": 26,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "HDFS giải quyết bài toán một điểm hỏng hóc duy nhất (single-point-of-failure) cho Namenode bằng cách nào?",
     "code": "",
@@ -494,6 +546,8 @@
   },
   {
     "id": 27,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Chọn phát biểu đúng khi nói về MongoDB",
     "code": "",
@@ -513,6 +567,8 @@
   },
   {
     "id": 28,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế chịu lỗi của datanode trong HDFS?",
     "code": "",
@@ -531,6 +587,8 @@
   },
   {
     "id": 29,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Phát biểu nào sai về Hbase",
     "code": "",
@@ -550,6 +608,8 @@
   },
   {
     "id": 30,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Hệ thống nào cho phép đọc ghi dữ liệu tại vị trí ngẫu nhiên, thời gian thực tới hàng terabyte dữ liệu",
     "code": "",
@@ -569,6 +629,8 @@
   },
   {
     "id": 31,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là đặc điểm của RDD (Resilient distributed dataset) của Spark?",
     "code": "",
@@ -590,6 +652,8 @@
   },
   {
     "id": 32,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là cơ chế chịu lỗi của Apache Spark?",
     "code": "",
@@ -608,6 +672,8 @@
   },
   {
     "id": 33,
+    "chapter": 8,
+    "chapter_name": "Kiến trúc Dữ liệu lớn (Lambda & Kappa Architecture)",
     "type": "multiple",
     "text": "Ưu điểm của kiến trúc SAN (Storage area network)?",
     "code": "",
@@ -627,6 +693,8 @@
   },
   {
     "id": 34,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "single",
     "text": "Đâu là kỹ thuật có thể được dùng để thích nghi các giải thuật học máy cho dữ liệu lớn?",
     "code": "",
@@ -647,6 +715,8 @@
   },
   {
     "id": 35,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Phát biểu nào sau đây sai về Kafka?",
     "code": "",
@@ -666,6 +736,8 @@
   },
   {
     "id": 36,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Phát biểu nào sau đây sai về Kafka?",
     "code": "",
@@ -684,6 +756,8 @@
   },
   {
     "id": 37,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Thế nào là UNIX semantic?",
     "code": "",
@@ -702,6 +776,8 @@
   },
   {
     "id": 38,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Vai trò của YARN?",
     "code": "",
@@ -720,6 +796,8 @@
   },
   {
     "id": 39,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là đặc điểm của Spark streaming?",
     "code": "",
@@ -738,6 +816,8 @@
   },
   {
     "id": 40,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi",
     "code": "",
@@ -747,12 +827,16 @@
       "Phân mảnh và phân tán dữ liệu ra nhiều máy chủ",
       "Giao diện truy vấn đơn giản hơn so với CSQL quan hệ truyền thốn"
     ],
-    "correctAnswers": ["Phân mảnh và phân tán dữ liệu ra nhiều máy chủ"],
+    "correctAnswers": [
+      "Phân mảnh và phân tán dữ liệu ra nhiều máy chủ"
+    ],
     "explanation": "Theo tài liệu kiến thức môn Lưu trữ và xử lý dữ liệu lớn (Big Data), câu hỏi về 'Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi...'. Xem xét các khái niệm kiến trúc chuẩn của hệ sinh thái Hadoop/Spark/NoSQL.",
     "scope": "Bigdata - quiz.pdf — Trang 10"
   },
   {
     "id": 41,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Bản chất DStream:",
     "code": "",
@@ -772,6 +856,8 @@
   },
   {
     "id": 42,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Trong hệ sinh thái của Spark không có công cụ hay thành phần nào sau đây:",
     "code": "",
@@ -791,6 +877,8 @@
   },
   {
     "id": 43,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai",
     "code": "",
@@ -810,6 +898,8 @@
   },
   {
     "id": 44,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì? Chọn đáp án SAI",
     "code": "",
@@ -829,6 +919,8 @@
   },
   {
     "id": 45,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Các đặc trưng của HDFS. Chọn đáp án SAI",
     "code": "",
@@ -848,6 +940,8 @@
   },
   {
     "id": 46,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Spark Streaming trừu tượng hóa cũng như thao tác với các dòng dữ liệu (data stream) dựa trên khái niệm nào:",
     "code": "",
@@ -867,6 +961,8 @@
   },
   {
     "id": 47,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Spark hỗ trợ các cluster manager nào",
     "code": "",
@@ -886,6 +982,8 @@
   },
   {
     "id": 48,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đáp án nào không phải là một “output operation ” khi thao tác với DStream",
     "code": "",
@@ -905,6 +1003,8 @@
   },
   {
     "id": 49,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đáp án nào không phải là một “Transformation” khi thao tác với DStream",
     "code": "",
@@ -924,6 +1024,8 @@
   },
   {
     "id": 50,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Mục đích của sử dụng sparkML là gì",
     "code": "",
@@ -943,6 +1045,8 @@
   },
   {
     "id": 51,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Mục đích của lệnh sau đây là gì:",
     "code": "(trainingData, testData) = dataset.randomSplit([0.8, 0.2], seed=100)",
@@ -962,6 +1066,8 @@
   },
   {
     "id": 52,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "label và feature của câu lệnh bên dưới có nghĩa là gì?",
     "code": "LogisticRegression(labelCol = “label” , featuresCol = “features”, maxIter = 10)",
@@ -981,6 +1087,8 @@
   },
   {
     "id": 53,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là lệnh lưu trữ dữ liệu ra ngoài chương trình Spark:",
     "code": "",
@@ -1000,6 +1108,8 @@
   },
   {
     "id": 54,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là cách submit đúng 1 job lên Spark cluster hoặc chế độ local",
     "code": "",
@@ -1018,6 +1128,8 @@
   },
   {
     "id": 55,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
     "code": "input.flatMap(lambda x: x.split(“\\t”) ).map(lambda x: (x, 1)).reduceByKey(add)",
@@ -1037,6 +1149,8 @@
   },
   {
     "id": 56,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế chịu lỗi của datanode trong HDFS",
     "code": "",
@@ -1055,6 +1169,8 @@
   },
   {
     "id": 57,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
     "code": "",
@@ -1073,6 +1189,8 @@
   },
   {
     "id": 58,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế nhân bản dữ liệu trong HDFS",
     "code": "",
@@ -1091,6 +1209,8 @@
   },
   {
     "id": 59,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "HDFS giải quyết  bài toán single-point-of-failure cho Namenode bằng cách nào",
     "code": "",
@@ -1108,6 +1228,8 @@
   },
   {
     "id": 60,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Các mục tiêu chính của Apache Hadoop",
     "code": "",
@@ -1128,6 +1250,8 @@
   },
   {
     "id": 61,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Phát biểu nào không đúng về Apache Hadoop",
     "code": "",
@@ -1147,6 +1271,8 @@
   },
   {
     "id": 62,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Thành phần nào không thuộc thành phần lõi của Hadoop",
     "code": "",
@@ -1167,6 +1293,8 @@
   },
   {
     "id": 63,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Spark có thể chạy ở chế độ nào khi chạy trên nhiều máy",
     "code": "",
@@ -1185,6 +1313,8 @@
   },
   {
     "id": 64,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "phát biểu nào sau đây sai về kafka",
     "code": "",
@@ -1204,6 +1334,8 @@
   },
   {
     "id": 65,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Mô tả cách thức một client đọc dữ liệu trên HDFS",
     "code": "",
@@ -1223,6 +1355,8 @@
   },
   {
     "id": 66,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Đâu không phải là tính năng mà NoSQL nào cũng đáp ứng",
     "code": "",
@@ -1241,6 +1375,8 @@
   },
   {
     "id": 67,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Hệ thống nào cho phép đọc ghi dữ liệu tại vị trí ngẫu nhiên, thời gian thực tới hàng terabyte dữ liệu",
     "code": "",
@@ -1260,6 +1396,8 @@
   },
   {
     "id": 68,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Phát biểu nào đúng về Quorum trong Amazon DynamoDB",
     "code": "",
@@ -1278,6 +1416,8 @@
   },
   {
     "id": 69,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Phát biểu nào sau đây sai về Kafka",
     "code": "",
@@ -1297,6 +1437,8 @@
   },
   {
     "id": 70,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Đâu là một dạng của NoSQL",
     "code": "",
@@ -1316,6 +1458,8 @@
   },
   {
     "id": 71,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "phát biểu nào sai về Presto",
     "code": "",
@@ -1335,6 +1479,8 @@
   },
   {
     "id": 72,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "Phát biểu nào đúng về Presto",
     "code": "",
@@ -1353,6 +1499,8 @@
   },
   {
     "id": 73,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Chọn phát biểu đúng khi nói về MongoDB",
     "code": "",
@@ -1372,6 +1520,8 @@
   },
   {
     "id": 74,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "single",
     "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gắn với ANSI SQL hơn",
     "code": "",
@@ -1390,6 +1540,8 @@
   },
   {
     "id": 75,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "Công ty nào đã phát triển  Apache Cassandra giai đoạn đầu tiên",
     "code": "",
@@ -1409,6 +1561,8 @@
   },
   {
     "id": 76,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "essay",
     "text": "Phát biểu về định lý CAP?",
     "code": "",
@@ -1423,6 +1577,8 @@
   },
   {
     "id": 77,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "essay",
     "text": "Giải thích ngắn gọn về các phương pháp tổng quát trong việc thích nghi các giải thuật học máy cho dữ liệu lớn.",
     "code": "",
@@ -1437,6 +1593,8 @@
   },
   {
     "id": 78,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Cho đoạn chương trình bên dưới. Output của chương trình là gì?",
     "code": "rdd = sc.parallelize([“hello”,  “world”, “good”, “hello”], 2)\nrdd = rdd.map(lambda w : (w, 1))\nprint(rdd.glom().collect())",
@@ -1456,6 +1614,8 @@
   },
   {
     "id": 79,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "essay",
     "text": "Giả sử một textfile kích thước lớn được đặt ở đường dẫn hdfs://user/bigfile.txt. Viết chương trình Spark đếm số lần xuất hiện của chuỗi “big data processing” trong file text này.",
     "code": "",
@@ -1470,6 +1630,8 @@
   },
   {
     "id": 80,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "essay",
     "text": "Cho đoạn chương trình bên dưới. Output là gì?",
     "code": "def mystr(d):\n    return d\n\ndef myconcat(a, b):\n    return a + b\n\ndef mypartConcat(a, b):\n    return a + b\n\nrdd = sc.parallelize([ (\"a\", 1), (\"b\", 1), (\"a\", 2), (\"a\", 8), (\"c\", 4), (\"a\", 12), (\"a\", 18), (\"c\", 14) ], 3)\n\nreq = rdd.combineByKey(mystr, myconcat, mypartConcat).collect()\nprint(req)",
@@ -1489,6 +1651,8 @@
   },
   {
     "id": 81,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Thành phần nào của Hadoop phụ trách lưu trữ phân tán?",
     "code": "",
@@ -1508,6 +1672,8 @@
   },
   {
     "id": 82,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "single",
     "text": "Trong 5V của dữ liệu lớn, Volume đề cập đến điều gì?",
     "code": "",
@@ -1527,6 +1693,8 @@
   },
   {
     "id": 83,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "HBase là ...",
     "code": "",
@@ -1546,6 +1714,8 @@
   },
   {
     "id": 84,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "single",
     "text": "Dữ liệu lớn thường là các tập dữ liệu có đặc điểm nào?",
     "code": "",
@@ -1565,6 +1735,8 @@
   },
   {
     "id": 85,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Một khối HDFS thường được sao chép trên bao nhiêu nút khác nhau?",
     "code": "",
@@ -1584,6 +1756,8 @@
   },
   {
     "id": 86,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Trong HDFS, NameNode giữ vai trò nào?",
     "code": "",
@@ -1603,6 +1777,8 @@
   },
   {
     "id": 87,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Apache Hadoop cung cấp ...",
     "code": "",
@@ -1622,6 +1798,8 @@
   },
   {
     "id": 88,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Kafka giúp tách rời những thành phần nào của luồng dữ liệu?",
     "code": "",
@@ -1641,6 +1819,8 @@
   },
   {
     "id": 89,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "MapReduce là ...",
     "code": "",
@@ -1660,6 +1840,8 @@
   },
   {
     "id": 90,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "single",
     "text": "Trong 5V của dữ liệu lớn, Velocity đề cập đến điều gì?",
     "code": "",
@@ -1679,6 +1861,8 @@
   },
   {
     "id": 91,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Trong MapReduce, dữ liệu đầu vào và đầu ra của map/reduce được biểu diễn dưới dạng nào?",
     "code": "",
@@ -1698,6 +1882,8 @@
   },
   {
     "id": 92,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "single",
     "text": "Khả năng mở rộng (scalability) trong quản lý dữ liệu nghĩa là gì?",
     "code": "",
@@ -1717,6 +1903,8 @@
   },
   {
     "id": 93,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Pha shuffle & sort có vai trò nào?",
     "code": "",
@@ -1736,6 +1924,8 @@
   },
   {
     "id": 94,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Khi một DataNode gặp sự cố, cơ chế nào hỗ trợ khôi phục mức sao chép dữ liệu?",
     "code": "",
@@ -1755,6 +1945,8 @@
   },
   {
     "id": 95,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Thành phần nào của Hadoop phụ trách lưu trữ phân tán?",
     "code": "",
@@ -1774,6 +1966,8 @@
   },
   {
     "id": 96,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Cách tăng năng lực cụm Hadoop theo chiều ngang là gì?",
     "code": "",
@@ -1793,6 +1987,8 @@
   },
   {
     "id": 97,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Mô hình ghi dữ liệu đặc trưng của HDFS là ...",
     "code": "",
@@ -1812,6 +2008,8 @@
   },
   {
     "id": 98,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Cơ chế chịu lỗi của datanode trong HDFS?",
     "code": "",
@@ -1831,6 +2029,8 @@
   },
   {
     "id": 99,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Các mục tiêu chính của Apache Hadoop?",
     "code": "",
@@ -1851,6 +2051,8 @@
   },
   {
     "id": 100,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Chọn phát biểu sai",
     "code": "",
@@ -1869,6 +2071,8 @@
   },
   {
     "id": 101,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "multiple",
     "text": "Phát biểu nào sau sai về Kafka?",
     "code": "",
@@ -1888,6 +2092,8 @@
   },
   {
     "id": 102,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là đặc điểm của RDD (Resilient distributed dataset) của Spark?",
     "code": "",
@@ -1909,6 +2115,8 @@
   },
   {
     "id": 103,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là đặc điểm của Spark streaming?",
     "code": "",
@@ -1928,6 +2136,8 @@
   },
   {
     "id": 104,
+    "chapter": 8,
+    "chapter_name": "Kiến trúc Dữ liệu lớn (Lambda & Kappa Architecture)",
     "type": "multiple",
     "text": "Kiến trúc xử lý dữ liệu Lambda có đặc điểm gì?",
     "code": "",
@@ -1951,6 +2161,8 @@
   },
   {
     "id": 105,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS?",
     "code": "",
@@ -1969,6 +2181,8 @@
   },
   {
     "id": 106,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "multiple",
     "text": "Phát biểu nào sai về Presto?",
     "code": "",
@@ -1988,6 +2202,8 @@
   },
   {
     "id": 107,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Phát biểu nào sai về Hfile trong Hbase?",
     "code": "",
@@ -2007,6 +2223,8 @@
   },
   {
     "id": 108,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Công cụ nào có thể sử dụng để hỗ trợ import, export dữ liệu vào ra hệ sinh thái Hadoop?",
     "code": "",
@@ -2026,6 +2244,8 @@
   },
   {
     "id": 109,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Thế nào là UNIX semantic?",
     "code": "",
@@ -2044,6 +2264,8 @@
   },
   {
     "id": 110,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Cơ chế nhân bản dữ liệu trong HDFS?",
     "code": "",
@@ -2062,6 +2284,8 @@
   },
   {
     "id": 111,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Đâu là vấn đề khi xử lý dữ liệu lớn với MapReduce?",
     "code": "",
@@ -2083,6 +2307,8 @@
   },
   {
     "id": 112,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Đâu là một dạng của NoSQL",
     "code": "",
@@ -2102,6 +2328,8 @@
   },
   {
     "id": 113,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "multiple",
     "text": "Phát biểu nào sai về cơ chế scheduling của Presto?",
     "code": "",
@@ -2121,6 +2349,8 @@
   },
   {
     "id": 114,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Thao tác nào không được hỗ trợ bởi Hbase",
     "code": "",
@@ -2142,6 +2372,8 @@
   },
   {
     "id": 115,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Hbase có thể được sử dụng cho kiểu dữ liệu nào",
     "code": "",
@@ -2161,6 +2393,8 @@
   },
   {
     "id": 116,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "HDFS giải quyết bài toán một điểm hỏng hóc duy nhất (single-point-of-failure) cho Namenode bằng cách nào?",
     "code": "",
@@ -2178,6 +2412,8 @@
   },
   {
     "id": 117,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Chọn phát biểu đúng về NoSQL",
     "code": "",
@@ -2198,6 +2434,8 @@
   },
   {
     "id": 118,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Phát biểu nào sau đây không đúng về Apache Hadoop?",
     "code": "",
@@ -2217,6 +2455,8 @@
   },
   {
     "id": 119,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Ưu điểm của hệ thống tệp tin phân tán là gì?",
     "code": "",
@@ -2236,6 +2476,8 @@
   },
   {
     "id": 120,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Phát biểu nào đúng về Amazon DynamoDB",
     "code": "",
@@ -2254,6 +2496,8 @@
   },
   {
     "id": 121,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là các thao tác có thể thực hiện trên RDD (Resilient distributed dataset) của Spark?",
     "code": "",
@@ -2275,6 +2519,8 @@
   },
   {
     "id": 122,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "multiple",
     "text": "Phát biểu nào sai về Kafka?",
     "code": "",
@@ -2293,6 +2539,8 @@
   },
   {
     "id": 123,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "CSDL nào dưới đây không phải là NoSQL",
     "code": "",
@@ -2312,6 +2560,8 @@
   },
   {
     "id": 124,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Cơ chế mà NoSQL sử dụng để tăng khả năng chịu lỗi",
     "code": "",
@@ -2330,6 +2580,8 @@
   },
   {
     "id": 125,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "multiple",
     "text": "Phát biểu nào sai về Kafka?",
     "code": "",
@@ -2349,6 +2601,8 @@
   },
   {
     "id": 126,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Các biến đổi (transformation) trên Spark có đặc điểm gì?",
     "code": "",
@@ -2368,6 +2622,8 @@
   },
   {
     "id": 127,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Các đặc điểm của virtual node trên AmazonDB. Chọn phương án sai",
     "code": "",
@@ -2387,6 +2643,8 @@
   },
   {
     "id": 128,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "Thế nào là Session semantic?",
     "code": "",
@@ -2405,6 +2663,8 @@
   },
   {
     "id": 129,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "multiple",
     "text": "Phát biểu nào sai về Hbase",
     "code": "",
@@ -2424,6 +2684,8 @@
   },
   {
     "id": 130,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "multiple",
     "text": "Giữa Pig và Hive, công cụ nào có giao diện truy vấn gần với ANSI SQL hơn?",
     "code": "",
@@ -2442,6 +2704,8 @@
   },
   {
     "id": 131,
+    "chapter": 8,
+    "chapter_name": "Kiến trúc Dữ liệu lớn (Lambda & Kappa Architecture)",
     "type": "multiple",
     "text": "Ưu điểm của kiến trúc SAN (Storage area network)?",
     "code": "",
@@ -2460,6 +2724,8 @@
   },
   {
     "id": 132,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai.",
     "code": "",
@@ -2479,6 +2745,8 @@
   },
   {
     "id": 133,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Đâu là ưu điểm của Spark so với MapReduce?",
     "code": "",
@@ -2501,6 +2769,8 @@
   },
   {
     "id": 134,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Thành phần nào không thuộc thành phần lõi của Hadoop?",
     "code": "",
@@ -2522,6 +2792,8 @@
   },
   {
     "id": 135,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai.",
     "code": "",
@@ -2541,6 +2813,8 @@
   },
   {
     "id": 136,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "multiple",
     "text": "Phát biểu sau đây đúng hay sai: Trong cụm Kafka, 1 server đóng vai trò leader, các server còn lại đóng vai trò follower.",
     "code": "",
@@ -2558,6 +2832,8 @@
   },
   {
     "id": 137,
+    "chapter": 7,
+    "chapter_name": "Công cụ truy vấn dữ liệu lớn (Hive, Pig, Presto)",
     "type": "multiple",
     "text": "Phát biểu nào sai về Presto",
     "code": "",
@@ -2576,6 +2852,8 @@
   },
   {
     "id": 138,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "CƠ CHẾ MÀ NOSQL SỬ DỤNG ĐỂ TĂNG KHẢ NĂNG CHỊU LỖI",
     "code": "",
@@ -2595,6 +2873,8 @@
   },
   {
     "id": 139,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "ĐÂU LÀ MỘT CSDL DẠNG CỘT MỞ RỘNG?",
     "code": "",
@@ -2614,6 +2894,8 @@
   },
   {
     "id": 140,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "ĐÂU LÀ CHƯƠNG TRÌNH WORDCOUNT ĐÚNG, VỚI INPUT LÀ MỘT RDD CHỨA DỮ LIỆU ĐỌC TỪ FILE VĂN BẢN",
     "code": "",
@@ -2633,6 +2915,8 @@
   },
   {
     "id": 141,
+    "chapter": 4,
+    "chapter_name": "Cơ sở dữ liệu NoSQL",
     "type": "single",
     "text": "CSDL NÀO PHÙ HỢP VỚI DỮ LIỆU MẠNG XÃ HỘI, DỮ LIỆU CÓ SỰ LIÊN KẾT",
     "code": "",
@@ -2652,6 +2936,8 @@
   },
   {
     "id": 142,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "SPARK HỖ TRỢ CÁC CLUSTER MANAGER NÀO?",
     "code": "",
@@ -2671,6 +2957,8 @@
   },
   {
     "id": 143,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Các mục tiêu chính của Apache Hadoop",
     "code": "",
@@ -2691,6 +2979,8 @@
   },
   {
     "id": 144,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Phát biểu nào sau đây không đúng về Apache Hadoop",
     "code": "",
@@ -2710,6 +3000,8 @@
   },
   {
     "id": 145,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "multiple",
     "text": "Thành phần nào không thuộc thành phần lõi của Hadoop",
     "code": "",
@@ -2731,6 +3023,8 @@
   },
   {
     "id": 146,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Hadoop giải quyết bài toán khả mở bằng cách nào? Chọn đáp án sai.",
     "code": "",
@@ -2750,6 +3044,8 @@
   },
   {
     "id": 147,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Hadoop giải quyết bài toán chịu lỗi thông qua kỹ thuật gì. Chọn đáp án sai",
     "code": "",
@@ -2769,6 +3065,8 @@
   },
   {
     "id": 148,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Các đặc trưng của HDFS. Chọn đáp án sai",
     "code": "",
@@ -2788,6 +3086,8 @@
   },
   {
     "id": 149,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Mô tả cách thức một client đọc dữ liệu trên HDFS",
     "code": "",
@@ -2807,6 +3107,8 @@
   },
   {
     "id": 150,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Mô tả cách thức một client ghi dữ liệu trên HDFS",
     "code": "",
@@ -2825,6 +3127,8 @@
   },
   {
     "id": 151,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế chịu lỗi của datanode trong HDFS",
     "code": "",
@@ -2843,6 +3147,8 @@
   },
   {
     "id": 152,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
     "code": "",
@@ -2861,6 +3167,8 @@
   },
   {
     "id": 153,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế nhân bản dữ liệu trong HDFS",
     "code": "",
@@ -2879,6 +3187,8 @@
   },
   {
     "id": 154,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "HDFS giải quyết bài toán single-point-of-failure cho Namenode bằng cách nào?",
     "code": "",
@@ -2896,6 +3206,8 @@
   },
   {
     "id": 155,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đầu vào dữ liệu cho chương trình Spark có thể là:",
     "code": "",
@@ -2915,6 +3227,8 @@
   },
   {
     "id": 156,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là lệnh lưu dữ liệu ra ngoài chương trình Spark:",
     "code": "",
@@ -2934,6 +3248,8 @@
   },
   {
     "id": 157,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là cách submit đúng một job lên Spark cluster hoặc chế độ local:",
     "code": "",
@@ -2953,6 +3269,8 @@
   },
   {
     "id": 158,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
     "code": "input.flatMap(lambda x: x.split(\"\\t\")).map(lambda x: (x, 1)).reduceByKey(add)",
@@ -2972,6 +3290,8 @@
   },
   {
     "id": 159,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "multiple",
     "text": "Data Pipeline nào sau đây là đúng trên Spark",
     "code": "",
@@ -2992,6 +3312,8 @@
   },
   {
     "id": 160,
+    "chapter": 5,
+    "chapter_name": "Hệ thống nhắn tin phân tán và Xử lý luồng",
     "type": "single",
     "text": "Mục đích của sử dụng RabbitMQ là gì?",
     "code": "",
@@ -3011,6 +3333,8 @@
   },
   {
     "id": 161,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Spark có thể chạy ở chế độ nào khi chạy trên nhiều máy?",
     "code": "",
@@ -3030,6 +3354,8 @@
   },
   {
     "id": 162,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Mục đích của sử dụng Spark ML là gì?",
     "code": "",
@@ -3049,6 +3375,8 @@
   },
   {
     "id": 163,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Mục đích của lệnh sau đây là gì?",
     "code": "(trainingData, testData) = dataset.randomSplit([0.8, 0.2], seed=100)",
@@ -3068,6 +3396,8 @@
   },
   {
     "id": 164,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Label và Feature của câu lệnh bên dưới có nghĩa là gì?",
     "code": "LogisticRegression(labelCol=\"label\", featuresCol=\"features\", maxIter=10)",
@@ -3087,6 +3417,8 @@
   },
   {
     "id": 165,
+    "chapter": 1,
+    "chapter_name": "Tổng quan về Dữ liệu lớn",
     "type": "single",
     "text": "Đâu là kĩ thuật có thể dùng để thích nghi các giải thuật học máy cho dữ liệu lớn:",
     "code": "",
@@ -3107,6 +3439,8 @@
   },
   {
     "id": 166,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Các mục tiêu chính của apache hadoop",
     "code": "",
@@ -3127,6 +3461,8 @@
   },
   {
     "id": 167,
+    "chapter": 2,
+    "chapter_name": "Tổng quan về Hadoop và MapReduce",
     "type": "single",
     "text": "Phạt biểu sai về hadoop",
     "code": "",
@@ -3146,6 +3482,8 @@
   },
   {
     "id": 168,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "multiple",
     "text": "cơ chế chịu lỗi của datanode trong HDFS?",
     "code": "",
@@ -3164,6 +3502,8 @@
   },
   {
     "id": 169,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế tổ chức dữ liệu của Datanode trong HDFS",
     "code": "",
@@ -3182,6 +3522,8 @@
   },
   {
     "id": 170,
+    "chapter": 3,
+    "chapter_name": "Hệ thống tệp phân tán HDFS",
     "type": "single",
     "text": "Cơ chế nhân bản dữ liệu trong HDFS",
     "code": "",
@@ -3200,6 +3542,8 @@
   },
   {
     "id": 171,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đầu vào dữ liệu cho chương trình Spark có thể là:",
     "code": "",
@@ -3219,6 +3563,8 @@
   },
   {
     "id": 172,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là lệnh lưu dữ liệu ra ngoài chương trình Spark:",
     "code": "",
@@ -3238,6 +3584,8 @@
   },
   {
     "id": 173,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Đâu là cách submit đúng một job lên Spark cluster hoặc chế độ local:",
     "code": "",
@@ -3257,6 +3605,8 @@
   },
   {
     "id": 174,
+    "chapter": 6,
+    "chapter_name": "Khung xử lý dữ liệu lớn Apache Spark",
     "type": "single",
     "text": "Câu lệnh MapReduce trong Spark dưới đây, chia mỗi dòng thành từ dựa vào delimiter nào?",
     "code": "input.flatMap(lambda x: x.split(\"\\t\")).map(lambda x: (x, 1)).reduceByKey(add)",
