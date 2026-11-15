@@ -133,12 +133,17 @@ export const QuizPage: React.FC<QuizPageProps> = ({
   // Current user
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
 
+  const [activeQuizConfig, setActiveQuizConfig] = useState<QuizConfig>(config);
+  useEffect(() => {
+    setActiveQuizConfig(config);
+  }, [config]);
+
   const mainScrollRef = useRef<HTMLDivElement>(null);
   const draftStateRef = useRef({
     gameState,
     questions,
     subject,
-    config,
+    config: activeQuizConfig,
     answers,
     flagged,
     totalDuration,
@@ -148,7 +153,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     gameState,
     questions,
     subject,
-    config,
+    config: activeQuizConfig,
     answers,
     flagged,
     totalDuration,
@@ -347,6 +352,11 @@ export const QuizPage: React.FC<QuizPageProps> = ({
             .filter(Boolean) as Question[];
 
           if (restoredQuestions.length > 0 && isMounted) {
+            const resolvedConfig: QuizConfig = {
+              ...config,
+              title: existingExamDef.title || config.title,
+            };
+            setActiveQuizConfig(resolvedConfig);
             setQuestions(restoredQuestions);
             setAnswers({});
             setFlagged([]);
@@ -361,7 +371,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
               subjectId: subject.id,
               subjectName: subject.name,
               subjectCode: subject.code,
-              config,
+              config: resolvedConfig,
               questions: restoredQuestions,
               answers: {},
               flagged: [],

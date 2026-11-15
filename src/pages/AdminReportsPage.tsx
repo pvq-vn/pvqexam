@@ -20,6 +20,7 @@ import {
 } from '../types/quiz';
 import { SUBJECT_CATALOG } from '../data/subjectCatalog';
 import { canonicalizeExamPath, loadExamFile } from '../data/dataLoader';
+import { resolveAttemptExamTitle } from '../utils/examTitle';
 import {
   ShieldAlert,
   Shield,
@@ -153,6 +154,15 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
   // TAB 2: EXAMS & STATS STATE (Section 10)
   // =========================================================================
   const [examDefinitions, setExamDefinitions] = useState<ExamDefinition[]>([]);
+  const examDefsBySeed = useMemo(() => {
+    const map = new Map<string, ExamDefinition>();
+    examDefinitions.forEach((def) => {
+      if (def.seed) {
+        map.set(def.seed.trim().toUpperCase(), def);
+      }
+    });
+    return map;
+  }, [examDefinitions]);
   const [allAttempts, setAllAttempts] = useState<QuizAttempt[]>([]);
   const [loadingExams, setLoadingExams] = useState(true);
 
@@ -2910,7 +2920,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
                               {attempt.subjectCode}
                             </span>
                             <span className="font-bold text-slate-800 dark:text-slate-100 text-sm">
-                              {attempt.subjectName}
+                              {resolveAttemptExamTitle(attempt, examDefsBySeed)}
                             </span>
                           </div>
 

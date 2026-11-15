@@ -13266,7 +13266,7 @@
       "d"
     ],
     "correctAnswers": [
-      "c"
+      "a"
     ],
     "explanation": "Cả hai tác nhân 'mother' và 'daughter' cùng liên kết với Use Case 'cook dinner'; Use Case 'cook dinner' có quan hệ <<include>> trỏ tới 'mix cocktails'; đồng thời chỉ có tác nhân 'mother' liên kết trực tiếp với 'mix cocktails'[cite: 1, 70, 99].",
     "scope": "LMS - Trang 135",

@@ -145,6 +145,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
     const launchConfig: QuizConfig = {
       ...selectedExistingDef.config,
+      title: selectedExistingDef.title || selectedExistingDef.config?.title,
       subjectId: targetSubject ? targetSubject.id : selectedExistingDef.subjectId,
       seed: selectedExistingDef.seed,
       examDefinitionId: selectedExistingDef.id,

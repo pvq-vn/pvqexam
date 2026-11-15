@@ -3,7 +3,9 @@ import { createPortal } from 'react-dom';
 import { historyService } from '../services/historyService';
 import { authService, UserProfile } from '../services/authService';
 import { notificationService } from '../services/notificationService';
-import { QuizAttempt, UserNotification } from '../types/quiz';
+import { examDefinitionService } from '../services/examDefinitionService';
+import { ExamDefinition, QuizAttempt, UserNotification } from '../types/quiz';
+import { resolveAttemptExamTitle } from '../utils/examTitle';
 import {
   History,
   Eye,
@@ -29,6 +31,9 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
   onNavigateHome,
 }) => {
   const [attempts, setAttempts] = useState<QuizAttempt[]>([]);
+  const [examDefsBySeed, setExamDefsBySeed] = useState<Map<string, ExamDefinition>>(
+    () => new Map()
+  );
   const [notifications, setNotifications] = useState<UserNotification[]>([]);
   const [showNotificationModal, setShowNotificationModal] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -42,12 +47,20 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
       if (!isMounted) return;
       setUser(activeUser);
 
-      const [attemptData, notifData] = await Promise.all([
+      const [attemptData, notifData, examDefs] = await Promise.all([
         historyService.getAttempts(activeUser?.id),
         notificationService.getUserNotifications(activeUser?.id, activeUser?.email),
+        examDefinitionService.getAllExamDefinitions().catch(() => [] as ExamDefinition[]),
       ]);
       if (!isMounted) return;
+      const defsMap = new Map<string, ExamDefinition>();
+      examDefs.forEach((def) => {
+        if (def.seed) {
+          defsMap.set(def.seed.trim().toUpperCase(), def);
+        }
+      });
       setAttempts(attemptData);
+      setExamDefsBySeed(defsMap);
       setNotifications(notifData);
       setLoading(false);
     };
@@ -91,10 +104,11 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
   };
 
   const handleDeleteSingleAttempt = (attempt: QuizAttempt) => {
+    const examTitle = resolveAttemptExamTitle(attempt, examDefsBySeed);
     setConfirmDelete({
       type: 'single',
       attemptId: attempt.id,
-      title: `${attempt.subjectCode} - ${attempt.subjectName} (Mã đề: ${attempt.seed})`,
+      title: `${attempt.subjectCode} - ${examTitle} (Mã đề: ${attempt.seed})`,
     });
   };
 
@@ -374,13 +388,13 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({
               key={attempt.id}
               className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 shadow-sm hover:shadow transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
             >
-              <div className="space-y-1.5 flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 rounded font-mono font-bold text-xs">
+              <div className="space-y-1.5 flex-1 min-w-0">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 rounded font-mono font-bold text-xs shrink-0">
                     {attempt.subjectCode}
                   </span>
-                  <h3 className="font-bold text-slate-900 dark:text-slate-100 text-base">
-                    {attempt.subjectName}
+                  <h3 className="font-bold text-slate-900 dark:text-slate-100 text-base break-words">
+                    {resolveAttemptExamTitle(attempt, examDefsBySeed)}
                   </h3>
                 </div>
 

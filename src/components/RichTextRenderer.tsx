@@ -323,7 +323,7 @@ const MathSpan: React.FC<{ latex: string; displayMode: boolean }> = ({
   if (displayMode) {
     return (
       <div
-        className="my-2.5 py-2 px-3 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800 rounded-xl overflow-x-auto custom-scrollbar text-center text-slate-900 dark:text-slate-100"
+        className="my-2.5 py-2 px-3 bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800 rounded-xl math-scrollbar text-center text-slate-900 dark:text-slate-100"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
@@ -331,7 +331,7 @@ const MathSpan: React.FC<{ latex: string; displayMode: boolean }> = ({
 
   return (
     <span
-      className="inline-block align-middle max-w-full overflow-x-auto mx-0.5"
+      className="inline-block align-middle max-w-full math-scrollbar py-[0.15em] px-0.5 mx-0.5"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

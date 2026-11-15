@@ -108,12 +108,85 @@ dialog::backdrop {
 }
 
 
-/* KaTeX responsive styling to prevent horizontal overflow on mobile */
+/* Hover-only sleek horizontal scrollbar for LaTeX formulas */
+.math-scrollbar {
+  --scrollbar-thumb: #64748b;
+  --scrollbar-track: transparent;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.dark .math-scrollbar {
+  --scrollbar-thumb: #94a3b8;
+}
+
+@media (prefers-contrast: more) {
+  .math-scrollbar {
+    --scrollbar-thumb: #000000;
+    --scrollbar-track: #ffffff;
+  }
+
+  .dark .math-scrollbar {
+    --scrollbar-thumb: #ffffff;
+    --scrollbar-track: #000000;
+  }
+}
+
+.math-scrollbar:hover,
+.math-scrollbar:focus-within {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+@media (hover: none) {
+  .math-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+}
+
+@supports not (scrollbar-color: auto) {
+  .math-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .math-scrollbar:hover::-webkit-scrollbar,
+  .math-scrollbar:focus-within::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  @media (hover: none) {
+    .math-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+  }
+
+  .math-scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  .math-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 9999px;
+  }
+}
+
+/* KaTeX responsive styling without duplicate nested scrollbars */
 .katex-display {
   margin: 0.35em 0 !important;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.15em 0;
+}
+
+.math-scrollbar .katex-display {
+  margin: 0 !important;
+  overflow: visible;
+  padding: 0;
 }
 
 .katex {

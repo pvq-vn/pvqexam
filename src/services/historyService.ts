@@ -38,7 +38,9 @@ export const historyService = {
           seed: cleanSeed,
           subjectId: normalizedAttempt.subjectId,
           subjectCode: normalizedAttempt.subjectCode,
-          title: `Đề thi ${normalizedAttempt.subjectCode} (${cleanSeed})`,
+          title:
+            normalizedAttempt.config?.title?.trim() ||
+            `Đề thi ${normalizedAttempt.subjectCode} (${cleanSeed})`,
           isPublic: false,
           createdByUserId:
             normalizedAttempt.userId && !normalizedAttempt.userId.startsWith('local-')
@@ -239,7 +241,9 @@ export const historyService = {
                 seed: cleanSeed,
                 subjectId: ra.subjectId,
                 subjectCode: ra.subjectCode,
-                title: `Đề thi ${ra.subjectCode} (${cleanSeed})`,
+                title:
+                  ra.config?.title?.trim() ||
+                  `Đề thi ${ra.subjectCode} (${cleanSeed})`,
                 isPublic: false,
                 createdByUserId: ra.userId,
                 questionIds: ra.questions.map((q) => q.id),
