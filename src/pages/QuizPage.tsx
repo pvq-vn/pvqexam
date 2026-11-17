@@ -29,6 +29,7 @@ import { historyService } from '../services/historyService';
 import { authService, UserProfile } from '../services/authService';
 import { questionStatsService } from '../services/questionStatsService';
 import { examDefinitionService } from '../services/examDefinitionService';
+import { resolveExamTitle } from '../utils/examTitle';
 import {
   Clock,
   Send,
@@ -40,6 +41,8 @@ import {
   LayoutGrid,
   ArrowUp,
   X,
+  FileText,
+  Flag,
 } from 'lucide-react';
 
 interface QuizPageProps {
@@ -58,6 +61,29 @@ type QuestionFilter =
   | 'wrong'
   | 'correct'
   | 'essay';
+
+type FilterBadgeTone = 'blue' | 'emerald' | 'rose' | 'amber' | 'indigo' | 'slate';
+
+function getFilterBadgeClasses(tone: FilterBadgeTone, isActive: boolean): string {
+  if (isActive) {
+    return 'bg-white/20 text-white';
+  }
+  switch (tone) {
+    case 'blue':
+      return 'bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800/80';
+    case 'emerald':
+      return 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80';
+    case 'rose':
+      return 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/80';
+    case 'amber':
+      return 'bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/80';
+    case 'indigo':
+      return 'bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200/80 dark:border-indigo-800/80';
+    case 'slate':
+    default:
+      return 'bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300/80 dark:border-slate-600';
+  }
+}
 
 function computeTotalSecondsFromConfig(config: QuizConfig): number {
   if (config.timeMode === 'unlimited') return 0;
@@ -133,10 +159,31 @@ export const QuizPage: React.FC<QuizPageProps> = ({
   // Current user
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
 
+  const [examDefTitle, setExamDefTitle] = useState<string | undefined>(undefined);
   const [activeQuizConfig, setActiveQuizConfig] = useState<QuizConfig>(config);
   useEffect(() => {
     setActiveQuizConfig(config);
   }, [config]);
+
+  const resolvedExamTitle = useMemo(
+    () =>
+      resolveExamTitle({
+        subjectCode: subject.code,
+        seed: activeQuizConfig.seed || config.seed,
+        configTitle:
+          initialAttempt?.config?.title || activeQuizConfig.title || config.title,
+        examDefTitle,
+      }),
+    [
+      subject.code,
+      activeQuizConfig.seed,
+      activeQuizConfig.title,
+      config.seed,
+      config.title,
+      initialAttempt?.config?.title,
+      examDefTitle,
+    ]
+  );
 
   const mainScrollRef = useRef<HTMLDivElement>(null);
   const draftStateRef = useRef({
@@ -205,6 +252,17 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       setStartedAt(initialAttempt.startedAt);
       setActiveFilter('all');
       setGameState('review');
+      setExamDefTitle(undefined);
+
+      const attemptSeed = (initialAttempt.seed || config.seed || '').trim();
+      if (attemptSeed) {
+        examDefinitionService
+          .getExamDefinitionBySeed(attemptSeed)
+          .then((def) => {
+            if (isMounted) setExamDefTitle(def?.title);
+          })
+          .catch(() => {});
+      }
 
       // Asynchronously refresh questions from current subject JSON files (Section 11.3)
       // Always load all exam files of the subject to ensure every question in the attempt is found
@@ -282,6 +340,17 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       setQuestions(candidateDraft.questions);
       setAnswers(candidateDraft.answers || {});
       setFlagged(candidateDraft.flagged || []);
+      setActiveQuizConfig(candidateDraft.config);
+      setExamDefTitle(undefined);
+      const draftSeed = (candidateDraft.config.seed || '').trim();
+      if (draftSeed) {
+        examDefinitionService
+          .getExamDefinitionBySeed(draftSeed)
+          .then((def) => {
+            if (isMounted) setExamDefTitle(def?.title);
+          })
+          .catch(() => {});
+      }
       setTotalDuration(candidateDraft.totalDuration);
       setInitialTimerSeconds(candidateDraft.timeRemaining);
       timeRemainingRef.current = candidateDraft.timeRemaining;
@@ -306,6 +375,9 @@ export const QuizPage: React.FC<QuizPageProps> = ({
         const existingExamDef = await examDefinitionService.getExamDefinitionBySeed(
           config.seed
         );
+        if (isMounted) {
+          setExamDefTitle(existingExamDef?.title);
+        }
 
         if (
           existingExamDef &&
@@ -523,8 +595,11 @@ export const QuizPage: React.FC<QuizPageProps> = ({
   const handleToggleFlag = useCallback(
     (qId: string | number) => {
       if (gameState !== 'playing') return;
+      const targetKey = String(qId);
       setFlagged((prev) =>
-        prev.includes(qId) ? prev.filter((id) => id !== qId) : [...prev, qId]
+        prev.some((id) => String(id) === targetKey)
+          ? prev.filter((id) => String(id) !== targetKey)
+          : [...prev, qId]
       );
     },
     [gameState]
@@ -672,7 +747,15 @@ export const QuizPage: React.FC<QuizPageProps> = ({
     setTimeout(() => setCopiedSeed(false), 2000);
   };
 
-  const flaggedSet = useMemo(() => new Set(flagged), [flagged]);
+  const flaggedSet = useMemo(
+    () => new Set(flagged.map((id) => String(id))),
+    [flagged]
+  );
+
+  const flaggedCount = useMemo(
+    () => questions.filter((q) => flaggedSet.has(String(q.id))).length,
+    [questions, flaggedSet]
+  );
 
   const answeredCount = useMemo(
     () =>
@@ -687,7 +770,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
       .map((q, idx) => ({ q, idx }))
       .filter(({ q }) => {
         if (activeFilter === 'all') return true;
-        if (activeFilter === 'flagged') return flaggedSet.has(q.id);
+        if (activeFilter === 'flagged') return flaggedSet.has(String(q.id));
         if (activeFilter === 'unanswered') {
           if (gameState === 'review' && result) {
             return (
@@ -787,6 +870,12 @@ export const QuizPage: React.FC<QuizPageProps> = ({
             >
               {subject.name}
             </h2>
+            <p
+              className="text-xs font-semibold text-blue-600 dark:text-blue-400 truncate mt-0.5"
+              title={resolvedExamTitle}
+            >
+              {resolvedExamTitle}
+            </p>
           </div>
 
           <button
@@ -849,6 +938,16 @@ export const QuizPage: React.FC<QuizPageProps> = ({
                   ? 'Đã hoàn thành! 👍'
                   : 'Cần ôn tập thêm 📚'}
               </h2>
+              <div
+                className="mt-2.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs sm:text-sm font-bold max-w-full"
+                title={resolvedExamTitle}
+              >
+                <FileText
+                  size={15}
+                  className="text-blue-600 dark:text-blue-400 shrink-0"
+                />
+                <span className="truncate">{resolvedExamTitle}</span>
+              </div>
             </div>
 
             {/* Score Grid */}
@@ -960,43 +1059,104 @@ export const QuizPage: React.FC<QuizPageProps> = ({
 
           <div className="flex flex-wrap items-center gap-1.5">
             {(gameState === 'review' && result
-              ? [
-                  { id: 'all', label: `Tất cả (${questions.length})` },
-                  { id: 'wrong', label: `Câu sai (${result.wrongCount})` },
+              ? ([
+                  {
+                    id: 'all',
+                    label: 'Tất cả',
+                    count: questions.length,
+                    badgeTone: 'blue' as FilterBadgeTone,
+                  },
+                  {
+                    id: 'correct',
+                    label: 'Câu đúng',
+                    count: result.correctCount,
+                    badgeTone: 'emerald' as FilterBadgeTone,
+                  },
+                  {
+                    id: 'wrong',
+                    label: 'Câu sai',
+                    count: result.wrongCount,
+                    badgeTone: 'rose' as FilterBadgeTone,
+                  },
                   {
                     id: 'unanswered',
-                    label: `Bỏ trống (${result.unansweredCount})`,
+                    label: 'Bỏ trống',
+                    count: result.unansweredCount,
+                    badgeTone: 'slate' as FilterBadgeTone,
                   },
-                  { id: 'correct', label: `Câu đúng (${result.correctCount})` },
+                  {
+                    id: 'flagged',
+                    label: 'Đánh dấu',
+                    count: flaggedCount,
+                    badgeTone: 'amber' as FilterBadgeTone,
+                  },
                   ...(result.essayCount > 0
-                    ? [{ id: 'essay', label: `Tự luận (${result.essayCount})` }]
+                    ? [
+                        {
+                          id: 'essay',
+                          label: 'Tự luận',
+                          count: result.essayCount,
+                          badgeTone: 'indigo' as FilterBadgeTone,
+                        },
+                      ]
                     : []),
-                  ...(flagged.length > 0
-                    ? [{ id: 'flagged', label: `Cắm cờ (${flagged.length})` }]
-                    : []),
-                ]
-              : [
-                  { id: 'all', label: `Tất cả (${questions.length})` },
+                ] as const)
+              : ([
+                  {
+                    id: 'all',
+                    label: 'Tất cả',
+                    count: questions.length,
+                    badgeTone: 'blue' as FilterBadgeTone,
+                  },
                   {
                     id: 'unanswered',
-                    label: `Chưa làm (${unansweredCount})`,
+                    label: 'Chưa làm',
+                    count: unansweredCount,
+                    badgeTone: 'slate' as FilterBadgeTone,
                   },
-                  { id: 'flagged', label: `Đã cắm cờ (${flagged.length})` },
-                ]
-            ).map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveFilter(tab.id as QuestionFilter)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
-                  activeFilter === tab.id
-                    ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-2xs'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200/80 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+                  {
+                    id: 'flagged',
+                    label: 'Đánh dấu',
+                    count: flaggedCount,
+                    badgeTone: 'amber' as FilterBadgeTone,
+                  },
+                ] as const)
+            ).map((tab) => {
+              const isActive = activeFilter === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveFilter(tab.id as QuestionFilter)}
+                  className={`inline-flex items-center gap-1.5 pl-3 pr-2 py-1.5 rounded-xl text-xs font-semibold transition-all border cursor-pointer ${
+                    isActive
+                      ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-500 shadow-2xs'
+                      : 'bg-slate-50 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-slate-200/90 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80'
+                  }`}
+                >
+                  {tab.id === 'flagged' && (
+                    <Flag
+                      size={12}
+                      fill="currentColor"
+                      className={
+                        isActive
+                          ? 'text-amber-300 shrink-0'
+                          : 'text-amber-500 dark:text-amber-400 shrink-0'
+                      }
+                    />
+                  )}
+                  <span>{tab.label}</span>
+                  <span
+                    className={`inline-flex items-center justify-center min-w-[1.375rem] h-5 px-1.5 rounded-md text-[11px] font-extrabold tabular-nums transition-colors ${getFilterBadgeClasses(
+                      tab.badgeTone,
+                      isActive
+                    )}`}
+                  >
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -1022,7 +1182,7 @@ export const QuizPage: React.FC<QuizPageProps> = ({
                 question={q}
                 index={idx}
                 userAnswer={answers[q.id]}
-                isFlagged={flaggedSet.has(q.id)}
+                isFlagged={flaggedSet.has(String(q.id))}
                 isReview={gameState === 'review'}
                 isAdmin={Boolean(currentUser?.isAdmin)}
                 evaluation={result?.evaluations[q.id]}

@@ -56,11 +56,15 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
       ? Math.round((answeredCount / questions.length) * 100)
       : 0;
 
-  const flaggedSet = useMemo(() => new Set(flagged), [flagged]);
+  const flaggedSet = useMemo(
+    () => new Set(flagged.map((id) => String(id))),
+    [flagged]
+  );
 
   const getButtonStyles = (q: Question) => {
     const qId = q.id;
     const isAnswered = isQuestionAnswered(q, answers[qId]);
+    const isFlagged = flaggedSet.has(String(qId));
 
     if (isReview) {
       if (q.type === 'essay') {
@@ -68,7 +72,7 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
       }
       const evalItem = evaluations ? evaluations[qId] : undefined;
       if (!evalItem || evalItem.isUnanswered) {
-        return 'bg-amber-400 text-white border-amber-400 shadow-2xs';
+        return 'bg-amber-400 text-slate-950 border-amber-500 shadow-2xs';
       }
       if (evalItem.isCorrect) {
         return 'bg-emerald-500 text-white border-emerald-500 shadow-2xs';
@@ -76,7 +80,13 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
       return 'bg-rose-500 text-white border-rose-500 shadow-2xs';
     }
 
-    // Playing state
+    // Playing state: flagged questions are color-coded directly (rich vs lighter amber)
+    if (isFlagged && isAnswered) {
+      return 'bg-amber-500 dark:bg-amber-500 text-slate-950 border-amber-600 dark:border-amber-400 font-bold shadow-2xs hover:bg-amber-400 dark:hover:bg-amber-400';
+    }
+    if (isFlagged && !isAnswered) {
+      return 'bg-amber-100 dark:bg-amber-500/20 text-amber-900 dark:text-amber-200 border-amber-300 dark:border-amber-500/50 font-semibold hover:bg-amber-200/80 dark:hover:bg-amber-500/30';
+    }
     if (isAnswered) {
       return 'bg-blue-600 text-white border-blue-600 font-bold shadow-2xs';
     }
@@ -110,46 +120,47 @@ const QuestionNavigatorComponent: React.FC<QuestionNavigatorProps> = ({
       <div className="flex-1 overflow-y-auto p-4 custom-scrollbar max-h-72 md:max-h-none">
         <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-5 gap-2">
           {questions.map((q, idx) => {
-            const isFlagged = flaggedSet.has(q.id);
+            const isFlagged = flaggedSet.has(String(q.id));
+            const isAnswered = isQuestionAnswered(q, answers[q.id]);
+            const stateHint = !isReview && isFlagged
+              ? ` (${isAnswered ? 'Đã làm, đã đánh dấu' : 'Chưa làm, đã đánh dấu'})`
+              : '';
             return (
               <button
                 key={q.id}
                 type="button"
                 onClick={() => onScrollToQuestion(q.id)}
-                className={`relative flex items-center justify-center h-9 sm:h-10 w-full rounded-lg border text-xs sm:text-sm font-semibold transition-all ${getButtonStyles(
+                className={`relative flex items-center justify-center h-9 sm:h-10 w-full rounded-lg border text-xs sm:text-sm font-semibold transition-all cursor-pointer ${getButtonStyles(
                   q
                 )}`}
-                aria-label={`Chuyển tới câu ${idx + 1}`}
+                aria-label={`Chuyển tới câu ${idx + 1}${stateHint}`}
+                title={`Câu ${idx + 1}${stateHint}`}
               >
                 {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
-
-                {/* Flag Dot */}
-                {isFlagged && (
-                  <span
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-amber-500 border-2 border-white dark:border-slate-900 rounded-full"
-                    title="Đã cắm cờ"
-                  />
-                )}
               </button>
             );
           })}
         </div>
 
         {/* Legend */}
-        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
+        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400">
           {!isReview ? (
             <>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <div className="w-3 h-3 bg-blue-600 rounded-xs shrink-0" />
-                <span>Đã làm ({answeredCount})</span>
+                <span>Đã làm</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <div className="w-3 h-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xs shrink-0" />
-                <span>Chưa làm ({questions.length - answeredCount})</span>
+                <span>Chưa làm</span>
               </div>
-              <div className="flex items-center gap-2 col-span-2">
-                <div className="w-3 h-3 bg-amber-500 rounded-full shrink-0" />
-                <span>Đã đặt cờ ({flagged.length})</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-amber-500 border border-amber-600 dark:border-amber-400 rounded-xs shrink-0" />
+                <span>Đánh dấu (Đã làm)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-amber-100 dark:bg-amber-500/20 border border-amber-300 dark:border-amber-500/50 rounded-xs shrink-0" />
+                <span>Đánh dấu (Chưa làm)</span>
               </div>
             </>
           ) : (

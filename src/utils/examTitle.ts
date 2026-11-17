@@ -22,6 +22,36 @@ export function isGenericExamTitle(
 }
 
 /**
+ * Resolves the display title of an exam given its subject code, seed,
+ * optional config title, and optional ExamDefinition title.
+ * Prefers a non-generic ExamDefinition title, then configTitle,
+ * then examDefTitle, and falls back to a concise default title.
+ */
+export function resolveExamTitle(params: {
+  subjectCode: string;
+  seed?: string;
+  configTitle?: string;
+  examDefTitle?: string;
+}): string {
+  const cleanSeed = (params.seed || '').trim().toUpperCase();
+  const defTitle = params.examDefTitle?.trim() || '';
+  const configTitle = params.configTitle?.trim() || '';
+
+  if (defTitle && !isGenericExamTitle(defTitle, params.subjectCode, cleanSeed)) {
+    return defTitle;
+  }
+  if (configTitle) {
+    return configTitle;
+  }
+  if (defTitle) {
+    return defTitle;
+  }
+  return cleanSeed
+    ? `Đề thi ${params.subjectCode} (${cleanSeed})`
+    : `Đề thi ${params.subjectCode}`;
+}
+
+/**
  * Resolves the display title of a quiz attempt's exam, preferring a custom
  * ExamDefinition title (e.g., created/renamed by admin or shared exam),
  * then `attempt.config?.title`, and falling back to a concise default title.
@@ -32,19 +62,10 @@ export function resolveAttemptExamTitle(
 ): string {
   const cleanSeed = (attempt.seed || '').trim().toUpperCase();
   const def = cleanSeed && examDefsBySeed ? examDefsBySeed.get(cleanSeed) : undefined;
-  const defTitle = def?.title?.trim() || '';
-  const configTitle = attempt.config?.title?.trim() || '';
-
-  if (defTitle && !isGenericExamTitle(defTitle, attempt.subjectCode, cleanSeed)) {
-    return defTitle;
-  }
-  if (configTitle) {
-    return configTitle;
-  }
-  if (defTitle) {
-    return defTitle;
-  }
-  return cleanSeed
-    ? `Đề thi ${attempt.subjectCode} (${cleanSeed})`
-    : `Đề thi ${attempt.subjectCode}`;
+  return resolveExamTitle({
+    subjectCode: attempt.subjectCode,
+    seed: cleanSeed,
+    configTitle: attempt.config?.title,
+    examDefTitle: def?.title,
+  });
 }

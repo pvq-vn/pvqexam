@@ -28,6 +28,7 @@ interface HomePageProps {
   onSelectSubject: (subject: Subject) => void;
   onStartQuiz?: (config: QuizConfig) => void;
   onNavigateToAdminExams?: () => void;
+  onRequireAuth?: () => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
@@ -35,6 +36,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   onSelectSubject,
   onStartQuiz,
   onNavigateToAdminExams,
+  onRequireAuth,
 }) => {
   const [selectedSemester, setSelectedSemester] = useState<string>(() => {
     try {
@@ -107,6 +109,10 @@ export const HomePage: React.FC<HomePageProps> = ({
   // Search existing seed to launch exam
   const handleSearchExistingSeed = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    if (!currentUser) {
+      onRequireAuth?.();
+      return;
+    }
     const cleanSeed = enterSeedInput.trim().toUpperCase();
     if (!cleanSeed) return;
 
@@ -132,6 +138,10 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   const handleStartExistingExam = () => {
     if (!selectedExistingDef || !onStartQuiz) return;
+    if (!currentUser) {
+      onRequireAuth?.();
+      return;
+    }
 
     const targetSubject = SUBJECT_CATALOG.find(
       (s) =>
@@ -366,6 +376,10 @@ export const HomePage: React.FC<HomePageProps> = ({
                       <div
                         key={exam.id}
                         onClick={() => {
+                          if (!currentUser) {
+                            onRequireAuth?.();
+                            return;
+                          }
                           setSelectedExistingDef(exam);
                           setExistingDefTimeMode(exam.config.timeMode || 'auto');
                           setExistingDefCustomMinutes(exam.config.customMinutes || 45);

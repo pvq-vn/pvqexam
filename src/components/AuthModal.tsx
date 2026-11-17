@@ -6,9 +6,14 @@ import { X, Lock, Mail, User, ShieldCheck, Info } from 'lucide-react';
 interface AuthModalProps {
   onClose: () => void;
   onSuccess: (user: UserProfile) => void;
+  message?: string;
 }
 
-export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
+export const AuthModal: React.FC<AuthModalProps> = ({
+  onClose,
+  onSuccess,
+  message,
+}) => {
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,6 +64,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
           </button>
         </div>
 
+        {/* Auth requirement notice */}
+        {message && (
+          <div className="mx-5 mt-4 p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2 font-medium">
+            <ShieldCheck size={16} className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+            <span>{message}</span>
+          </div>
+        )}
+
         {/* Supabase status notice */}
         {!isSupabaseConfigured && (
           <div className="mx-5 mt-4 p-3 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-xl text-xs text-blue-900 dark:text-blue-200 flex items-start gap-2">
@@ -73,14 +86,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
         <form onSubmit={handleSubmit} className="p-5 space-y-3.5">
           {isRegister && (
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label
+                htmlFor="auth-fullname"
+                className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
+              >
                 Họ và tên
               </label>
               <div className="relative">
                 <User size={16} className="absolute left-3 top-3 text-slate-400" />
                 <input
+                  id="auth-fullname"
+                  name="fullname"
                   type="text"
                   required
+                  autoComplete="name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Nguyễn Văn A"
@@ -91,14 +110,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
           )}
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label
+              htmlFor="auth-email"
+              className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
+            >
               Email
             </label>
             <div className="relative">
               <Mail size={16} className="absolute left-3 top-3 text-slate-400" />
               <input
+                id="auth-email"
+                name="email"
                 type="email"
                 required
+                autoComplete="username"
+                spellCheck={false}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="student@sis.hust.edu.vn"
@@ -108,15 +134,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label
+              htmlFor="auth-password"
+              className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
+            >
               Mật khẩu
             </label>
             <div className="relative">
               <Lock size={16} className="absolute left-3 top-3 text-slate-400" />
               <input
+                id="auth-password"
+                name="password"
                 type="password"
                 required
                 minLength={6}
+                autoComplete={isRegister ? 'new-password' : 'current-password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Tối thiểu 6 ký tự"
@@ -145,7 +177,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
                 Đã có tài khoản?{' '}
                 <button
                   type="button"
-                  onClick={() => setIsRegister(false)}
+                  onClick={() => {
+                    setIsRegister(false);
+                    setError(null);
+                  }}
                   className="text-blue-600 dark:text-blue-400 font-bold hover:underline"
                 >
                   Đăng nhập ngay
@@ -156,7 +191,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
                 Chưa có tài khoản?{' '}
                 <button
                   type="button"
-                  onClick={() => setIsRegister(true)}
+                  onClick={() => {
+                    setIsRegister(true);
+                    setError(null);
+                  }}
                   className="text-blue-600 dark:text-blue-400 font-bold hover:underline"
                 >
                   Đăng ký tài khoản mới

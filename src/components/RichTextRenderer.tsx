@@ -131,10 +131,27 @@ const ParsedTextContent: React.FC<{ content: string; compact?: boolean }> = ({
               const trimmed = line.trim();
               if (!trimmed) return null;
 
-              const isBullet = /^[-•*]\s+/.test(trimmed);
+              if (
+                /^[-•*+]?\s*(?:\*\*|<b>|<strong>)?\s*giải thích chi tiết\s*:\s*(?:\*\*|<\/b>|<\/strong>)?$/i.test(
+                  trimmed
+                )
+              ) {
+                return null;
+              }
+
+              const withoutRedundantHeader = trimmed.replace(
+                /^[-•*+]?\s*(?:\*\*|<b>|<strong>)?\s*giải thích chi tiết\s*:\s*(?:\*\*|<\/b>|<\/strong>)?\s*/i,
+                ''
+              );
+              if (!withoutRedundantHeader) return null;
+
+              const isBullet = /^[-•*]\s+/.test(withoutRedundantHeader);
+              const isSubBullet = /^[+◦]\s+/.test(withoutRedundantHeader);
               const cleanLine = isBullet
-                ? trimmed.replace(/^[-•*]\s+/, '')
-                : line;
+                ? withoutRedundantHeader.replace(/^[-•*]\s+/, '')
+                : isSubBullet
+                ? withoutRedundantHeader.replace(/^[+◦]\s+/, '')
+                : withoutRedundantHeader;
               const tokens = tokenizeInline(cleanLine);
 
               if (isBullet) {
@@ -145,6 +162,22 @@ const ParsedTextContent: React.FC<{ content: string; compact?: boolean }> = ({
                   >
                     <span className="text-blue-600 dark:text-blue-400 font-bold select-none mt-0.5">
                       •
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <InlineTokensView tokens={tokens} compact={compact} />
+                    </div>
+                  </div>
+                );
+              }
+
+              if (isSubBullet) {
+                return (
+                  <div
+                    key={lIdx}
+                    className="flex items-start gap-2 pl-6 sm:pl-7 text-slate-700 dark:text-slate-200"
+                  >
+                    <span className="text-slate-400 dark:text-slate-500 font-bold select-none mt-0.5">
+                      +
                     </span>
                     <div className="flex-1 min-w-0">
                       <InlineTokensView tokens={tokens} compact={compact} />

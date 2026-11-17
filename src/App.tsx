@@ -30,6 +30,29 @@ export function App() {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authModalMessage, setAuthModalMessage] = useState<string | undefined>(
+    undefined
+  );
+  const [pendingAction, setPendingAction] = useState<
+    | { type: 'subject'; subject: Subject; seed?: string }
+    | { type: 'config'; config: QuizConfig }
+    | { type: 'resume' }
+    | null
+  >(null);
+
+  const requireAuthForQuiz = (
+    action:
+      | { type: 'subject'; subject: Subject; seed?: string }
+      | { type: 'config'; config: QuizConfig }
+      | { type: 'resume' }
+      | null = null
+  ) => {
+    setPendingAction(action);
+    setAuthModalMessage(
+      'Vui lòng đăng nhập hoặc đăng ký tài khoản để bắt đầu làm bài thi.'
+    );
+    setShowAuthModal(true);
+  };
 
   // Setup modal state
   const [setupSubject, setSetupSubject] = useState<Subject | null>(null);
@@ -75,6 +98,8 @@ export function App() {
       } else if (hash.startsWith('#/admin')) {
         setCurrentRoute('admin');
       } else if (hash.startsWith('#/quiz/')) {
+        if (authLoading) return;
+
         const parts = hash.replace('#/quiz/', '').split('?');
         const subjectCode = parts[0];
         const params = new URLSearchParams(parts[1] || '');
@@ -86,10 +111,21 @@ export function App() {
         const targetSubject = SUBJECT_CATALOG.find(
           (s) => s.code.toLowerCase() === subjectCode.toLowerCase()
         );
+        const seedParam = params.get('seed') || undefined;
+
+        if (!currentUser) {
+          setSetupSubject(null);
+          setCurrentRoute('home');
+          window.location.hash = '#/';
+          requireAuthForQuiz(
+            targetSubject
+              ? { type: 'subject', subject: targetSubject, seed: seedParam }
+              : null
+          );
+          return;
+        }
 
         if (targetSubject) {
-          const seedParam = params.get('seed') || undefined;
-
           // If in review mode, NEVER open the setup modal!
           if (isReview) {
             setSetupSubject(null);
@@ -143,10 +179,18 @@ export function App() {
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [currentRoute]);
+  }, [currentRoute, authLoading, currentUser]);
 
   // Handle starting a new quiz from configuration
-  const handleStartQuiz = (config: QuizConfig) => {
+  const handleStartQuiz = (
+    config: QuizConfig,
+    authenticatedUser: UserProfile | null = currentUser
+  ) => {
+    if (!authenticatedUser) {
+      requireAuthForQuiz({ type: 'config', config });
+      return;
+    }
+
     const subject = SUBJECT_CATALOG.find((s) => s.id === config.subjectId);
     if (!subject) return;
 
@@ -165,7 +209,14 @@ export function App() {
   };
 
   // Resume draft quiz without losing answers or remaining time
-  const handleResumeDraft = () => {
+  const handleResumeDraft = (
+    authenticatedUser: UserProfile | null = currentUser
+  ) => {
+    if (!authenticatedUser) {
+      requireAuthForQuiz({ type: 'resume' });
+      return;
+    }
+
     const draft = activeDraft || draftService.getDraft();
     if (!draft) return;
 
@@ -263,7 +314,11 @@ export function App() {
         currentUser={currentUser}
         currentRoute={currentRoute}
         onNavigate={handleNavigate}
-        onOpenAuth={() => setShowAuthModal(true)}
+        onOpenAuth={() => {
+          setPendingAction(null);
+          setAuthModalMessage(undefined);
+          setShowAuthModal(true);
+        }}
       />
 
       {/* In-Progress Draft Banner */}
@@ -288,7 +343,7 @@ export function App() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={handleResumeDraft}
+                onClick={() => handleResumeDraft()}
                 className="px-3 py-1 bg-slate-950 hover:bg-slate-900 text-white rounded-lg font-bold text-xs flex items-center gap-1 transition-colors"
               >
                 <Play size={12} fill="currentColor" /> Tiếp tục làm
@@ -311,11 +366,16 @@ export function App() {
           <HomePage
             currentUser={currentUser}
             onSelectSubject={(subject) => {
+              if (!currentUser) {
+                requireAuthForQuiz({ type: 'subject', subject });
+                return;
+              }
               setSetupSubject(subject);
               setSetupSeed(undefined);
             }}
             onStartQuiz={handleStartQuiz}
             onNavigateToAdminExams={() => handleNavigate('admin', 'exams')}
+            onRequireAuth={() => requireAuthForQuiz()}
           />
         )}
 
@@ -326,7 +386,7 @@ export function App() {
             </div>
           }
         >
-          {currentRoute === 'quiz' && activeSubject && activeConfig && (
+          {currentRoute === 'quiz' && currentUser && activeSubject && activeConfig && (
             <QuizPage
               subject={activeSubject}
               config={activeConfig}
@@ -380,7 +440,7 @@ export function App() {
       </div>
 
       {/* Quiz Configuration Modal */}
-      {setupSubject && (
+      {setupSubject && currentUser && (
         <QuizSetupModal
           subject={setupSubject}
           initialSeed={setupSeed}
@@ -392,11 +452,28 @@ export function App() {
       {/* Authentication Modal */}
       {showAuthModal && (
         <AuthModal
-          onClose={() => setShowAuthModal(false)}
+          message={authModalMessage}
+          onClose={() => {
+            setShowAuthModal(false);
+            setAuthModalMessage(undefined);
+            setPendingAction(null);
+          }}
           onSuccess={(user) => {
+            const action = pendingAction;
             setCurrentUser(user);
             setShowAuthModal(false);
-            window.location.reload();
+            setAuthModalMessage(undefined);
+            setPendingAction(null);
+            setActiveDraft(draftService.getDraft());
+
+            if (action?.type === 'subject') {
+              setSetupSubject(action.subject);
+              setSetupSeed(action.seed);
+            } else if (action?.type === 'config') {
+              handleStartQuiz(action.config, user);
+            } else if (action?.type === 'resume') {
+              handleResumeDraft(user);
+            }
           }}
         />
       )}

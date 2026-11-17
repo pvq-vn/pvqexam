@@ -3118,7 +3118,7 @@ export const AdminReportsPage: React.FC<AdminReportsPageProps> = ({
                 <div>
                   <h3 className="font-bold text-lg flex items-center gap-2">
                     <FileText size={18} className="text-blue-400" />
-                    Chi tiết bài làm: {inspectingAttempt.subjectCode} - {inspectingAttempt.subjectName}
+                    Chi tiết bài làm: {inspectingAttempt.subjectCode} - {resolveAttemptExamTitle(inspectingAttempt, examDefsBySeed)}
                   </h3>
                   <p className="text-xs text-slate-300 mt-0.5">
                     Mã đề: <code className="font-mono font-bold text-yellow-300">{inspectingAttempt.seed}</code> · Điểm số:{' '}

@@ -45,6 +45,33 @@ function stripRedundantOptionPrefix(text: string, optId: string): string {
   return text;
 }
 
+/**
+ * Strips a redundant leading "Giải thích chi tiết:" header line/prefix since
+ * QuestionCard already renders the "Giải thích chi tiết" section heading above it.
+ */
+function stripRedundantExplanationHeader(explanation?: string): string {
+  if (!explanation) return '';
+  return explanation
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map((line) => {
+      const trimmed = line.trim();
+      if (
+        /^[-•*+]?\s*(?:\*\*|<b>|<strong>)?\s*giải thích chi tiết\s*:\s*(?:\*\*|<\/b>|<\/strong>)?$/i.test(
+          trimmed
+        )
+      ) {
+        return '';
+      }
+      return line.replace(
+        /^(\s*[-•*+]?\s*)(?:\*\*|<b>|<strong>)?\s*giải thích chi tiết\s*:\s*(?:\*\*|<\/b>|<\/strong>)?\s*/i,
+        '$1'
+      );
+    })
+    .join('\n')
+    .trim();
+}
+
 const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   question,
   index,
@@ -61,6 +88,7 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   const qId = question.id;
   const isCorrect = evaluation?.isCorrect ?? false;
   const isUnanswered = evaluation?.isUnanswered ?? false;
+  const cleanedExplanation = stripRedundantExplanationHeader(question.explanation);
 
 
   // Single choice selection
@@ -207,7 +235,12 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
         {/* Right side controls: Flag / Review status / Report */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           {isReview ? (
-            <div className="flex items-center gap-1.5 font-bold text-xs sm:text-sm">
+            <div className="flex items-center flex-wrap gap-1.5 font-bold text-xs sm:text-sm">
+              {isFlagged && (
+                <span className="text-amber-800 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/60 border border-amber-300/80 dark:border-amber-700/80 px-2 py-0.5 rounded-lg flex items-center gap-1 text-xs font-bold">
+                  <Flag size={12} fill="currentColor" /> Đánh dấu
+                </span>
+              )}
               {question.type === 'essay' ? (
                 <span className="text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-lg">
                   Tự luận
@@ -788,20 +821,20 @@ const QuestionCardComponent: React.FC<QuestionCardProps> = ({
   })()}
 
       {/* Review Mode: Explanation and Suggestions */}
-      {isReview && (question.explanation || (!isCorrect && question.type !== 'essay')) && (
+      {isReview && (cleanedExplanation || (!isCorrect && question.type !== 'essay')) && (
         <div
           className={`px-4 sm:px-6 py-4 border-t border-slate-200/80 dark:border-slate-800 text-sm space-y-3 ${
             isCorrect ? 'bg-emerald-50/30 dark:bg-emerald-950/20' : 'bg-slate-50/90 dark:bg-slate-900/60'
           }`}
         >
-          {question.explanation && (
+          {cleanedExplanation && (
             <div>
               <p className="font-bold text-slate-900 dark:text-slate-100 mb-1.5 flex items-center gap-1.5 text-xs sm:text-sm uppercase tracking-wider text-blue-800 dark:text-blue-400">
                 <Sparkles size={15} className="text-blue-600 dark:text-blue-400 shrink-0" />
                 <span>Giải thích chi tiết</span>
               </p>
               <div className="text-slate-700 dark:text-slate-300 leading-relaxed pl-0.5">
-                <RichTextRenderer text={question.explanation} />
+                <RichTextRenderer text={cleanedExplanation} />
               </div>
             </div>
           )}
